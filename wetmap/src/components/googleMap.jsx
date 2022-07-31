@@ -18,7 +18,8 @@ import { SliderContext } from "./contexts/sliderContext";
 import { AnimalContext } from "./contexts/animalContext";
 import { setupMapValues } from "../helpers/mapHelpers";
 import { setupClusters } from "../helpers/clusterHelpers"
-import { diveSitesX } from "../axiosCalls/diveSiteAxiosCalls"
+
+
 const LIB = ["visualization"]
 
 export default function Home() {
@@ -31,8 +32,6 @@ export default function Home() {
   return <Map></Map>;
 }
 
-let diveSiteData = diveSitesX()
-console.log("whas", diveSiteData)
 function Map() {
   const { mapCoords, setMapCoords } = useContext(CoordsContext);
   const { mapZoom, setMapZoom } = useContext(ZoomContext);

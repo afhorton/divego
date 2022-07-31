@@ -12,20 +12,8 @@ import { PinContext } from "./components/contexts/pinContext";
 import { PicModalContext } from "./components/contexts/picModalContext";
 import { JumpContext } from "./components/contexts/jumpContext";
 import { DiveSitesContext } from "./components/contexts/diveSitesContext";
-import axios from "axios";
 
 function App() {
-  const [ data, setData] = useState()
-  const urlWithProxy = "/"
-
-  function getDataFromServer() {
-    axios
-    .get(urlWithProxy)
-    .then((res) => setData(res.data))
-    .catch((err) => {
-      console.error(err)
-    })
-  }
   
   const d = new Date();
   const [sliderVal, setSliderVal] = useState(d.getMonth());

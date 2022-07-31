@@ -2,7 +2,6 @@
   "name": "wetmap",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -17,16 +16,11 @@
     "@mui/material": "^5.8.5",
     "@react-google-maps/api": "^2.12.1",
     "axios": "^0.27.2",
-    "body-parser": "^1.20.0",
     "bootstrap": "^5.1.3",
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.1",
     "exif-js": "^2.3.0",
     "exifr": "^7.1.3",
-    "express": "^4.18.1",
     "leaflet": "^1.8.0",
     "leaflet.heat": "^0.2.0",
-    "pg": "^8.7.3",
     "piexifjs": "^1.0.6",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
@@ -46,6 +40,5 @@
     "@vitejs/plugin-react": "^1.3.0",
     "typescript": "^3.3.3",
     "vite": "^2.9.13"
-  },
-  "proxy": "http://localhost:5000"
+  }
 }
