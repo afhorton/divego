@@ -1,0 +1,78 @@
+
+
+.inputboxType1{
+    display: flex;
+    flex-direction: column;;
+    margin-left: 20%;
+    margin-top: 0px;
+}
+
+.inputboxType2{
+    display: flex;
+    flex-direction: column;;
+    margin-left: 22%;
+    margin-top: 0px;
+}
+
+.modalInputs{
+    margin-top: 10px;
+    border-radius: 10px;
+    width: 80%;
+    margin-left: -15%;
+}
+
+.selectbox{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 22%;
+}
+.modalInputs2{
+    margin-top: 10px;
+    border-radius: 10px;
+    width: 80%;
+    margin-left: -15%;
+} 
+
+#modalButton {
+   background-color: rgb(208, 231, 208);
+   margin-left: 27%;
+   margin-top: 25px;
+   margin-bottom: 10px
+}
+
+.modalTitle{
+    margin-left: 15%;
+    margin-top: 15px;
+}
+
+.uploadbox2{
+    margin-left: 23%;
+    margin-top: 15px;
+    width: 100%;
+}
+
+#projname {
+    height: 20px;
+    margin-left: -20px;
+}
+
+#locate{
+    margin-left: 20%;
+}
+
+.Tbox {
+    display: flex;
+    flex-direction: row;
+    margin-left: 23px;
+}
+
+.Gbox {
+    margin-top: 28px;
+    margin-left: 0px;
+}
+
+#jumpButton {
+    margin-left: -10px;
+}

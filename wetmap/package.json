@@ -1,0 +1,51 @@
+{
+  "name": "wetmap",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@google-cloud/vision": "^2.4.2",
+    "@math.gl/core": "^3.1.3",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.8.5",
+    "@react-google-maps/api": "^2.12.1",
+    "axios": "^0.27.2",
+    "body-parser": "^1.20.0",
+    "bootstrap": "^5.1.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "exif-js": "^2.3.0",
+    "exifr": "^7.1.3",
+    "express": "^4.18.1",
+    "leaflet": "^1.8.0",
+    "leaflet.heat": "^0.2.0",
+    "pg": "^8.7.3",
+    "piexifjs": "^1.0.6",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0",
+    "react-fs": "^0.0.0",
+    "react-geocode": "^0.2.3",
+    "react-leaflet": "^4.0.1",
+    "react-leaflet-heatmap-layer-v3": "^3.0.3-beta-1",
+    "react-router-dom": "^6.3.0",
+    "reactstrap": "^9.1.1",
+    "use-supercluster": "^0.4.0",
+    "yarn": "^1.22.19"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.6",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@vitejs/plugin-react": "^1.3.0",
+    "typescript": "^3.3.3",
+    "vite": "^2.9.13"
+  },
+  "proxy": "http://localhost:5000"
+}

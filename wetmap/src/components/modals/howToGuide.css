@@ -1,0 +1,110 @@
+
+.titleDiv{
+  margin-top: -15px;
+  margin-left: 10px;
+}
+
+.mainBlurbDiv{
+  margin-left: 10px;
+}
+
+
+.exploreDiv{
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+  margin-left: 10px;
+}
+
+.leftE{
+  min-height: inherit;
+  width: 5%;
+  margin: auto;
+}
+
+.rightE{
+  min-height: 30px;
+  width: 95%;
+  margin: auto;
+}
+
+
+.animalDiv{
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+  margin-left: 10px;
+}
+
+.leftA{
+  min-height: inherit;
+  width: 5%;
+  margin: auto;
+}
+
+.rightA{
+  min-height: 30px;
+  width: 95%;
+  margin: auto;
+}
+
+
+.diveSiteDiv{
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+  margin-left: 10px;
+}
+
+.leftD{
+  min-height: inherit;
+  width: 5%;
+  margin: auto;
+}
+
+.rightD{
+  min-height: 30px;
+  width: 95%;
+  margin: auto;
+}
+
+
+.photoDiv{
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+  margin-left: 10px;
+}
+
+.leftP{
+  min-height: inherit;
+  width: 5%;
+  margin: auto;
+}
+
+.rightP{
+  min-height: 30px;
+  width: 95%;
+  margin: auto;
+}
+
+
+.addSiteDiv{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 40px;
+  width: 95%;
+  margin-left: 10px;
+}
+
+.leftDS{
+  height: inherit;
+  width: 5%;
+  margin: auto;
+}
+
+.rightDS{
+  min-height: 30px;
+  width: 95%;
+  margin: auto;
+}
