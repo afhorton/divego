@@ -31,7 +31,6 @@ export default function Home() {
   if (!isLoaded) return <div>Loading...</div>;
   return <Map></Map>;
 }
-let diveSiteData = diveSites();
 
 function Map() {
   const { mapCoords, setMapCoords } = useContext(CoordsContext);
@@ -90,25 +89,23 @@ function Map() {
     Promise.all([filteredDiveSites])
       .then((response) => {
         console.log("FE GETS", response[0]);
-        setnewSites(response[0]);
+        !divesTog ? setnewSites([]) : setnewSites(response[0]);
+        // setnewSites(response[0]);
       })
       .catch((error) => {
         console.log(error);
       });
 
-    !divesTog ? (SwtchDives = []) : (SwtchDives = diveSitesFake);
-
     DiveSiteAndHeatSpotValue = setupMapValues(
       mapZoom,
       mapCoords[0],
       mapCoords[1],
-      SwtchDives,
+      newSites,
       heatVals,
       sliderVal,
       animalVal
     );
 
-    // setnewSites(DiveSiteAndHeatSpotValue[0]);
     setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
   }, []);
 
@@ -128,25 +125,23 @@ function Map() {
         Promise.all([filteredDiveSites])
           .then((response) => {
             console.log("FE GETS", response[0]);
-            setnewSites(response[0]);
+            !divesTog ? setnewSites([]) : setnewSites(response[0]);
+            // setnewSites(response[0]);
           })
           .catch((error) => {
             console.log(error);
           });
 
-        !divesTog ? (SwtchDives = []) : (SwtchDives = diveSitesFake);
-
         DiveSiteAndHeatSpotValue = setupMapValues(
           mapZoom,
           mapCoords[0],
           mapCoords[1],
-          SwtchDives,
+          newSites,
           heatVals,
           sliderVal,
           animalVal
         );
 
-        // setnewSites(DiveSiteAndHeatSpotValue[0]);
         setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
       }, 50);
     }
@@ -162,25 +157,23 @@ function Map() {
       Promise.all([filteredDiveSites])
         .then((response) => {
           console.log("FE GETS", response[0]);
-          setnewSites(response[0]);
+          !divesTog ? setnewSites([]) : setnewSites(response[0]);
+          // setnewSites(response[0]);
         })
         .catch((error) => {
           console.log(error);
         });
 
-      !divesTog ? (SwtchDives = []) : (SwtchDives = diveSitesFake);
-
       DiveSiteAndHeatSpotValue = setupMapValues(
         mapZoom,
         mapCoords[0],
         mapCoords[1],
-        SwtchDives,
+        newSites,
         heatVals,
         sliderVal,
         animalVal
       );
 
-      // setnewSites(DiveSiteAndHeatSpotValue[0]);
       setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
     }
   };
@@ -200,25 +193,23 @@ function Map() {
         Promise.all([filteredDiveSites])
           .then((response) => {
             console.log("FE GETS", response[0]);
-            setnewSites(response[0]);
+            !divesTog ? setnewSites([]) : setnewSites(response[0]);
+            // setnewSites(response[0]);
           })
           .catch((error) => {
             console.log(error);
           });
 
-        !divesTog ? (SwtchDives = []) : (SwtchDives = diveSitesFake);
-
         DiveSiteAndHeatSpotValue = setupMapValues(
           mapZoom,
           mapCoords[0],
           mapCoords[1],
-          SwtchDives,
+          newSites,
           heatVals,
           sliderVal,
           animalVal
         );
 
-        // setnewSites(DiveSiteAndHeatSpotValue[0]);
         setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
       }, 50);
     }
@@ -232,15 +223,14 @@ function Map() {
   }, [jump]);
 
   useEffect(() => {
-    !divesTog ? (SwtchDives = []) : (SwtchDives = diveSitesFake);
-
     GPSBubble = dataParams(mapZoom, mapCoords[0], mapCoords[1]);
 
     filteredDiveSites = diveSites(GPSBubble);
     Promise.all([filteredDiveSites])
       .then((response) => {
         console.log("FE GETS", response[0]);
-        setnewSites(response[0]);
+        !divesTog ? setnewSites([]) : setnewSites(response[0]);
+        // setnewSites(response[0]);
       })
       .catch((error) => {
         console.log(error);
@@ -250,13 +240,12 @@ function Map() {
       mapZoom,
       mapCoords[0],
       mapCoords[1],
-      SwtchDives,
+      newSites,
       heatVals,
       sliderVal,
       animalVal
     );
 
-    // setnewSites(DiveSiteAndHeatSpotValue[0]);
     setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
   }, [mapCoords, divesTog, sliderVal, animalVal]);
 
