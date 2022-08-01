@@ -1,10 +1,11 @@
 import axios from "axios";
 
- export const diveSitesX = () => {
+ export const diveSites = (GPSBubble) => {
+   console.log("AXIOS", GPSBubble)
     return axios
-      .get("api/diveSites")
+      .post("api/diveSites", { GPSBubble: GPSBubble })
       .then((response) => {
-        // console.log(response.data)
+        console.log("AXIOS SENDS", response.data)
           return response.data;
       })
       .catch((err) => {

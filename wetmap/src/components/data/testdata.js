@@ -36,7 +36,7 @@ export const heatVals = [
     {lat: 49.4495, lng: -123.2405, weight: 40, animal: "Grunt Sculpin", month: 5},
 ]
 
-export const diveSites = [
+export const diveSitesFake = [
   {name: "Whytecliff Park",	lat: 49.3714,	lng: -123.2925},
   {name: "Porteau Cove",	lat: 49.5615,	lng: -123.236944},
   {name: "Kelvin Grove",	lat: 49.4495,	lng: -123.2405},

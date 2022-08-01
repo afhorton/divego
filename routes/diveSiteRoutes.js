@@ -2,10 +2,13 @@ const express = require('express');
 const router = express.Router();
 const db = require('../lib/diveSiteQueries.js')
 
-const getDiveSites = router.get("/api/divesites", (req, res) => {
+const getDiveSites = router.post("/api/divesites", (req, res) => {
 
-    db.getAllDiveSites()
+    console.log("ROUTE", req.body)
+    db.getAllDiveSites(req.body.GPSBubble)
     .then(sites => {
+
+    console.log("ROUTE SENDS", sites)
         res.json(sites);
     })
     .catch(err => {

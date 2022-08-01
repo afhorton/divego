@@ -1,7 +1,7 @@
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import "./googleMap.css";
 import useSupercluster from "use-supercluster";
-import { diveSites } from "./data/testdata";
+import { diveSitesFake } from "./data/testdata";
 import anchorIcon from "../images/anchor11.png";
 import anchorClust from "../images/anchor3.png";
 import whale from "../images/icons8-spouting-whale-36.png";
@@ -58,7 +58,7 @@ function PinMap() {
       mapZoom,
       mapCoords[0],
       mapCoords[1],
-      diveSites
+      diveSitesFake
     );
 
     setnewSites(DiveSiteAndHeatSpotValue[0]);
@@ -79,7 +79,7 @@ function PinMap() {
           mapZoom,
           mapCoords[0],
           mapCoords[1],
-          diveSites
+          diveSitesFake
         );
 
         setnewSites(DiveSiteAndHeatSpotValue[0]);
@@ -96,7 +96,7 @@ function PinMap() {
         mapZoom,
         mapCoords[0],
         mapCoords[1],
-        diveSites
+        diveSitesFake
       );
 
       setnewSites(DiveSiteAndHeatSpotValue[0]);
@@ -121,7 +121,7 @@ function PinMap() {
           mapZoom,
           mapCoords[0],
           mapCoords[1],
-          diveSites
+          diveSitesFake
         );
 
         setnewSites(DiveSiteAndHeatSpotValue[0]);

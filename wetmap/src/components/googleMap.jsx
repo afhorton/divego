@@ -6,7 +6,7 @@ import {
 } from "@react-google-maps/api";
 import "./googleMap.css";
 import useSupercluster from "use-supercluster";
-import { diveSites, heatVals } from "./data/testdata";
+import { diveSitesFake, heatVals } from "./data/testdata";
 import anchorIcon from "../images/anchor11.png";
 import anchorClust from "../images/anchor3.png";
 import { useMemo, useState, useContext, useEffect } from "react";
@@ -16,11 +16,11 @@ import { JumpContext } from "./contexts/jumpContext";
 import { DiveSitesContext } from "./contexts/diveSitesContext";
 import { SliderContext } from "./contexts/sliderContext";
 import { AnimalContext } from "./contexts/animalContext";
-import { setupMapValues } from "../helpers/mapHelpers";
-import { setupClusters } from "../helpers/clusterHelpers"
-import { diveSitesX } from "../axiosCalls/diveSiteAxiosCalls"
+import { setupMapValues, dataParams } from "../helpers/mapHelpers";
+import { setupClusters } from "../helpers/clusterHelpers";
+import { diveSites } from "../axiosCalls/diveSiteAxiosCalls";
 
-const LIB = ["visualization"]
+const LIB = ["visualization"];
 
 export default function Home() {
   const { isLoaded } = useLoadScript({
@@ -31,8 +31,7 @@ export default function Home() {
   if (!isLoaded) return <div>Loading...</div>;
   return <Map></Map>;
 }
-let diveSiteData = diveSitesX()
-console.log("whas", diveSiteData)
+let diveSiteData = diveSites();
 
 function Map() {
   const { mapCoords, setMapCoords } = useContext(CoordsContext);
@@ -43,7 +42,7 @@ function Map() {
   const { animalVal } = useContext(AnimalContext);
   const { sliderVal } = useContext(SliderContext);
 
-  const [newSites, setnewSites] = useState(diveSites);
+  const [newSites, setnewSites] = useState([]);
   const [heatpts, setHeatPts] = useState(formatHeatVals(heatVals));
   const [mapRef, setMapRef] = useState(null);
 
@@ -54,6 +53,8 @@ function Map() {
   let timoutHandler;
   let DiveSiteAndHeatSpotValue;
   let SwtchDives;
+  let GPSBubble;
+  let filteredDiveSites;
 
   function formatHeatVals(heatValues) {
     let newArr = [];
@@ -83,7 +84,19 @@ function Map() {
     setMapCoords([center.lat, center.lng]);
     setMapZoom(zoom);
 
-    !divesTog ? (SwtchDives = []) : (SwtchDives = diveSites);
+    GPSBubble = dataParams(mapZoom, mapCoords[0], mapCoords[1]);
+
+    filteredDiveSites = diveSites(GPSBubble);
+    Promise.all([filteredDiveSites])
+      .then((response) => {
+        console.log("FE GETS", response[0]);
+        setnewSites(response[0]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    !divesTog ? (SwtchDives = []) : (SwtchDives = diveSitesFake);
 
     DiveSiteAndHeatSpotValue = setupMapValues(
       mapZoom,
@@ -95,7 +108,7 @@ function Map() {
       animalVal
     );
 
-    setnewSites(DiveSiteAndHeatSpotValue[0]);
+    // setnewSites(DiveSiteAndHeatSpotValue[0]);
     setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
   }, []);
 
@@ -108,7 +121,20 @@ function Map() {
       window.clearTimeout(timoutHanlder);
       timoutHanlder = window.setTimeout(function () {
         setMapCoords([mapRef.getCenter().lat(), mapRef.getCenter().lng()]);
-        !divesTog ? (SwtchDives = []) : (SwtchDives = diveSites);
+
+        GPSBubble = dataParams(mapZoom, mapCoords[0], mapCoords[1]);
+
+        filteredDiveSites = diveSites(GPSBubble);
+        Promise.all([filteredDiveSites])
+          .then((response) => {
+            console.log("FE GETS", response[0]);
+            setnewSites(response[0]);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+
+        !divesTog ? (SwtchDives = []) : (SwtchDives = diveSitesFake);
 
         DiveSiteAndHeatSpotValue = setupMapValues(
           mapZoom,
@@ -120,7 +146,7 @@ function Map() {
           animalVal
         );
 
-        setnewSites(DiveSiteAndHeatSpotValue[0]);
+        // setnewSites(DiveSiteAndHeatSpotValue[0]);
         setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
       }, 50);
     }
@@ -129,7 +155,20 @@ function Map() {
   const handleMapZoomChange = () => {
     if (mapRef) {
       setMapZoom(mapRef.getZoom());
-      !divesTog ? (SwtchDives = []) : (SwtchDives = diveSites);
+
+      GPSBubble = dataParams(mapZoom, mapCoords[0], mapCoords[1]);
+
+      filteredDiveSites = diveSites(GPSBubble);
+      Promise.all([filteredDiveSites])
+        .then((response) => {
+          console.log("FE GETS", response[0]);
+          setnewSites(response[0]);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      !divesTog ? (SwtchDives = []) : (SwtchDives = diveSitesFake);
 
       DiveSiteAndHeatSpotValue = setupMapValues(
         mapZoom,
@@ -141,7 +180,7 @@ function Map() {
         animalVal
       );
 
-      setnewSites(DiveSiteAndHeatSpotValue[0]);
+      // setnewSites(DiveSiteAndHeatSpotValue[0]);
       setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
     }
   };
@@ -150,17 +189,24 @@ function Map() {
     if (mapRef) {
       window.clearTimeout(timoutHandler);
       timoutHandler = window.setTimeout(function () {
-        let bnds = mapRef.getBounds()
-        let lats = bnds[Object.keys(bnds)[0]]
-        let lngs = bnds[Object.keys(bnds)[1]]
-        setBoundaries([
-          lngs.lo,
-          lats.lo,
-          lngs.hi,
-          lats.hi,
-        ]);
+        let bnds = mapRef.getBounds();
+        let lats = bnds[Object.keys(bnds)[0]];
+        let lngs = bnds[Object.keys(bnds)[1]];
+        setBoundaries([lngs.lo, lats.lo, lngs.hi, lats.hi]);
 
-        !divesTog ? (SwtchDives = []) : (SwtchDives = diveSites);
+        GPSBubble = dataParams(mapZoom, mapCoords[0], mapCoords[1]);
+
+        filteredDiveSites = diveSites(GPSBubble);
+        Promise.all([filteredDiveSites])
+          .then((response) => {
+            console.log("FE GETS", response[0]);
+            setnewSites(response[0]);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+
+        !divesTog ? (SwtchDives = []) : (SwtchDives = diveSitesFake);
 
         DiveSiteAndHeatSpotValue = setupMapValues(
           mapZoom,
@@ -172,9 +218,9 @@ function Map() {
           animalVal
         );
 
-        setnewSites(DiveSiteAndHeatSpotValue[0]);
+        // setnewSites(DiveSiteAndHeatSpotValue[0]);
         setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
-         }, 50);
+      }, 50);
     }
   };
 
@@ -186,7 +232,19 @@ function Map() {
   }, [jump]);
 
   useEffect(() => {
-    !divesTog ? (SwtchDives = []) : (SwtchDives = diveSites);
+    !divesTog ? (SwtchDives = []) : (SwtchDives = diveSitesFake);
+
+    GPSBubble = dataParams(mapZoom, mapCoords[0], mapCoords[1]);
+
+    filteredDiveSites = diveSites(GPSBubble);
+    Promise.all([filteredDiveSites])
+      .then((response) => {
+        console.log("FE GETS", response[0]);
+        setnewSites(response[0]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
     DiveSiteAndHeatSpotValue = setupMapValues(
       mapZoom,
@@ -198,7 +256,7 @@ function Map() {
       animalVal
     );
 
-    setnewSites(DiveSiteAndHeatSpotValue[0]);
+    // setnewSites(DiveSiteAndHeatSpotValue[0]);
     setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
   }, [mapCoords, divesTog, sliderVal, animalVal]);
 
