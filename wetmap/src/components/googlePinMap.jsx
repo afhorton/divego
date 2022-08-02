@@ -62,7 +62,6 @@ function PinMap() {
     filteredDiveSites = diveSites(GPSBubble);
     Promise.all([filteredDiveSites])
       .then((response) => {
-        console.log("FE GETS", response[0]);
         setnewSites(response[0]);
       })
       .catch((error) => {
@@ -93,7 +92,6 @@ function PinMap() {
         filteredDiveSites = diveSites(GPSBubble);
         Promise.all([filteredDiveSites])
           .then((response) => {
-            console.log("FE GETS", response[0]);
             setnewSites(response[0]);
           })
           .catch((error) => {
@@ -120,7 +118,6 @@ function PinMap() {
       filteredDiveSites = diveSites(GPSBubble);
       Promise.all([filteredDiveSites])
         .then((response) => {
-          console.log("FE GETS", response[0]);
           setnewSites(response[0]);
         })
         .catch((error) => {
@@ -151,7 +148,6 @@ function PinMap() {
         filteredDiveSites = diveSites(GPSBubble);
         Promise.all([filteredDiveSites])
           .then((response) => {
-            console.log("FE GETS", response[0]);
             setnewSites(response[0]);
           })
           .catch((error) => {

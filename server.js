@@ -3,10 +3,15 @@ app = express();
 const path = require("path");
 cors = require("cors");
 const bodyParser = require("body-parser");
-require("dotenv").config({path: `./wetmap/.env.local`});
+require("dotenv").config({ path: `./wetmap/.env.local` });
 
-
-const { getDiveSites } = require("./routes/diveSiteRoutes")
+const { getDiveSites, addNewDiveSite } = require("./routes/diveSiteRoutes");
+const {
+  getDiveSiteWaits,
+  addDiveSiteWaiter,
+  getDiveSiteWaitById,
+  delDiveSiteWait,
+} = require("./routes/diveSiteWaitRoutes");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -26,7 +31,13 @@ app.listen(port, () => console.log("Backend server live on " + port));
 
 //DiveSite Routes
 app.use(getDiveSites);
+app.use(addNewDiveSite);
 
+//DiveSiteWait Routes
+app.use(getDiveSiteWaits);
+app.use(addDiveSiteWaiter);
+app.use(getDiveSiteWaitById);
+app.use(delDiveSiteWait);
 
 // app.get("/", (req, res) => {
 //     res.sendFile(__dirname + "/wetmap/index.html")

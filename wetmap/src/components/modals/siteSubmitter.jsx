@@ -6,6 +6,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import { exifGPSHelper } from "../../helpers/exifGPSHelpers";
 import Collapse from "@mui/material/Collapse";
+import { insertDiveSiteWaits } from "../../axiosCalls/diveSiteWaitAxiosCalls";
 
 const noGPSZone = (
   <div
@@ -71,6 +72,12 @@ const SiteSubmitter = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    console.log("form gives", formVals)
+
+    if (formVals.Site && formVals.Latitude && formVals.Longitude) {
+      insertDiveSiteWaits(formVals)
+    }
     closeup();
     return;
   };
@@ -149,7 +156,7 @@ const SiteSubmitter = (props) => {
         </div>
 
         <FormGroup>
-          <Button variant="text" id="modalButton">
+          <Button variant="text" id="modalButton" onClick={handleSubmit}>
             Submit Dive Site
           </Button>
         </FormGroup>

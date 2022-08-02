@@ -51,7 +51,6 @@ function Map() {
   let timoutHanlder;
   let timoutHandler;
   let DiveSiteAndHeatSpotValue;
-  let SwtchDives;
   let GPSBubble;
   let filteredDiveSites;
 
@@ -88,9 +87,7 @@ function Map() {
     filteredDiveSites = diveSites(GPSBubble);
     Promise.all([filteredDiveSites])
       .then((response) => {
-        console.log("FE GETS", response[0]);
         !divesTog ? setnewSites([]) : setnewSites(response[0]);
-        // setnewSites(response[0]);
       })
       .catch((error) => {
         console.log(error);
@@ -124,9 +121,7 @@ function Map() {
         filteredDiveSites = diveSites(GPSBubble);
         Promise.all([filteredDiveSites])
           .then((response) => {
-            console.log("FE GETS", response[0]);
             !divesTog ? setnewSites([]) : setnewSites(response[0]);
-            // setnewSites(response[0]);
           })
           .catch((error) => {
             console.log(error);
@@ -156,9 +151,7 @@ function Map() {
       filteredDiveSites = diveSites(GPSBubble);
       Promise.all([filteredDiveSites])
         .then((response) => {
-          console.log("FE GETS", response[0]);
           !divesTog ? setnewSites([]) : setnewSites(response[0]);
-          // setnewSites(response[0]);
         })
         .catch((error) => {
           console.log(error);
@@ -192,9 +185,7 @@ function Map() {
         filteredDiveSites = diveSites(GPSBubble);
         Promise.all([filteredDiveSites])
           .then((response) => {
-            console.log("FE GETS", response[0]);
             !divesTog ? setnewSites([]) : setnewSites(response[0]);
-            // setnewSites(response[0]);
           })
           .catch((error) => {
             console.log(error);
@@ -228,9 +219,7 @@ function Map() {
     filteredDiveSites = diveSites(GPSBubble);
     Promise.all([filteredDiveSites])
       .then((response) => {
-        console.log("FE GETS", response[0]);
         !divesTog ? setnewSites([]) : setnewSites(response[0]);
-        // setnewSites(response[0]);
       })
       .catch((error) => {
         console.log(error);

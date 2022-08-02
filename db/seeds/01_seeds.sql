@@ -5,13 +5,13 @@ DELETE FROM photos;
 DELETE FROM diveSites;
 DELETE FROM heatPoints;
 DELETE FROM diveSiteWait;
-DELETE FROM heatPointWait;
+DELETE FROM photoWait;
 
 ALTER SEQUENCE photos_id_seq RESTART WITH 1;
 ALTER SEQUENCE diveSites_id_seq RESTART WITH 1;
 ALTER SEQUENCE heatPoints_id_seq RESTART WITH 1;
 ALTER SEQUENCE diveSiteWait_id_seq RESTART WITH 1;
-ALTER SEQUENCE heatPointWait_id_seq RESTART WITH 1;
+ALTER SEQUENCE phototWait_id_seq RESTART WITH 1;
 
 INSERT INTO diveSites("name", lat, lng)
 VALUES ('Whytecliff Park', 49.3714, -123.2925),

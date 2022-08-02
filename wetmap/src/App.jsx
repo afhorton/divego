@@ -3,6 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import MapPage from "./components/MapPage";
 import PinMapPage from "./components/PinMapPage";
+import AdminPage from "./components/adminComponents/adminPage"
 import "./App.css";
 import { SliderContext } from "./components/contexts/sliderContext";
 import { AnimalContext } from "./components/contexts/animalContext";
@@ -51,6 +52,7 @@ function App() {
                     <Routes>
                       <Route path="/" element={<MapPage />} />
                       <Route path="/pinDrop" element={<PinMapPage />} />
+                      <Route path="/admin" element={<AdminPage />} />
                     </Routes>
                   </BrowserRouter>
                   </DiveSitesContext.Provider>
