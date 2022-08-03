@@ -12,6 +12,13 @@ const {
   getDiveSiteWaitById,
   delDiveSiteWait,
 } = require("./routes/diveSiteWaitRoutes");
+const { addNewPhoto } = require("./routes/photoRoutes");
+const {
+  getPhotoWaits,
+  addPhotoWaiter,
+  getPhotoWaitById,
+  delPhotoWait,
+} = require("./routes/photoWaitRoutes");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -38,6 +45,16 @@ app.use(getDiveSiteWaits);
 app.use(addDiveSiteWaiter);
 app.use(getDiveSiteWaitById);
 app.use(delDiveSiteWait);
+
+//Photo Routes
+app.use(addNewPhoto);
+
+//PhotoWait Routes
+app.use(getPhotoWaits);
+app.use(addPhotoWaiter);
+app.use(getPhotoWaitById);
+app.use(delPhotoWait);
+
 
 // app.get("/", (req, res) => {
 //     res.sendFile(__dirname + "/wetmap/index.html")

@@ -8,34 +8,30 @@ import TableRow from "@mui/material/TableRow";
 import Fab from "@mui/material/Fab";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import { insertDiveSite } from "../../axiosCalls/diveSiteAxiosCalls";
+import { insertphoto } from "../../axiosCalls/photoAxiosCalls";
 import {
-  diveSiteWaits,
-  grabDiveSiteWaitById,
-  deleteDiveSiteWait,
-} from "../../axiosCalls/diveSiteWaitAxiosCalls";
+  photoWaits,
+  grabPhotoWaitById,
+  deletePhotoWait,
+} from "../../axiosCalls/photoWaitAxiosCalls";
 
-
-const DiveSiteVetting = React.memo(() => {
-
-  const [diveSiteWait, setDiveSiteWait] = useState([]);
-  let diveSitesToVett;
-  let diveSiteById;
+const PhotoVetting = React.memo(() => {
+  const [photoWait, setPhotoWait] = useState([]);
+  let photosToVett;
+  let photoById;
 
   useEffect(async () => {
-    diveSitesToVett = await diveSiteWaits();
-    diveSitesToVett ? setDiveSiteWait(diveSitesToVett) : [];
+    photosToVett = await photoWaits();
+    photosToVett ? setPhotoWait(photosToVett[0]) : [];
   }, []);
 
-  const ValidateDiveSite = async (id) => {
-    diveSiteById = await grabDiveSiteWaitById(id);
-    diveSiteById
-      ? insertDiveSite(diveSiteById[0]) && deleteDiveSiteWait(id)
-      : [];
+  const ValidatePhoto = async (id) => {
+    photoById = await grabPhotoWaitById(id);
+    photoById ? insertphoto(photoById[0]) && deletePhotoWait(id) : [];
   };
 
-  const RejectDiveSite = (id) => {
-    deleteDiveSiteWait(id);
+  const RejectPhoto = (id) => {
+    deletePhotoWait(id);
   };
 
   return (
@@ -59,14 +55,29 @@ const DiveSiteVetting = React.memo(() => {
                 paddingLeft: 39,
               }}
             >
-              <strong>Name</strong>
+              <strong>Photo</strong>
             </TableCell>
+            <TableCell
+              align="center"
+              style={{ color: "black", width: 100, fontSize: 16 }}
+            >
+              <strong>Animal</strong>
+            </TableCell>
+
+            <TableCell
+              align="center"
+              style={{ color: "black", width: 100, fontSize: 16 }}
+            >
+              <strong>Date</strong>
+            </TableCell>
+
             <TableCell
               align="center"
               style={{ color: "black", width: 100, fontSize: 16 }}
             >
               <strong>Latitude</strong>
             </TableCell>
+
             <TableCell
               align="center"
               style={{ color: "black", width: 100, fontSize: 16 }}
@@ -88,26 +99,35 @@ const DiveSiteVetting = React.memo(() => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {diveSiteWait &&
-            diveSiteWait.map((site, index) => (
+          {photoWait &&
+            photoWait.map((photo, index) => (
               <TableRow key={site.id} style={{ padding: 0 }}>
-                <TableCell sx={{ color: "#2B2D42", paddingLeft: 5 }}contentEditable={true}>
-                  <strong>{site.name}</strong>
+                <TableCell
+                  sx={{ color: "#2B2D42", paddingLeft: 5 }}
+                  contentEditable={true}
+                >
+                  <strong>{photo.photofile}</strong>
                 </TableCell>
                 <TableCell align="center" sx={{ color: "#2B2D42" }}>
-                  <strong>{site.lat}</strong>
+                  <strong>{photo.label}</strong>
                 </TableCell>
                 <TableCell align="center" style={{ height: 10 }}>
-                  <strong>{site.lng}</strong>
+                  <strong>{photo.dateTaken}</strong>
+                </TableCell>
+                <TableCell align="center" style={{ height: 10 }}>
+                  <strong>{photo.latitude}</strong>
+                </TableCell>
+                <TableCell align="center" style={{ height: 10 }}>
+                  <strong>{photo.longitude}</strong>
                 </TableCell>
                 <TableCell align="center" style={{ height: 10 }}>
                   <Fab color="primary" aria-label="add">
-                    <TaskAltIcon onClick={() => ValidateDiveSite(site.id)} />
+                    <TaskAltIcon onClick={() => ValidatePhoto(photo.id)} />
                   </Fab>
                 </TableCell>
                 <TableCell align="center" style={{ height: 10 }}>
                   <Fab color="secondary" aria-label="add">
-                    <HighlightOffIcon onClick={() => RejectDiveSite(site.id)} />
+                    <HighlightOffIcon onClick={() => RejectPhoto(photo.id)} />
                   </Fab>
                 </TableCell>
               </TableRow>
@@ -118,4 +138,4 @@ const DiveSiteVetting = React.memo(() => {
   );
 });
 
-export default DiveSiteVetting;
+export default PhotoVetting;

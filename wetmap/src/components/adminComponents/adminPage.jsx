@@ -5,6 +5,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import DiveSiteVetting from "./diveSiteVetting"
+import PhotoVetting from "./photoVetting"
 
 const AdminPage = React.memo(() => {
 
@@ -57,7 +58,7 @@ function a11yProps(index) {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        Item One
+        <PhotoVetting />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <DiveSiteVetting />
