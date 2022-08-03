@@ -21,7 +21,7 @@ const getPhotoWaits = router.post("/api/photoWait", (req, res) => {
 
 const addPhotoWaiter = router.post("/api/photoWaitAdd", (req, res) => {
 
-    // console.log("ROUTE", req.body)
+    console.log("ROUTE", req.body)
     db.addPhotoWait(req.body.File, req.body.Animal, req.body.Date, req.body.Lat, req.body.Lng)
     .then(photo => {
     // console.log("ROUTE SENDS", sites)

@@ -9,6 +9,7 @@ import { PinContext } from "../contexts/pinContext";
 import PlaceIcon from "@mui/icons-material/Place";
 import { exifGPSHelper } from "../../helpers/exifGPSHelpers";
 import Collapse from "@mui/material/Collapse";
+import { insertPhotoWaits } from "../../axiosCalls/photoWaitAxiosCalls";
 
 const noGPSZone = (
   <div
@@ -129,6 +130,13 @@ const PicUploader = React.memo((props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    console.log("form gives", pin)
+
+    if (pin.PicFile && pin.PicDate && pin.Animal && pin.Latitude && pin.Longitude) {
+      insertPhotoWaits(pin)
+    }
+
     closeup();
     return;
   };
@@ -241,7 +249,7 @@ const PicUploader = React.memo((props) => {
         </div>
 
         <FormGroup>
-          <Button variant="text" id="modalButton">
+          <Button variant="text" id="modalButton" onClick={handleSubmit}>
             Submit Photo
           </Button>
         </FormGroup>

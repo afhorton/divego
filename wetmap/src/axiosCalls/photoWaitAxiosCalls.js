@@ -14,12 +14,12 @@ export const photoWaits = () => {
 };
 
 export const insertPhotoWaits = (values) => {
-  //  console.log("AXIOS", values)
+   console.log("AXIOS", values)
   return axios
     .post("/api/photoWaitAdd", {
-      File: values.File,
+      File: values.PicFile,
       Animal: values.Animal,
-      Date: values.Date,
+      Date: values.PicDate,
       Lat: values.Latitude,
       Lng: values.Longitude,
     })

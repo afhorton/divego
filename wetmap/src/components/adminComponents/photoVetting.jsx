@@ -22,7 +22,9 @@ const PhotoVetting = React.memo(() => {
 
   useEffect(async () => {
     photosToVett = await photoWaits();
-    photosToVett ? setPhotoWait(photosToVett[0]) : [];
+    photosToVett ? setPhotoWait(photosToVett) : [];
+
+    console.log("you need", photosToVett)
   }, []);
 
   const ValidatePhoto = async (id) => {
@@ -101,12 +103,12 @@ const PhotoVetting = React.memo(() => {
         <TableBody>
           {photoWait &&
             photoWait.map((photo, index) => (
-              <TableRow key={site.id} style={{ padding: 0 }}>
+              <TableRow key={photo.id} style={{ padding: 0 }}>
                 <TableCell
                   sx={{ color: "#2B2D42", paddingLeft: 5 }}
                   contentEditable={true}
                 >
-                  <strong>{photo.photofile}</strong>
+                  <strong>{photo.label}</strong>
                 </TableCell>
                 <TableCell align="center" sx={{ color: "#2B2D42" }}>
                   <strong>{photo.label}</strong>
