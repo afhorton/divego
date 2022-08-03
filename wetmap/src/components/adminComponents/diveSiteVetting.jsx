@@ -20,27 +20,20 @@ const DiveSiteVetting = React.memo(() => {
   let diveSitesToVett;
   let diveSiteById;
 
-  useEffect(() => {
-    diveSitesToVett = diveSiteWaits();
-    Promise.all([diveSitesToVett])
-      .then((response) => {
-        setDiveSiteWait(response[0]);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  useEffect(async () => {
+    diveSitesToVett = await diveSiteWaits();
+    diveSitesToVett ? setDiveSiteWait(diveSitesToVett[0]) : [];
   }, []);
 
-  const ValidateDiveSite = (id) => {
-    diveSiteById = grabDiveSiteWaitById(id);
-    Promise.all([diveSiteById])
-      .then((response) => {
-        insertDiveSite(response[0]);
-        deleteDiveSiteWait(id);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  const ValidateDiveSite = async (id) => {
+    diveSiteById = await grabDiveSiteWaitById(id);
+    diveSiteById
+      ? insertDiveSite(diveSiteById[0]) && deleteDiveSiteWait(id)
+      : [];
+  };
+
+  const RejectDiveSite = (id) => {
+    deleteDiveSiteWait(id);
   };
 
   return (
@@ -112,7 +105,7 @@ const DiveSiteVetting = React.memo(() => {
                 </TableCell>
                 <TableCell align="center" style={{ height: 10 }}>
                   <Fab color="secondary" aria-label="add">
-                    <HighlightOffIcon />
+                    <HighlightOffIcon onClick={() => RejectDiveSite(site.id)} />
                   </Fab>
                 </TableCell>
               </TableRow>

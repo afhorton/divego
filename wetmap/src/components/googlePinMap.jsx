@@ -53,20 +53,13 @@ function PinMap() {
     minZoom: 4,
   }));
 
-  useEffect(() => {
+  useEffect(async () => {
     setMapCoords([center.lat, center.lng]);
     setMapZoom(zoom);
 
     GPSBubble = dataParams(mapZoom, mapCoords[0], mapCoords[1]);
-
-    filteredDiveSites = diveSites(GPSBubble);
-    Promise.all([filteredDiveSites])
-      .then((response) => {
-        setnewSites(response[0]);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    filteredDiveSites = await diveSites(GPSBubble);
+    filteredDiveSites ? setnewSites(filteredDiveSites) : []
 
     DiveSiteAndHeatSpotValue = setupMapValues(
       mapZoom,
@@ -109,20 +102,13 @@ function PinMap() {
     }
   };
 
-  const handleMapZoomChange = () => {
+  const handleMapZoomChange = async() => {
     if (mapRef) {
       setMapZoom(mapRef.getZoom());
 
       GPSBubble = dataParams(mapZoom, mapCoords[0], mapCoords[1]);
-
-      filteredDiveSites = diveSites(GPSBubble);
-      Promise.all([filteredDiveSites])
-        .then((response) => {
-          setnewSites(response[0]);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      filteredDiveSites = await diveSites(GPSBubble);
+      filteredDiveSites ? setnewSites(filteredDiveSites) : []
 
       DiveSiteAndHeatSpotValue = setupMapValues(
         mapZoom,

@@ -78,20 +78,17 @@ function Map() {
     radius: 30,
   }));
 
-  useEffect(() => {
+  useEffect(async() => {
     setMapCoords([center.lat, center.lng]);
     setMapZoom(zoom);
 
     GPSBubble = dataParams(mapZoom, mapCoords[0], mapCoords[1]);
 
-    filteredDiveSites = diveSites(GPSBubble);
-    Promise.all([filteredDiveSites])
-      .then((response) => {
-        !divesTog ? setnewSites([]) : setnewSites(response[0]);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    filteredDiveSites = await diveSites(GPSBubble);
+
+    if (filteredDiveSites) {
+      !divesTog ? setnewSites([]) : setnewSites(filteredDiveSites);
+    }
 
     DiveSiteAndHeatSpotValue = setupMapValues(
       mapZoom,
@@ -142,20 +139,17 @@ function Map() {
     }
   };
 
-  const handleMapZoomChange = () => {
+  const handleMapZoomChange = async() => {
     if (mapRef) {
       setMapZoom(mapRef.getZoom());
 
       GPSBubble = dataParams(mapZoom, mapCoords[0], mapCoords[1]);
 
-      filteredDiveSites = diveSites(GPSBubble);
-      Promise.all([filteredDiveSites])
-        .then((response) => {
-          !divesTog ? setnewSites([]) : setnewSites(response[0]);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      filteredDiveSites = await diveSites(GPSBubble);
+
+      if (filteredDiveSites) {
+        !divesTog ? setnewSites([]) : setnewSites(filteredDiveSites);
+      }
 
       DiveSiteAndHeatSpotValue = setupMapValues(
         mapZoom,
@@ -213,17 +207,14 @@ function Map() {
     }
   }, [jump]);
 
-  useEffect(() => {
+  useEffect(async() => {
     GPSBubble = dataParams(mapZoom, mapCoords[0], mapCoords[1]);
 
-    filteredDiveSites = diveSites(GPSBubble);
-    Promise.all([filteredDiveSites])
-      .then((response) => {
-        !divesTog ? setnewSites([]) : setnewSites(response[0]);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    filteredDiveSites = await diveSites(GPSBubble);
+
+    if (filteredDiveSites) {
+      !divesTog ? setnewSites([]) : setnewSites(filteredDiveSites);
+    }
 
     DiveSiteAndHeatSpotValue = setupMapValues(
       mapZoom,

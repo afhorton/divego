@@ -11,7 +11,7 @@ ALTER SEQUENCE photos_id_seq RESTART WITH 1;
 ALTER SEQUENCE diveSites_id_seq RESTART WITH 1;
 ALTER SEQUENCE heatPoints_id_seq RESTART WITH 1;
 ALTER SEQUENCE diveSiteWait_id_seq RESTART WITH 1;
-ALTER SEQUENCE phototWait_id_seq RESTART WITH 1;
+ALTER SEQUENCE photoWait_id_seq RESTART WITH 1;
 
 INSERT INTO diveSites("name", lat, lng)
 VALUES ('Whytecliff Park', 49.3714, -123.2925),

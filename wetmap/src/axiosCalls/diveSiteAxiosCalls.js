@@ -17,9 +17,9 @@ import axios from "axios";
      console.log("AXIOS", values)
     return axios
       .post("api/diveSiteAdd", {
-        Name: values[0].name,
-        Lat: values[0].lat,
-        Lng: values[0].lng,
+        Name: values.name,
+        Lat: values.lat,
+        Lng: values.lng,
       })
       .then((response) => {
         // console.log("AXIOS SENDS", response.data)

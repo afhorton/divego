@@ -22,7 +22,7 @@ const getDiveSites = router.post("/api/diveSites", (req, res) => {
 
 const addNewDiveSite = router.post("/api/diveSiteAdd", (req, res) => {
 
-    console.log("ROUTE", req.body)
+    // console.log("ROUTE", req.body)
     db.addDiveSite(req.body.Name, req.body.Lat, req.body.Lng)
     .then(site => {
     // console.log("ROUTE SENDS", sites)
