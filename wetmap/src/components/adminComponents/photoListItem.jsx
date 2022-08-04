@@ -10,6 +10,7 @@ import Fab from "@mui/material/Fab";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import "./photoVetting.css";
+import { textAlign } from "@mui/system";
 
 let filePath = "/src/components/uploads/";
 
@@ -65,7 +66,7 @@ const PhotoListItem = (props) => {
       <div id="photoContainer">
         <Form id="photoValidator">
           <div className="imageBox">
-            <img src={formVals.photo} height="100px"></img>
+            <img src={formVals.photo} height="100px" className='Itag'></img>
           </div>
           <div className="infoBox">
             <div className="labelInputCombo">
@@ -77,6 +78,7 @@ const PhotoListItem = (props) => {
                 name="animal"
                 type="text"
                 value={formVals.animal}
+                style={{textAlign:'left'}}
               ></Input>
             </div>
             <div className="labelInputCombo">

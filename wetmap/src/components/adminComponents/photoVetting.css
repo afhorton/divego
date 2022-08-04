@@ -1,4 +1,11 @@
 
+#photoList {
+    border: 1px solid gray;
+    width: 745px;
+    border-radius: 10px;
+    box-shadow: 3px 4px 5px 1px rgb(99, 99, 99);
+}
+
 .listHeader {
     display: flex;
     flex-direction: row;
@@ -16,6 +23,7 @@
     width: 680px;
     border: 1px solid black;
     margin-left: 10px;
+    border-radius: 10px;
 }
 
 #photoValidator {
@@ -27,6 +35,10 @@
 .imageBox {
     width: 170px;
     height: 100px;
+}
+
+.Itag {
+    border-radius: 10px 0px 0px 10px;
 }
 
 .infoBox {
@@ -50,7 +62,7 @@
 #inpt {
     width: 150px;
     border: none;
-    text-align: left;
+    text-align: right;
     font-style: oblique;
     
 }

@@ -41,20 +41,20 @@ const PhotoVettingTable = React.memo(() => {
   }
 
   return (
-    <ul id="photoList" style={{ marginBottom: "0px" }}>
+    <ul id="photoList">
       <div className="listHeader">
-        <p style={{ minWidth: "175px", marginLeft: "10px", color: "#3B747D" }}>
+        <h3 style={{ minWidth: "175px", marginLeft: "10px", color: "#3B747D" }}>
           <strong>Photo</strong>
-        </p>
-        <p style={{ minWidth: "260px", marginLeft: "10px", color: "#3B747D" }}>
+        </h3>
+        <h3 style={{ minWidth: "260px", marginLeft: "10px", color: "#3B747D" }}>
           <strong>Information</strong>
-        </p>
-        <p style={{ minWidth: "105px", marginLeft: "17px", color: "#3B747D" }}>
+        </h3>
+        <h3 style={{ minWidth: "105px", marginLeft: "17px", color: "#3B747D" }}>
           <strong>Validate</strong>
-        </p>
-        <p style={{ minWidth: "105px", marginLeft: "6px", color: "#3B747D" }}>
+        </h3>
+        <h3 style={{ minWidth: "105px", marginLeft: "6px", color: "#3B747D" }}>
           <strong>Reject</strong>
-        </p>
+        </h3>
       </div>
       <p>{list}</p>
     </ul>
