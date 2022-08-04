@@ -10,7 +10,10 @@ import PlaceIcon from "@mui/icons-material/Place";
 import { exifGPSHelper } from "../../helpers/exifGPSHelpers";
 import Collapse from "@mui/material/Collapse";
 import { insertPhotoWaits } from "../../axiosCalls/photoWaitAxiosCalls";
-import { uploadphoto, getPhotoFileName } from "../../axiosCalls/uploadAxiosCalls"
+import {
+  uploadphoto,
+  getPhotoFileName,
+} from "../../axiosCalls/uploadAxiosCalls";
 
 const noGPSZone = (
   <div
@@ -20,10 +23,12 @@ const noGPSZone = (
       height: "40px",
       width: "95%",
       color: "red",
-      borderRadius: "15px"
+      borderRadius: "15px",
     }}
   >
-    <h4 style={{marginLeft: '35px', paddingTop: "10px"}}>No GPS Coordinates Found!</h4>
+    <h4 style={{ marginLeft: "35px", paddingTop: "10px" }}>
+      No GPS Coordinates Found!
+    </h4>
   </div>
 );
 
@@ -68,7 +73,7 @@ const PicUploader = React.memo((props) => {
       let baseDate = e.target.files[0].lastModified;
 
       setUploadedFile({ ...uploadedFile, selectedFile: e.target.files[0] });
-     
+
       var convDate = new Date(baseDate);
 
       let yr = convDate.getFullYear().toString();
@@ -114,18 +119,17 @@ const PicUploader = React.memo((props) => {
       });
     } else {
       setPin({ ...pin, [e.target.name]: e.target.value });
-     
     }
   };
 
   const handleNoGPSClose = () => {
-    setShowNoGPS(false)
+    setShowNoGPS(false);
     return;
   };
 
   const handleNoGPSCloseOnMapChange = () => {
-    setShowNoGPS(false)
-    navi()
+    setShowNoGPS(false);
+    navi();
     return;
   };
 
@@ -134,29 +138,17 @@ const PicUploader = React.memo((props) => {
 
     const data = new FormData();
 
-    data.append("image", pin.PicFile)
+    console.log("WHADAFUCK?", pin);
 
-   fetch('http://localhost:5000/api/upload', {
-     method: "POST",
-     body: data,
-   })
-   .then((result) => {
-     console.log("File Sent", result)
-   })
-   .catch((err) => {
-     console.log(err.message)
-   })
-    
-   //need to resolve this promise to get the filename for the db insert
-   let hope = getPhotoFileName();
-   console.log("hope", hope)
+    data.append("image", pin.PicFile);
 
-
-    if (pin.PicFile && pin.PicDate && pin.Animal && pin.Latitude && pin.Longitude) {
-      
-      insertPhotoWaits(pin)
-    }
-
+    fetch("http://localhost:5000/api/upload", {
+      method: "POST",
+      body: data,
+    })
+      .then((response) => response.json())
+      .then((data) => insertPhotoWaits({...pin, PicFile: data.fileName}))
+     
     closeup();
     return;
   };
@@ -259,7 +251,11 @@ const PicUploader = React.memo((props) => {
           </div>
           <div className="Gbox">
             <FormGroup>
-              <Button variant="text" id="jumpButton" onClick={handleNoGPSCloseOnMapChange}>
+              <Button
+                variant="text"
+                id="jumpButton"
+                onClick={handleNoGPSCloseOnMapChange}
+              >
                 <PlaceIcon
                   sx={{ color: "maroon", height: "40px", width: "40px" }}
                 ></PlaceIcon>

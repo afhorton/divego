@@ -15,16 +15,26 @@ const storage = multer.diskStorage({
 const upload = multer({storage: storage})
 
 let fileToSend;
+let jerk;
 const uploadPhoto = router.post("/api/upload", upload.single('image'), (req, res) => {
 
  fileToSend = req.file.filename
+
+ Promise.all([fileToSend])
+ .then((response) => {
+   jerk = response[0]
+ })
+ .catch((error) => {
+   console.log(error);
+ });
+
   console.log('ROUTE secret', req.file.filename)
   res.json({fileName : req.file.filename});
 
 });
 
 const viewUploadedPhotos = router.get("/api/upload", (req, res) => {
-  res.json(fileToSend);
+  res.json(jerk);
 });
 
 module.exports = { uploadPhoto, viewUploadedPhotos};
