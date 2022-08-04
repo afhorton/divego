@@ -4,7 +4,6 @@ const path = require("path");
 cors = require("cors");
 const bodyParser = require("body-parser");
 require("dotenv").config({ path: `./wetmap/.env.local` });
-const multer = require("multer")
 
 const { getDiveSites, addNewDiveSite } = require("./routes/diveSiteRoutes");
 const {

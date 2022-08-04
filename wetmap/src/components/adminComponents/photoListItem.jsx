@@ -8,6 +8,8 @@ import {
 } from "../../axiosCalls/photoWaitAxiosCalls";
 import { Buffer } from "buffer";
 
+let filePath = '/src/components/uploads/'
+
 const PhotoListItem = (props) => {
   const {
     key,
@@ -17,8 +19,6 @@ const PhotoListItem = (props) => {
     lat,
     lng,
   } = props;
-
-  const [imgURL, setImgURL] = useState();
 
   let photoById;
 
@@ -31,26 +31,9 @@ const PhotoListItem = (props) => {
     deletePhotoWait(id);
   };
 
-function arrayBufferToBase64(photoFile) {
-  let binary = '';
-  let bytes = [].slice.call(new Uint8Array(photoFile.data));
-
-  bytes.forEach((b) => binary += String.fromCharCode(b));
-
-  return window.btoa(binary);
-}
-
-let data;
-useEffect(() => {
-  data = arrayBufferToBase64(photoFile)
-  let base64flag = 'data:image/jpg;base64,'
-  setImgURL(base64flag + data)
-},[])
-
-console.log("ImgURL", imgURL)
   const [formVals, setFormVals] = useState({
     key: key,
-    photo: imgURL,
+    photo: filePath + photoFile,
     animal: animal,
     date: date,
     lat: lat,
@@ -60,7 +43,7 @@ console.log("ImgURL", imgURL)
   useEffect(() => {
    setFormVals({
     key: key,
-    photo: imgURL,
+    photo: filePath + photoFile,
     animal: animal,
     date: date,
     lat: lat,
@@ -79,12 +62,11 @@ console.log("ImgURL", imgURL)
   };
 
   return (
-    <div>{imgURL}
       <li id={key} key={key} className="photoLI">
       <div id="photoContainer">
         <Form id="photoValidator">
        
-          <img src={imgURL}></img>
+          <img src={formVals.photo} height='100px'></img>
           
           <Input
             id="inpt"
@@ -129,7 +111,7 @@ console.log("ImgURL", imgURL)
         </Form>
       </div>
     </li>
-    </div>
+
   );
 };
 

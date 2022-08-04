@@ -137,9 +137,6 @@ const PicUploader = React.memo((props) => {
     e.preventDefault();
 
     const data = new FormData();
-
-    console.log("WHADAFUCK?", pin);
-
     data.append("image", pin.PicFile);
 
     fetch("http://localhost:5000/api/upload", {
