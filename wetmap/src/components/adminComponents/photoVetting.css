@@ -1,0 +1,67 @@
+
+.listHeader {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: -30px;
+}
+
+.photoLI {
+    margin-bottom: 10px;
+}
+
+#photoContainer {
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+    width: 680px;
+    border: 1px solid black;
+    margin-left: 10px;
+}
+
+#photoValidator {
+  display: flex;
+  flex-direction: row;
+  height: 100px;
+}
+
+.imageBox {
+    width: 170px;
+    height: 100px;
+}
+
+.infoBox {
+    display: flex;
+    flex-direction: column;
+    width: 260px;
+    height: 100px;
+    margin-left: 20px;
+}
+
+.labelInputCombo {
+    display: flex;
+    flex-direction: row;
+}
+
+.labels {
+    width: 100px;
+    text-align: left;
+}
+
+#inpt {
+    width: 150px;
+    border: none;
+    text-align: left;
+    font-style: oblique;
+    
+}
+
+.FABbox {
+    display: flex;
+    height: 110px;
+}
+
+.FAB {
+ width: 100px;
+ margin-left: 12px;
+ margin-top: 20px;
+}

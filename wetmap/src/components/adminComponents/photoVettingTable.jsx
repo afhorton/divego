@@ -10,6 +10,7 @@ import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import PhotoListItem from "./photoListItem";
 import { photoWaits } from "../../axiosCalls/photoWaitAxiosCalls";
+import "./photoVetting.css"
 
 const PhotoVettingTable = React.memo(() => {
   const [photoWait, setPhotoWait] = useState([]);
@@ -41,26 +42,17 @@ const PhotoVettingTable = React.memo(() => {
 
   return (
     <ul id="photoList" style={{ marginBottom: "0px" }}>
-      <div className="listHeader2">
-        <p style={{ minWidth: "40px", marginLeft: "10px", color: "#3B747D" }}>
+      <div className="listHeader">
+        <p style={{ minWidth: "175px", marginLeft: "10px", color: "#3B747D" }}>
           <strong>Photo</strong>
         </p>
-        <p style={{ minWidth: "127px", marginLeft: "10px", color: "#3B747D" }}>
-          <strong>Animal</strong>
+        <p style={{ minWidth: "260px", marginLeft: "10px", color: "#3B747D" }}>
+          <strong>Information</strong>
         </p>
-        <p style={{ minWidth: "90px", marginLeft: "-5px", color: "#3B747D" }}>
-          <strong>Date</strong>
-        </p>
-        <p style={{ minWidth: "160px", marginLeft: "10px", color: "#3B747D" }}>
-          <strong>Latitude</strong>
-        </p>
-        <p style={{ minWidth: "183px", marginLeft: "0px", color: "#3B747D" }}>
-          <strong>Longitude</strong>
-        </p>
-        <p style={{ minWidth: "183px", marginLeft: "0px", color: "#3B747D" }}>
+        <p style={{ minWidth: "105px", marginLeft: "17px", color: "#3B747D" }}>
           <strong>Validate</strong>
         </p>
-        <p style={{ minWidth: "183px", marginLeft: "0px", color: "#3B747D" }}>
+        <p style={{ minWidth: "105px", marginLeft: "6px", color: "#3B747D" }}>
           <strong>Reject</strong>
         </p>
       </div>
