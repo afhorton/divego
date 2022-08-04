@@ -4,6 +4,7 @@ const path = require("path");
 cors = require("cors");
 const bodyParser = require("body-parser");
 require("dotenv").config({ path: `./wetmap/.env.local` });
+const multer = require("multer")
 
 const { getDiveSites, addNewDiveSite } = require("./routes/diveSiteRoutes");
 const {
@@ -19,6 +20,7 @@ const {
   getPhotoWaitById,
   delPhotoWait,
 } = require("./routes/photoWaitRoutes");
+const { uploadPhoto, viewUploadedPhotos } = require("./routes/uploadRoutes");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -35,6 +37,10 @@ app.use(express.static(path.join(__dirname, "/wetmap/index.html")));
 // }
 
 app.listen(port, () => console.log("Backend server live on " + port));
+//Upload Routes
+// app.use(upload, express.static(path.join(__dirname, "./src/components/uploads")));
+app.use(uploadPhoto);
+app.use(viewUploadedPhotos);
 
 //DiveSite Routes
 app.use(getDiveSites);

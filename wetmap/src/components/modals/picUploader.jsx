@@ -10,6 +10,7 @@ import PlaceIcon from "@mui/icons-material/Place";
 import { exifGPSHelper } from "../../helpers/exifGPSHelpers";
 import Collapse from "@mui/material/Collapse";
 import { insertPhotoWaits } from "../../axiosCalls/photoWaitAxiosCalls";
+import { uploadphoto, getPhotoFileName } from "../../axiosCalls/uploadAxiosCalls"
 
 const noGPSZone = (
   <div
@@ -63,11 +64,11 @@ const PicUploader = React.memo((props) => {
 
   const handleChange = (e) => {
     if (e.target.name === "PicFile") {
-      let fileName = e.target.files[0].name;
+      let fileName = e.target.files[0];
       let baseDate = e.target.files[0].lastModified;
 
       setUploadedFile({ ...uploadedFile, selectedFile: e.target.files[0] });
-
+     
       var convDate = new Date(baseDate);
 
       let yr = convDate.getFullYear().toString();
@@ -131,9 +132,28 @@ const PicUploader = React.memo((props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("form gives", pin)
+    const data = new FormData();
+
+    data.append("image", pin.PicFile)
+
+   fetch('http://localhost:5000/api/upload', {
+     method: "POST",
+     body: data,
+   })
+   .then((result) => {
+     console.log("File Sent", result)
+   })
+   .catch((err) => {
+     console.log(err.message)
+   })
+    
+   //need to resolve this promise to get the filename for the db insert
+   let hope = getPhotoFileName();
+   console.log("hope", hope)
+
 
     if (pin.PicFile && pin.PicDate && pin.Animal && pin.Latitude && pin.Longitude) {
+      
       insertPhotoWaits(pin)
     }
 

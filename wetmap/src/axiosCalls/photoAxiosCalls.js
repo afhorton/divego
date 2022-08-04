@@ -1,7 +1,7 @@
 import axios from "axios";
 
   export const insertphoto = (values) => {
-     console.log("AXIOS", values)
+    console.log("AXIOS", values)
     return axios
       .post("/api/photoAdd", {
         File: values.file,
@@ -18,3 +18,6 @@ import axios from "axios";
         return err;
       });
   };
+
+ 
+    
