@@ -5,6 +5,7 @@ cors = require("cors");
 const bodyParser = require("body-parser");
 require("dotenv").config({ path: `./wetmap/.env.local` });
 
+const { checkAdmin } = require("./routes/adminRoutes");
 const { getDiveSites, addNewDiveSite } = require("./routes/diveSiteRoutes");
 const {
   getDiveSiteWaits,
@@ -43,6 +44,8 @@ app.use(express.static(path.join(__dirname, "/wetmap/index.html")));
 // }
 
 app.listen(port, () => console.log("Backend server live on " + port));
+//Admin Routes
+app.use(checkAdmin);
 
 //Upload Routes
 app.use(uploadPhoto);

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -6,11 +7,22 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import DiveSiteVetting from "./diveSiteVetting"
 import PhotoVettingTable from "./photoVettingTable"
+import { AdminContext } from "../contexts/adminContext";
+import { useNavigate } from "react-router-dom";
 
 const AdminPage = React.memo(() => {
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
+
+  let navigate = useNavigate();
+  const { adminStat } = useContext(AdminContext);
+
+  useEffect(() => {
+    if (!adminStat) {
+      navigate("/")
+    }
+  }, [])
 
   return (
     <div

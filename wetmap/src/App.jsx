@@ -13,8 +13,11 @@ import { PinContext } from "./components/contexts/pinContext";
 import { PicModalContext } from "./components/contexts/picModalContext";
 import { JumpContext } from "./components/contexts/jumpContext";
 import { DiveSitesContext } from "./components/contexts/diveSitesContext";
+import { AdminContext } from "./components/contexts/adminContext";
 
 function App() {
+
+  const [adminStat, setAdminStat] = useState(false);
   
   const d = new Date();
   const [sliderVal, setSliderVal] = useState(d.getMonth());
@@ -38,6 +41,7 @@ function App() {
 
   return (
     <div className="App">
+      <AdminContext.Provider value={{ adminStat, setAdminStat }}>
       <SliderContext.Provider value={{ sliderVal, setSliderVal }}>
         <AnimalContext.Provider value={{ animalVal, setAnimalVal }}>
           <ZoomContext.Provider value={{ mapZoom, setMapZoom }}>
@@ -61,6 +65,7 @@ function App() {
           </ZoomContext.Provider>
         </AnimalContext.Provider>
       </SliderContext.Provider>
+      </AdminContext.Provider>
     </div>
   );
 }

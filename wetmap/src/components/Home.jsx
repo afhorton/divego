@@ -1,6 +1,8 @@
 import React from "react";
 
-export default function Homeo({ animal }) {
+export default function Homeo(props) {
+const { setShowAdminPortal, showAdminPortal } = props;
+
   return (
     <h2
       style={{
@@ -10,6 +12,7 @@ export default function Homeo({ animal }) {
         backgroundColor: "white",
         borderRadius: "0px 10px 0px 0px",
       }}
+      onDoubleClick={()=> setShowAdminPortal(!showAdminPortal)}
     >
       DiveGo
     </h2>

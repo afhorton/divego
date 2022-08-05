@@ -6,12 +6,14 @@ DELETE FROM diveSites;
 DELETE FROM heatPoints;
 DELETE FROM diveSiteWait;
 DELETE FROM photoWait;
+DELETE FROM administrator;
 
 ALTER SEQUENCE photos_id_seq RESTART WITH 1;
 ALTER SEQUENCE diveSites_id_seq RESTART WITH 1;
 ALTER SEQUENCE heatPoints_id_seq RESTART WITH 1;
 ALTER SEQUENCE diveSiteWait_id_seq RESTART WITH 1;
 ALTER SEQUENCE photoWait_id_seq RESTART WITH 1;
+ALTER SEQUENCE administrator_id_seq RESTART WITH 1;
 
 INSERT INTO diveSites("name", lat, lng)
 VALUES ('Whytecliff Park', 49.3714, -123.2925),
@@ -26,4 +28,7 @@ VALUES ('Whytecliff Park', 49.3714, -123.2925),
 ('Copper Cliffs', 50.098, -125.273),
 ('Steep Island', 50.0805, -125.255),
 ('HMCS Columbia', 50.1325, -125.336),
-('Browning Wall', 50.846, -127.643)
+('Browning Wall', 50.846, -127.643);
+
+INSERT INTO administrator(pass)
+VALUES ('$2b$10$Kx5GpUyDz75tHzDiGfX0z.TMsb4Wav2hTlSoXC.zp9XwLtlJCe/wS');
