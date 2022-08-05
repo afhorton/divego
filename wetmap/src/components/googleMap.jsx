@@ -19,6 +19,7 @@ import { AnimalContext } from "./contexts/animalContext";
 import { setupMapValues, dataParams } from "../helpers/mapHelpers";
 import { setupClusters } from "../helpers/clusterHelpers";
 import { diveSites } from "../axiosCalls/diveSiteAxiosCalls";
+import { heatPoints } from "../axiosCalls/heatPointAxiosCalls";
 
 const LIB = ["visualization"];
 
@@ -42,7 +43,7 @@ function Map() {
   const { sliderVal } = useContext(SliderContext);
 
   const [newSites, setnewSites] = useState([]);
-  const [heatpts, setHeatPts] = useState(formatHeatVals(heatVals));
+  const [heatpts, setHeatPts] = useState(formatHeatVals([]));
   const [mapRef, setMapRef] = useState(null);
 
   const center = useMemo(() => ({ lat: mapCoords[0], lng: mapCoords[1] }), []);
@@ -53,6 +54,7 @@ function Map() {
   let DiveSiteAndHeatSpotValue;
   let GPSBubble;
   let filteredDiveSites;
+  let filteredHeatPoints;
 
   function formatHeatVals(heatValues) {
     let newArr = [];
@@ -78,7 +80,7 @@ function Map() {
     radius: 30,
   }));
 
-  useEffect(async() => {
+  useEffect(async () => {
     setMapCoords([center.lat, center.lng]);
     setMapZoom(zoom);
 
@@ -90,17 +92,21 @@ function Map() {
       !divesTog ? setnewSites([]) : setnewSites(filteredDiveSites);
     }
 
-    DiveSiteAndHeatSpotValue = setupMapValues(
-      mapZoom,
-      mapCoords[0],
-      mapCoords[1],
-      newSites,
-      heatVals,
-      sliderVal,
-      animalVal
-    );
+    filteredHeatPoints = await heatPoints(GPSBubble, sliderVal, animalVal);
+    setHeatPts(formatHeatVals(filteredHeatPoints));
+    console.log("HeatPts", filteredHeatPoints);
 
-    setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
+    // DiveSiteAndHeatSpotValue = setupMapValues(
+    //   mapZoom,
+    //   mapCoords[0],
+    //   mapCoords[1],
+    //   newSites,
+    //   heatVals,
+    //   sliderVal,
+    //   animalVal
+    // );
+
+    // setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
   }, []);
 
   const handleOnLoad = (map) => {
@@ -124,22 +130,32 @@ function Map() {
             console.log(error);
           });
 
-        DiveSiteAndHeatSpotValue = setupMapValues(
-          mapZoom,
-          mapCoords[0],
-          mapCoords[1],
-          newSites,
-          heatVals,
-          sliderVal,
-          animalVal
-        );
+        filteredHeatPoints = heatPoints(GPSBubble, sliderVal, animalVal);
+        Promise.all([filteredHeatPoints])
+          .then((response) => {
+            console.log("HeatPts", response[0]);
+            setHeatPts(formatHeatVals(response[0]));
+          })
+          .catch((error) => {
+            console.log(error);
+          });
 
-        setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
+      //   DiveSiteAndHeatSpotValue = setupMapValues(
+      //     mapZoom,
+      //     mapCoords[0],
+      //     mapCoords[1],
+      //     newSites,
+      //     heatVals,
+      //     sliderVal,
+      //     animalVal
+      //   );
+
+      //   setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
       }, 50);
     }
   };
 
-  const handleMapZoomChange = async() => {
+  const handleMapZoomChange = async () => {
     if (mapRef) {
       setMapZoom(mapRef.getZoom());
 
@@ -151,17 +167,21 @@ function Map() {
         !divesTog ? setnewSites([]) : setnewSites(filteredDiveSites);
       }
 
-      DiveSiteAndHeatSpotValue = setupMapValues(
-        mapZoom,
-        mapCoords[0],
-        mapCoords[1],
-        newSites,
-        heatVals,
-        sliderVal,
-        animalVal
-      );
+      filteredHeatPoints = await heatPoints(GPSBubble, sliderVal, animalVal);
+      setHeatPts(formatHeatVals(filteredHeatPoints));
+      console.log("HeatPts", filteredHeatPoints);
 
-      setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
+      // DiveSiteAndHeatSpotValue = setupMapValues(
+      //   mapZoom,
+      //   mapCoords[0],
+      //   mapCoords[1],
+      //   newSites,
+      //   heatVals,
+      //   sliderVal,
+      //   animalVal
+      // );
+
+      // setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
     }
   };
 
@@ -185,17 +205,27 @@ function Map() {
             console.log(error);
           });
 
-        DiveSiteAndHeatSpotValue = setupMapValues(
-          mapZoom,
-          mapCoords[0],
-          mapCoords[1],
-          newSites,
-          heatVals,
-          sliderVal,
-          animalVal
-        );
+        filteredHeatPoints = heatPoints(GPSBubble, sliderVal, animalVal);
+        Promise.all([filteredHeatPoints])
+          .then((response) => {
+            console.log("HeatPts", response[0]);
+            setHeatPts(formatHeatVals(response[0]));
+          })
+          .catch((error) => {
+            console.log(error);
+          });
 
-        setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
+        // DiveSiteAndHeatSpotValue = setupMapValues(
+        //   mapZoom,
+        //   mapCoords[0],
+        //   mapCoords[1],
+        //   newSites,
+        //   heatVals,
+        //   sliderVal,
+        //   animalVal
+        // );
+
+        // setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
       }, 50);
     }
   };
@@ -207,7 +237,7 @@ function Map() {
     }
   }, [jump]);
 
-  useEffect(async() => {
+  useEffect(async () => {
     GPSBubble = dataParams(mapZoom, mapCoords[0], mapCoords[1]);
 
     filteredDiveSites = await diveSites(GPSBubble);
@@ -216,17 +246,21 @@ function Map() {
       !divesTog ? setnewSites([]) : setnewSites(filteredDiveSites);
     }
 
-    DiveSiteAndHeatSpotValue = setupMapValues(
-      mapZoom,
-      mapCoords[0],
-      mapCoords[1],
-      newSites,
-      heatVals,
-      sliderVal,
-      animalVal
-    );
+    filteredHeatPoints = await heatPoints(GPSBubble, sliderVal, animalVal);
+    setHeatPts(formatHeatVals(filteredHeatPoints));
+    console.log("HeatPts", filteredHeatPoints);
 
-    setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
+    // DiveSiteAndHeatSpotValue = setupMapValues(
+    //   mapZoom,
+    //   mapCoords[0],
+    //   mapCoords[1],
+    //   newSites,
+    //   heatVals,
+    //   sliderVal,
+    //   animalVal
+    // );
+
+    // setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
   }, [mapCoords, divesTog, sliderVal, animalVal]);
 
   const points = setupClusters(newSites);

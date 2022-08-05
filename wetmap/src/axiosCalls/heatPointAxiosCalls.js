@@ -1,7 +1,20 @@
 import axios from "axios";
 
+export const heatPoints = (GPSBubble, slider, animal) => {
+   console.log("AXIOS", GPSBubble, slider, animal)
+    return axios
+      .post("/api/heatPoints", { GPSBubble: GPSBubble, SliderValue: slider, AnimalValue: animal })
+      .then((response) => {
+        // console.log("AXIOS SENDS", response.data)
+          return response.data;
+      })
+      .catch((err) => {
+        return err;
+      });
+  }
+
 export const getLoneHeatPoint = (values) => {
-   console.log("AXIOS", values)
+  //  console.log("AXIOS", values)
   return axios
     .post("/api/heatPoint", {
       Lat: values.lat,
@@ -10,7 +23,7 @@ export const getLoneHeatPoint = (values) => {
       Month: values.month,
     })
     .then((response) => {
-      console.log("AXIOS SENDS", response.data)
+      // console.log("AXIOS SENDS", response.data)
       return response.data;
     })
     .catch((err) => {

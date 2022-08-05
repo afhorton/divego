@@ -21,6 +21,7 @@ const {
 } = require("./routes/photoWaitRoutes");
 const { uploadPhoto, viewUploadedPhotos } = require("./routes/uploadRoutes");
 const {
+  getHeatPoints,
   getSingleHeatPoint,
   addNewHeatPoint,
   getHeatPointById,
@@ -67,6 +68,7 @@ app.use(getPhotoWaitById);
 app.use(delPhotoWait);
 
 //HeatPoint Routes
+app.use(getHeatPoints);
 app.use(getSingleHeatPoint);
 app.use(addNewHeatPoint);
 app.use(getHeatPointById);

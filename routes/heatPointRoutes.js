@@ -2,13 +2,13 @@ const express = require('express');
 const router = express.Router();
 const db = require('../lib/heatPointQueries')
 
-const getSingleHeatPoint = router.post("/api/heatPoint", (req, res) => {
+const getHeatPoints = router.post("/api/heatPoints", (req, res) => {
 
-    console.log("ROUTE", req.body)
-    db.getSingleHeatPoint(req.body.Lat, req.body.Lng, req.body.Animal, req.body.Month)
+    // console.log("ROUTE", req.body)
+    db.getAllHeatPoints(req.body.GPSBubble, req.body.SliderValue, req.body.AnimalValue)
     .then(points => {
 
-    console.log("ROUTE SENDS", points)
+    // console.log("ROUTE SENDS", sites)
         res.json(points);
     })
     .catch(err => {
@@ -20,12 +20,28 @@ const getSingleHeatPoint = router.post("/api/heatPoint", (req, res) => {
     
 });
 
+const getSingleHeatPoint = router.post("/api/heatPoint", (req, res) => {
+
+    // console.log("ROUTE", req.body)
+    db.getSingleHeatPoint(req.body.Lat, req.body.Lng, req.body.Animal, req.body.Month)
+    .then(points => {
+
+    // console.log("ROUTE SENDS", points)
+        res.json(points);
+    })
+    .catch(err => {
+        res
+        .status(500)
+        .json({ error: err.message });
+    });  
+});
+
 const addNewHeatPoint = router.post("/api/HeatPointAdd", (req, res) => {
 
-    console.log("ROUTE", req.body)
+    //  console.log("ROUTE", req.body)
     db.addHeatPoint(req.body.Lat, req.body.Lng, req.body.Animal, req.body.Month)
     .then(point => {
-    console.log("ROUTE SENDS", point)
+    // console.log("ROUTE SENDS", point)
         res.json(point);
     })
     .catch(err => {
@@ -69,4 +85,4 @@ const UpdateHeatPoint = router.post("/api/HeatPointUpdate", (req, res) => {
     
 });
 
-module.exports = { getSingleHeatPoint, addNewHeatPoint, getHeatPointById, UpdateHeatPoint }
+module.exports = { getHeatPoints, getSingleHeatPoint, addNewHeatPoint, getHeatPointById, UpdateHeatPoint }

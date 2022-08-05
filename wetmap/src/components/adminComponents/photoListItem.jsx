@@ -36,7 +36,7 @@ const PhotoListItem = (props) => {
       animal: photoById[0].label,
       month: monthID,
     });
-      console.log("whats this", heatPointExists)
+
     heatPointExists.length > 0
       ? updateHeatPoint({
           id: heatPointExists[0].id,
@@ -48,10 +48,6 @@ const PhotoListItem = (props) => {
           animal: photoById[0].label,
           month: monthID,
         });
-
-    console.log("MONTHID", monthID);
-    console.log("PHOTOID", photoById[0]);
-    //send month number =, lat, lng, animal
 
     // photoById ? insertphoto(photoById[0]) && deletePhotoWait(id) : [];
   };
