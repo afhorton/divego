@@ -20,6 +20,12 @@ const {
   delPhotoWait,
 } = require("./routes/photoWaitRoutes");
 const { uploadPhoto, viewUploadedPhotos } = require("./routes/uploadRoutes");
+const {
+  getSingleHeatPoint,
+  addNewHeatPoint,
+  getHeatPointById,
+  UpdateHeatPoint,
+} = require("./routes/heatPointRoutes");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -36,8 +42,8 @@ app.use(express.static(path.join(__dirname, "/wetmap/index.html")));
 // }
 
 app.listen(port, () => console.log("Backend server live on " + port));
+
 //Upload Routes
-// app.use(upload, express.static(path.join(__dirname, "./src/components/uploads")));
 app.use(uploadPhoto);
 app.use(viewUploadedPhotos);
 
@@ -60,6 +66,11 @@ app.use(addPhotoWaiter);
 app.use(getPhotoWaitById);
 app.use(delPhotoWait);
 
+//HeatPoint Routes
+app.use(getSingleHeatPoint);
+app.use(addNewHeatPoint);
+app.use(getHeatPointById);
+app.use(UpdateHeatPoint);
 
 // app.get("/", (req, res) => {
 //     res.sendFile(__dirname + "/wetmap/index.html")

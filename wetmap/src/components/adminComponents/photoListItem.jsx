@@ -6,22 +6,54 @@ import {
   grabPhotoWaitById,
   deletePhotoWait,
 } from "../../axiosCalls/photoWaitAxiosCalls";
+import {
+  getLoneHeatPoint,
+  insertHeatPoint,
+  updateHeatPoint,
+} from "../../axiosCalls/heatPointAxiosCalls";
+import { scrapeMonthNumber } from "../../helpers/heatPointHelpers";
 import Fab from "@mui/material/Fab";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import "./photoVetting.css";
-import { textAlign } from "@mui/system";
 
 let filePath = "/src/components/uploads/";
 
 const PhotoListItem = (props) => {
-  const { key, photoFile, animal, date, lat, lng } = props;
+  const { key, id, photoFile, animal, date, lat, lng } = props;
 
   let photoById;
+  let heatPointExists;
 
   const ValidatePhoto = async (id) => {
     photoById = await grabPhotoWaitById(id);
-    photoById ? insertphoto(photoById[0]) && deletePhotoWait(id) : [];
+
+    let monthID = scrapeMonthNumber(photoById[0].datetaken);
+
+    heatPointExists = await getLoneHeatPoint({
+      lat: photoById[0].latitude,
+      lng: photoById[0].longitude,
+      animal: photoById[0].label,
+      month: monthID,
+    });
+      console.log("whats this", heatPointExists)
+    heatPointExists.length > 0
+      ? updateHeatPoint({
+          id: heatPointExists[0].id,
+          weight: heatPointExists[0].weight,
+        })
+      : insertHeatPoint({
+          lat: photoById[0].latitude,
+          lng: photoById[0].longitude,
+          animal: photoById[0].label,
+          month: monthID,
+        });
+
+    console.log("MONTHID", monthID);
+    console.log("PHOTOID", photoById[0]);
+    //send month number =, lat, lng, animal
+
+    // photoById ? insertphoto(photoById[0]) && deletePhotoWait(id) : [];
   };
 
   const RejectPhoto = (id) => {
@@ -29,6 +61,7 @@ const PhotoListItem = (props) => {
   };
 
   const [formVals, setFormVals] = useState({
+    id: id,
     key: key,
     photo: filePath + photoFile,
     animal: animal,
@@ -39,6 +72,7 @@ const PhotoListItem = (props) => {
 
   useEffect(() => {
     setFormVals({
+      id: id,
       key: key,
       photo: filePath + photoFile,
       animal: animal,
@@ -66,7 +100,7 @@ const PhotoListItem = (props) => {
       <div id="photoContainer">
         <Form id="photoValidator">
           <div className="imageBox">
-            <img src={formVals.photo} height="100px" className='Itag'></img>
+            <img src={formVals.photo} height="100px" className="Itag"></img>
           </div>
           <div className="infoBox">
             <div className="labelInputCombo">
@@ -78,7 +112,7 @@ const PhotoListItem = (props) => {
                 name="animal"
                 type="text"
                 value={formVals.animal}
-                style={{textAlign:'left'}}
+                style={{ textAlign: "left" }}
               ></Input>
             </div>
             <div className="labelInputCombo">
@@ -89,7 +123,7 @@ const PhotoListItem = (props) => {
                 onBlur={handleSubmit}
                 name="date"
                 type="date"
-                disabled={'disabled'}
+                disabled={"disabled"}
                 value={formVals.date && formVals.date.substring(0, 10)}
               ></Input>
             </div>
@@ -101,7 +135,7 @@ const PhotoListItem = (props) => {
                 onBlur={handleSubmit}
                 name="lat"
                 type="number"
-                disabled={'disabled'}
+                disabled={"disabled"}
                 value={formVals.lat}
               ></Input>
             </div>
@@ -113,22 +147,22 @@ const PhotoListItem = (props) => {
                 onBlur={handleSubmit}
                 name="lng"
                 type="number"
-                disabled={'disabled'}
+                disabled={"disabled"}
                 value={formVals.lng}
               ></Input>
             </div>
           </div>
           <div className="FABbox">
             <div className="FAB">
-          <Fab color="primary" aria-label="add">
-            <TaskAltIcon />
-          </Fab>
-          </div>
-          <div className="FAB">
-          <Fab color="secondary" aria-label="add">
-            <HighlightOffIcon />
-          </Fab>
-          </div>
+              <Fab color="primary" aria-label="add">
+                <TaskAltIcon onClick={() => ValidatePhoto(id)} />
+              </Fab>
+            </div>
+            <div className="FAB">
+              <Fab color="secondary" aria-label="add">
+                <HighlightOffIcon onClick={() => RejectPhoto(id)} />
+              </Fab>
+            </div>
           </div>
         </Form>
       </div>

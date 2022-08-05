@@ -28,6 +28,7 @@ const PhotoVettingTable = React.memo(() => {
       return (
         <PhotoListItem
           key={photo.id}
+          id={photo.id}
           photoFile={photo.photofile}
           animal={photo.label}
           date={photo.datetaken}
