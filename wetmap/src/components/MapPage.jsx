@@ -31,7 +31,7 @@ const MapPage = React.memo(() => {
   const { divesTog, setDivesTog } = useContext(DiveSitesContext);
   const [showGeoCoder, setShowGeoCoder] = useState(false);
   const [showAnimalSearch, setShowAnimalSearch] = useState(false);
-  const { animalVal} = useContext(AnimalContext);
+  const { animalVal } = useContext(AnimalContext);
   
   const { picModal, setPicModal } = useContext(PicModalContext);
 

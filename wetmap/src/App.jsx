@@ -36,8 +36,6 @@ function App() {
     Longitude: "",
   });
 
-  console.log("###", pin);
-
   return (
     <div className="App">
       <SliderContext.Provider value={{ sliderVal, setSliderVal }}>

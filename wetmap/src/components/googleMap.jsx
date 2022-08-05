@@ -16,7 +16,7 @@ import { JumpContext } from "./contexts/jumpContext";
 import { DiveSitesContext } from "./contexts/diveSitesContext";
 import { SliderContext } from "./contexts/sliderContext";
 import { AnimalContext } from "./contexts/animalContext";
-import { setupMapValues, dataParams } from "../helpers/mapHelpers";
+import { dataParams } from "../helpers/mapHelpers";
 import { setupClusters } from "../helpers/clusterHelpers";
 import { diveSites } from "../axiosCalls/diveSiteAxiosCalls";
 import { heatPoints } from "../axiosCalls/heatPointAxiosCalls";
@@ -51,7 +51,6 @@ function Map() {
 
   let timoutHanlder;
   let timoutHandler;
-  let DiveSiteAndHeatSpotValue;
   let GPSBubble;
   let filteredDiveSites;
   let filteredHeatPoints;
@@ -94,19 +93,6 @@ function Map() {
 
     filteredHeatPoints = await heatPoints(GPSBubble, sliderVal, animalVal);
     setHeatPts(formatHeatVals(filteredHeatPoints));
-    console.log("HeatPts", filteredHeatPoints);
-
-    // DiveSiteAndHeatSpotValue = setupMapValues(
-    //   mapZoom,
-    //   mapCoords[0],
-    //   mapCoords[1],
-    //   newSites,
-    //   heatVals,
-    //   sliderVal,
-    //   animalVal
-    // );
-
-    // setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
   }, []);
 
   const handleOnLoad = (map) => {
@@ -133,24 +119,12 @@ function Map() {
         filteredHeatPoints = heatPoints(GPSBubble, sliderVal, animalVal);
         Promise.all([filteredHeatPoints])
           .then((response) => {
-            console.log("HeatPts", response[0]);
             setHeatPts(formatHeatVals(response[0]));
           })
           .catch((error) => {
             console.log(error);
           });
 
-      //   DiveSiteAndHeatSpotValue = setupMapValues(
-      //     mapZoom,
-      //     mapCoords[0],
-      //     mapCoords[1],
-      //     newSites,
-      //     heatVals,
-      //     sliderVal,
-      //     animalVal
-      //   );
-
-      //   setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
       }, 50);
     }
   };
@@ -169,19 +143,6 @@ function Map() {
 
       filteredHeatPoints = await heatPoints(GPSBubble, sliderVal, animalVal);
       setHeatPts(formatHeatVals(filteredHeatPoints));
-      console.log("HeatPts", filteredHeatPoints);
-
-      // DiveSiteAndHeatSpotValue = setupMapValues(
-      //   mapZoom,
-      //   mapCoords[0],
-      //   mapCoords[1],
-      //   newSites,
-      //   heatVals,
-      //   sliderVal,
-      //   animalVal
-      // );
-
-      // setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
     }
   };
 
@@ -208,24 +169,12 @@ function Map() {
         filteredHeatPoints = heatPoints(GPSBubble, sliderVal, animalVal);
         Promise.all([filteredHeatPoints])
           .then((response) => {
-            console.log("HeatPts", response[0]);
             setHeatPts(formatHeatVals(response[0]));
           })
           .catch((error) => {
             console.log(error);
           });
 
-        // DiveSiteAndHeatSpotValue = setupMapValues(
-        //   mapZoom,
-        //   mapCoords[0],
-        //   mapCoords[1],
-        //   newSites,
-        //   heatVals,
-        //   sliderVal,
-        //   animalVal
-        // );
-
-        // setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
       }, 50);
     }
   };
@@ -248,19 +197,6 @@ function Map() {
 
     filteredHeatPoints = await heatPoints(GPSBubble, sliderVal, animalVal);
     setHeatPts(formatHeatVals(filteredHeatPoints));
-    console.log("HeatPts", filteredHeatPoints);
-
-    // DiveSiteAndHeatSpotValue = setupMapValues(
-    //   mapZoom,
-    //   mapCoords[0],
-    //   mapCoords[1],
-    //   newSites,
-    //   heatVals,
-    //   sliderVal,
-    //   animalVal
-    // );
-
-    // setHeatPts(formatHeatVals(DiveSiteAndHeatSpotValue[1]));
   }, [mapCoords, divesTog, sliderVal, animalVal]);
 
   const points = setupClusters(newSites);

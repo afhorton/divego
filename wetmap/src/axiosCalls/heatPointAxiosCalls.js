@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const heatPoints = (GPSBubble, slider, animal) => {
-   console.log("AXIOS", GPSBubble, slider, animal)
+  //  console.log("AXIOS", GPSBubble, slider, animal)
     return axios
       .post("/api/heatPoints", { GPSBubble: GPSBubble, SliderValue: slider, AnimalValue: animal })
       .then((response) => {
@@ -45,7 +45,7 @@ export const grabHeatPointById = (id) => {
 };
 
 export const insertHeatPoint = (values) => {
-  console.log("AXIOS", values);
+  // console.log("AXIOS", values);
   return axios
     .post("/api/HeatPointAdd", {
       Lat: values.lat,

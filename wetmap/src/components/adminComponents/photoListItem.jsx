@@ -49,7 +49,7 @@ const PhotoListItem = (props) => {
           month: monthID,
         });
 
-    // photoById ? insertphoto(photoById[0]) && deletePhotoWait(id) : [];
+    photoById ? insertphoto(photoById[0]) && deletePhotoWait(id) : [];
   };
 
   const RejectPhoto = (id) => {
