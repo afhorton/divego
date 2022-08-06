@@ -52,7 +52,7 @@ const PhotoListItem = (props) => {
     photoById ? insertphoto(photoById[0]) && deletePhotoWait(id) : [];
   };
 
-  const RejectPhoto = (id) => {
+  const RejectPhoto = async(id) => {
     deletePhotoWait(id);
   };
 

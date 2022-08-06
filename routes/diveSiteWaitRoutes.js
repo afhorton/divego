@@ -4,11 +4,8 @@ const db = require('../lib/diveSiteWaitQueries.js')
 
 const getDiveSiteWaits = router.post("/api/diveSiteWait", (req, res) => {
 
-    // console.log("ROUTE", req.body)
     db.getAllDiveSiteWaits()
     .then(sites => {
-
-    // console.log("ROUTE SENDS", sites)
         res.json(sites);
     })
     .catch(err => {
@@ -21,10 +18,8 @@ const getDiveSiteWaits = router.post("/api/diveSiteWait", (req, res) => {
 
 const addDiveSiteWaiter = router.post("/api/diveSiteWaitAdd", (req, res) => {
 
-    // console.log("ROUTE", req.body)
     db.addDiveSiteWait(req.body.Name, req.body.Lat, req.body.Lng)
     .then(site => {
-    // console.log("ROUTE SENDS", sites)
         res.json(site);
     })
     .catch(err => {
@@ -37,11 +32,8 @@ const addDiveSiteWaiter = router.post("/api/diveSiteWaitAdd", (req, res) => {
 
 const getDiveSiteWaitById = router.get("/api/diveSiteWait/:id", (req, res) => {
 
-    // console.log("ROUTE", req.body)
     db.getDiveSiteWaitById(req.params.id)
     .then(site => {
-
-    // console.log("ROUTE SENDS", sites)
         res.json(site);
     })
     .catch(err => {

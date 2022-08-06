@@ -1,11 +1,10 @@
 import axios from "axios";
 
 export const photoWaits = () => {
-  //  console.log("AXIOS", GPSBubble)
+
   return axios
     .post("/api/photoWait")
     .then((response) => {
-      // console.log("AXIOS SENDS", response.data)
       return response.data;
     })
     .catch((err) => {
@@ -14,7 +13,7 @@ export const photoWaits = () => {
 };
 
 export const insertPhotoWaits = (values) => {
-   console.log("AXIOS", values)
+
   return axios
     .post("/api/photoWaitAdd", {
       File: values.PicFile,
@@ -24,7 +23,6 @@ export const insertPhotoWaits = (values) => {
       Lng: values.Longitude,
     })
     .then((response) => {
-      // console.log("AXIOS SENDS", response.data)
       return response.data;
     })
     .catch((err) => {
@@ -33,11 +31,10 @@ export const insertPhotoWaits = (values) => {
 };
 
 export const grabPhotoWaitById = (id) => {
-  //  console.log("AXIOS", values)
+
   return axios
     .get(`/api/photoWait/${id}`)
     .then((response) => {
-      // console.log("AXIOS SENDS", response.data)
       return response.data;
     })
     .catch((err) => {

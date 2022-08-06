@@ -28,7 +28,6 @@ const uploadPhoto = router.post("/api/upload", upload.single('image'), (req, res
    console.log(error);
  });
 
-  console.log('ROUTE secret', req.file.filename)
   res.json({fileName : req.file.filename});
 
 });

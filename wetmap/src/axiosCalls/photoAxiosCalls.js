@@ -1,11 +1,10 @@
 import axios from "axios";
 
 export const getAnimalNames = () => {
-  // console.log("AXIOS", values)
+
   return axios
     .post("/api/photoLabels")
     .then((response) => {
-      // console.log("AXIOS SENDS", response.data)
       return response.data;
     })
     .catch((err) => {
@@ -14,7 +13,7 @@ export const getAnimalNames = () => {
 };
 
   export const insertphoto = (values) => {
-    // console.log("AXIOS", values)
+
     return axios
       .post("/api/photoAdd", {
         File: values.photofile,
@@ -24,7 +23,6 @@ export const getAnimalNames = () => {
         Lng: values.longitude,
       })
       .then((response) => {
-        // console.log("AXIOS SENDS", response.data)
         return response.data;
       })
       .catch((err) => {

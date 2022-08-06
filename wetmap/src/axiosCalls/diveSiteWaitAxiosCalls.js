@@ -1,11 +1,10 @@
 import axios from "axios";
 
 export const diveSiteWaits = () => {
-  //  console.log("AXIOS", GPSBubble)
+
   return axios
     .post("api/diveSiteWait")
     .then((response) => {
-      // console.log("AXIOS SENDS", response.data)
       return response.data;
     })
     .catch((err) => {
@@ -14,7 +13,7 @@ export const diveSiteWaits = () => {
 };
 
 export const insertDiveSiteWaits = (values) => {
-  //  console.log("AXIOS", values)
+
   return axios
     .post("api/diveSiteWaitAdd", {
       Name: values.Site,
@@ -22,7 +21,6 @@ export const insertDiveSiteWaits = (values) => {
       Lng: values.Longitude,
     })
     .then((response) => {
-      // console.log("AXIOS SENDS", response.data)
       return response.data;
     })
     .catch((err) => {
@@ -31,11 +29,10 @@ export const insertDiveSiteWaits = (values) => {
 };
 
 export const grabDiveSiteWaitById = (id) => {
-  //  console.log("AXIOS", values)
+
   return axios
     .get(`api/diveSiteWait/${id}`)
     .then((response) => {
-      // console.log("AXIOS SENDS", response.data)
       return response.data;
     })
     .catch((err) => {

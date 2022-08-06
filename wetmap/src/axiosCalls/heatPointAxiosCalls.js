@@ -1,11 +1,10 @@
 import axios from "axios";
 
 export const heatPoints = (GPSBubble, slider, animal) => {
-  //  console.log("AXIOS", GPSBubble, slider, animal)
+
     return axios
       .post("/api/heatPoints", { GPSBubble: GPSBubble, SliderValue: slider, AnimalValue: animal })
       .then((response) => {
-        // console.log("AXIOS SENDS", response.data)
           return response.data;
       })
       .catch((err) => {
@@ -14,7 +13,7 @@ export const heatPoints = (GPSBubble, slider, animal) => {
   }
 
 export const getLoneHeatPoint = (values) => {
-  //  console.log("AXIOS", values)
+
   return axios
     .post("/api/heatPoint", {
       Lat: values.lat,
@@ -23,7 +22,6 @@ export const getLoneHeatPoint = (values) => {
       Month: values.month,
     })
     .then((response) => {
-      // console.log("AXIOS SENDS", response.data)
       return response.data;
     })
     .catch((err) => {
@@ -32,11 +30,10 @@ export const getLoneHeatPoint = (values) => {
 };
 
 export const grabHeatPointById = (id) => {
-  //  console.log("AXIOS", values)
+
   return axios
     .get(`/api/heatPoint/${id}`)
     .then((response) => {
-      // console.log("AXIOS SENDS", response.data)
       return response.data;
     })
     .catch((err) => {
@@ -45,7 +42,7 @@ export const grabHeatPointById = (id) => {
 };
 
 export const insertHeatPoint = (values) => {
-  // console.log("AXIOS", values);
+
   return axios
     .post("/api/HeatPointAdd", {
       Lat: values.lat,
@@ -54,7 +51,6 @@ export const insertHeatPoint = (values) => {
       Month: values.month,
     })
     .then((response) => {
-      // console.log("AXIOS SENDS", response.data)
       return response.data;
     })
     .catch((err) => {
@@ -63,14 +59,13 @@ export const insertHeatPoint = (values) => {
 };
 
 export const updateHeatPoint = (values) => {
-  console.log("AXIOS", values);
+
   return axios
     .post("/api/HeatPointUpdate", {
       Id: values.id,
       Weight: values.weight,
     })
     .then((response) => {
-      console.log("AXIOS SENDS", response.data)
       return response.data;
     })
     .catch((err) => {

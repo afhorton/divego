@@ -4,11 +4,8 @@ const db = require('../lib/photoWaitQueries.js')
 
 const getPhotoWaits = router.post("/api/photoWait", (req, res) => {
 
-    // console.log("ROUTE", req.body)
     db.getAllPhotoWaits()
     .then(photos => {
-
-    // console.log("ROUTE SENDS", sites)
         res.json(photos);
     })
     .catch(err => {
@@ -21,10 +18,8 @@ const getPhotoWaits = router.post("/api/photoWait", (req, res) => {
 
 const addPhotoWaiter = router.post("/api/photoWaitAdd", (req, res) => {
 
-    console.log("ROUTE", req.body)
     db.addPhotoWait(req.body.File, req.body.Animal, req.body.Date, req.body.Lat, req.body.Lng)
     .then(photo => {
-    // console.log("ROUTE SENDS", sites)
         res.json(photo);
     })
     .catch(err => {
@@ -37,11 +32,8 @@ const addPhotoWaiter = router.post("/api/photoWaitAdd", (req, res) => {
 
 const getPhotoWaitById = router.get("/api/photoWait/:id", (req, res) => {
 
-    // console.log("ROUTE", req.body)
     db.getPhotoWaitById(req.params.id)
     .then(photo => {
-
-    // console.log("ROUTE SENDS", sites)
         res.json(photo);
     })
     .catch(err => {
