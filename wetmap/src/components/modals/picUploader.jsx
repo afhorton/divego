@@ -8,12 +8,9 @@ import { useNavigate } from "react-router-dom";
 import { PinContext } from "../contexts/pinContext";
 import PlaceIcon from "@mui/icons-material/Place";
 import { exifGPSHelper } from "../../helpers/exifGPSHelpers";
+import { getToday } from "../../helpers/picUploaderHelpers.js"
 import Collapse from "@mui/material/Collapse";
 import { insertPhotoWaits } from "../../axiosCalls/photoWaitAxiosCalls";
-import {
-  uploadphoto,
-  getPhotoFileName,
-} from "../../axiosCalls/uploadAxiosCalls";
 
 const noGPSZone = (
   <div
@@ -44,21 +41,10 @@ const PicUploader = React.memo((props) => {
 
   useEffect(() => {
     if (pin.PicDate === "") {
+
       let Rnow = new Date();
-
-      let yr0 = Rnow.getFullYear().toString();
-      let mth0 = (Rnow.getMonth() + 1).toString();
-      let dy0 = Rnow.getDate().toString();
-
-      if (dy0.length == 1) {
-        dy0 = "0" + dy0;
-      }
-
-      if (mth0.length == 1) {
-        mth0 = "0" + mth0;
-      }
-
-      let rightNow = yr0 + "-" + mth0 + "-" + dy0;
+ 
+      let rightNow = getToday(Rnow);
 
       setPin({
         ...pin,
@@ -76,20 +62,8 @@ const PicUploader = React.memo((props) => {
 
       var convDate = new Date(baseDate);
 
-      let yr = convDate.getFullYear().toString();
-      let mth = (convDate.getMonth() + 1).toString();
-      let dy = convDate.getDate().toString();
-
-      if (dy.length == 1) {
-        dy = "0" + dy;
-      }
-
-      if (mth.length == 1) {
-        mth = "0" + mth;
-      }
-
-      let moddedDate = yr + "-" + mth + "-" + dy;
-
+      let moddedDate = getToday(convDate);
+  
       exifr.parse(e.target.files[0]).then((output) => {
         let EXIFData = exifGPSHelper(
           output.GPSLatitude,
@@ -146,6 +120,17 @@ const PicUploader = React.memo((props) => {
       .then((response) => response.json())
       .then((data) => insertPhotoWaits({...pin, PicFile: data.fileName}))
      
+    let Rnow = new Date();
+ 
+    let rightNow = getToday(Rnow);
+  
+    setPin({
+      PicFile: "",
+      PicDate: rightNow,
+      Animal: "",
+      Latitude: "",
+      Longitude: "",
+    });
     closeup();
     return;
   };

@@ -78,6 +78,7 @@ const SiteSubmitter = (props) => {
     if (formVals.Site && formVals.Latitude && formVals.Longitude) {
       insertDiveSiteWaits(formVals)
     }
+    setFormVals({});
     closeup();
     return;
   };

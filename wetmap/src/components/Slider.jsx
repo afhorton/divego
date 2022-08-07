@@ -6,51 +6,51 @@ import { SliderContext } from "./contexts/sliderContext";
 
 const marks = [
   {
-    value: 0,
+    value: 1,
     label: "Jan",
   },
   {
-    value: 1,
+    value: 2,
     label: "Feb",
   },
   {
-    value: 2,
+    value: 3,
     label: "Mar",
   },
   {
-    value: 3,
+    value: 4,
     label: "Apr",
   },
   {
-    value: 4,
+    value: 5,
     label: "May",
   },
   {
-    value: 5,
+    value: 6,
     label: "Jun",
   },
   {
-    value: 6,
+    value: 7,
     label: "Jul",
   },
   {
-    value: 7,
+    value: 8,
     label: "Aug",
   },
   {
-    value: 8,
+    value: 9,
     label: "Sep",
   },
   {
-    value: 9,
+    value: 10,
     label: "Oct",
   },
   {
-    value: 10,
+    value: 11,
     label: "Nov",
   },
   {
-    value: 11,
+    value: 12,
     label: "Dec",
   },
 ];
@@ -81,8 +81,8 @@ export default function MonthSlider() {
         getAriaValueText={valuetext}
         step={1}
         marks={marks}
-        min={0}
-        max={11}
+        min={1}
+        max={12}
         track={false}
       />
     </Box>
