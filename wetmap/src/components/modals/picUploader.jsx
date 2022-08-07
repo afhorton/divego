@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { PinContext } from "../contexts/pinContext";
 import PlaceIcon from "@mui/icons-material/Place";
 import { exifGPSHelper } from "../../helpers/exifGPSHelpers";
-import { getToday } from "../../helpers/picUploaderHelpers.js"
+import { getToday } from "../../helpers/picUploaderHelpers.js";
 import Collapse from "@mui/material/Collapse";
 import { insertPhotoWaits } from "../../axiosCalls/photoWaitAxiosCalls";
 
@@ -41,9 +41,8 @@ const PicUploader = React.memo((props) => {
 
   useEffect(() => {
     if (pin.PicDate === "") {
-
       let Rnow = new Date();
- 
+
       let rightNow = getToday(Rnow);
 
       setPin({
@@ -63,7 +62,7 @@ const PicUploader = React.memo((props) => {
       var convDate = new Date(baseDate);
 
       let moddedDate = getToday(convDate);
-  
+
       exifr.parse(e.target.files[0]).then((output) => {
         let EXIFData = exifGPSHelper(
           output.GPSLatitude,
@@ -110,29 +109,31 @@ const PicUploader = React.memo((props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const data = new FormData();
-    data.append("image", pin.PicFile);
+    if (pin.PicFile && pin.Animal && pin.Latitude && pin.Longitude) {
+      const data = new FormData();
+      data.append("image", pin.PicFile);
 
-    fetch("http://localhost:5000/api/upload", {
-      method: "POST",
-      body: data,
-    })
-      .then((response) => response.json())
-      .then((data) => insertPhotoWaits({...pin, PicFile: data.fileName}))
-     
-    let Rnow = new Date();
- 
-    let rightNow = getToday(Rnow);
-  
-    setPin({
-      PicFile: "",
-      PicDate: rightNow,
-      Animal: "",
-      Latitude: "",
-      Longitude: "",
-    });
-    closeup();
-    return;
+      fetch("http://localhost:5000/api/upload", {
+        method: "POST",
+        body: data,
+      })
+        .then((response) => response.json())
+        .then((data) => insertPhotoWaits({ ...pin, PicFile: data.fileName }));
+
+      let Rnow = new Date();
+
+      let rightNow = getToday(Rnow);
+
+      setPin({
+        PicFile: "",
+        PicDate: rightNow,
+        Animal: "",
+        Latitude: "",
+        Longitude: "",
+      });
+      closeup();
+      return;
+    }
   };
 
   const navi = () => {

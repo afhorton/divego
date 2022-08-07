@@ -16,10 +16,12 @@ const noGPSZone = (
       height: "40px",
       width: "95%",
       color: "red",
-      borderRadius: "15px"
+      borderRadius: "15px",
     }}
   >
-    <h4 style={{marginLeft: '35px', paddingTop: "10px"}}>No GPS Coordinates Found!</h4>
+    <h4 style={{ marginLeft: "35px", paddingTop: "10px" }}>
+      No GPS Coordinates Found!
+    </h4>
   </div>
 );
 
@@ -66,21 +68,20 @@ const SiteSubmitter = (props) => {
   };
 
   const handleNoGPSClose = () => {
-    setShowNoGPS(false)
+    setShowNoGPS(false);
     return;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log("form gives", formVals)
-
     if (formVals.Site && formVals.Latitude && formVals.Longitude) {
-      insertDiveSiteWaits(formVals)
+
+      insertDiveSiteWaits(formVals);
+      setFormVals({});
+      closeup();
+      return;
     }
-    setFormVals({});
-    closeup();
-    return;
   };
 
   return (
