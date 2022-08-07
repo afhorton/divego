@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS administrator CASCADE;
 
 CREATE TABLE photos (
     id SERIAL PRIMARY KEY NOT NULL,
-    photoFile BYTEA NOT NULL,
+    photoFile VARCHAR(255) NOT NULL,
     label VARCHAR(255) NOT NULL,
     dateTaken DATE NOT NULL,
     latitude FLOAT NOT NULl,
@@ -42,7 +42,7 @@ CREATE TABLE diveSiteWait (
 
 CREATE TABLE photoWait (
     id SERIAL PRIMARY KEY NOT NULL,
-    photoFile BYTEA NOT NULL,
+    photoFile VARCHAR(255) NOT NULL,
     label VARCHAR(255) NOT NULL,
     dateTaken DATE NOT NULL,
     latitude FLOAT NOT NULl,

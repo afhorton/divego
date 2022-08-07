@@ -22,6 +22,8 @@ let filePath = "/src/components/uploads/";
 const PhotoListItem = (props) => {
   const { key, id, photoFile, animal, date, lat, lng } = props;
 
+  console.log("props", props)
+
   let photoById;
   let heatPointExists;
 
@@ -86,6 +88,7 @@ const PhotoListItem = (props) => {
     e.preventDefault();
   };
 
+  console.log("this stuf",photoFile)
   return (
     <li
       id={key}
