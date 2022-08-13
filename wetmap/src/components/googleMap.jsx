@@ -226,7 +226,7 @@ function Map() {
         radius={9}
       ></HeatmapLayer>
 
-      {clusters.map((cluster) => {
+      {clusters && clusters.map((cluster) => {
         const [longitude, latitude] = cluster.geometry.coordinates;
         const {
           cluster: isCluster,

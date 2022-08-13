@@ -185,7 +185,7 @@ function PinMap() {
       onZoomChanged={handleMapZoomChange}
       onBoundsChanged={handleBoundsChange}
     >
-      {clusters.map((cluster) => {
+      {clusters && clusters.map((cluster) => {
         const [longitude, latitude] = cluster.geometry.coordinates;
         const {
           cluster: isCluster,
