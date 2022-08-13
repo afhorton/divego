@@ -3,7 +3,7 @@
 .col2rowT {
     width: auto;
     position: absolute;
-    z-Index: 2;
+    z-index: 2;
     background-color: white;
     opacity: 80%;
     border-radius: 10px;
