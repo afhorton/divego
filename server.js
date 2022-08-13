@@ -37,7 +37,7 @@ app.use(cors());
 
 port = process.env.PORT || 5000;
 
-app.use(express.static(path.join(__dirname, "/wetmap/index.html")));
+// app.use(express.static(path.join(__dirname, "/wetmap/index.html")));
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "wetmap/build")));
@@ -78,6 +78,6 @@ app.use(addNewHeatPoint);
 app.use(getHeatPointById);
 app.use(UpdateHeatPoint);
 
-// app.get("/", (req, res) => {
-//     res.sendFile(__dirname + "/wetmap/index.html")
-// })
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "wetmap/dist/index.html"))
+})
