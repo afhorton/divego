@@ -40,7 +40,7 @@ port = process.env.PORT || 5000;
 // app.use(express.static(path.join(__dirname, "/wetmap/index.html")));
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "wetmap/build")));
+  app.use(express.static(path.join(__dirname, "wetmap/dist")));
 }
 
 app.listen(port, () => console.log("Backend server live on " + port));
