@@ -76,7 +76,7 @@ function Map() {
 
   const heatOpts = useMemo(() => ({
     opacity: 1,
-    radius: 30,
+    radius: 20,
   }));
 
   useEffect(async () => {

@@ -75,8 +75,17 @@ const SiteSubmitter = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (formVals.Site && formVals.Latitude && formVals.Longitude) {
+    let SiteV = formVals.Site.toString();
+    let LatV = parseFloat(formVals.Latitude);
+    let LngV = parseFloat(formVals.Longitude);
 
+
+    if (SiteV && typeof(SiteV) === "string" &&
+        LatV && typeof(LatV) === "number" &&
+        LngV && typeof(LngV) === "number") {
+
+        console.log("pass")
+        
       insertDiveSiteWaits(formVals);
       setFormVals({});
       closeup();

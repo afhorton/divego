@@ -109,7 +109,20 @@ const PicUploader = React.memo((props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (pin.PicFile && pin.Animal && pin.Latitude && pin.Longitude) {
+    let AnimalV = pin.Animal.toString();
+    let LatV = parseFloat(pin.Latitude);
+    let LngV = parseFloat(pin.Longitude);
+
+    if (
+      pin.PicFile &&
+      AnimalV &&
+      typeof AnimalV === "string" &&
+      LatV &&
+      typeof LatV == "number" &&
+      LngV &&
+      typeof LngV == "number"
+    ) {
+      console.log("pass");
       const data = new FormData();
       data.append("image", pin.PicFile);
 

@@ -20,7 +20,7 @@ function App() {
   const [adminStat, setAdminStat] = useState(false);
   
   const d = new Date();
-  const [sliderVal, setSliderVal] = useState(d.getMonth());
+  const [sliderVal, setSliderVal] = useState(d.getMonth()+1);
   const [animalVal, setAnimalVal] = useState("None");
 
   const [mapCoords, setMapCoords] = useState([49.246292, -123.116226]);
