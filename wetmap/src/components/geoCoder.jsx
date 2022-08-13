@@ -23,7 +23,7 @@ export default function GeoCoder() {
     };
 
     axios
-      .get(`http://www.mapquestapi.com/geocoding/v1/address?`, { params })
+      .get(`https://www.mapquestapi.com/geocoding/v1/address?`, { params })
       .then((response) => {
         setMapCoords({
           lat: response.data.results[0].locations[0].latLng.lat,
