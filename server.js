@@ -4,7 +4,7 @@ const path = require("path");
 cors = require("cors");
 const bodyParser = require("body-parser");
 require("dotenv").config({ path: `./wetmap/.env.local` });
-console.log("i hate this")
+
 const { checkAdmin } = require("./routes/adminRoutes");
 const { getDiveSites, addNewDiveSite } = require("./routes/diveSiteRoutes");
 const {

@@ -20,16 +20,16 @@ const HowToGuide = (props) => {
             Welcome to DiveGo, this app is designed for divers who love to
             interact with animals<br></br>
             <br></br>
-            The prmise is simple, anchor icons show you the locations of dive
+            The premise is simple, anchor icons show you the locations of dive
             sites and heat map dots show you where and at what time of year an
             animal has been spotted there in the past, with the dot intensity
-            increasing with the more sightings in that month.<br></br>
+            increasing with the more sightings in that month at a given location.<br></br>
             <br></br>
             Change the month by adjusting the month slider at the top of the
             page.<br></br>
             <br></br>
-            Users submit photos of animal and dive sites they have seen/ been to
-            and the app will capture the date the photo was created and if the
+            Users submit photos of animals and dive sites they have seen/ been to
+            and the app will capture the date that the photo was created and if the
             photo carries them, its GPS coordinates, if not an option is
             available to drop a pin at the location the photo was taken.
           </p>
@@ -58,8 +58,8 @@ const HowToGuide = (props) => {
         <div className="rightA">
           <p>
             Click this icon to change what sea creature you are looking for, 
-            this list searched creature that already exist in the system, 
-            so add new ones wih your own photos to expand the list!
+            this list is made up of creatures that already exist in the system, 
+            so add new ones with your own photos to expand the list!
           </p>
         </div>
       </div>
@@ -88,7 +88,7 @@ const HowToGuide = (props) => {
             in this window you can upload photos of the animals you have seen, 
             the system will take the date the photo was taken as well as the GPS coordinates, 
             if they are part of the photo, if not click the red pin icon to the right of the fields to open another map page to drop a pin.
-            Doing so will generate a set of GPS cooridnates.
+            Doing so will generate a set of GPS cooridnates for you photo.
           </p>
         </div>
       </div>
@@ -103,7 +103,7 @@ const HowToGuide = (props) => {
             Click this icon to toggle the add dive site window, 
             in this window you can upload a photo from your dive site and it will pull the GPS coordinates, 
             all you need to do is add the site name, 
-            and if you dont have a photo click the red pin icon to drop a pin on the map to get the coordinates.
+            and if you dont have a photo please drop your lat and lng coordianted in fields.
           </p>
         </div>
       </div>
