@@ -49,3 +49,5 @@ src/helpers/VisionTest.js/
 
 .env
 .env.local
+/node_modules
+wetmap/node_modules
