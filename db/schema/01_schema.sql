@@ -1,3 +1,5 @@
+--command to add tables (from inside db folder)
+-- \i db/schema/01_schema.sql;
 
 DROP TABLE IF EXISTS photos CASCADE;
 DROP TABLE IF EXISTS diveSites CASCADE;

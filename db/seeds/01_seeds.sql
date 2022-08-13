@@ -1,4 +1,6 @@
-
+--command to add seeds (from inside db folder)
+-- \i db/seeds/01_seeds.sql;
+ 
 DELETE FROM photos;
 DELETE FROM diveSites;
 DELETE FROM heatPoints;
