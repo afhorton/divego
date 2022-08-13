@@ -8,7 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
-dist
+# dist
 dist-ssr
 *.local
 
@@ -31,7 +31,7 @@ amplify/mock-data
 amplify/backend/amplify-meta.json
 amplify/backend/.temp
 build/
-dist/
+# dist/
 node_modules/
 aws-exports.js
 awsconfiguration.json

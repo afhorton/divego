@@ -13,13 +13,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Freem11/PMSys.git"
+    "url": "git+https://github.com/Freem11/divego.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Freem11/PMSys/issues"
+    "url": "https://github.com/Freem11/divego/issues"
   },
   "homepage": "/",
   "dependencies": {
