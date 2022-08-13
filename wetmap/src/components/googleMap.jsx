@@ -57,7 +57,7 @@ function Map() {
 
   function formatHeatVals(heatValues) {
     let newArr = [];
-    heatValues.forEach((heatPoint) => {
+    heatValues && heatValues.forEach((heatPoint) => {
       let newpt = {
         location: new google.maps.LatLng(heatPoint.lat, heatPoint.lng),
         weight: heatPoint.weight,

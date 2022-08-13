@@ -1,6 +1,6 @@
  function setupClusters(diveSiteData) {
 
-    let points =  diveSiteData.map((site) => ({
+    let points = diveSiteData && diveSiteData.map((site) => ({
         type: "Feature",
         properties: {
           cluster: false,

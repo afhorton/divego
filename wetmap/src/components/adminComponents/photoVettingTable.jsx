@@ -24,7 +24,7 @@ const PhotoVettingTable = React.memo(() => {
 
   let list;
   if (photoWait && photoWait.length > 0) {
-    list = photoWait.map((photo) => {
+    list = photoWait && photoWait.map((photo) => {
       return (
         <PhotoListItem
           key={photo.id}

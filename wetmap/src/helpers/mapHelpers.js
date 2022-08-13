@@ -90,7 +90,7 @@ function dataParams(Zoom, Lat, Lng) {
 function filterSites(newParams, array) {
 
   let newArr = [];
-  array.forEach((diveSite) => {
+  array && array.forEach((diveSite) => {
     if (
       diveSite.lat > newParams.minLat &&
       diveSite.lat < newParams.maxLat &&
@@ -108,7 +108,7 @@ function filterHeat(month, animal,  array) {
 let actualMonth = month + 1
 
   let newArr = [];
-  array.forEach((heatDot) => {
+  array && array.forEach((heatDot) => {
     if (animal === 'None') {
       if (heatDot.month === actualMonth ) {
         newArr.push(heatDot);
