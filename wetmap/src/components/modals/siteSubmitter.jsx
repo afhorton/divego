@@ -83,8 +83,6 @@ const SiteSubmitter = (props) => {
     if (SiteV && typeof(SiteV) === "string" &&
         LatV && typeof(LatV) === "number" &&
         LngV && typeof(LngV) === "number") {
-
-        console.log("pass")
         
       insertDiveSiteWaits(formVals);
       setFormVals({});

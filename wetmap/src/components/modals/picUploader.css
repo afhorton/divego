@@ -76,3 +76,18 @@
 #jumpButton {
     margin-left: -10px;
 }
+
+.pickie {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.picHolder {
+    align-items: center;
+    width: 80%;
+    height: 130px;
+    border-radius: 15px;
+}

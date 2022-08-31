@@ -12,6 +12,8 @@ import { getToday } from "../../helpers/picUploaderHelpers.js";
 import Collapse from "@mui/material/Collapse";
 import { insertPhotoWaits } from "../../axiosCalls/photoWaitAxiosCalls";
 
+let filePath = "/src/components/uploads/";
+
 const noGPSZone = (
   <div
     style={{
@@ -34,6 +36,8 @@ const PicUploader = React.memo((props) => {
   let navigate = useNavigate();
   const { pin, setPin } = useContext(PinContext);
   const [showNoGPS, setShowNoGPS] = useState(false);
+
+  const [photoFile, setPhotoFile] = useState(null);
 
   const [uploadedFile, setUploadedFile] = useState({
     selectedFile: null,
@@ -89,6 +93,20 @@ const PicUploader = React.memo((props) => {
           });
           setShowNoGPS(true);
         }
+
+      const data = new FormData();
+      data.append("image", fileName);
+
+      fetch("http://localhost:5000/api/upload", {
+        method: "POST",
+        body: data,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          insertPhotoWaits({ ...pin, PicFile: data.fileName })
+          setPhotoFile(data.fileName)
+        });
+
       });
     } else {
       setPin({ ...pin, [e.target.name]: e.target.value });
@@ -122,16 +140,16 @@ const PicUploader = React.memo((props) => {
       LngV &&
       typeof LngV == "number"
     ) {
-      console.log("pass");
-      const data = new FormData();
-      data.append("image", pin.PicFile);
 
-      fetch("http://localhost:5000/api/upload", {
-        method: "POST",
-        body: data,
-      })
-        .then((response) => response.json())
-        .then((data) => insertPhotoWaits({ ...pin, PicFile: data.fileName }));
+      // const data = new FormData();
+      // data.append("image", pin.PicFile);
+
+      // fetch("http://localhost:5000/api/upload", {
+      //   method: "POST",
+      //   body: data,
+      // })
+      //   .then((response) => response.json())
+      //   .then((data) => insertPhotoWaits({ ...pin, PicFile: data.fileName }));
 
       let Rnow = new Date();
 
@@ -153,6 +171,8 @@ const PicUploader = React.memo((props) => {
     navigate("/pinDrop");
   };
 
+  console.log("???", filePath + photoFile)
+
   return (
     <Container fluid>
       <Form onSubmit={handleSubmit}>
@@ -161,6 +181,10 @@ const PicUploader = React.memo((props) => {
             <strong>Please Upload Your Picture</strong>
           </Label>
         </div>
+
+            <div className='pickie'>
+            <img src={filePath + photoFile} height="100px" className="picHolder"></img>
+            </div>
 
         <div className="uploadbox2">
           <FormGroup>
