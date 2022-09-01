@@ -22,6 +22,8 @@ const PhotoVettingTable = React.memo(() => {
 
   }, []);
 
+  console.log("lalalalal", photoWait)
+
   let list;
   if (photoWait && photoWait.length > 0) {
     list = photoWait && photoWait.map((photo) => {

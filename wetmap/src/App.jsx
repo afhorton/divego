@@ -14,7 +14,7 @@ import { PicModalContext } from "./components/contexts/picModalContext";
 import { JumpContext } from "./components/contexts/jumpContext";
 import { DiveSitesContext } from "./components/contexts/diveSitesContext";
 import { AdminContext } from "./components/contexts/adminContext";
-
+import { PictureContext } from "./components/contexts/pictureContext";
 function App() {
 
   const [adminStat, setAdminStat] = useState(false);
@@ -39,8 +39,11 @@ function App() {
     Longitude: "",
   });
 
+  const [photoFile, setPhotoFile] = useState(null);
+
   return (
     <div className="App">
+      <PictureContext.Provider value={{ photoFile, setPhotoFile }}>
       <AdminContext.Provider value={{ adminStat, setAdminStat }}>
       <SliderContext.Provider value={{ sliderVal, setSliderVal }}>
         <AnimalContext.Provider value={{ animalVal, setAnimalVal }}>
@@ -66,6 +69,7 @@ function App() {
         </AnimalContext.Provider>
       </SliderContext.Provider>
       </AdminContext.Provider>
+      </PictureContext.Provider>
     </div>
   );
 }

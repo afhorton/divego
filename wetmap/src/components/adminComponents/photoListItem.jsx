@@ -86,6 +86,7 @@ const PhotoListItem = (props) => {
     e.preventDefault();
   };
 
+  console.log(filePath + photoFile)
   return (
     <li
       id={key}

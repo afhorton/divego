@@ -68,6 +68,18 @@ const PicUploader = React.memo((props) => {
 
       let moddedDate = getToday(convDate);
 
+      const data = new FormData();
+      data.append("image", fileName);
+
+      fetch("http://localhost:5000/api/upload", {
+        method: "POST",
+        body: data,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setPhotoFile(data.fileName)
+        });
+
       exifr.parse(e.target.files[0]).then((output) => {
         let EXIFData = exifGPSHelper(
           output.GPSLatitude,
@@ -79,7 +91,7 @@ const PicUploader = React.memo((props) => {
         if (EXIFData) {
           setPin({
             ...pin,
-            PicFile: fileName,
+            PicFile: photoFile,
             PicDate: moddedDate,
             Latitude: EXIFData[0],
             Longitude: EXIFData[1],
@@ -87,26 +99,13 @@ const PicUploader = React.memo((props) => {
         } else {
           setPin({
             ...pin,
-            PicFile: fileName,
+            PicFile: photoFile,
             PicDate: moddedDate,
             Latitude: "",
             Longitude: "",
           });
           setShowNoGPS(true);
         }
-
-      const data = new FormData();
-      data.append("image", fileName);
-
-      fetch("http://localhost:5000/api/upload", {
-        method: "POST",
-        body: data,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          insertPhotoWaits({ ...pin, PicFile: data.fileName })
-          setPhotoFile(data.fileName)
-        });
 
       });
     } else {
@@ -145,6 +144,8 @@ const PicUploader = React.memo((props) => {
       let Rnow = new Date();
 
       let rightNow = getToday(Rnow);
+
+      insertPhotoWaits({ ...pin, PicFile: photoFile})
 
       setPin({
         PicFile: "",

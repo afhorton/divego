@@ -39,7 +39,6 @@ const viewUploadedPhotos = router.get("/api/upload", (req, res) => {
 
 const removeUploadedPhoto = router.post("/api/upload/delete", (req, res) => {
 
-  console.log("ROUTE GETS", req.body, __dirname)
   let filePath = req.body.path
   let fileName = req.body.fileName
 

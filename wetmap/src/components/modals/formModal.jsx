@@ -25,7 +25,8 @@ const FormModal = React.memo((props) => {
   const { openup, closeup, children } = props;
   const { setPin } = useContext(PinContext);
 
-  const [photoFile, setPhotoFile] = useState(null);
+  const { photoFile, setPhotoFile } = useContext(PictureContext);
+  
 
   const handleClose = () => {
     setPin({
@@ -36,11 +37,12 @@ const FormModal = React.memo((props) => {
       Longitude: "",
     });
     removePhoto({filePath: filePath, fileName: photoFile})
+    setPhotoFile(null)
+    
     closeup();
   };
 
   return (
-    <PictureContext.Provider value={{ photoFile, setPhotoFile }}>
     <div>
       <Modal open={openup} onClose={closeup}>
         <Box sx={style}>
@@ -61,7 +63,6 @@ const FormModal = React.memo((props) => {
         </Box>
       </Modal>
     </div>
-    </PictureContext.Provider>
   );
 });
 
