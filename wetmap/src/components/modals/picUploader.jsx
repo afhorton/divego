@@ -12,7 +12,9 @@ import { exifGPSHelper } from "../../helpers/exifGPSHelpers";
 import { getToday } from "../../helpers/picUploaderHelpers.js";
 import Collapse from "@mui/material/Collapse";
 import { insertPhotoWaits } from "../../axiosCalls/photoWaitAxiosCalls";
+import { removePhoto } from "../../axiosCalls/uploadAxiosCalls";
 
+let filePath1 = "./wetmap/src/components/uploads/";
 let filePath = "/src/components/uploads/";
 
 const noGPSZone = (
@@ -59,6 +61,14 @@ const PicUploader = React.memo((props) => {
 
   const handleChange = (e) => {
     if (e.target.name === "PicFile") {
+
+      console.log("file is", photoFile);
+      
+      if (photoFile !== null){
+        removePhoto({filePath: filePath1, fileName: photoFile})
+      }
+     
+
       let fileName = e.target.files[0];
       let baseDate = e.target.files[0].lastModified;
 
