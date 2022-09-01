@@ -20,7 +20,11 @@ const {
   getPhotoWaitById,
   delPhotoWait,
 } = require("./routes/photoWaitRoutes");
-const { uploadPhoto, viewUploadedPhotos } = require("./routes/uploadRoutes");
+const {
+  uploadPhoto,
+  viewUploadedPhotos,
+  removeUploadedPhoto,
+} = require("./routes/uploadRoutes");
 const {
   getHeatPoints,
   getSingleHeatPoint,
@@ -50,6 +54,7 @@ app.use(checkAdmin);
 //Upload Routes
 app.use(uploadPhoto);
 app.use(viewUploadedPhotos);
+app.use(removeUploadedPhoto);
 
 //DiveSite Routes
 app.use(getDiveSites);
@@ -79,5 +84,5 @@ app.use(getHeatPointById);
 app.use(UpdateHeatPoint);
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "wetmap/dist/index.html"))
-})
+  res.sendFile(path.join(__dirname, "wetmap/dist/index.html"));
+});

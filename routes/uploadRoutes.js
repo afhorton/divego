@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const path = require("path");
-const multer = require("multer")
+const multer = require("multer");
+const fs = require("fs");
 
 const storage = multer.diskStorage({
   destination: (req, file, callback) => {
@@ -36,4 +37,18 @@ const viewUploadedPhotos = router.get("/api/upload", (req, res) => {
   res.json(jerk);
 });
 
-module.exports = { uploadPhoto, viewUploadedPhotos};
+const removeUploadedPhoto = router.post("/api/upload/delete", (req, res) => {
+
+  console.log("ROUTE GETS", req.body, __dirname)
+  let filePath = req.body.path
+  let fileName = req.body.fileName
+
+  if (fileName === null){
+    return
+  } else {
+    fs.unlinkSync(path.join( filePath, fileName))
+  }
+ 
+});
+
+module.exports = { uploadPhoto, viewUploadedPhotos, removeUploadedPhoto};

@@ -23,3 +23,19 @@ import axios from "axios";
         return err;
       });
   };
+
+  export const removePhoto = (values) => {
+
+      console.log("Axios gets", values)
+    return axios
+      .post("/api/upload/delete", {
+        path: values.filePath,
+        fileName: values.fileName,
+      })
+      .then((response) => {
+        return response.data;
+      })
+      .catch((err) => {
+        return err;
+      });
+  };

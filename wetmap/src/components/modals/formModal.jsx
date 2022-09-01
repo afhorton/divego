@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { Button } from "reactstrap";
 import "./formModal.css";
 import { PinContext } from "../contexts/pinContext";
-
+import { PictureContext } from "../contexts/pictureContext";
+import { removePhoto } from "../../axiosCalls/uploadAxiosCalls";
 const style = {
   position: "absolute",
   width: 300,
@@ -18,9 +19,13 @@ const style = {
   borderRadius: "10px",
 };
 
+let filePath = "./wetmap/src/components/uploads/";
+
 const FormModal = React.memo((props) => {
   const { openup, closeup, children } = props;
   const { setPin } = useContext(PinContext);
+
+  const [photoFile, setPhotoFile] = useState(null);
 
   const handleClose = () => {
     setPin({
@@ -30,10 +35,12 @@ const FormModal = React.memo((props) => {
       Latitude: "",
       Longitude: "",
     });
+    removePhoto({filePath: filePath, fileName: photoFile})
     closeup();
   };
 
   return (
+    <PictureContext.Provider value={{ photoFile, setPhotoFile }}>
     <div>
       <Modal open={openup} onClose={closeup}>
         <Box sx={style}>
@@ -54,6 +61,7 @@ const FormModal = React.memo((props) => {
         </Box>
       </Modal>
     </div>
+    </PictureContext.Provider>
   );
 });
 

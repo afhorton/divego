@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import exifr from "exifr";
 import { useNavigate } from "react-router-dom";
 import { PinContext } from "../contexts/pinContext";
+import { PictureContext } from "../contexts/pictureContext";
 import PlaceIcon from "@mui/icons-material/Place";
 import { exifGPSHelper } from "../../helpers/exifGPSHelpers";
 import { getToday } from "../../helpers/picUploaderHelpers.js";
@@ -37,7 +38,7 @@ const PicUploader = React.memo((props) => {
   const { pin, setPin } = useContext(PinContext);
   const [showNoGPS, setShowNoGPS] = useState(false);
 
-  const [photoFile, setPhotoFile] = useState(null);
+  const { photoFile, setPhotoFile } = useContext(PictureContext);
 
   const [uploadedFile, setUploadedFile] = useState({
     selectedFile: null,
@@ -141,16 +142,6 @@ const PicUploader = React.memo((props) => {
       typeof LngV == "number"
     ) {
 
-      // const data = new FormData();
-      // data.append("image", pin.PicFile);
-
-      // fetch("http://localhost:5000/api/upload", {
-      //   method: "POST",
-      //   body: data,
-      // })
-      //   .then((response) => response.json())
-      //   .then((data) => insertPhotoWaits({ ...pin, PicFile: data.fileName }));
-
       let Rnow = new Date();
 
       let rightNow = getToday(Rnow);
@@ -182,9 +173,11 @@ const PicUploader = React.memo((props) => {
           </Label>
         </div>
 
+            {photoFile && (
             <div className='pickie'>
             <img src={filePath + photoFile} height="100px" className="picHolder"></img>
             </div>
+            )}
 
         <div className="uploadbox2">
           <FormGroup>
