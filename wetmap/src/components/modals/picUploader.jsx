@@ -62,8 +62,6 @@ const PicUploader = React.memo((props) => {
   const handleChange = (e) => {
     if (e.target.name === "PicFile") {
 
-      console.log("file is", photoFile);
-      
       if (photoFile !== null){
         removePhoto({filePath: filePath1, fileName: photoFile})
       }
@@ -172,8 +170,6 @@ const PicUploader = React.memo((props) => {
   const navi = () => {
     navigate("/pinDrop");
   };
-
-  console.log("???", filePath + photoFile)
 
   return (
     <Container fluid>
