@@ -113,8 +113,8 @@ const PicUploader = React.memo((props) => {
             ...pin,
             PicFile: photoFile,
             PicDate: moddedDate,
-            Latitude: "",
-            Longitude: "",
+            Latitude: pin.Latitude,
+            Longitude: pin.Longitude,
           });
           setShowNoGPS(true);
         }
