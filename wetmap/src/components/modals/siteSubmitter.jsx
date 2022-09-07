@@ -120,7 +120,8 @@ const SiteSubmitter = (props) => {
           <FormGroup>
             <TextField
               id="standard-basic"
-              label="Site Name"
+              // label="Site Name"
+              placeholder="Site Name"
               variant="standard"
               type="text"
               name="Site"
@@ -138,7 +139,8 @@ const SiteSubmitter = (props) => {
           <FormGroup>
             <TextField
               id="standard-basic"
-              label="Latitude"
+              // label="Latitude"
+              placeholder="Latitude"
               variant="standard"
               type="decimal"
               name="Latitude"
@@ -153,7 +155,8 @@ const SiteSubmitter = (props) => {
           <FormGroup>
             <TextField
               id="standard-basic"
-              label="Longitude"
+              // label="Longitude"
+              placeholder="Longitude"
               variant="standard"
               type="decimal"
               name="Longitude"

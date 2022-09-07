@@ -247,7 +247,8 @@ const PicUploader = React.memo((props) => {
           <FormGroup>
             <TextField
               id="standard-basic"
-              label="Date Taken"
+              // label="Date Taken"
+              placeholder="Date Taken"
               variant="standard"
               type="date"
               name="PicDate"
@@ -269,7 +270,8 @@ const PicUploader = React.memo((props) => {
               <FormGroup>
                 <TextField
                   id="standard-basic"
-                  label="Latitude"
+                  // label="Latitude"
+                  placeholder="Latitude"
                   variant="standard"
                   type="decimal"
                   name="Latitude"
@@ -284,7 +286,8 @@ const PicUploader = React.memo((props) => {
               <FormGroup>
                 <TextField
                   id="standard-basic"
-                  label="Longitude"
+                  // label="Longitude"
+                  placeholder="Longitude"
                   variant="standard"
                   type="decimal"
                   name="Longitude"
