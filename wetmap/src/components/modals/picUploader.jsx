@@ -4,6 +4,7 @@ import "./picUploader.css";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import exifr from "exifr";
+import Autosuggest from "react-autosuggest";
 import { useNavigate } from "react-router-dom";
 import { PinContext } from "../contexts/pinContext";
 import { PictureContext } from "../contexts/pictureContext";
@@ -13,6 +14,8 @@ import { getToday } from "../../helpers/picUploaderHelpers.js";
 import Collapse from "@mui/material/Collapse";
 import { insertPhotoWaits } from "../../axiosCalls/photoWaitAxiosCalls";
 import { removePhoto } from "../../axiosCalls/uploadAxiosCalls";
+import { getAnimalNamesThatFit } from "../../axiosCalls/photoAxiosCalls"
+import AnimalSearchForModal from "./AnimalSearchModal";
 
 let filePath1 = "./wetmap/src/components/uploads/";
 let filePath = "/src/components/uploads/";
@@ -38,6 +41,7 @@ const PicUploader = React.memo((props) => {
   const { closeup } = props;
   let navigate = useNavigate();
   const { pin, setPin } = useContext(PinContext);
+  const [list, setList] = useState([])
   const [showNoGPS, setShowNoGPS] = useState(false);
 
   const { photoFile, setPhotoFile } = useContext(PictureContext);
@@ -171,6 +175,8 @@ const PicUploader = React.memo((props) => {
     navigate("/pinDrop");
   };
 
+  console.log(pin)
+
   return (
     <Container fluid>
       <Form onSubmit={handleSubmit}>
@@ -202,19 +208,39 @@ const PicUploader = React.memo((props) => {
           </FormGroup>
         </div>
 
-        <div className="inputboxType1">
-          <FormGroup>
-            <TextField
-              id="standard-basic"
-              label="Animal"
-              variant="standard"
-              type="text"
-              name="Animal"
-              value={pin.Animal}
-              onChange={handleChange}
-              onClick={handleNoGPSClose}
-            />
-          </FormGroup>
+        <div className="autosuggestbox">
+          <Autosuggest 
+          className="autosug"
+          inputProps={{
+            placeholder: "Animal",
+            autoComplete: "junk",
+            name: "animal",
+            id: "animal",
+            value: pin.Animal,
+            onChange: (_event, {newValue}) => {
+              setPin({...setPin, Animal: newValue})
+            }
+          }}
+          suggestions={list}
+          onSuggestionsFetchRequested={async({value}) => {
+            if (!value){
+              setList([])
+              return
+            }
+
+            try {
+              const result = await getAnimalNamesThatFit(value)
+              setList(result)
+            } catch (e) {
+              setList([])
+            }
+          }}
+          onSuggestionsClearRequested={() => {
+            setList([])
+          }}
+          getSuggestionValue={suggestion => suggestion.label}
+          renderSuggestion={suggestion => <li className="suggestItem">{suggestion.label}</li>}
+          />
         </div>
 
         <div className="inputboxType1">

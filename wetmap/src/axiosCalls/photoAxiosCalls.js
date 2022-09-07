@@ -30,5 +30,16 @@ export const getAnimalNames = () => {
       });
   };
 
+  export const getAnimalNamesThatFit = (value) => {
+
+    return axios
+      .post("/api/photoLabelsThatFit", {content: value})
+      .then((response) => {
+        return response.data;
+      })
+      .catch((err) => {
+        return err;
+      });
+  };
  
     

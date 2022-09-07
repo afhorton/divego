@@ -13,6 +13,49 @@
     margin-left: 22%;
     margin-top: 0px;
 }
+.autosuggestbox{
+    display: flex;
+    flex-direction: column;;
+    margin-left: 20%;
+    margin-top: 10px;
+    background-color: transparent;
+    border: transparent;
+    width: 50%;
+    list-style: none;
+    list-style-type: none;
+}
+
+#animal {
+    background-color: transparent;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    border-bottom: 1.5px solid gray;
+    width: 109%;
+    padding-bottom: 0px;
+    height: 40px;
+    font-size: medium;
+    list-style-type: none;
+    padding-right: -50px;
+}
+
+.autosug{
+    list-style: none;
+    margin-right: -30;
+}
+
+.suggestItem{
+    z-index: 2;
+    background-color: white;
+    list-style: none;
+    padding: 3px;
+    border: 10px, black, solid;
+    border-radius: 5px;
+    width: 150%;
+    margin-left: -5px;
+    font: 1em sans-serif;
+    box-shadow: 2px, 4px black;
+}
 
 .modalInputs{
     margin-top: 10px;

@@ -25,6 +25,7 @@
     "leaflet.heat": "^0.2.0",
     "piexifjs": "^1.0.6",
     "react": "^17.0.0",
+    "react-autosuggest": "^10.1.0",
     "react-dom": "^17.0.0",
     "react-fs": "^0.0.0",
     "react-geocode": "^0.2.3",

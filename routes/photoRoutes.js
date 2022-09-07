@@ -18,7 +18,7 @@ const grabAnimals = router.post("/api/photoLabels", (req, res) => {
 
 const addNewPhoto = router.post("/api/photoAdd", (req, res) => {
 
-    db.addPhoto(req.body.File,req.body.Animal, req.body.Date, req.body.Lat, req.body.Lng)
+    db.addPhoto(req.body.File, req.body.Animal, req.body.Date, req.body.Lat, req.body.Lng)
     .then(photo => {
         res.json(photo);
     })
@@ -30,4 +30,18 @@ const addNewPhoto = router.post("/api/photoAdd", (req, res) => {
     
 });
 
-module.exports = { grabAnimals, addNewPhoto }
+const filterAnimals = router.post("/api/photoLabelsThatFit", (req, res) => {
+
+    db.getAnimalsFiltered(req.body.content)
+    .then(photo => {
+        res.json(photo);
+    })
+    .catch(err => {
+        res
+        .status(500)
+        .json({ error: err.message });
+    });
+    
+});
+
+module.exports = { grabAnimals, addNewPhoto, filterAnimals }
