@@ -55,7 +55,7 @@ function Map() {
   const [boundaries, setBoundaries] = useState(null);
   const { animalVal } = useContext(AnimalContext);
   const { sliderVal } = useContext(SliderContext);
-  const {showGeoCoder } = useContext(GeoCoderContext);
+  const {showGeoCoder, setShowGeoCoder } = useContext(GeoCoderContext);
 
   const [newSites, setnewSites] = useState([]);
   const [heatpts, setHeatPts] = useState(formatHeatVals([]));
@@ -246,6 +246,7 @@ function Map() {
         lng,
       });
       setJump(!jump);
+      setShowGeoCoder(!setShowGeoCoder)
     };
 
     return (

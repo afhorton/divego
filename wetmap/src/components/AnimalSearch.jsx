@@ -38,17 +38,19 @@ Promise.all([animalData])
         "&.Mui-selected": { opacity:"80%" },
         "&.Mui-selected:hover": { opacity:"80%" },
         "&:hover": { opacity:"80%" },
-        width: 230,
+        width: 222,
+        height: 40,
         backgroundColor: "white",
         opacity: "70%",
         borderRadius: "10px",
         paddingLeft: "10px",
-        paddingTop: "2px",
+        paddingRight: "10px",
+        paddingTop: "5px",
       }}
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Spiecies"
+          placeholder="Spiecies"
           variant="standard"
           sx={{ paddingLeft: "0px" }}
         />
