@@ -16,6 +16,7 @@ import { DiveSitesContext } from "./components/contexts/diveSitesContext";
 import { AdminContext } from "./components/contexts/adminContext";
 import { PictureContext } from "./components/contexts/pictureContext";
 import { GeoCoderContext } from "./components/contexts/geoCoderContext";
+import { AnimalRevealContext } from "./components/contexts/animalRevealContext";
 
 function App() {
 
@@ -23,9 +24,10 @@ function App() {
   
   const d = new Date();
   const [sliderVal, setSliderVal] = useState(d.getMonth()+1);
-  const [animalVal, setAnimalVal] = useState("None");
+  const [animalVal, setAnimalVal] = useState("All");
 
   const [showGeoCoder, setShowGeoCoder] = useState(false);
+  const [showAnimalSearch, setShowAnimalSearch] = useState(false);
 
   const [mapCoords, setMapCoords] = useState([49.246292, -123.116226]);
   const [mapZoom, setMapZoom] = useState(10);
@@ -47,6 +49,7 @@ function App() {
 
   return (
     <div className="App">
+      <AnimalRevealContext.Provider value={{ showAnimalSearch, setShowAnimalSearch }}>
       <GeoCoderContext.Provider value={{ showGeoCoder, setShowGeoCoder }}>
       <PictureContext.Provider value={{ photoFile, setPhotoFile }}>
       <AdminContext.Provider value={{ adminStat, setAdminStat }}>
@@ -76,6 +79,7 @@ function App() {
       </AdminContext.Provider>
       </PictureContext.Provider>
       </GeoCoderContext.Provider>
+      </AnimalRevealContext.Provider>
     </div>
   );
 }

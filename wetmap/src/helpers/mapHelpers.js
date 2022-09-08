@@ -109,7 +109,7 @@ let actualMonth = month + 1
 
   let newArr = [];
   array && array.forEach((heatDot) => {
-    if (animal === 'None') {
+    if (animal === 'All') {
       if (heatDot.month === actualMonth ) {
         newArr.push(heatDot);
       }

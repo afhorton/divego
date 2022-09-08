@@ -23,6 +23,7 @@ import { DiveSitesContext } from "./contexts/diveSitesContext";
 import { AnimalContext } from "./contexts/animalContext";
 import { PicModalContext } from "./contexts/picModalContext";
 import { GeoCoderContext } from "./contexts/geoCoderContext";
+import { AnimalRevealContext } from "./contexts/animalRevealContext";
 import "./mapPage.css";
 
 const animalSearchZone = (
@@ -39,10 +40,10 @@ const adminPortalZone = (
 
 const MapPage = React.memo(() => {
   const { divesTog, setDivesTog } = useContext(DiveSitesContext);
-  const [showAnimalSearch, setShowAnimalSearch] = useState(false);
   const [showAdminPortal, setShowAdminPortal] = useState(false);
   const { animalVal } = useContext(AnimalContext);
   const { showGeoCoder, setShowGeoCoder } = useContext(GeoCoderContext);
+  const { showAnimalSearch, setShowAnimalSearch } = useContext(AnimalRevealContext);
 
   const { picModal, setPicModal } = useContext(PicModalContext);
 

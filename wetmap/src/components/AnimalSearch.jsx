@@ -5,9 +5,11 @@ import { photos } from "./data/testdata";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { getAnimalNames } from "../axiosCalls/photoAxiosCalls"
+import { AnimalRevealContext } from "./contexts/animalRevealContext";
 
 export default function AnimalSearcher() {
 
+const { showAnimalSearch, setShowAnimalSearch } = useContext(AnimalRevealContext);
 const { setAnimalVal } = useContext(AnimalContext);
 const [list, setList] = useState([])
 let animalData;
@@ -31,8 +33,12 @@ Promise.all([animalData])
       id="combo-box-demo"
       options={list} //animalnames
       onChange={(event, value) => {
-          if(!value) {setAnimalVal("None")
-            } else { setAnimalVal(value.label)
+          if(!value) {
+            setAnimalVal("All")
+            setShowAnimalSearch(!setShowAnimalSearch)
+            } else { 
+              setAnimalVal(value.label)
+              setShowAnimalSearch(!setShowAnimalSearch)
             }}}
       sx={{
         "&.Mui-selected": { opacity:"80%" },
