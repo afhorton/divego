@@ -66,7 +66,9 @@ const MapPage = React.memo(() => {
   return (
     <div>
       <div className="col2rowT">
+        <div className="sliderDiv">
         <MonthSlider />
+        </div>
       </div>
       <div className="col3rowT"></div>
 
