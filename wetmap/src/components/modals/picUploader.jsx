@@ -123,6 +123,8 @@ const PicUploader = React.memo((props) => {
     } else {
       setPin({ ...pin, [e.target.name]: e.target.value });
     }
+
+    console.log("pin is", pin)
   };
 
   const handleNoGPSClose = () => {
@@ -175,7 +177,6 @@ const PicUploader = React.memo((props) => {
     navigate("/pinDrop");
   };
 
-  console.log(pin)
 
   return (
     <Container fluid>
@@ -218,7 +219,7 @@ const PicUploader = React.memo((props) => {
             id: "animal",
             value: pin.Animal,
             onChange: (_event, {newValue}) => {
-              setPin({...setPin, Animal: newValue})
+              setPin({...pin, Animal: newValue})
             }
           }}
           suggestions={list}

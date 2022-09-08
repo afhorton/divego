@@ -25,6 +25,7 @@ function DraggableMarker() {
   
   useEffect(() => {
     setPin({...pin, Latitude: position.lat, Longitude: position.lng})
+    console.log("pin", pin)
   }, [position])
 
   console.log("pin is at:" , position)
