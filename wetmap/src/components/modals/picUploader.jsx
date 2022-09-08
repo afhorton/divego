@@ -124,7 +124,6 @@ const PicUploader = React.memo((props) => {
       setPin({ ...pin, [e.target.name]: e.target.value });
     }
 
-    console.log("pin is", pin)
   };
 
   const handleNoGPSClose = () => {
