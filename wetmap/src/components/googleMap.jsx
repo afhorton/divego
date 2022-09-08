@@ -6,6 +6,19 @@ import {
 } from "@react-google-maps/api";
 import "./googleMap.css";
 import useSupercluster from "use-supercluster";
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+} from "use-places-autocomplete";
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxPopover,
+  ComboboxList,
+  ComboboxOption,
+} from "@reach/combobox";
+import "@reach/combobox/styles.css";
+import Collapse from "@mui/material/Collapse";
 import { diveSitesFake, heatVals } from "./data/testdata";
 import anchorIcon from "../images/anchor11.png";
 import anchorClust from "../images/anchor3.png";
@@ -16,12 +29,13 @@ import { JumpContext } from "./contexts/jumpContext";
 import { DiveSitesContext } from "./contexts/diveSitesContext";
 import { SliderContext } from "./contexts/sliderContext";
 import { AnimalContext } from "./contexts/animalContext";
+import { GeoCoderContext } from "./contexts/geoCoderContext";
 import { dataParams } from "../helpers/mapHelpers";
 import { setupClusters } from "../helpers/clusterHelpers";
 import { diveSites } from "../axiosCalls/diveSiteAxiosCalls";
 import { heatPoints } from "../axiosCalls/heatPointAxiosCalls";
 
-const LIB = ["visualization"];
+const LIB = ["visualization", "places"];
 
 export default function Home() {
   const { isLoaded } = useLoadScript({
@@ -41,10 +55,13 @@ function Map() {
   const [boundaries, setBoundaries] = useState(null);
   const { animalVal } = useContext(AnimalContext);
   const { sliderVal } = useContext(SliderContext);
+  const {showGeoCoder } = useContext(GeoCoderContext);
 
   const [newSites, setnewSites] = useState([]);
   const [heatpts, setHeatPts] = useState(formatHeatVals([]));
   const [mapRef, setMapRef] = useState(null);
+
+  const [selected, setSelected] = useState(null);
 
   const center = useMemo(() => ({ lat: mapCoords[0], lng: mapCoords[1] }), []);
   const zoom = useMemo(() => mapZoom, []);
@@ -57,13 +74,14 @@ function Map() {
 
   function formatHeatVals(heatValues) {
     let newArr = [];
-    heatValues && heatValues.forEach((heatPoint) => {
-      let newpt = {
-        location: new google.maps.LatLng(heatPoint.lat, heatPoint.lng),
-        weight: heatPoint.weight,
-      };
-      newArr.push(newpt);
-    });
+    heatValues &&
+      heatValues.forEach((heatPoint) => {
+        let newpt = {
+          location: new google.maps.LatLng(heatPoint.lat, heatPoint.lng),
+          weight: heatPoint.weight,
+        };
+        newArr.push(newpt);
+      });
     return newArr;
   }
 
@@ -124,7 +142,6 @@ function Map() {
           .catch((error) => {
             console.log(error);
           });
-
       }, 50);
     }
   };
@@ -174,7 +191,6 @@ function Map() {
           .catch((error) => {
             console.log(error);
           });
-
       }, 50);
     }
   };
@@ -208,6 +224,55 @@ function Map() {
     options: { radius: 75, maxZoom: 12 },
   });
 
+  const PlacesAutoComplete = ({ setSelected }) => {
+    const {
+      ready,
+      value,
+      setValue,
+      suggestions: { status, data },
+      clearSuggestions,
+    } = usePlacesAutocomplete();
+
+    const handleSelect = async (address) => {
+      setValue(address, false);
+      clearSuggestions();
+
+      const results = await getGeocode({ address });
+      const { lat, lng } = await getLatLng(results[0]);
+      setSelected({ lat, lng });
+
+      setMapCoords({
+        lat,
+        lng,
+      });
+      setJump(!jump);
+    };
+
+    return (
+      <Combobox onSelect={handleSelect}>
+        <ComboboxInput
+          className="combobox-input"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          disabled={!ready}
+          placeholder="Go to..."
+        />
+        <ComboboxPopover className="popover">
+          <ComboboxList className="poplist">
+            {status === "OK" &&
+              data.map(({ place_id, description }) => (
+                <ComboboxOption
+                  key={place_id}
+                  value={description}
+                  className="popopt"
+                />
+              ))}
+          </ComboboxList>
+        </ComboboxPopover>
+      </Combobox>
+    );
+  };
+
   return (
     <GoogleMap
       zoom={zoom}
@@ -226,42 +291,49 @@ function Map() {
         radius={9}
       ></HeatmapLayer>
 
-      {clusters && clusters.map((cluster) => {
-        const [longitude, latitude] = cluster.geometry.coordinates;
-        const {
-          cluster: isCluster,
-          point_count: pointCount,
-        } = cluster.properties;
+      <Collapse in={showGeoCoder} orientation="horizontal" collapsedSize="0px">
+        <div className="places-container">
+          <PlacesAutoComplete setSelected={setSelected} />
+        </div>
+      </Collapse>
 
-        if (isCluster) {
+      {clusters &&
+        clusters.map((cluster) => {
+          const [longitude, latitude] = cluster.geometry.coordinates;
+          const {
+            cluster: isCluster,
+            point_count: pointCount,
+          } = cluster.properties;
+
+          if (isCluster) {
+            return (
+              <Marker
+                key={cluster.id}
+                position={{ lat: latitude, lng: longitude }}
+                title={pointCount.toString() + " sites"}
+                icon={anchorClust}
+              >
+                <div
+                  style={{
+                    width: `${10 + (pointCount / points.length) * 30}px`,
+                    height: `${10 + (pointCount / points.length) * 30}px`,
+                    backgroundColor: "lightblue",
+                  }}
+                >
+                  {pointCount}
+                </div>
+              </Marker>
+            );
+          }
           return (
             <Marker
-              key={cluster.id}
+              key={cluster.properties.siteID}
               position={{ lat: latitude, lng: longitude }}
-              title={pointCount.toString() + " sites"}
-              icon={anchorClust}
-            >
-              <div
-                style={{
-                  width: `${10 + (pointCount / points.length) * 30}px`,
-                  height: `${10 + (pointCount / points.length) * 30}px`,
-                  backgroundColor: "lightblue",
-                }}
-              >
-                {pointCount}
-              </div>
-            </Marker>
+              icon={anchorIcon}
+              title={cluster.properties.siteID}
+            ></Marker>
           );
-        }
-        return (
-          <Marker
-            key={cluster.properties.siteID}
-            position={{ lat: latitude, lng: longitude }}
-            icon={anchorIcon}
-            title={cluster.properties.siteID}
-          ></Marker>
-        );
-      })}
+        })}
     </GoogleMap>
   );
 }

@@ -22,13 +22,9 @@ import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import { DiveSitesContext } from "./contexts/diveSitesContext";
 import { AnimalContext } from "./contexts/animalContext";
 import { PicModalContext } from "./contexts/picModalContext";
+import { GeoCoderContext } from "./contexts/geoCoderContext";
 import "./mapPage.css";
 
-const geoCoderZone = (
-  <div style={{ marginLeft: "10px" }}>
-    <GeoCoder></GeoCoder>
-  </div>
-);
 const animalSearchZone = (
   <div style={{ marginLeft: "10px" }}>
     <AnimalSearcher></AnimalSearcher>
@@ -43,10 +39,10 @@ const adminPortalZone = (
 
 const MapPage = React.memo(() => {
   const { divesTog, setDivesTog } = useContext(DiveSitesContext);
-  const [showGeoCoder, setShowGeoCoder] = useState(false);
   const [showAnimalSearch, setShowAnimalSearch] = useState(false);
   const [showAdminPortal, setShowAdminPortal] = useState(false);
   const { animalVal } = useContext(AnimalContext);
+  const { showGeoCoder, setShowGeoCoder } = useContext(GeoCoderContext);
 
   const { picModal, setPicModal } = useContext(PicModalContext);
 
@@ -96,13 +92,6 @@ const MapPage = React.memo(() => {
         >
           <ExploreIcon />
         </ToggleButton>
-        <Collapse
-          in={showGeoCoder}
-          orientation="horizontal"
-          collapsedSize="0px"
-        >
-          {geoCoderZone}
-        </Collapse>
       </div>
 
       <div

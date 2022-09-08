@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Form } from "reactstrap";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
+import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import { CoordsContext } from "./contexts/mapCoordsContext";
 import { JumpContext } from "./contexts/jumpContext";
 
@@ -41,17 +42,20 @@ export default function GeoCoder() {
   return (
     <div
       style={{
-        "&.selected" : {opacity: "80%"},
-        "&.selected:hover" : {opacity: "80%"},
-        "&:hover" : {opacity: "80%"},
+        // "&.selected" : {opacity: "80%"},
+        // "&.selected:hover" : {opacity: "80%"},
+        // "&:hover" : {opacity: "80%"},
         backgroundColor: "white",
         width: "240px",
         opacity: "70%",
         borderRadius: "10px",
-        paddingTop: "2px",
+        // paddingTop: "2px",
       }}
     >
-      <Form onSubmit={handleSubmit} style={{ width: "240px" }}>
+      <GooglePlacesAutocomplete 
+      apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY}
+      />
+      {/* <Form onSubmit={handleSubmit} style={{ width: "240px" }}>
         <TextField
           id="standard-basic"
           label="Go to..."
@@ -69,8 +73,8 @@ export default function GeoCoder() {
             borderRadius: "10px",
             marginLeft: "10px",
           }}
-        />
-      </Form>
+        /> */}
+      {/* </Form> */}
     </div>
   );
 }

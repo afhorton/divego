@@ -15,6 +15,8 @@ import { JumpContext } from "./components/contexts/jumpContext";
 import { DiveSitesContext } from "./components/contexts/diveSitesContext";
 import { AdminContext } from "./components/contexts/adminContext";
 import { PictureContext } from "./components/contexts/pictureContext";
+import { GeoCoderContext } from "./components/contexts/geoCoderContext";
+
 function App() {
 
   const [adminStat, setAdminStat] = useState(false);
@@ -22,6 +24,8 @@ function App() {
   const d = new Date();
   const [sliderVal, setSliderVal] = useState(d.getMonth()+1);
   const [animalVal, setAnimalVal] = useState("None");
+
+  const [showGeoCoder, setShowGeoCoder] = useState(false);
 
   const [mapCoords, setMapCoords] = useState([49.246292, -123.116226]);
   const [mapZoom, setMapZoom] = useState(10);
@@ -43,6 +47,7 @@ function App() {
 
   return (
     <div className="App">
+      <GeoCoderContext.Provider value={{ showGeoCoder, setShowGeoCoder }}>
       <PictureContext.Provider value={{ photoFile, setPhotoFile }}>
       <AdminContext.Provider value={{ adminStat, setAdminStat }}>
       <SliderContext.Provider value={{ sliderVal, setSliderVal }}>
@@ -70,6 +75,7 @@ function App() {
       </SliderContext.Provider>
       </AdminContext.Provider>
       </PictureContext.Provider>
+      </GeoCoderContext.Provider>
     </div>
   );
 }
