@@ -13,7 +13,12 @@ const {
   getDiveSiteWaitById,
   delDiveSiteWait,
 } = require("./routes/diveSiteWaitRoutes");
-const { grabAnimals, addNewPhoto, filterAnimals } = require("./routes/photoRoutes");
+const {
+  grabAnimals,
+  grabAnimalsMobile,
+  addNewPhoto,
+  filterAnimals,
+} = require("./routes/photoRoutes");
 const {
   getPhotoWaits,
   addPhotoWaiter,
@@ -68,6 +73,7 @@ app.use(delDiveSiteWait);
 
 //Photo Routes
 app.use(grabAnimals);
+app.use(grabAnimalsMobile);
 app.use(addNewPhoto);
 app.use(filterAnimals);
 
