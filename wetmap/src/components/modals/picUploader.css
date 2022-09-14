@@ -22,37 +22,6 @@
     background-color: transparent;
     border: transparent;
     width: 50%;
-    z-index: 2;
-}
-
-.react-autosuggest__container {
-    list-style: none;
-    list-style-type: none;
-    z-index: 4;
-    
-}
-.react-autosuggest__suggestions-list {
-    list-style: none;
-    list-style-type: none;
-    margin-left: -30px;
-    width: 70%;
-    z-index: 2;
-    margin-bottom: -15px;
-}
-
-.react-autosuggest__suggestions-container {
-    z-index: 4;
-    background-color: transparent;
-}
-.react-autosuggest__input {
-    list-style: none;
-    list-style-type: none;
-   
-}
-
-#react-autowhatever-1 {
-    list-style: none;
-    list-style-type: none;
     
 }
 
@@ -71,9 +40,24 @@
     text-overflow: ellipsis;
 }
 
-.autosug{
+#react-autowhatever-1 {
     list-style: none;
-    margin-right: -30;
+    list-style-type: none;
+    z-index: 10;
+}
+
+#react-autowhatever-1--open {
+    list-style: none;
+    list-style-type: none;
+    z-index: 10;
+}
+
+.react-autosuggest__suggestions-list {
+    list-style: none;
+    list-style-type: none;
+    margin-left: -30px;
+    width: 70%;
+    margin-bottom: -15px;
 }
 
 .suggestItem{
@@ -87,11 +71,13 @@
     margin-left: -5px;
     font: 1em sans-serif;
     box-shadow: 3px 3px lightgray;
+    z-index: 20;
 }
 
 .suggestItem:hover{
     background-color: lightgray;
 }
+
 
 .modalInputs{
     margin-top: 10px;

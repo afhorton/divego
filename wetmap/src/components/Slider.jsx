@@ -51,11 +51,8 @@ export default function MonthSlider() {
   },[sliderVal])
   
 
-  function valuetext(value) {
-
-    useEffect(() => {
-      value ? setSliderVal(value) : setSliderVal(sliderVal);
-    }, [value]);
+  const valuetext = (event, value) => {
+     setSliderVal(value) 
   }
 
   return (
@@ -71,10 +68,9 @@ export default function MonthSlider() {
         sx={{
           color: "black",
         }}
-        key={sliderVal}
         aria-label="Custom marks"
-        defaultValue={sliderVal}
-        getAriaValueText={valuetext}
+        value={sliderVal}
+        onChange={valuetext}
         step={1}
         min={1}
         max={12}
