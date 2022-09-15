@@ -70,13 +70,14 @@ console.log("hmm", list)
         borderRadius: "10px",
         paddingLeft: "10px",
         paddingTop: "2px",
+        fontFamily: 'IndieFlower'
       }}
       renderInput={(params) => (
         <TextField
           {...params}
           label="Animal"
           variant="standard"
-          sx={{ paddingLeft: "0px" }}
+          sx={{ paddingLeft: "0px", fontFamily: 'IndieFlower' }}
           onChange={handleChange}
           value={listAdd}
         />

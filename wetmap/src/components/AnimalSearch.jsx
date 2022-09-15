@@ -56,7 +56,7 @@ Promise.all([animalData])
       renderInput={(params) => (
         <TextField
           {...params}
-          placeholder="Spiecies"
+          placeholder="Species"
           variant="standard"
           sx={{ paddingLeft: "0px" }}
         />

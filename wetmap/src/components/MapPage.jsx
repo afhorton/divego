@@ -224,7 +224,7 @@ const MapPage = React.memo(() => {
         showAdminPortal={showAdminPortal}
         />
       </div>
-      <div className="col2rowB">Want to see: {animalVal}</div>
+      <div className="col2rowB">Selected: {animalVal}</div>
 
       <div>
         <Home

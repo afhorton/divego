@@ -12,7 +12,7 @@ const HowToGuide = (props) => {
     <div className="masterDiv">
       <div className="topRead">
         <div className="titleDiv">
-          <h3>How to use this App</h3>
+          <h3>How to use DiveGo</h3>
         </div>
 
         <div className="mainBlurbDiv">

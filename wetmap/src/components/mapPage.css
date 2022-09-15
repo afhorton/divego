@@ -1,22 +1,23 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Permanent+Marker&display=swap');
 
 .col2rowT {
-    width: auto;
+    width: 30vw;
     position: absolute;
     z-index: 2;
     top: 10px;
-    left: 200px;
-    right: 70px;
-    min-width: 350px;
+    margin: auto;
+    min-width: 500px;
+    left: 30vw;
 }
 
 .sliderDiv{
-    max-width: 500px;
+    max-width: 550px;
     background-color: white;
     opacity: 80%;
     border-radius: 10px;
     margin: auto;
-
+    font-family: 'Permanent Marker', cursive;
+    font-size: large;
 }
 
 .col1row2 {
@@ -71,6 +72,8 @@
     z-index: 2;
     position: absolute;
     bottom: 0px;
+   
+    
 }
 
 .col2rowB{
@@ -83,4 +86,7 @@
     background-color: white;
     opacity: 80%;
     border-radius: 5px;
+    font-family: 'Caveat', cursive;
+    font-size: large;
+    font-weight: bold;
 }

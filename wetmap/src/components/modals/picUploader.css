@@ -1,10 +1,12 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Permanent+Marker&display=swap');
 
 .inputboxType1{
     display: flex;
     flex-direction: column;;
     margin-left: 20%;
     margin-top: 30px;
+    font-family: 'Indie Flower';
 }
 
 .inputboxType2{
@@ -12,7 +14,8 @@
     flex-direction: column;;
     margin-left: 22%;
     margin-top: 15px;
-    width: 100%;
+    width: 100%; 
+    font-family: 'Indie Flower';
 }
 .autosuggestbox{
     display: flex;
@@ -72,6 +75,7 @@
     font: 1em sans-serif;
     box-shadow: 3px 3px lightgray;
     z-index: 20;
+    font-family: 'Indie Flower';
 }
 
 .suggestItem:hover{
@@ -104,12 +108,14 @@
    background-color: rgb(208, 231, 208);
    margin-left: 27%;
    margin-top: 25px;
-   margin-bottom: 10px
+   margin-bottom: 10px;
+   font-Family: 'Permanent Marker', cursive;
 }
 
 .modalTitle{
-    margin-left: 15%;
+    margin-left: 20px;
     margin-top: 15px;
+    font-family: 'Permanent Marker', cursive;
 }
 
 .uploadbox2{

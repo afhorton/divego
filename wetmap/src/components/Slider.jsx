@@ -63,10 +63,11 @@ export default function MonthSlider() {
         mx: "auto",
       }}
     >
-      <div><strong>{monthVal}</strong></div>
+      <div style={{marginBottom: '-5px'}}><strong>{monthVal}</strong></div>
       <Slider
         sx={{
           color: "black",
+          marginBottom: '-5px'
         }}
         aria-label="Custom marks"
         value={sliderVal}

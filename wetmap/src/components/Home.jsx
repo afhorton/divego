@@ -6,7 +6,7 @@ const { setShowAdminPortal, showAdminPortal } = props;
   return (
     <h2
       style={{
-        fontFamily: "fantasy",
+        fontFamily: "Caveat, cursive",
         marginBottom: "0",
         marginLeft: "0",
         backgroundColor: "white",

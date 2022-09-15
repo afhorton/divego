@@ -96,7 +96,7 @@ const SiteSubmitter = (props) => {
       <Form onSubmit={handleSubmit}>
         <div className="modalTitle">
           <Label>
-            <strong>Please Submit Your Dive Site</strong>
+            <strong>Submit Your Dive Site</strong>
           </Label>
         </div>
 
@@ -105,7 +105,7 @@ const SiteSubmitter = (props) => {
             <Input
               placeholder="Upload"
               className="modalInputs2"
-              style={{ textAlign: "center" }}
+              style={{ textAlign: "center", fontFamily: 'Indie Flower', }}
               id="file"
               type="file"
               name="PicFile"
@@ -127,6 +127,7 @@ const SiteSubmitter = (props) => {
               name="Site"
               onChange={handleChange}
               onClick={handleNoGPSClose}
+              inputProps={{style: {textAlign: 'center', fontFamily: 'Indie Flower'}}}
             />
           </FormGroup>
         </div>
@@ -147,6 +148,7 @@ const SiteSubmitter = (props) => {
               value={formVals.Latitude}
               onChange={handleChange}
               onClick={handleNoGPSClose}
+              inputProps={{style: {textAlign: 'center', fontFamily: 'Indie Flower'}}}
             />
           </FormGroup>
         </div>
@@ -163,6 +165,7 @@ const SiteSubmitter = (props) => {
               value={formVals.Longitude}
               onChange={handleChange}
               onClick={handleNoGPSClose}
+              inputProps={{style: {textAlign: 'center', fontFamily: 'Indie Flower'}}}
             />
           </FormGroup>
         </div>

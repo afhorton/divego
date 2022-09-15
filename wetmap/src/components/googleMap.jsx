@@ -90,6 +90,8 @@ function Map() {
     clickableIcons: false,
     maxZoom: 14,
     minZoom: 4,
+    mapTypeControl: false,
+    fullscreenControl: false
   }));
 
   const heatOpts = useMemo(() => ({
@@ -284,6 +286,7 @@ function Map() {
       onCenterChanged={handleMapCenterChange}
       onZoomChanged={handleMapZoomChange}
       onBoundsChanged={handleBoundsChange}
+      
     >
       <HeatmapLayer
         data={heatpts}

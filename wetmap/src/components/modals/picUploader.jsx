@@ -182,7 +182,7 @@ const PicUploader = React.memo((props) => {
       <Form onSubmit={handleSubmit}>
         <div className="modalTitle">
           <Label>
-            <strong>Please Upload Your Picture</strong>
+            <strong>Submit Your Picture</strong>
           </Label>
         </div>
 
@@ -197,7 +197,7 @@ const PicUploader = React.memo((props) => {
             <Input
               placeholder="Upload"
               className="modalInputs2"
-              style={{ textAlign: "center" }}
+              style={{ textAlign: "center", fontFamily: 'Indie Flower', }}
               id="file"
               type="file"
               name="PicFile"
@@ -215,6 +215,7 @@ const PicUploader = React.memo((props) => {
             placeholder: "Animal",
             autoComplete: "junk",
             name: "animal",
+            style: { textAlign: "center", fontFamily: "Indie Flower"},
             id: "animal",
             value: pin.Animal,
             onChange: (_event, {newValue}) => {
@@ -256,6 +257,7 @@ const PicUploader = React.memo((props) => {
               onChange={handleChange}
               onClick={handleNoGPSClose}
               sx={{ width: "167px" }}
+              inputProps={{style: {textAlign: 'center', fontFamily: 'Indie Flower'}}}
             />
           </FormGroup>
         </div>
@@ -278,6 +280,7 @@ const PicUploader = React.memo((props) => {
                   value={pin.Latitude}
                   onChange={handleChange}
                   onClick={handleNoGPSClose}
+                  inputProps={{style: {textAlign: 'center', fontFamily: 'Indie Flower'}}}
                 />
               </FormGroup>
             </div>
@@ -294,6 +297,7 @@ const PicUploader = React.memo((props) => {
                   value={pin.Longitude}
                   onChange={handleChange}
                   onClick={handleNoGPSClose}
+                  inputProps={{style: {textAlign: 'center', fontFamily: 'Indie Flower'}}}
                 />
               </FormGroup>
             </div>
