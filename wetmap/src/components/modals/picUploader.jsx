@@ -5,6 +5,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import exifr from "exifr";
 import Autosuggest from "react-autosuggest";
+import AnimalAutoSuggest from "../AutoSuggest";
 import { useNavigate } from "react-router-dom";
 import { PinContext } from "../contexts/pinContext";
 import { PictureContext } from "../contexts/pictureContext";
@@ -176,11 +177,10 @@ const PicUploader = React.memo((props) => {
     navigate("/pinDrop");
   };
 
-
   return (
     <Container fluid>
       <Form onSubmit={handleSubmit}>
-        <div className="modalTitle">
+        <div className="modalTitle2">
           <Label>
             <strong>Submit Your Picture</strong>
           </Label>
@@ -209,39 +209,9 @@ const PicUploader = React.memo((props) => {
         </div>
 
         <div className="autosuggestbox">
-          <Autosuggest 
-          className="autosug"
-          inputProps={{
-            placeholder: "Animal",
-            autoComplete: "junk",
-            name: "animal",
-            style: { textAlign: "center", fontFamily: "Indie Flower"},
-            id: "animal",
-            value: pin.Animal,
-            onChange: (_event, {newValue}) => {
-              setPin({...pin, Animal: newValue})
-            }
-          }}
-          suggestions={list}
-          onSuggestionsFetchRequested={async({value}) => {
-            if (!value){
-              setList([])
-              return
-            }
-
-            try {
-              const result = await getAnimalNamesThatFit(value)
-              setList(result)
-            } catch (e) {
-              setList([])
-            }
-          }}
-          onSuggestionsClearRequested={() => {
-            setList([])
-          }}
-          getSuggestionValue={suggestion => suggestion.label}
-          renderSuggestion={suggestion => <li className="suggestItem">{suggestion.label}</li>}
-          />
+        {/* <div className="AutoSug"> */}
+        <AnimalAutoSuggest setPin={setPin} pin={pin}/>
+      {/* </div> */}
         </div>
 
         <div className="inputboxType1">

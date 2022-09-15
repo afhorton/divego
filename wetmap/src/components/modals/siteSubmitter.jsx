@@ -94,7 +94,7 @@ const SiteSubmitter = (props) => {
   return (
     <Container fluid>
       <Form onSubmit={handleSubmit}>
-        <div className="modalTitle">
+        <div className="modalTitle3">
           <Label>
             <strong>Submit Your Dive Site</strong>
           </Label>
