@@ -18,8 +18,11 @@ import { PictureContext } from "./components/contexts/pictureContext";
 import { GeoCoderContext } from "./components/contexts/geoCoderContext";
 import { AnimalRevealContext } from "./components/contexts/animalRevealContext";
 import "@fontsource/indie-flower";
+import { useEffect } from "react";
+
 
 function App() {
+
   const [adminStat, setAdminStat] = useState(false);
 
   const d = new Date();
@@ -29,7 +32,24 @@ function App() {
   const [showGeoCoder, setShowGeoCoder] = useState(false);
   const [showAnimalSearch, setShowAnimalSearch] = useState(false);
 
-  const [mapCoords, setMapCoords] = useState([49.246292, -123.116226]);
+  
+  const [mapCoords, setMapCoords] = useState([49.316666,-123.066666]);
+
+ function getLocation(){
+    if (navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(showPosition)
+    }
+  }
+
+  function showPosition(position){
+    console.log("where", position)
+    setMapCoords([position.coords.latitude, position.coords.longitude])
+  }
+
+  useEffect(()=> {
+    getLocation()
+  },[])
+ 
   const [mapZoom, setMapZoom] = useState(10);
 
   const [picModal, setPicModal] = useState(false);

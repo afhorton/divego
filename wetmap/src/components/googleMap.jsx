@@ -63,7 +63,8 @@ function Map() {
 
   const [selected, setSelected] = useState(null);
 
-  const center = useMemo(() => ({ lat: mapCoords[0], lng: mapCoords[1] }), []);
+
+ let center = useMemo(() => ({ lat: mapCoords[0], lng: mapCoords[1] }), []);
   const zoom = useMemo(() => mapZoom, []);
 
   let timoutHanlder;
