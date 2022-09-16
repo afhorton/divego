@@ -51,6 +51,8 @@ function PinMap() {
     clickableIcons: false,
     maxZoom: 14,
     minZoom: 4,
+    mapTypeControl: false,
+    fullscreenControl: false,
   }));
 
   useEffect(async () => {
