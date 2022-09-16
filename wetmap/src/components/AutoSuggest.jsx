@@ -41,7 +41,7 @@ export default function AnimalAutoSuggest(props) {
         onChange={handleChange}
         ></Input>
 
- <div style={{height: 'auto', zIndex: 10}}>
+ <div style={{height: 'auto', zIndex: 10, position: 'absolute'}}>
 {list.length > 0 &&
   list.map((animal) => {
     return (

@@ -13,7 +13,7 @@
 .suggestItem{
   width: 165px;
   height: auto;
-  background-color: transparent;
+  background-color: ivory;
   border-radius: 5px;
   list-style: none;
   transform: translateX(18px);
