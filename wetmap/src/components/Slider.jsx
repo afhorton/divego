@@ -7,53 +7,52 @@ import { useState } from "react";
 
 export default function MonthSlider() {
   const { sliderVal, setSliderVal } = useContext(SliderContext);
-  const [ monthVal, setMonthVal ] = useState("")
+  const [monthVal, setMonthVal] = useState("");
 
-  useEffect(() =>{
+  useEffect(() => {
     switch (sliderVal) {
       case 1:
-        setMonthVal("Jan")
+        setMonthVal("Jan");
         break;
       case 2:
-        setMonthVal("Feb")
+        setMonthVal("Feb");
         break;
       case 3:
-        setMonthVal("Mar")
+        setMonthVal("Mar");
         break;
       case 4:
-        setMonthVal("Apr")
+        setMonthVal("Apr");
         break;
       case 5:
-        setMonthVal("May")
+        setMonthVal("May");
         break;
       case 6:
-        setMonthVal("Jun")
+        setMonthVal("Jun");
         break;
       case 7:
-        setMonthVal("Jul")
+        setMonthVal("Jul");
         break;
       case 8:
-        setMonthVal("Aug")
+        setMonthVal("Aug");
         break;
       case 9:
-        setMonthVal("Sep")
+        setMonthVal("Sep");
         break;
       case 10:
-        setMonthVal("Oct")
+        setMonthVal("Oct");
         break;
       case 11:
-        setMonthVal("Nov")
+        setMonthVal("Nov");
         break;
       case 12:
-        setMonthVal("Dec")
+        setMonthVal("Dec");
         break;
     }
-  },[sliderVal])
-  
+  }, [sliderVal]);
 
   const valuetext = (event, value) => {
-     setSliderVal(value) 
-  }
+    setSliderVal(value);
+  };
 
   return (
     <Box
@@ -63,11 +62,13 @@ export default function MonthSlider() {
         mx: "auto",
       }}
     >
-      <div style={{marginBottom: '-5px'}}><strong>{monthVal}</strong></div>
+      <div style={{ marginBottom: "-5px" }}>
+        <strong>{monthVal}</strong>
+      </div>
       <Slider
         sx={{
           color: "black",
-          marginBottom: '-5px'
+          marginBottom: "-5px",
         }}
         aria-label="Custom marks"
         value={sliderVal}

@@ -5,7 +5,7 @@ import { adminCheck } from "../axiosCalls/adminAxiosCalls";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "./contexts/adminContext";
 
-export default function AdminPortal(props) {
+export default function AdminPortal() {
   let navigate = useNavigate();
   const [formVal, setFormVal] = useState("");
   const { setAdminStat } = useContext(AdminContext);
@@ -13,25 +13,25 @@ export default function AdminPortal(props) {
     setFormVal(e.target.value);
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     let adminResult = await adminCheck(formVal);
 
     if (adminResult === "green") {
-      setAdminStat(true)
+      setAdminStat(true);
       navigate("/admin");
     }
-  
+
     return;
   };
 
   return (
     <div
       style={{
-        "&.selected" : {opacity: "80%"},
-        "&.selected:hover" : {opacity: "80%"},
-        "&:hover" : {opacity: "80%"},
+        "&.selected": { opacity: "80%" },
+        "&.selected:hover": { opacity: "80%" },
+        "&:hover": { opacity: "80%" },
         backgroundColor: "white",
         width: "240px",
         opacity: "70%",

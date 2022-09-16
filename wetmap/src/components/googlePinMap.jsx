@@ -59,7 +59,7 @@ function PinMap() {
 
     GPSBubble = dataParams(mapZoom, mapCoords[0], mapCoords[1]);
     filteredDiveSites = await diveSites(GPSBubble);
-    filteredDiveSites ? setnewSites(filteredDiveSites) : []
+    filteredDiveSites ? setnewSites(filteredDiveSites) : [];
 
     DiveSiteAndHeatSpotValue = setupMapValues(
       mapZoom,
@@ -67,7 +67,6 @@ function PinMap() {
       mapCoords[1],
       diveSitesFake
     );
-
   }, []);
 
   const handleOnLoad = (map) => {
@@ -97,18 +96,17 @@ function PinMap() {
           mapCoords[1],
           diveSitesFake
         );
-
       }, 50);
     }
   };
 
-  const handleMapZoomChange = async() => {
+  const handleMapZoomChange = async () => {
     if (mapRef) {
       setMapZoom(mapRef.getZoom());
 
       GPSBubble = dataParams(mapZoom, mapCoords[0], mapCoords[1]);
       filteredDiveSites = await diveSites(GPSBubble);
-      filteredDiveSites ? setnewSites(filteredDiveSites) : []
+      filteredDiveSites ? setnewSites(filteredDiveSites) : [];
 
       DiveSiteAndHeatSpotValue = setupMapValues(
         mapZoom,
@@ -116,7 +114,6 @@ function PinMap() {
         mapCoords[1],
         diveSitesFake
       );
-
     }
   };
 
@@ -146,7 +143,6 @@ function PinMap() {
           mapCoords[1],
           diveSitesFake
         );
-
       }, 50);
     }
   };
@@ -167,7 +163,7 @@ function PinMap() {
 
   const points = setupClusters(newSites);
 
-  const { clusters, supercluster } = useSupercluster({
+  const { clusters } = useSupercluster({
     points,
     bounds: boundaries,
     zoom: mapZoom,
@@ -185,42 +181,43 @@ function PinMap() {
       onZoomChanged={handleMapZoomChange}
       onBoundsChanged={handleBoundsChange}
     >
-      {clusters && clusters.map((cluster) => {
-        const [longitude, latitude] = cluster.geometry.coordinates;
-        const {
-          cluster: isCluster,
-          point_count: pointCount,
-        } = cluster.properties;
+      {clusters &&
+        clusters.map((cluster) => {
+          const [longitude, latitude] = cluster.geometry.coordinates;
+          const {
+            cluster: isCluster,
+            point_count: pointCount,
+          } = cluster.properties;
 
-        if (isCluster) {
+          if (isCluster) {
+            return (
+              <Marker
+                key={cluster.id}
+                position={{ lat: latitude, lng: longitude }}
+                title={pointCount.toString() + " sites"}
+                icon={anchorClust}
+              >
+                <div
+                  style={{
+                    width: `${10 + (pointCount / points.length) * 30}px`,
+                    height: `${10 + (pointCount / points.length) * 30}px`,
+                    backgroundColor: "lightblue",
+                  }}
+                >
+                  {pointCount}
+                </div>
+              </Marker>
+            );
+          }
           return (
             <Marker
-              key={cluster.id}
+              key={cluster.properties.siteID}
               position={{ lat: latitude, lng: longitude }}
-              title={pointCount.toString() + " sites"}
-              icon={anchorClust}
-            >
-              <div
-                style={{
-                  width: `${10 + (pointCount / points.length) * 30}px`,
-                  height: `${10 + (pointCount / points.length) * 30}px`,
-                  backgroundColor: "lightblue",
-                }}
-              >
-                {pointCount}
-              </div>
-            </Marker>
+              icon={anchorIcon}
+              title={cluster.properties.siteID}
+            ></Marker>
           );
-        }
-        return (
-          <Marker
-            key={cluster.properties.siteID}
-            position={{ lat: latitude, lng: longitude }}
-            icon={anchorIcon}
-            title={cluster.properties.siteID}
-          ></Marker>
-        );
-      })}
+        })}
 
       <Marker
         position={pinCenter}

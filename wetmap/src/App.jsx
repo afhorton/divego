@@ -3,7 +3,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import MapPage from "./components/MapPage";
 import PinMapPage from "./components/PinMapPage";
-import AdminPage from "./components/adminComponents/adminPage"
+import AdminPage from "./components/adminComponents/adminPage";
 import "./App.css";
 import { SliderContext } from "./components/contexts/sliderContext";
 import { AnimalContext } from "./components/contexts/animalContext";
@@ -20,11 +20,10 @@ import { AnimalRevealContext } from "./components/contexts/animalRevealContext";
 import "@fontsource/indie-flower";
 
 function App() {
-
   const [adminStat, setAdminStat] = useState(false);
-  
+
   const d = new Date();
-  const [sliderVal, setSliderVal] = useState(d.getMonth()+1);
+  const [sliderVal, setSliderVal] = useState(d.getMonth() + 1);
   const [animalVal, setAnimalVal] = useState("All");
 
   const [showGeoCoder, setShowGeoCoder] = useState(false);
@@ -50,36 +49,48 @@ function App() {
 
   return (
     <div className="App">
-      <AnimalRevealContext.Provider value={{ showAnimalSearch, setShowAnimalSearch }}>
-      <GeoCoderContext.Provider value={{ showGeoCoder, setShowGeoCoder }}>
-      <PictureContext.Provider value={{ photoFile, setPhotoFile }}>
-      <AdminContext.Provider value={{ adminStat, setAdminStat }}>
-      <SliderContext.Provider value={{ sliderVal, setSliderVal }}>
-        <AnimalContext.Provider value={{ animalVal, setAnimalVal }}>
-          <ZoomContext.Provider value={{ mapZoom, setMapZoom }}>
-            <CoordsContext.Provider value={{ mapCoords, setMapCoords }}>
-              <PinContext.Provider value={{ pin, setPin }}>
-                <PicModalContext.Provider value={{ picModal, setPicModal }}>
-                  <JumpContext.Provider value={{jump, setJump}}>
-                    <DiveSitesContext.Provider value={{divesTog, setDivesTog}}>
-                  <BrowserRouter>
-                    <Routes>
-                      <Route path="/" element={<MapPage />} />
-                      <Route path="/pinDrop" element={<PinMapPage />} />
-                      <Route path="/admin" element={<AdminPage />} />
-                    </Routes>
-                  </BrowserRouter>
-                  </DiveSitesContext.Provider>
-                  </JumpContext.Provider>
-                </PicModalContext.Provider>
-              </PinContext.Provider>
-            </CoordsContext.Provider>
-          </ZoomContext.Provider>
-        </AnimalContext.Provider>
-      </SliderContext.Provider>
-      </AdminContext.Provider>
-      </PictureContext.Provider>
-      </GeoCoderContext.Provider>
+      <AnimalRevealContext.Provider
+        value={{ showAnimalSearch, setShowAnimalSearch }}
+      >
+        <GeoCoderContext.Provider value={{ showGeoCoder, setShowGeoCoder }}>
+          <PictureContext.Provider value={{ photoFile, setPhotoFile }}>
+            <AdminContext.Provider value={{ adminStat, setAdminStat }}>
+              <SliderContext.Provider value={{ sliderVal, setSliderVal }}>
+                <AnimalContext.Provider value={{ animalVal, setAnimalVal }}>
+                  <ZoomContext.Provider value={{ mapZoom, setMapZoom }}>
+                    <CoordsContext.Provider value={{ mapCoords, setMapCoords }}>
+                      <PinContext.Provider value={{ pin, setPin }}>
+                        <PicModalContext.Provider
+                          value={{ picModal, setPicModal }}
+                        >
+                          <JumpContext.Provider value={{ jump, setJump }}>
+                            <DiveSitesContext.Provider
+                              value={{ divesTog, setDivesTog }}
+                            >
+                              <BrowserRouter>
+                                <Routes>
+                                  <Route path="/" element={<MapPage />} />
+                                  <Route
+                                    path="/pinDrop"
+                                    element={<PinMapPage />}
+                                  />
+                                  <Route
+                                    path="/admin"
+                                    element={<AdminPage />}
+                                  />
+                                </Routes>
+                              </BrowserRouter>
+                            </DiveSitesContext.Provider>
+                          </JumpContext.Provider>
+                        </PicModalContext.Provider>
+                      </PinContext.Provider>
+                    </CoordsContext.Provider>
+                  </ZoomContext.Provider>
+                </AnimalContext.Provider>
+              </SliderContext.Provider>
+            </AdminContext.Provider>
+          </PictureContext.Provider>
+        </GeoCoderContext.Provider>
       </AnimalRevealContext.Provider>
     </div>
   );

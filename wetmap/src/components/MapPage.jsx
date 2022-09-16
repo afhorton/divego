@@ -4,7 +4,6 @@ import Home from "./googleMap";
 import FormModal from "./modals/formModal";
 import FormGuideModal from "./modals/formGuideModal";
 import MonthSlider from "./Slider";
-import GeoCoder from "./geoCoder";
 import AdminPortal from "./adminPortal";
 import PicUploader from "./modals/picUploader";
 import SiteSubmitter from "./modals/siteSubmitter";
@@ -43,7 +42,9 @@ const MapPage = React.memo(() => {
   const [showAdminPortal, setShowAdminPortal] = useState(false);
   const { animalVal } = useContext(AnimalContext);
   const { showGeoCoder, setShowGeoCoder } = useContext(GeoCoderContext);
-  const { showAnimalSearch, setShowAnimalSearch } = useContext(AnimalRevealContext);
+  const { showAnimalSearch, setShowAnimalSearch } = useContext(
+    AnimalRevealContext
+  );
 
   const { picModal, setPicModal } = useContext(PicModalContext);
 
@@ -67,7 +68,7 @@ const MapPage = React.memo(() => {
     <div>
       <div className="col2rowT">
         <div className="sliderDiv">
-        <MonthSlider />
+          <MonthSlider />
         </div>
       </div>
       <div className="col3rowT"></div>
@@ -214,14 +215,17 @@ const MapPage = React.memo(() => {
         </ToggleButton>
       </div>
 
-      
       <div className="col1rowB">
-      <Collapse in={showAdminPortal} orientation="horizontal" collapsedSize="0px">
-        {adminPortalZone}
-      </Collapse>
-        <Homeo   
-        setShowAdminPortal={setShowAdminPortal}
-        showAdminPortal={showAdminPortal}
+        <Collapse
+          in={showAdminPortal}
+          orientation="horizontal"
+          collapsedSize="0px"
+        >
+          {adminPortalZone}
+        </Collapse>
+        <Homeo
+          setShowAdminPortal={setShowAdminPortal}
+          showAdminPortal={showAdminPortal}
         />
       </div>
       <div className="col2rowB">Selected: {animalVal}</div>

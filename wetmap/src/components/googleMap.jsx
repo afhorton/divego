@@ -55,7 +55,7 @@ function Map() {
   const [boundaries, setBoundaries] = useState(null);
   const { animalVal } = useContext(AnimalContext);
   const { sliderVal } = useContext(SliderContext);
-  const {showGeoCoder, setShowGeoCoder } = useContext(GeoCoderContext);
+  const { showGeoCoder, setShowGeoCoder } = useContext(GeoCoderContext);
 
   const [newSites, setnewSites] = useState([]);
   const [heatpts, setHeatPts] = useState(formatHeatVals([]));
@@ -91,7 +91,7 @@ function Map() {
     maxZoom: 14,
     minZoom: 4,
     mapTypeControl: false,
-    fullscreenControl: false
+    fullscreenControl: false,
   }));
 
   const heatOpts = useMemo(() => ({
@@ -199,7 +199,7 @@ function Map() {
 
   useEffect(() => {
     if (jump) {
-      mapRef.panTo(mapCoords);
+      mapRef.panTo({ lat: mapCoords[0], lng: mapCoords[1] });
       setJump(!jump);
     }
   }, [jump]);
@@ -219,7 +219,7 @@ function Map() {
 
   const points = setupClusters(newSites);
 
-  const { clusters, supercluster } = useSupercluster({
+  const { clusters } = useSupercluster({
     points,
     bounds: boundaries,
     zoom: mapZoom,
@@ -240,15 +240,13 @@ function Map() {
       clearSuggestions();
 
       const results = await getGeocode({ address });
+
       const { lat, lng } = await getLatLng(results[0]);
       setSelected({ lat, lng });
+      setMapCoords([lat, lng]);
 
-      setMapCoords({
-        lat,
-        lng,
-      });
       setJump(!jump);
-      setShowGeoCoder(!setShowGeoCoder)
+      setShowGeoCoder(!setShowGeoCoder);
     };
 
     return (
@@ -286,7 +284,6 @@ function Map() {
       onCenterChanged={handleMapCenterChange}
       onZoomChanged={handleMapZoomChange}
       onBoundsChanged={handleBoundsChange}
-      
     >
       <HeatmapLayer
         data={heatpts}
