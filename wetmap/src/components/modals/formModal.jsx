@@ -53,7 +53,8 @@ const FormModal = React.memo((props) => {
                 backgroundColor: "maroon",
                 boxShadow: "2px 2px 3px 1px rgb(131, 127, 127)",
                 marginTop: 10,
-                marginRight: 5
+                marginRight: 5,
+                cursor: "pointer"
               }}
               className="modalButton2"
               onClick={handleClose}

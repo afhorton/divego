@@ -111,15 +111,15 @@ const SiteSubmitter = (props) => {
         <div className="uploadbox">
           <div
             onClick={handleClick}
-            style={{ display: "flex", flexDirection: "row", marginLeft: -8 }}
+            style={{ display: "flex", flexDirection: "row", marginLeft: -8, cursor: "pointer", width: 170 }}
           >
             <div style={{ marginRight: 5, marginTop: -2 }}>
               <PhotoIcon
-                sx={{ color: "red", height: "28px", width: "28px" }}
+                sx={{ color: "red", height: "28px", width: "28px", cursor: "pointer" }}
               ></PhotoIcon>
             </div>
 
-            <Label style={{ fontFamily: "Permanent Marker", color: "maroon" }}>
+            <Label style={{ fontFamily: "Permanent Marker", color: "maroon", cursor: "pointer" }}>
               Choose a File
             </Label>
           </div>
