@@ -239,7 +239,7 @@ const PicUploader = React.memo((props) => {
               onChange={handleChange}
               onClick={handleNoGPSClose}
               sx={{ width: "167px" }}
-              inputProps={{style: {textAlign: 'center', fontFamily: 'Indie Flower'}}}
+              inputProps={{style: {textAlign: 'center', fontFamily: 'Indie Flower', textOverflow: 'ellipsis'}}}
             />
           </FormGroup>
         </div>
@@ -262,7 +262,7 @@ const PicUploader = React.memo((props) => {
                   value={pin.Latitude}
                   onChange={handleChange}
                   onClick={handleNoGPSClose}
-                  inputProps={{readOnly: true, style: {textAlign: 'center', fontFamily: 'Indie Flower'}}}
+                  inputProps={{readOnly: true, style: {textAlign: 'center', fontFamily: 'Indie Flower', textOverflow: 'ellipsis'}}}
                 />
               </FormGroup>
             </div>
@@ -280,7 +280,7 @@ const PicUploader = React.memo((props) => {
                   value={pin.Longitude}
                   onChange={handleChange}
                   onClick={handleNoGPSClose}
-                  inputProps={{readOnly: true, style: {textAlign: 'center', fontFamily: 'Indie Flower'}}}
+                  inputProps={{readOnly: true, style: {textAlign: 'center', fontFamily: 'Indie Flower', textOverflow: 'ellipsis'}}}
                 />
               </FormGroup>
             </div>

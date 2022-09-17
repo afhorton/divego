@@ -105,7 +105,7 @@ const SiteSubmitter = (props) => {
             <Input
               placeholder="Upload"
               className="modalInputs2"
-              style={{ textAlign: "center", fontFamily: 'Indie Flower', }}
+              style={{ textAlign: "center", fontFamily: 'Indie Flower', textOverflow: 'ellipsis' }}
               id="file"
               type="file"
               name="PicFile"
@@ -127,7 +127,7 @@ const SiteSubmitter = (props) => {
               name="Site"
               onChange={handleChange}
               onClick={handleNoGPSClose}
-              inputProps={{style: {textAlign: 'center', fontFamily: 'Indie Flower'}}}
+              inputProps={{style: {textAlign: 'center', fontFamily: 'Indie Flower', textOverflow: 'ellipsis'}}}
             />
           </FormGroup>
         </div>
@@ -148,7 +148,7 @@ const SiteSubmitter = (props) => {
               value={formVals.Latitude}
               onChange={handleChange}
               onClick={handleNoGPSClose}
-              inputProps={{style: {textAlign: 'center', fontFamily: 'Indie Flower'}}}
+              inputProps={{style: {textAlign: 'center', fontFamily: 'Indie Flower', textOverflow: 'ellipsis'}}}
             />
           </FormGroup>
         </div>
@@ -165,7 +165,7 @@ const SiteSubmitter = (props) => {
               value={formVals.Longitude}
               onChange={handleChange}
               onClick={handleNoGPSClose}
-              inputProps={{style: {textAlign: 'center', fontFamily: 'Indie Flower'}}}
+              inputProps={{style: {textAlign: 'center', fontFamily: 'Indie Flower', textOverflow: 'ellipsis'}}}
             />
           </FormGroup>
         </div>
