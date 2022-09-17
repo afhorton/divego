@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { PinContext } from "../contexts/pinContext";
 import { PictureContext } from "../contexts/pictureContext";
 import PlaceIcon from "@mui/icons-material/Place";
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { exifGPSHelper } from "../../helpers/exifGPSHelpers";
 import { getToday } from "../../helpers/picUploaderHelpers.js";
 import Collapse from "@mui/material/Collapse";
@@ -42,9 +43,8 @@ const PicUploader = React.memo((props) => {
   const { closeup } = props;
   let navigate = useNavigate();
   const { pin, setPin } = useContext(PinContext);
-  const [list, setList] = useState([])
   const [showNoGPS, setShowNoGPS] = useState(false);
-
+  const [list, setList] = useState([]);
   const { photoFile, setPhotoFile } = useContext(PictureContext);
 
   const [uploadedFile, setUploadedFile] = useState({
@@ -177,6 +177,11 @@ const PicUploader = React.memo((props) => {
     navigate("/pinDrop");
   };
 
+  const clearAnimal = () => {
+    setPin({...pin, Animal: ""})
+    setList([])
+  };
+
   return (
     <Container fluid>
       <Form onSubmit={handleSubmit}>
@@ -205,13 +210,20 @@ const PicUploader = React.memo((props) => {
               onChange={handleChange}
               onClick={handleNoGPSClose}
             ></Input>
-          </FormGroup>
+          </FormGroup> 
         </div>
 
         <div className="autosuggestbox">
-        {/* <div className="AutoSug"> */}
-        <AnimalAutoSuggest setPin={setPin} pin={pin}/>
-      {/* </div> */}
+        <AnimalAutoSuggest setPin={setPin} pin={pin} setList={setList} list={list}/>
+        {pin.Animal.length > 1 && <div
+                variant="text"
+                id="XButton"
+                onClick={clearAnimal}
+              >
+                <HighlightOffIcon
+                  sx={{ color: "gray", height: "10px", width: "10px" }}
+                ></HighlightOffIcon>
+              </div>}
         </div>
 
         <div className="inputboxType1">
@@ -250,7 +262,7 @@ const PicUploader = React.memo((props) => {
                   value={pin.Latitude}
                   onChange={handleChange}
                   onClick={handleNoGPSClose}
-                  inputProps={{style: {textAlign: 'center', fontFamily: 'Indie Flower'}}}
+                  inputProps={{readOnly: true, style: {textAlign: 'center', fontFamily: 'Indie Flower'}}}
                 />
               </FormGroup>
             </div>
@@ -264,10 +276,11 @@ const PicUploader = React.memo((props) => {
                   variant="standard"
                   type="decimal"
                   name="Longitude"
+                  contentEditable={false}
                   value={pin.Longitude}
                   onChange={handleChange}
                   onClick={handleNoGPSClose}
-                  inputProps={{style: {textAlign: 'center', fontFamily: 'Indie Flower'}}}
+                  inputProps={{readOnly: true, style: {textAlign: 'center', fontFamily: 'Indie Flower'}}}
                 />
               </FormGroup>
             </div>

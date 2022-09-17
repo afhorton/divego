@@ -19,14 +19,27 @@
 }
 .autosuggestbox{
     display: flex;
-    flex-direction: column;;
+    flex-direction: row;;
     margin-left: 20%;
     margin-top: 30px;
     margin-bottom: -10px;
     background-color: transparent;
     border: transparent;
-    width: 50%;
-    
+    width: 167px;
+    border-bottom: 1px solid gray;    
+}
+
+.autosuggestbox:hover{
+    border-width: medium;
+    border-bottom: solid black;
+}
+
+#XButton{
+    width: 10px;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 3px;
+    margin-left: -1px;
 }
 
 #animal {
@@ -34,8 +47,6 @@
     border-top: transparent;
     border-left: transparent;
     border-right: transparent;
-    border-bottom: 1.5px solid gray;
-    width: 109%;
     height: 40px;
     font-size: medium;
     list-style-type: none;

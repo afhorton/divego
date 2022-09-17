@@ -1,13 +1,17 @@
+
 .suggestInput{
-  width: 163px;
+  width: 150px;
   height: 28px;
   background-color: transparent;
   border: none;
-  border-bottom: solid 1px grey;
   text-align: center;
   font-family: 'Indie Flower', cursive;
   font-size: medium;
-  font-weight: bold;
+}
+
+.suggestInput:focus{
+  user-select: none;
+  outline: none;
 }
 
 .suggestItem{

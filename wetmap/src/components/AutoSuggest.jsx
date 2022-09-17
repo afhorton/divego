@@ -6,9 +6,8 @@ import AutoSuggestListItem from "./AutoSuggestListItem";
 import "./autoSuggest.css";
 
 export default function AnimalAutoSuggest(props) {
-  const { setPin, pin } = props;
-  const [list, setList] = useState([]);
-
+  const { setPin, pin, setList, list } = props;
+  
   const handleChange = async (e) => {
     setPin({ ...pin, Animal: e.target.value });
 
