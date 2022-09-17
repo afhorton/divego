@@ -35,21 +35,21 @@ function App() {
   
   const [mapCoords, setMapCoords] = useState([49.316666,-123.066666]);
 
- function getLocation(){
-    if (navigator.geolocation){
-      navigator.geolocation.getCurrentPosition(showPosition)
-    }
-  }
+  // useEffect(() => {
+  //   window.onload = function() {
+  //     if (navigator.geolocation){
+  //       navigator.geolocation.getCurrentPosition(function(position) {
+  //         setMapCoords([position.coords.latitude, position.coords.longitude])
+  //         setJump(true)
+  //       }, function(error) {
+  //         console.log("cocksucker", error.message)
+  //       })
+  //     } else {
+  //       console.log("unsupported")
+  //     }
+  //     }
+  // },[])
 
-  function showPosition(position){
-    console.log("where", position)
-    setMapCoords([position.coords.latitude, position.coords.longitude])
-  }
-
-  useEffect(()=> {
-    getLocation()
-  },[])
- 
   const [mapZoom, setMapZoom] = useState(10);
 
   const [picModal, setPicModal] = useState(false);
