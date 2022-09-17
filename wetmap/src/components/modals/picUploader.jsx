@@ -337,10 +337,12 @@ const PicUploader = React.memo((props) => {
                 variant="text"
                 id="jumpButton"
                 onClick={handleNoGPSCloseOnMapChange}
+                style={{display: 'flex', flexDirection: "column"}}
               >
                 <PlaceIcon
-                  sx={{ color: "maroon", height: "40px", width: "40px" }}
+                  sx={{ color: "red", height: "40px", width: "40px" }}
                 ></PlaceIcon>
+                <text style={{fontFamily: "Shadows Into Light", color: "maroon", fontSize: 11}}>Drop Pin</text>
               </Button>
             </FormGroup>
           </div>

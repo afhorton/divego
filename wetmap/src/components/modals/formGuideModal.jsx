@@ -10,10 +10,10 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   bgcolor: "rgb(221, 226, 226)",
-  border: "4px solid #102E4A",
+  border: "6px solid lightblue",
   boxShadow: 24,
   p: 1.5,
-  borderRadius: "10px",
+  borderRadius: "15px",
 };
 
 const FormGuideModal = (props) => {
