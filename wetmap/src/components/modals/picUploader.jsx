@@ -10,13 +10,14 @@ import { useNavigate } from "react-router-dom";
 import { PinContext } from "../contexts/pinContext";
 import { PictureContext } from "../contexts/pictureContext";
 import PlaceIcon from "@mui/icons-material/Place";
-import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import PhotoIcon from "@mui/icons-material/Photo";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { exifGPSHelper } from "../../helpers/exifGPSHelpers";
 import { getToday } from "../../helpers/picUploaderHelpers.js";
 import Collapse from "@mui/material/Collapse";
 import { insertPhotoWaits } from "../../axiosCalls/photoWaitAxiosCalls";
 import { removePhoto } from "../../axiosCalls/uploadAxiosCalls";
-import { getAnimalNamesThatFit } from "../../axiosCalls/photoAxiosCalls"
+import { getAnimalNamesThatFit } from "../../axiosCalls/photoAxiosCalls";
 import AnimalSearchForModal from "./AnimalSearchModal";
 
 let filePath1 = "./wetmap/src/components/uploads/";
@@ -66,11 +67,9 @@ const PicUploader = React.memo((props) => {
 
   const handleChange = (e) => {
     if (e.target.name === "PicFile") {
-
-      if (photoFile !== null){
-        removePhoto({filePath: filePath1, fileName: photoFile})
+      if (photoFile !== null) {
+        removePhoto({ filePath: filePath1, fileName: photoFile });
       }
-     
 
       let fileName = e.target.files[0];
       let baseDate = e.target.files[0].lastModified;
@@ -90,7 +89,7 @@ const PicUploader = React.memo((props) => {
       })
         .then((response) => response.json())
         .then((data) => {
-          setPhotoFile(data.fileName)
+          setPhotoFile(data.fileName);
         });
 
       exifr.parse(e.target.files[0]).then((output) => {
@@ -119,12 +118,10 @@ const PicUploader = React.memo((props) => {
           });
           setShowNoGPS(true);
         }
-
       });
     } else {
       setPin({ ...pin, [e.target.name]: e.target.value });
     }
-
   };
 
   const handleNoGPSClose = () => {
@@ -154,12 +151,11 @@ const PicUploader = React.memo((props) => {
       LngV &&
       typeof LngV == "number"
     ) {
-
       let Rnow = new Date();
 
       let rightNow = getToday(Rnow);
 
-      insertPhotoWaits({ ...pin, PicFile: photoFile})
+      insertPhotoWaits({ ...pin, PicFile: photoFile });
 
       setPin({
         PicFile: "",
@@ -178,9 +174,13 @@ const PicUploader = React.memo((props) => {
   };
 
   const clearAnimal = () => {
-    setPin({...pin, Animal: ""})
-    setList([])
+    setPin({ ...pin, Animal: "" });
+    setList([]);
   };
+
+  function handleClick() {
+    document.getElementById("file").click();
+  }
 
   return (
     <Container fluid>
@@ -191,18 +191,40 @@ const PicUploader = React.memo((props) => {
           </Label>
         </div>
 
-            {photoFile && (
-            <div className='pickie'>
-            <img src={filePath + photoFile} height="100px" className="picHolder"></img>
-            </div>
-            )}
+        {photoFile && (
+          <div className="pickie">
+            <img
+              src={filePath + photoFile}
+              height="100px"
+              className="picHolder"
+            ></img>
+          </div>
+        )}
 
         <div className="uploadbox2">
+          <div
+            onClick={handleClick}
+            style={{ display: "flex", flexDirection: "row", marginLeft: -12 }}
+          >
+            <div style={{ marginRight: 5, marginTop: -2 }}>
+              <PhotoIcon
+                sx={{ color: "red", height: "28px", width: "28px" }}
+              ></PhotoIcon>
+            </div>
+
+            <Label style={{ fontFamily: "Permanent Marker", color: "maroon" }}>
+              Choose an Image
+            </Label>
+          </div>
           <FormGroup>
             <Input
               placeholder="Upload"
               className="modalInputs2"
-              style={{ textAlign: "center", fontFamily: 'Indie Flower', }}
+              style={{
+                textAlign: "center",
+                fontFamily: "Indie Flower",
+                display: "none",
+              }}
               id="file"
               type="file"
               name="PicFile"
@@ -210,20 +232,24 @@ const PicUploader = React.memo((props) => {
               onChange={handleChange}
               onClick={handleNoGPSClose}
             ></Input>
-          </FormGroup> 
+          </FormGroup>
         </div>
 
-        <div className="autosuggestbox">
-        <AnimalAutoSuggest setPin={setPin} pin={pin} setList={setList} list={list}/>
-        {pin.Animal.length > 1 && <div
-                variant="text"
-                id="XButton"
-                onClick={clearAnimal}
-              >
-                <HighlightOffIcon
-                  sx={{ color: "gray", height: "10px", width: "10px" }}
-                ></HighlightOffIcon>
-              </div>}
+        <div className="autosuggestbox" onClick={handleNoGPSClose}>
+          <AnimalAutoSuggest
+            setPin={setPin}
+            pin={pin}
+            setList={setList}
+            list={list}
+            onClick={handleNoGPSClose}
+          />
+          {pin.Animal.length > 1 && (
+            <div variant="text" id="XButton" onClick={clearAnimal}>
+              <HighlightOffIcon
+                sx={{ color: "gray", height: "10px", width: "10px" }}
+              ></HighlightOffIcon>
+            </div>
+          )}
         </div>
 
         <div className="inputboxType1">
@@ -239,7 +265,13 @@ const PicUploader = React.memo((props) => {
               onChange={handleChange}
               onClick={handleNoGPSClose}
               sx={{ width: "167px" }}
-              inputProps={{style: {textAlign: 'center', fontFamily: 'Indie Flower', textOverflow: 'ellipsis'}}}
+              inputProps={{
+                style: {
+                  textAlign: "center",
+                  fontFamily: "Indie Flower",
+                  textOverflow: "ellipsis",
+                },
+              }}
             />
           </FormGroup>
         </div>
@@ -262,7 +294,14 @@ const PicUploader = React.memo((props) => {
                   value={pin.Latitude}
                   onChange={handleChange}
                   onClick={handleNoGPSClose}
-                  inputProps={{readOnly: true, style: {textAlign: 'center', fontFamily: 'Indie Flower', textOverflow: 'ellipsis'}}}
+                  inputProps={{
+                    readOnly: true,
+                    style: {
+                      textAlign: "center",
+                      fontFamily: "Indie Flower",
+                      textOverflow: "ellipsis",
+                    },
+                  }}
                 />
               </FormGroup>
             </div>
@@ -280,7 +319,14 @@ const PicUploader = React.memo((props) => {
                   value={pin.Longitude}
                   onChange={handleChange}
                   onClick={handleNoGPSClose}
-                  inputProps={{readOnly: true, style: {textAlign: 'center', fontFamily: 'Indie Flower', textOverflow: 'ellipsis'}}}
+                  inputProps={{
+                    readOnly: true,
+                    style: {
+                      textAlign: "center",
+                      fontFamily: "Indie Flower",
+                      textOverflow: "ellipsis",
+                    },
+                  }}
                 />
               </FormGroup>
             </div>

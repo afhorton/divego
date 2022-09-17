@@ -4,6 +4,7 @@ import "./siteSubmitter.css";
 import exifr from "exifr";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import PhotoIcon from "@mui/icons-material/Photo";
 import { exifGPSHelper } from "../../helpers/exifGPSHelpers";
 import Collapse from "@mui/material/Collapse";
 import { insertDiveSiteWaits } from "../../axiosCalls/diveSiteWaitAxiosCalls";
@@ -79,17 +80,24 @@ const SiteSubmitter = (props) => {
     let LatV = parseFloat(formVals.Latitude);
     let LngV = parseFloat(formVals.Longitude);
 
-
-    if (SiteV && typeof(SiteV) === "string" &&
-        LatV && typeof(LatV) === "number" &&
-        LngV && typeof(LngV) === "number") {
-        
+    if (
+      SiteV &&
+      typeof SiteV === "string" &&
+      LatV &&
+      typeof LatV === "number" &&
+      LngV &&
+      typeof LngV === "number"
+    ) {
       insertDiveSiteWaits(formVals);
       setFormVals({});
       closeup();
       return;
     }
   };
+
+  function handleClick() {
+    document.getElementById("file").click();
+  }
 
   return (
     <Container fluid>
@@ -101,11 +109,29 @@ const SiteSubmitter = (props) => {
         </div>
 
         <div className="uploadbox">
+          <div
+            onClick={handleClick}
+            style={{ display: "flex", flexDirection: "row", marginLeft: -8 }}
+          >
+            <div style={{ marginRight: 5, marginTop: -2 }}>
+              <PhotoIcon
+                sx={{ color: "red", height: "28px", width: "28px" }}
+              ></PhotoIcon>
+            </div>
+
+            <Label style={{ fontFamily: "Permanent Marker", color: "maroon" }}>
+              Choose a File
+            </Label>
+          </div>
           <FormGroup>
             <Input
               placeholder="Upload"
               className="modalInputs2"
-              style={{ textAlign: "center", fontFamily: 'Indie Flower', textOverflow: 'ellipsis' }}
+              style={{
+                textAlign: "center",
+                fontFamily: "Indie Flower",
+                display: "none",
+              }}
               id="file"
               type="file"
               name="PicFile"
@@ -127,7 +153,13 @@ const SiteSubmitter = (props) => {
               name="Site"
               onChange={handleChange}
               onClick={handleNoGPSClose}
-              inputProps={{style: {textAlign: 'center', fontFamily: 'Indie Flower', textOverflow: 'ellipsis'}}}
+              inputProps={{
+                style: {
+                  textAlign: "center",
+                  fontFamily: "Indie Flower",
+                  textOverflow: "ellipsis",
+                },
+              }}
             />
           </FormGroup>
         </div>
@@ -148,7 +180,13 @@ const SiteSubmitter = (props) => {
               value={formVals.Latitude}
               onChange={handleChange}
               onClick={handleNoGPSClose}
-              inputProps={{style: {textAlign: 'center', fontFamily: 'Indie Flower', textOverflow: 'ellipsis'}}}
+              inputProps={{
+                style: {
+                  textAlign: "center",
+                  fontFamily: "Indie Flower",
+                  textOverflow: "ellipsis",
+                },
+              }}
             />
           </FormGroup>
         </div>
@@ -165,7 +203,13 @@ const SiteSubmitter = (props) => {
               value={formVals.Longitude}
               onChange={handleChange}
               onClick={handleNoGPSClose}
-              inputProps={{style: {textAlign: 'center', fontFamily: 'Indie Flower', textOverflow: 'ellipsis'}}}
+              inputProps={{
+                style: {
+                  textAlign: "center",
+                  fontFamily: "Indie Flower",
+                  textOverflow: "ellipsis",
+                },
+              }}
             />
           </FormGroup>
         </div>
