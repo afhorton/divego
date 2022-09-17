@@ -215,7 +215,7 @@ const SiteSubmitter = (props) => {
         </div>
 
         <FormGroup>
-          <Button variant="text" id="modalButton" onClick={handleSubmit}>
+          <Button variant="text" id="modalButton2" onClick={handleSubmit}>
             Submit Dive Site
           </Button>
         </FormGroup>
