@@ -58,7 +58,6 @@ export default function MonthSlider() {
     <Box
       sx={{
         width: "95%",
-        maxWidth: "500px",
         mx: "auto",
       }}
     >

@@ -8,21 +8,17 @@
 }
 
 .col2rowT {
-    width: 30vw;
     position: absolute;
     z-index: 2;
     top: 10px;
-    margin: auto;
-    min-width: 500px;
-    left: 30vw;
+    margin-left: clamp(10px, 25vw, 2000px);
+    width: clamp(50px, 50vw, 600px);
 }
 
 .sliderDiv{
-    max-width: 550px;
     background-color: white;
     opacity: 80%;
     border-radius: 10px;
-    margin: auto;
     font-family: 'Permanent Marker', cursive;
     font-size: large;
 }
@@ -84,16 +80,16 @@
 }
 
 .col2rowB{
-    width: 60%;
     height: 50px;
     z-index: 2;
     position: absolute;
     bottom: -30px;
-    left: 170px;
     background-color: white;
     opacity: 80%;
     border-radius: 5px;
     font-family: 'Caveat', cursive;
     font-size: large;
     font-weight: bold;
+    margin-left: clamp(10px, 35vw, 2000px);
+    width: clamp(50px, 50vw, 300px);
 }
