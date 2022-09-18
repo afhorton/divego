@@ -12,7 +12,7 @@
 .inputboxType2{
     display: flex;
     flex-direction: column;;
-    margin-left: 22%;
+    margin-left: 24%;
     margin-top: 15px;
     width: 100%; 
     font-family: 'Indie Flower';
@@ -157,12 +157,12 @@
 }
 
 .Gbox {
-    margin-top: 28px;
-    margin-left: 0px;
+    margin-top: 25px;
+    margin-left: 10px;
 }
 
 #jumpButton {
-    margin-left: 40px;
+    margin-left: 50px;
 }
 
 .pickie {
