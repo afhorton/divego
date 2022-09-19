@@ -7,6 +7,7 @@ import exifr from "exifr";
 import Autosuggest from "react-autosuggest";
 import AnimalAutoSuggest from "../AutoSuggest";
 import { useNavigate } from "react-router-dom";
+import { MasterContext } from "../contexts/masterContext";
 import { PinContext } from "../contexts/pinContext";
 import { PictureContext } from "../contexts/pictureContext";
 import PlaceIcon from "@mui/icons-material/Place";
@@ -43,6 +44,7 @@ const noGPSZone = (
 const PicUploader = React.memo((props) => {
   const { closeup } = props;
   let navigate = useNavigate();
+  const { setMasterSwitch } = useContext(MasterContext);
   const { pin, setPin } = useContext(PinContext);
   const [showNoGPS, setShowNoGPS] = useState(false);
   const [list, setList] = useState([]);
@@ -131,7 +133,8 @@ const PicUploader = React.memo((props) => {
 
   const handleNoGPSCloseOnMapChange = () => {
     setShowNoGPS(false);
-    navi();
+    setMasterSwitch(false);
+    closeup();
     return;
   };
 
@@ -169,9 +172,9 @@ const PicUploader = React.memo((props) => {
     }
   };
 
-  const navi = () => {
-    navigate("/pinDrop");
-  };
+  // const navi = () => {
+  //   navigate("/pinDrop");
+  // };
 
   const clearAnimal = () => {
     setPin({ ...pin, Animal: "" });

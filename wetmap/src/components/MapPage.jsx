@@ -10,6 +10,7 @@ import SiteSubmitter from "./modals/siteSubmitter";
 import HowToGuide from "./modals/howToGuide";
 import AnimalSearcher from "./AnimalSearch";
 import { useState, useContext } from "react";
+import Button from "@mui/material/Button";
 import ToggleButton from "@mui/material/ToggleButton";
 import Collapse from "@mui/material/Collapse";
 import ExploreIcon from "@mui/icons-material/Explore";
@@ -23,6 +24,8 @@ import { AnimalContext } from "./contexts/animalContext";
 import { PicModalContext } from "./contexts/picModalContext";
 import { GeoCoderContext } from "./contexts/geoCoderContext";
 import { AnimalRevealContext } from "./contexts/animalRevealContext";
+import { MasterContext } from "./contexts/masterContext";
+
 import "./mapPage.css";
 
 const animalSearchZone = (
@@ -38,6 +41,7 @@ const adminPortalZone = (
 );
 
 const MapPage = React.memo(() => {
+  const { masterSwitch, setMasterSwitch } = useContext(MasterContext);
   const { divesTog, setDivesTog } = useContext(DiveSitesContext);
   const [showAdminPortal, setShowAdminPortal] = useState(false);
   const { animalVal } = useContext(AnimalContext);
@@ -64,16 +68,21 @@ const MapPage = React.memo(() => {
     setGuideModal(!guideModal);
   };
 
+  const navi = () => {
+    setPicModal(true);
+    setMasterSwitch(true);
+  };
+
   return (
     <div>
-      <div className="col2rowT">
+      {masterSwitch && (<div className="col2rowT">
         <div className="sliderDiv">
           <MonthSlider />
         </div>
-      </div>
-      <div className="col3rowT"></div>
+      </div>)}
 
-      <div
+    
+      {masterSwitch && (<div
         className="col1row2"
         style={{ display: "flex", flexDirection: "row" }}
       >
@@ -96,9 +105,9 @@ const MapPage = React.memo(() => {
         >
           <ExploreIcon />
         </ToggleButton>
-      </div>
+      </div>)}
 
-      <div
+      {masterSwitch && (<div
         className="col1row3"
         style={{ display: "flex", flexDirection: "row" }}
       >
@@ -128,9 +137,9 @@ const MapPage = React.memo(() => {
         >
           {animalSearchZone}
         </Collapse>
-      </div>
+      </div>)}
 
-      <div className="col1row4">
+      {masterSwitch && ( <div className="col1row4">
         {" "}
         <ToggleButton
           sx={{
@@ -150,9 +159,9 @@ const MapPage = React.memo(() => {
         >
           <AnchorIcon />
         </ToggleButton>
-      </div>
+      </div>)}
 
-      <div className="col1row5">
+      {masterSwitch && (<div className="col1row5">
         <ToggleButton
           sx={{
             "&.Mui-selected": { backgroundColor: "orange" },
@@ -171,9 +180,9 @@ const MapPage = React.memo(() => {
         >
           <PhotoCameraIcon />
         </ToggleButton>
-      </div>
+      </div>)}
 
-      <div className="col1row6">
+      {masterSwitch && (<div className="col1row6">
         <ToggleButton
           sx={{
             "&.Mui-selected": { backgroundColor: "violet" },
@@ -192,9 +201,9 @@ const MapPage = React.memo(() => {
         >
           <AddLocationAltIcon />
         </ToggleButton>
-      </div>
+      </div>)}
 
-      <div className="col1row7">
+      {masterSwitch && (<div className="col1row7">
         <ToggleButton
           sx={{
             "&.Mui-selected": { backgroundColor: "pink" },
@@ -213,7 +222,7 @@ const MapPage = React.memo(() => {
         >
           <QuestionMarkIcon />
         </ToggleButton>
-      </div>
+      </div>)}
 
       <div className="col1rowB">
         <Collapse
@@ -228,9 +237,10 @@ const MapPage = React.memo(() => {
           showAdminPortal={showAdminPortal}
         />
       </div>
-      <div className="col2rowB">Selected: {animalVal}</div>
 
-      <div>
+      {masterSwitch && (<div className="col2rowB">Selected: {animalVal}</div>)}
+
+     <div>
         <Home
           style={{
             position: "absolute",
@@ -239,6 +249,39 @@ const MapPage = React.memo(() => {
           }}
         ></Home>
       </div>
+
+      {!masterSwitch && (<div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          position: "absolute",
+          width: "90%",
+          marginLeft: "10%",
+          top: "5px",
+          zIndex: "2",
+        }}
+      >
+        <div
+          style={{
+            width: "90%",
+            position: "relative",
+            zIndex: "2",
+          }}
+        >
+          <Button
+            onClick={navi}
+            sx={{
+              "&:hover": { backgroundColor: "lightblue" },
+              backgroundColor: "rgb(208, 231, 208)",
+              marginTop: "5px",
+              height: "40px",
+              width: "85px",
+            }}
+          >
+            Set Pin
+          </Button>
+        </div>
+      </div>)}
 
       <FormModal openup={picModal} closeup={togglePicModal}>
         <PicUploader closeup={togglePicModal} />

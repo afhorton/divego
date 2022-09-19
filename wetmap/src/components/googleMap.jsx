@@ -22,6 +22,7 @@ import Collapse from "@mui/material/Collapse";
 import { diveSitesFake, heatVals } from "./data/testdata";
 import anchorIcon from "../images/anchor11.png";
 import anchorClust from "../images/anchor3.png";
+import whale from "../images/icons8-spouting-whale-36.png";
 import { useMemo, useState, useContext, useEffect } from "react";
 import { CoordsContext } from "./contexts/mapCoordsContext";
 import { ZoomContext } from "./contexts/mapZoomContext";
@@ -30,6 +31,9 @@ import { DiveSitesContext } from "./contexts/diveSitesContext";
 import { SliderContext } from "./contexts/sliderContext";
 import { AnimalContext } from "./contexts/animalContext";
 import { GeoCoderContext } from "./contexts/geoCoderContext";
+import { PinContext } from "./contexts/pinContext";
+import { MasterContext } from "./contexts/masterContext";
+import { PinSpotContext } from "./contexts/pinSpotContext";
 import { dataParams } from "../helpers/mapHelpers";
 import { setupClusters } from "../helpers/clusterHelpers";
 import { diveSites } from "../axiosCalls/diveSiteAxiosCalls";
@@ -48,6 +52,9 @@ export default function Home() {
 }
 
 function Map() {
+  const { masterSwitch } = useContext(MasterContext);
+  const { pin, setPin } = useContext(PinContext);
+  const [pinRef, setPinRef] = useState(null);
   const { mapCoords, setMapCoords } = useContext(CoordsContext);
   const { mapZoom, setMapZoom } = useContext(ZoomContext);
   const { jump, setJump } = useContext(JumpContext);
@@ -62,9 +69,11 @@ function Map() {
   const [mapRef, setMapRef] = useState(null);
 
   const [selected, setSelected] = useState(null);
+  const { dragPin, setDragPin } = useContext(PinSpotContext);
 
- let center = useMemo(() => ({ lat: mapCoords[0], lng: mapCoords[1] }), []);
+  let center = useMemo(() => ({ lat: mapCoords[0], lng: mapCoords[1] }), []);
   const zoom = useMemo(() => mapZoom, []);
+ 
 
   let timoutHanlder;
   let timoutHandler;
@@ -99,21 +108,25 @@ function Map() {
     radius: 20,
   }));
 
-  useEffect(async () => {
-    setMapCoords([center.lat, center.lng]);
-    setMapZoom(zoom);
-
+  const handleMapUpdates = async () => {
     GPSBubble = dataParams(mapZoom, mapCoords[0], mapCoords[1]);
 
     filteredDiveSites = await diveSites(GPSBubble);
-
-    if (filteredDiveSites) {
-      !divesTog ? setnewSites([]) : setnewSites(filteredDiveSites);
-    }
+    !divesTog ? setnewSites([]) : setnewSites(filteredDiveSites);
 
     filteredHeatPoints = await heatPoints(GPSBubble, sliderVal, animalVal);
     setHeatPts(formatHeatVals(filteredHeatPoints));
+  };
+
+  useEffect(async () => {
+    setMapCoords([center.lat, center.lng]);
+    setMapZoom(zoom);
+    handleMapUpdates();
   }, []);
+
+  useEffect(() => {
+    setDragPin({lat: mapCoords[0], lng: mapCoords[1]});
+  }, [masterSwitch]);
 
   const handleOnLoad = (map) => {
     setMapRef(map);
@@ -124,26 +137,7 @@ function Map() {
       window.clearTimeout(timoutHanlder);
       timoutHanlder = window.setTimeout(function () {
         setMapCoords([mapRef.getCenter().lat(), mapRef.getCenter().lng()]);
-
-        GPSBubble = dataParams(mapZoom, mapCoords[0], mapCoords[1]);
-
-        filteredDiveSites = diveSites(GPSBubble);
-        Promise.all([filteredDiveSites])
-          .then((response) => {
-            !divesTog ? setnewSites([]) : setnewSites(response[0]);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-
-        filteredHeatPoints = heatPoints(GPSBubble, sliderVal, animalVal);
-        Promise.all([filteredHeatPoints])
-          .then((response) => {
-            setHeatPts(formatHeatVals(response[0]));
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        handleMapUpdates();
       }, 50);
     }
   };
@@ -151,17 +145,7 @@ function Map() {
   const handleMapZoomChange = async () => {
     if (mapRef) {
       setMapZoom(mapRef.getZoom());
-
-      GPSBubble = dataParams(mapZoom, mapCoords[0], mapCoords[1]);
-
-      filteredDiveSites = await diveSites(GPSBubble);
-
-      if (filteredDiveSites) {
-        !divesTog ? setnewSites([]) : setnewSites(filteredDiveSites);
-      }
-
-      filteredHeatPoints = await heatPoints(GPSBubble, sliderVal, animalVal);
-      setHeatPts(formatHeatVals(filteredHeatPoints));
+      handleMapUpdates();
     }
   };
 
@@ -173,26 +157,7 @@ function Map() {
         let lats = bnds[Object.keys(bnds)[0]];
         let lngs = bnds[Object.keys(bnds)[1]];
         setBoundaries([lngs.lo, lats.lo, lngs.hi, lats.hi]);
-
-        GPSBubble = dataParams(mapZoom, mapCoords[0], mapCoords[1]);
-
-        filteredDiveSites = diveSites(GPSBubble);
-        Promise.all([filteredDiveSites])
-          .then((response) => {
-            !divesTog ? setnewSites([]) : setnewSites(response[0]);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-
-        filteredHeatPoints = heatPoints(GPSBubble, sliderVal, animalVal);
-        Promise.all([filteredHeatPoints])
-          .then((response) => {
-            setHeatPts(formatHeatVals(response[0]));
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+        handleMapUpdates();
       }, 50);
     }
   };
@@ -205,16 +170,7 @@ function Map() {
   }, [jump]);
 
   useEffect(async () => {
-    GPSBubble = dataParams(mapZoom, mapCoords[0], mapCoords[1]);
-
-    filteredDiveSites = await diveSites(GPSBubble);
-
-    if (filteredDiveSites) {
-      !divesTog ? setnewSites([]) : setnewSites(filteredDiveSites);
-    }
-
-    filteredHeatPoints = await heatPoints(GPSBubble, sliderVal, animalVal);
-    setHeatPts(formatHeatVals(filteredHeatPoints));
+    handleMapUpdates();
   }, [mapCoords, divesTog, sliderVal, animalVal]);
 
   const points = setupClusters(newSites);
@@ -225,6 +181,20 @@ function Map() {
     zoom: mapZoom,
     options: { radius: 75, maxZoom: 12 },
   });
+
+  const handlePinLoad = (marker) => {
+    setPinRef(marker);
+  };
+
+  const handleDragEnd = () => {
+    if (pinRef) {
+      setPin({
+        ...pin,
+        Latitude: pinRef.getPosition().lat(),
+        Longitude: pinRef.getPosition().lng(),
+      });
+    }
+  };
 
   const PlacesAutoComplete = ({ setSelected }) => {
     const {
@@ -285,18 +255,26 @@ function Map() {
       onZoomChanged={handleMapZoomChange}
       onBoundsChanged={handleBoundsChange}
     >
-      <HeatmapLayer
-        data={heatpts}
-        options={heatOpts}
-        opacity={1}
-        radius={9}
-      ></HeatmapLayer>
+      {masterSwitch && (
+        <HeatmapLayer
+          data={heatpts}
+          options={heatOpts}
+          opacity={1}
+          radius={9}
+        ></HeatmapLayer>
+      )}
 
-      <Collapse in={showGeoCoder} orientation="horizontal" collapsedSize="0px">
-        <div className="places-container">
-          <PlacesAutoComplete setSelected={setSelected} />
-        </div>
-      </Collapse>
+      {masterSwitch && (
+        <Collapse
+          in={showGeoCoder}
+          orientation="horizontal"
+          collapsedSize="0px"
+        >
+          <div className="places-container">
+            <PlacesAutoComplete setSelected={setSelected} />
+          </div>
+        </Collapse>
+      )}
 
       {clusters &&
         clusters.map((cluster) => {
@@ -335,6 +313,16 @@ function Map() {
             ></Marker>
           );
         })}
+
+      {!masterSwitch && (
+        <Marker
+          position={dragPin}
+          draggable={true}
+          icon={whale}
+          onLoad={handlePinLoad}
+          onDragEnd={handleDragEnd}
+        ></Marker>
+      )}
     </GoogleMap>
   );
 }
