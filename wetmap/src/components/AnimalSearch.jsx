@@ -11,24 +11,17 @@ export default function AnimalSearcher() {
   const { setShowAnimalSearch } = useContext(AnimalRevealContext);
   const { setAnimalVal } = useContext(AnimalContext);
   const [list, setList] = useState([]);
-  let animalData;
 
-  useEffect(() => {
-    animalData = getAnimalNames();
-    Promise.all([animalData])
-      .then((response) => {
-        setList(response[0]);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  useEffect(async() => {
+    let animalNames = await getAnimalNames();
+    setList(animalNames);
   }, []);
 
   return (
     <Autocomplete
       disablePortal
       id="combo-box-demo"
-      options={list} //animalnames
+      options={list}
       onChange={(event, value) => {
         if (!value) {
           setAnimalVal("All");

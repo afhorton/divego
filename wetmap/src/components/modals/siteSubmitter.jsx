@@ -61,7 +61,7 @@ const SiteSubmitter = (props) => {
             Longitude: EXIFData[1],
           });
         } else {
-          setFormVals({ ...formVals, Latitude: "", Longitude: "" });
+          setFormVals({ ...formVals });
           setShowNoGPS(true);
         }
       });

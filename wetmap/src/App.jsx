@@ -18,7 +18,6 @@ import { AdminContext } from "./components/contexts/adminContext";
 import { PictureContext } from "./components/contexts/pictureContext";
 import { GeoCoderContext } from "./components/contexts/geoCoderContext";
 import { AnimalRevealContext } from "./components/contexts/animalRevealContext";
-import "@fontsource/indie-flower";
 import { useEffect } from "react";
 
 function App() {

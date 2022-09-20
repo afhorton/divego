@@ -1,8 +1,8 @@
-export default function filterCreatures(newParams, array) {
+export default function filterCreatures(newGPSBoundaries, animalList) {
     let newArr = [];
 
-    array && array.forEach((animal) => {
-      if ((animal.Animal.toLowerCase()).includes(newParams)) {
+    animalList && animalList.forEach((animal) => {
+      if ((animal.Animal.toLowerCase()).includes(newGPSBoundaries)) {
         newArr.push(animal);
       }
     });

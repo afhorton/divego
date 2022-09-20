@@ -1,4 +1,4 @@
-function dataParams(Zoom, Lat, Lng) {
+function newGPSBoundaries(Zoom, Lat, Lng) {
   let minLat;
   let maxLat;
 
@@ -87,7 +87,7 @@ function dataParams(Zoom, Lat, Lng) {
   return { minLat, maxLat, minLng, maxLng };
 }
 
-function filterSites(newParams, array) {
+function filterDiveSites(newParams, array) {
 
   let newArr = [];
   array && array.forEach((diveSite) => {
@@ -103,7 +103,7 @@ function filterSites(newParams, array) {
   return newArr;
 }
 
-function filterHeat(month, animal,  array) {
+function filterHeatPoints(month, animal,  array) {
 
 let actualMonth = month + 1
 
@@ -124,13 +124,13 @@ let actualMonth = month + 1
 
 function setupMapValues(zoomLevel, latitude, longitude, diveSites, heatValues, slider, animal){
  
-  let GPSBubble = dataParams(zoomLevel, latitude, longitude)
-  let diveSpots = filterSites(GPSBubble, diveSites)
+  let GPSBubble = newGPSBoundaries(zoomLevel, latitude, longitude)
+  let diveSpots = filterDiveSites(GPSBubble, diveSites)
 
   let heatSpots
 
   if (heatValues) {
-    heatSpots = filterHeat(slider, animal, filterSites(GPSBubble, heatValues))
+    heatSpots = filterHeatPoints(slider, animal, filterDiveSites(GPSBubble, heatValues))
   } else {
     heatSpots = []
   }
@@ -139,4 +139,4 @@ function setupMapValues(zoomLevel, latitude, longitude, diveSites, heatValues, s
 }
 
 
-export { dataParams, filterSites, filterHeat, setupMapValues };
+export { newGPSBoundaries, filterDiveSites, filterHeatPoints, setupMapValues };

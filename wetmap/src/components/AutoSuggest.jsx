@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import { getAnimalNamesThatFit } from "../axiosCalls/photoAxiosCalls";
 import { Input } from "reactstrap";
 import AutoSuggestListItem from "./AutoSuggestListItem";
@@ -12,8 +11,8 @@ export default function AnimalAutoSuggest(props) {
     setPin({ ...pin, Animal: e.target.value });
 
     if (e.target.value.length > 0) {
-      let newfilteredList = await getAnimalNamesThatFit(e.target.value);
-      setList(newfilteredList);
+      let fitleredListOfAnimals = await getAnimalNamesThatFit(e.target.value);
+      setList(fitleredListOfAnimals);
     } else {
       setList([]);
     }

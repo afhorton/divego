@@ -58,7 +58,7 @@ const MapPage = React.memo(() => {
 
   const [diveSiteModal, setDiveSiteModal] = useState(false);
 
-  const toggleAddDiveSiteModal = () => {
+  const toggleDiveSiteModal = () => {
     setDiveSiteModal(!diveSiteModal);
   };
 
@@ -68,7 +68,7 @@ const MapPage = React.memo(() => {
     setGuideModal(!guideModal);
   };
 
-  const navi = () => {
+  const returnToPicModal = () => {
     setPicModal(true);
     setMasterSwitch(true);
   };
@@ -196,7 +196,7 @@ const MapPage = React.memo(() => {
           value="check"
           selected={diveSiteModal}
           onChange={() => {
-            setDiveSiteModal(toggleAddDiveSiteModal);
+            setDiveSiteModal(toggleDiveSiteModal);
           }}
         >
           <AddLocationAltIcon />
@@ -269,7 +269,7 @@ const MapPage = React.memo(() => {
           }}
         >
           <Button
-            onClick={navi}
+            onClick={returnToPicModal}
             sx={{
               "&:hover": { backgroundColor: "lightblue" },
               backgroundColor: "rgb(208, 231, 208)",
@@ -287,8 +287,8 @@ const MapPage = React.memo(() => {
         <PicUploader closeup={togglePicModal} />
       </FormModal>
 
-      <FormModal openup={diveSiteModal} closeup={toggleAddDiveSiteModal}>
-        <SiteSubmitter closeup={toggleAddDiveSiteModal} />
+      <FormModal openup={diveSiteModal} closeup={toggleDiveSiteModal}>
+        <SiteSubmitter closeup={toggleDiveSiteModal} />
       </FormModal>
 
       <FormGuideModal openup={guideModal} closeup={toggleGuideModal}>
