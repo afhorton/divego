@@ -41,7 +41,7 @@ function App() {
   //         setMapCoords([position.coords.latitude, position.coords.longitude])
   //         setJump(true)
   //       }, function(error) {
-  //         console.log("cocksucker", error.message)
+  //         console.log("location permissions denied", error.message)
   //       })
   //     } else {
   //       console.log("unsupported")

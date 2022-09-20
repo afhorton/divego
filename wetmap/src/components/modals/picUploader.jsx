@@ -172,10 +172,6 @@ const PicUploader = React.memo((props) => {
     }
   };
 
-  // const navi = () => {
-  //   navigate("/pinDrop");
-  // };
-
   const clearAnimal = () => {
     setPin({ ...pin, Animal: "" });
     setList([]);
