@@ -345,7 +345,7 @@ const PicUploader = React.memo((props) => {
                 <PlaceIcon
                   sx={{ color: "red", height: "40px", width: "40px" }}
                 ></PlaceIcon>
-                <p style={{fontFamily: "Shadows Into Light", color: "maroon", fontSize: 11}}>Drop Pin</p>
+                <p style={{fontFamily: "Shadows Into Light", color: "maroon", fontSize: 11, marginTop: -1}}>Drop Pin</p>
               </Button>
             </FormGroup>
           </div>
