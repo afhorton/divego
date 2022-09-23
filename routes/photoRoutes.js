@@ -2,20 +2,6 @@ const express = require('express');
 const router = express.Router();
 const db = require('../lib/photoQueries')
 
-const grabAnimals = router.post("/api/photoLabels", (req, res) => {
-
-    db.getAnimalNames()
-    .then(photo => {
-        res.json(photo);
-    })
-    .catch(err => {
-        res
-        .status(500)
-        .json({ error: err.message });
-    });
-    
-});
-
 const grabAnimalsMobile = router.post("/api/photoLabelsMobile", (req, res) => {
 
     db.getAnimalNamesMobile()
@@ -30,6 +16,19 @@ const grabAnimalsMobile = router.post("/api/photoLabelsMobile", (req, res) => {
     
 });
 
+const grabAnimals = router.post("/api/photoLabels", (req, res) => {
+
+    db.getAnimalNames()
+    .then(photo => {
+        res.json(photo);
+    })
+    .catch(err => {
+        res
+        .status(500)
+        .json({ error: err.message });
+    });
+    
+});
 
 const addNewPhoto = router.post("/api/photoAdd", (req, res) => {
 
