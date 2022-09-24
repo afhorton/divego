@@ -34,20 +34,20 @@ function App() {
   const [mapCoords, setMapCoords] = useState([49.316666, -123.066666]);
   const [dragPin, setDragPin] = useState({});
 
-  // useEffect(() => {
-  //   window.onload = function() {
-  //     if (navigator.geolocation){
-  //       navigator.geolocation.getCurrentPosition(function(position) {
-  //         setMapCoords([position.coords.latitude, position.coords.longitude])
-  //         setJump(true)
-  //       }, function(error) {
-  //         console.log("location permissions denied", error.message)
-  //       })
-  //     } else {
-  //       console.log("unsupported")
-  //     }
-  //     }
-  // },[])
+  useEffect(() => {
+    window.onload = function() {
+      if (navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(function(position) {
+          setMapCoords([position.coords.latitude, position.coords.longitude])
+          setJump(true)
+        }, function(error) {
+          console.log("location permissions denied", error.message)
+        })
+      } else {
+        console.log("unsupported")
+      }
+      }
+  },[])
 
   const [mapZoom, setMapZoom] = useState(10);
 
