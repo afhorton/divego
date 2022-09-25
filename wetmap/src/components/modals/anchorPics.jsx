@@ -91,14 +91,15 @@ const AnchorPics = (props) => {
       <div className="monthlyLabel">{monthVal} Sightings</div>
 
       <div className="picScoll">
-      {anchorPics.map((pic) => {
+      {anchorPics && anchorPics.map((pic) => {
         return (
           <div key={pic.id} className="pictureBox">
             <h4 className="animalLabel">{pic.label}</h4>
               <img src={filePath + pic.photofile} className="picHolderX" style={{width: '100%'}}></img>
           </div>
         );
-      })}
+      })} 
+      {anchorPics.length === 0 && <div className="emptySite">No Sightings At This Site Yet For This Month!</div>}
       </div>
     </div>
   );
