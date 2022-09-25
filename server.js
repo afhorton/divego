@@ -18,6 +18,7 @@ const {
   grabAnimalsMobile,
   addNewPhoto,
   filterAnimals,
+  getAnchorPhotos,
 } = require("./routes/photoRoutes");
 const {
   getPhotoWaits,
@@ -76,6 +77,7 @@ app.use(grabAnimals);
 app.use(grabAnimalsMobile);
 app.use(addNewPhoto);
 app.use(filterAnimals);
+app.use(getAnchorPhotos);
 
 //PhotoWait Routes
 app.use(getPhotoWaits);

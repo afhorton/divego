@@ -58,4 +58,18 @@ const filterAnimals = router.post("/api/photoLabelsThatFit", (req, res) => {
     
 });
 
-module.exports = { grabAnimals, grabAnimalsMobile, addNewPhoto, filterAnimals }
+const getAnchorPhotos = router.post("/api/anchorPhotos", (req, res) => {
+
+    db.getModalPhotos(req.body.content)
+    .then(photo => {
+        res.json(photo);
+    })
+    .catch(err => {
+        res
+        .status(500)
+        .json({ error: err.message });
+    });
+    
+});
+
+module.exports = { grabAnimals, grabAnimalsMobile, addNewPhoto, filterAnimals, getAnchorPhotos }
