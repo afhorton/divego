@@ -5,7 +5,7 @@ import { siteGPSBoundaries } from "../../helpers/mapHelpers";
 import { getPhotosforAnchor } from "../../axiosCalls/photoAxiosCalls";
 import "./anchorPics.css";
 
-let filePath = "/wetmap/src/components/uploads/";
+let filePath = "/src/components/uploads/";
 
 const AnchorPics = (props) => {
   const { selectedDiveSite } = useContext(SelectedDiveSiteContext);
