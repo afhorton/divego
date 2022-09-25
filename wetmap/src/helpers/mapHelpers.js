@@ -138,5 +138,15 @@ function setupMapValues(zoomLevel, latitude, longitude, diveSites, heatValues, s
   return([diveSpots, heatSpots])
 }
 
+function siteGPSBoundaries(Lat, Lng) {
 
-export { newGPSBoundaries, filterDiveSites, filterHeatPoints, setupMapValues };
+  let minLat = Lat - 0.5;
+  let maxLat = Lat + 0.5;
+  let minLng = Lng - 0.5;
+  let maxLng = Lng + 0.5;
+
+
+return { minLat, maxLat, minLng, maxLng };
+}
+
+export { newGPSBoundaries, filterDiveSites, filterHeatPoints, setupMapValues, siteGPSBoundaries };

@@ -24,6 +24,9 @@ import { GeoCoderContext } from "./contexts/geoCoderContext";
 import { PinContext } from "./contexts/pinContext";
 import { MasterContext } from "./contexts/masterContext";
 import { PinSpotContext } from "./contexts/pinSpotContext";
+import { SelectedDiveSiteContext } from "./contexts/selectedDiveSiteContext";
+import FormModal from "./modals/formModal";
+import AnchorPics from "./modals/anchorPics";
 import { newGPSBoundaries } from "../helpers/mapHelpers";
 import { formatHeatVals } from "../helpers/heatPointHelpers";
 import { setupClusters } from "../helpers/clusterHelpers";
@@ -54,7 +57,8 @@ function Map() {
   const { animalVal } = useContext(AnimalContext);
   const { sliderVal } = useContext(SliderContext);
   const { showGeoCoder, setShowGeoCoder } = useContext(GeoCoderContext);
-
+  const { selectedDiveSite, setSelectedDiveSite } = useContext(SelectedDiveSiteContext)
+  
   const [newSites, setnewSites] = useState([]);
   const [heatpts, setHeatPts] = useState(formatHeatVals([]));
   const [mapRef, setMapRef] = useState(null);
@@ -62,12 +66,18 @@ function Map() {
   const [selected, setSelected] = useState(null);
   const { dragPin, setDragPin } = useContext(PinSpotContext);
 
+  const [siteModal, setSiteModal] = useState(false);
+
+  const toggleSiteModal = () => {
+    setSiteModal(!siteModal);
+  };
+
   let center = useMemo(() => ({ lat: mapCoords[0], lng: mapCoords[1] }), []);
   const zoom = useMemo(() => mapZoom, []);
- 
+
   let mapCenterTimoutHandler;
   let mapBoundariesTimoutHandler;
-  
+
   const options = useMemo(() => ({
     mapTypeId: "satellite",
     clickableIcons: false,
@@ -99,7 +109,7 @@ function Map() {
   }, []);
 
   useEffect(() => {
-    setDragPin({lat: mapCoords[0], lng: mapCoords[1]});
+    setDragPin({ lat: mapCoords[0], lng: mapCoords[1] });
   }, [masterSwitch]);
 
   const handleOnLoad = (map) => {
@@ -170,6 +180,16 @@ function Map() {
     }
   };
 
+  const setupAnchorModal = (diveSiteName, lat, lng) => {
+    console.log("passing", diveSiteName, lat, lng)
+    setSelectedDiveSite({
+      SiteName: diveSiteName,
+      Latitude: lat,
+      Longitude: lng,
+    })
+    setSiteModal(!siteModal)
+  }
+
   return (
     <GoogleMap
       zoom={zoom}
@@ -236,6 +256,7 @@ function Map() {
               position={{ lat: latitude, lng: longitude }}
               icon={anchorIcon}
               title={cluster.properties.siteID}
+              onClick={() => setupAnchorModal(cluster.properties.siteID, latitude, longitude)}
             ></Marker>
           );
         })}
@@ -249,6 +270,10 @@ function Map() {
           onDragEnd={handleDragEnd}
         ></Marker>
       )}
+
+      <FormModal openup={siteModal} closeup={toggleSiteModal}>
+        <AnchorPics closeup={toggleSiteModal} />
+      </FormModal>
     </GoogleMap>
   );
 }

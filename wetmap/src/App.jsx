@@ -18,6 +18,7 @@ import { AdminContext } from "./components/contexts/adminContext";
 import { PictureContext } from "./components/contexts/pictureContext";
 import { GeoCoderContext } from "./components/contexts/geoCoderContext";
 import { AnimalRevealContext } from "./components/contexts/animalRevealContext";
+import { SelectedDiveSiteContext } from "./components/contexts/selectedDiveSiteContext";
 import { useEffect } from "react";
 
 function App() {
@@ -35,19 +36,22 @@ function App() {
   const [dragPin, setDragPin] = useState({});
 
   useEffect(() => {
-    window.onload = function() {
-      if (navigator.geolocation){
-        navigator.geolocation.getCurrentPosition(function(position) {
-          setMapCoords([position.coords.latitude, position.coords.longitude])
-          setJump(true)
-        }, function(error) {
-          console.log("location permissions denied", error.message)
-        })
+    window.onload = function () {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          function (position) {
+            setMapCoords([position.coords.latitude, position.coords.longitude]);
+            setJump(true);
+          },
+          function (error) {
+            console.log("location permissions denied", error.message);
+          }
+        );
       } else {
-        console.log("unsupported")
+        console.log("unsupported");
       }
-      }
-  },[])
+    };
+  }, []);
 
   const [mapZoom, setMapZoom] = useState(10);
 
@@ -64,55 +68,69 @@ function App() {
     Longitude: "",
   });
 
+  const [selectedDiveSite, setSelectedDiveSite] = useState({
+    SiteName: "",
+    Latitude: "",
+    Longitude: "",
+  });
+
   const [photoFile, setPhotoFile] = useState(null);
 
   return (
     <div className="App">
-      <MasterContext.Provider value={{ masterSwitch, setMasterSwitch }}>
-        <PinSpotContext.Provider value={{ dragPin, setDragPin }}>
-          <AnimalRevealContext.Provider
-            value={{ showAnimalSearch, setShowAnimalSearch }}
-          >
-            <GeoCoderContext.Provider value={{ showGeoCoder, setShowGeoCoder }}>
-              <PictureContext.Provider value={{ photoFile, setPhotoFile }}>
-                <AdminContext.Provider value={{ adminStat, setAdminStat }}>
-                  <SliderContext.Provider value={{ sliderVal, setSliderVal }}>
-                    <AnimalContext.Provider value={{ animalVal, setAnimalVal }}>
-                      <ZoomContext.Provider value={{ mapZoom, setMapZoom }}>
-                        <CoordsContext.Provider
-                          value={{ mapCoords, setMapCoords }}
-                        >
-                          <PinContext.Provider value={{ pin, setPin }}>
-                            <PicModalContext.Provider
-                              value={{ picModal, setPicModal }}
-                            >
-                              <JumpContext.Provider value={{ jump, setJump }}>
-                                <DiveSitesContext.Provider
-                                  value={{ divesTog, setDivesTog }}
-                                >
-                                  <BrowserRouter>
-                                    <Routes>
-                                      <Route path="/" element={<MapPage />} />
-                                      <Route
-                                        path="/admin"
-                                        element={<AdminPage />}
-                                      />
-                                    </Routes>
-                                  </BrowserRouter>
-                                </DiveSitesContext.Provider>
-                              </JumpContext.Provider>
-                            </PicModalContext.Provider>
-                          </PinContext.Provider>
-                        </CoordsContext.Provider>
-                      </ZoomContext.Provider>
-                    </AnimalContext.Provider>
-                  </SliderContext.Provider>
-                </AdminContext.Provider>
-              </PictureContext.Provider>
-            </GeoCoderContext.Provider>
-          </AnimalRevealContext.Provider>
-        </PinSpotContext.Provider>
-      </MasterContext.Provider>
+      <SelectedDiveSiteContext.Provider
+        value={{ selectedDiveSite, setSelectedDiveSite }}
+      >
+        <MasterContext.Provider value={{ masterSwitch, setMasterSwitch }}>
+          <PinSpotContext.Provider value={{ dragPin, setDragPin }}>
+            <AnimalRevealContext.Provider
+              value={{ showAnimalSearch, setShowAnimalSearch }}
+            >
+              <GeoCoderContext.Provider
+                value={{ showGeoCoder, setShowGeoCoder }}
+              >
+                <PictureContext.Provider value={{ photoFile, setPhotoFile }}>
+                  <AdminContext.Provider value={{ adminStat, setAdminStat }}>
+                    <SliderContext.Provider value={{ sliderVal, setSliderVal }}>
+                      <AnimalContext.Provider
+                        value={{ animalVal, setAnimalVal }}
+                      >
+                        <ZoomContext.Provider value={{ mapZoom, setMapZoom }}>
+                          <CoordsContext.Provider
+                            value={{ mapCoords, setMapCoords }}
+                          >
+                            <PinContext.Provider value={{ pin, setPin }}>
+                              <PicModalContext.Provider
+                                value={{ picModal, setPicModal }}
+                              >
+                                <JumpContext.Provider value={{ jump, setJump }}>
+                                  <DiveSitesContext.Provider
+                                    value={{ divesTog, setDivesTog }}
+                                  >
+                                    <BrowserRouter>
+                                      <Routes>
+                                        <Route path="/" element={<MapPage />} />
+                                        <Route
+                                          path="/admin"
+                                          element={<AdminPage />}
+                                        />
+                                      </Routes>
+                                    </BrowserRouter>
+                                  </DiveSitesContext.Provider>
+                                </JumpContext.Provider>
+                              </PicModalContext.Provider>
+                            </PinContext.Provider>
+                          </CoordsContext.Provider>
+                        </ZoomContext.Provider>
+                      </AnimalContext.Provider>
+                    </SliderContext.Provider>
+                  </AdminContext.Provider>
+                </PictureContext.Provider>
+              </GeoCoderContext.Provider>
+            </AnimalRevealContext.Provider>
+          </PinSpotContext.Provider>
+        </MasterContext.Provider>
+      </SelectedDiveSiteContext.Provider>
     </div>
   );
 }

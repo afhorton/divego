@@ -36,7 +36,9 @@ const FormModal = React.memo((props) => {
       Latitude: "",
       Longitude: "",
     });
-    removePhoto({filePath: filePath, fileName: photoFile})
+    if (photoFile){
+      removePhoto({filePath: filePath, fileName: photoFile})
+    }
     setPhotoFile(null)
     
     closeup();

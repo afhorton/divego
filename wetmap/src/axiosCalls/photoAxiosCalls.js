@@ -42,4 +42,15 @@ export const getAnimalNames = () => {
       });
   };
  
+  export const getPhotosforAnchor = (value) => {
+
+    return axios
+      .post(`/api/anchorPhotos`, {content: value})
+      .then((response) => {
+        return response.data;
+      })
+      .catch((err) => {
+        return err;
+      });
+  }; 
     
