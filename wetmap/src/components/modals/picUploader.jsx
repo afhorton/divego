@@ -16,8 +16,11 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import { exifGPSHelper } from "../../helpers/exifGPSHelpers";
 import { getToday } from "../../helpers/picUploaderHelpers.js";
 import Collapse from "@mui/material/Collapse";
-import { insertPhotoWaits } from "../../axiosCalls/photoWaitAxiosCalls";
-import { removePhoto } from "../../axiosCalls/uploadAxiosCalls";
+import { insertPhotoWaits } from "../../supabaseCalls/photoWaitSupabaseCalls";
+// import { insertPhotoWaits } from "../../axiosCalls/photoWaitAxiosCalls";
+import { uploadphoto } from "../../supabaseCalls/uploadSupabaseCalls";
+import { removePhoto } from "../../supabaseCalls/uploadSupabaseCalls";
+// import { removePhoto } from "../../axiosCalls/uploadAxiosCalls";
 import { getAnimalNamesThatFit } from "../../axiosCalls/photoAxiosCalls";
 import AnimalSearchForModal from "./AnimalSearchModal";
 
@@ -67,7 +70,7 @@ const PicUploader = React.memo((props) => {
     }
   }, []);
 
-  const handleChange = (e) => {
+  const handleChange = async(e) => {
     if (e.target.name === "PicFile") {
       if (photoFile !== null) {
         removePhoto({ filePath: filePath1, fileName: photoFile });
@@ -85,14 +88,19 @@ const PicUploader = React.memo((props) => {
       const data = new FormData();
       data.append("image", fileName);
 
-      fetch("http://localhost:5000/api/upload", {
-        method: "POST",
-        body: data,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setPhotoFile(data.fileName);
-        });
+     
+      const newFilePath = await uploadphoto(fileName, fileName.name)
+      setPhotoFile(newFilePath)
+     
+      
+      // fetch("http://localhost:5000/api/upload", {
+      //   method: "POST",
+      //   body: data,
+      // })
+      //   .then((response) => response.json())
+      //   .then((data) => {
+      //     setPhotoFile(data.fileName);
+      //   });
 
       exifr.parse(e.target.files[0]).then((output) => {
         let EXIFData = exifGPSHelper(
@@ -105,7 +113,7 @@ const PicUploader = React.memo((props) => {
         if (EXIFData) {
           setPin({
             ...pin,
-            PicFile: photoFile,
+            PicFile: newFilePath,
             PicDate: moddedDate,
             Latitude: EXIFData[0],
             Longitude: EXIFData[1],
@@ -113,7 +121,7 @@ const PicUploader = React.memo((props) => {
         } else {
           setPin({
             ...pin,
-            PicFile: photoFile,
+            PicFile: newFilePath,
             PicDate: moddedDate,
             Latitude: pin.Latitude,
             Longitude: pin.Longitude,
@@ -193,7 +201,7 @@ const PicUploader = React.memo((props) => {
         {photoFile && (
           <div className="pickie">
             <img
-              src={filePath + photoFile}
+              src={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${photoFile}`}
               height="100px"
               className="picHolder"
             ></img>

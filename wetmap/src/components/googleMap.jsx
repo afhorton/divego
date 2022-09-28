@@ -30,7 +30,8 @@ import AnchorPics from "./modals/anchorPics";
 import { newGPSBoundaries } from "../helpers/mapHelpers";
 import { formatHeatVals } from "../helpers/heatPointHelpers";
 import { setupClusters } from "../helpers/clusterHelpers";
-import { diveSites } from "../axiosCalls/diveSiteAxiosCalls";
+// import { diveSites } from "../axiosCalls/diveSiteAxiosCalls";
+import { diveSites } from "../supabaseCalls/diveSiteSupabaseCalls";
 import { heatPoints } from "../axiosCalls/heatPointAxiosCalls";
 
 const LIB = ["visualization", "places"];

@@ -21,6 +21,8 @@ import { AnimalRevealContext } from "./components/contexts/animalRevealContext";
 import { SelectedDiveSiteContext } from "./components/contexts/selectedDiveSiteContext";
 import { useEffect } from "react";
 
+//DiveLocker2016!
+
 function App() {
   const [masterSwitch, setMasterSwitch] = useState(true);
   const [adminStat, setAdminStat] = useState(false);

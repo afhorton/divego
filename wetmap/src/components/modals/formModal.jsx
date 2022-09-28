@@ -5,7 +5,8 @@ import { Button } from "reactstrap";
 import "./formModal.css";
 import { PinContext } from "../contexts/pinContext";
 import { PictureContext } from "../contexts/pictureContext";
-import { removePhoto } from "../../axiosCalls/uploadAxiosCalls";
+import { removePhoto } from "../../supabaseCalls/uploadSupabaseCalls";
+// import { removePhoto } from "../../axiosCalls/uploadAxiosCalls";
 const style = {
   position: "absolute",
   width: 300,
