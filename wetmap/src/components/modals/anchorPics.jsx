@@ -99,7 +99,7 @@ const AnchorPics = (props) => {
           </div>
         );
       })} 
-      {anchorPics.length === 0 && <div className="emptySite">No Sightings At This Site Yet For This Month!</div>}
+      {anchorPics.length === 0 && <div className="emptySite">No Sightings At This Site Yet For This Time Of Year!</div>}
       </div>
     </div>
   );
