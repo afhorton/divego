@@ -32,7 +32,8 @@ import { formatHeatVals } from "../helpers/heatPointHelpers";
 import { setupClusters } from "../helpers/clusterHelpers";
 // import { diveSites } from "../axiosCalls/diveSiteAxiosCalls";
 import { diveSites } from "../supabaseCalls/diveSiteSupabaseCalls";
-import { heatPoints } from "../axiosCalls/heatPointAxiosCalls";
+// import { heatPoints } from "../axiosCalls/heatPointAxiosCalls";
+import { heatPoints } from "../supabaseCalls/heatPointSupabaseCalls";
 
 const LIB = ["visualization", "places"];
 
@@ -182,7 +183,7 @@ function Map() {
   };
 
   const setupAnchorModal = (diveSiteName, lat, lng) => {
-    console.log("passing", diveSiteName, lat, lng)
+
     setSelectedDiveSite({
       SiteName: diveSiteName,
       Latitude: lat,

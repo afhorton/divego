@@ -12,7 +12,7 @@ export const getAnimalNames = () => {
     });
 };
 
-  export const insertphoto = (values) => {
+  export const insertphoto = (values, monthId) => {
 
     return axios
       .post("/api/photoAdd", {
@@ -21,6 +21,7 @@ export const getAnimalNames = () => {
         Date: values.datetaken,
         Lat: values.latitude,
         Lng: values.longitude,
+        month: monthId
       })
       .then((response) => {
         return response.data;

@@ -1,5 +1,6 @@
 import React from "react";
-import { getAnimalNamesThatFit } from "../axiosCalls/photoAxiosCalls";
+import { getAnimalNamesThatFit } from "../supabaseCalls/photoSupabaseCalls";
+// import { getAnimalNamesThatFit } from "../axiosCalls/photoAxiosCalls";
 import { Input } from "reactstrap";
 import AutoSuggestListItem from "./AutoSuggestListItem";
 import "./autoSuggest.css";
@@ -12,7 +13,13 @@ export default function AnimalAutoSuggest(props) {
 
     if (e.target.value.length > 0) {
       let fitleredListOfAnimals = await getAnimalNamesThatFit(e.target.value);
-      setList(fitleredListOfAnimals);
+      let animalArray = []
+      fitleredListOfAnimals.forEach((animal) => {
+        if (!animalArray.includes(animal.label)){
+          animalArray.push(animal.label)
+        }
+        })
+      setList(animalArray);
     } else {
       setList([]);
     }
@@ -33,8 +40,8 @@ export default function AnimalAutoSuggest(props) {
           list.map((animal) => {
             return (
               <AutoSuggestListItem
-                key={animal.label}
-                name={animal.label}
+                key={animal}
+                name={animal}
                 pin={pin}
                 setPin={setPin}
                 setList={setList}

@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import { photos } from "./data/testdata";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import { getAnimalNames } from "../axiosCalls/photoAxiosCalls";
+import { getAnimalNames } from "../supabaseCalls/photoSupabaseCalls";
+// import { getAnimalNames } from "../axiosCalls/photoAxiosCalls";
 import { AnimalRevealContext } from "./contexts/animalRevealContext";
 
 export default function AnimalSearcher() {
@@ -13,8 +14,15 @@ export default function AnimalSearcher() {
   const [list, setList] = useState([]);
 
   useEffect(async() => {
-    let animalNames = await getAnimalNames();
-    setList(animalNames);
+    let animalArray = []
+    let animalNames = await getAnimalNames();  
+    animalNames.forEach((animal) => {
+        if (!animalArray.includes(animal.label)){
+          animalArray.push(animal.label)
+        }
+    })
+
+    setList(animalArray);
   }, []);
 
   return (

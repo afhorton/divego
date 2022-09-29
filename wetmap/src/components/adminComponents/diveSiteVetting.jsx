@@ -8,12 +8,18 @@ import TableRow from "@mui/material/TableRow";
 import Fab from "@mui/material/Fab";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import { insertDiveSite } from "../../axiosCalls/diveSiteAxiosCalls";
+import { insertDiveSite } from "../../supabaseCalls/diveSiteSupabaseCalls";
+// import { insertDiveSite } from "../../axiosCalls/diveSiteAxiosCalls";
 import {
   diveSiteWaits,
   grabDiveSiteWaitById,
   deleteDiveSiteWait,
-} from "../../axiosCalls/diveSiteWaitAxiosCalls";
+} from "../../supabaseCalls/diveSiteWaitSupabaseCalls";
+// import {
+//   diveSiteWaits,
+//   grabDiveSiteWaitById,
+//   deleteDiveSiteWait,
+// } from "../../axiosCalls/diveSiteWaitAxiosCalls";
 
 
 const DiveSiteVetting = React.memo(() => {

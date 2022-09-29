@@ -29,18 +29,6 @@ export const getLoneHeatPoint = (values) => {
     });
 };
 
-export const grabHeatPointById = (id) => {
-
-  return axios
-    .get(`/api/heatPoint/${id}`)
-    .then((response) => {
-      return response.data;
-    })
-    .catch((err) => {
-      return err;
-    });
-};
-
 export const insertHeatPoint = (values) => {
 
   return axios

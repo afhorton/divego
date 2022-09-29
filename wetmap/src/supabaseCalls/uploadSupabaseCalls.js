@@ -37,19 +37,3 @@ import { supabase } from "../supabase";
 
     };
 
-
-
-
-
-
-  // export const getPhotoFileName = () => {
-
-  //   return axios
-  //     .get("/api/upload")
-  //     .then((response) => {
-  //       return response.data;
-  //     })
-  //     .catch((err) => {
-  //       return err;
-  //     });
-  // };

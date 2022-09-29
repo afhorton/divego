@@ -7,7 +7,8 @@ import Button from "@mui/material/Button";
 import PhotoIcon from "@mui/icons-material/Photo";
 import { exifGPSHelper } from "../../helpers/exifGPSHelpers";
 import Collapse from "@mui/material/Collapse";
-import { insertDiveSiteWaits } from "../../axiosCalls/diveSiteWaitAxiosCalls";
+import { insertDiveSiteWaits } from "../../supabaseCalls/diveSiteWaitSupabaseCalls";
+// import { insertDiveSiteWaits } from "../../axiosCalls/diveSiteWaitAxiosCalls";
 
 const noGPSZone = (
   <div

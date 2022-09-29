@@ -1,26 +1,38 @@
-// import PositionedMenuTeam from './teamPopUp'
-import { useState, useContext, useCallback, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Form, Input, Label } from "reactstrap";
-import { insertphoto } from "../../axiosCalls/photoAxiosCalls";
+import { photoWaits } from "../../supabaseCalls/photoWaitSupabaseCalls";
+import { insertphoto } from "../../supabaseCalls/photoSupabaseCalls";
+// import { insertphoto } from "../../axiosCalls/photoAxiosCalls";
+import { removePhoto } from "../../supabaseCalls/uploadSupabaseCalls";
 import {
   grabPhotoWaitById,
   deletePhotoWait,
-} from "../../axiosCalls/photoWaitAxiosCalls";
+} from "../../supabaseCalls/photoWaitSupabaseCalls";
+// import {
+//   grabPhotoWaitById,
+//   deletePhotoWait,
+// } from "../../axiosCalls/photoWaitAxiosCalls";
 import {
   getLoneHeatPoint,
   insertHeatPoint,
   updateHeatPoint,
-} from "../../axiosCalls/heatPointAxiosCalls";
+} from "../../supabaseCalls/heatPointSupabaseCalls";
+// import {
+//   getLoneHeatPoint,
+//   insertHeatPoint,
+//   updateHeatPoint,
+// } from "../../axiosCalls/heatPointAxiosCalls";
+import { siteGPSBoundaries } from "../../helpers/mapHelpers";
 import { scrapeMonthNumber } from "../../helpers/heatPointHelpers";
 import Fab from "@mui/material/Fab";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import "./photoVetting.css";
 
-let filePath = "/src/components/uploads/";
+// let filePath = "/src/components/uploads/";
 
 const PhotoListItem = (props) => {
-  const { key, id, photoFile, animal, date, lat, lng } = props;
+  const { key, id, photoFile, animal, date, lat, lng, setPhotoWait } = props;
 
   let photoById;
   let heatPointExists;
@@ -28,11 +40,15 @@ const PhotoListItem = (props) => {
   const ValidatePhoto = async (id) => {
     photoById = await grabPhotoWaitById(id);
 
-    let monthID = scrapeMonthNumber(photoById[0].datetaken);
+    let monthID = scrapeMonthNumber(photoById[0].dateTaken);
+
+    let boundaries = siteGPSBoundaries(photoById[0].latitude, photoById[0].longitude)
 
     heatPointExists = await getLoneHeatPoint({
-      lat: photoById[0].latitude,
-      lng: photoById[0].longitude,
+      minLat: boundaries.minLat,
+      maxLat: boundaries.maxLat,
+      minLng: boundaries.minLng,
+      maxLng: boundaries.maxLng,
       animal: photoById[0].label,
       month: monthID,
     });
@@ -49,17 +65,22 @@ const PhotoListItem = (props) => {
           month: monthID,
         });
 
-    photoById ? insertphoto(photoById[0]) && deletePhotoWait(id) : [];
+    photoById ? await insertphoto(photoById[0], monthID) && await deletePhotoWait(id) : [];
+    let photosToVett = await photoWaits();
+    setPhotoWait(photosToVett);
   };
 
   const RejectPhoto = async(id) => {
-    deletePhotoWait(id);
+    await removePhoto({ filePath: animal, fileName: photoFile });
+    await deletePhotoWait(id);
+    let photosToVett = await photoWaits();
+    setPhotoWait(photosToVett);
   };
 
   const [formVals, setFormVals] = useState({
     id: id,
-    key: key,
-    photo: filePath + photoFile,
+    key: id,
+    photo: photoFile,
     animal: animal,
     date: date,
     lat: lat,
@@ -69,8 +90,8 @@ const PhotoListItem = (props) => {
   useEffect(() => {
     setFormVals({
       id: id,
-      key: key,
-      photo: filePath + photoFile,
+      key: id,
+      photo: photoFile,
       animal: animal,
       date: date,
       lat: lat,
@@ -86,7 +107,6 @@ const PhotoListItem = (props) => {
     e.preventDefault();
   };
 
-  console.log(filePath + photoFile)
   return (
     <li
       id={key}
@@ -97,7 +117,7 @@ const PhotoListItem = (props) => {
       <div id="photoContainer">
         <Form id="photoValidator">
           <div className="imageBox">
-            <img src={formVals.photo} height="100px" className="Itag"></img>
+            <img src={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${formVals.photo}`} height="100px" className="Itag"></img>
           </div>
           <div className="infoBox">
             <div className="labelInputCombo">

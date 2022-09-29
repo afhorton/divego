@@ -2,10 +2,11 @@ import { SelectedDiveSiteContext } from "../contexts/selectedDiveSiteContext";
 import { SliderContext } from "../contexts/sliderContext";
 import { useState, useContext, useEffect } from "react";
 import { siteGPSBoundaries } from "../../helpers/mapHelpers";
-import { getPhotosforAnchor } from "../../axiosCalls/photoAxiosCalls";
+import { getPhotosforAnchor } from "../../supabaseCalls/photoSupabaseCalls";
+// import { getPhotosforAnchor } from "../../axiosCalls/photoAxiosCalls";
 import "./anchorPics.css";
 
-let filePath = "/src/components/uploads/";
+// let filePath = "/src/components/uploads/";
 
 const AnchorPics = (props) => {
   const { selectedDiveSite } = useContext(SelectedDiveSiteContext);
@@ -95,7 +96,7 @@ const AnchorPics = (props) => {
         return (
           <div key={pic.id} className="pictureBox">
             <h4 className="animalLabel">{pic.label}</h4>
-              <img src={filePath + pic.photofile} className="picHolderX" style={{width: '100%'}}></img>
+              <img src={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${pic.photoFile}`} className="picHolderX" style={{width: '100%'}}></img>
           </div>
         );
       })} 

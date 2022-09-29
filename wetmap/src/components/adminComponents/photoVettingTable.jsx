@@ -9,7 +9,8 @@ import Fab from "@mui/material/Fab";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import PhotoListItem from "./photoListItem";
-import { photoWaits } from "../../axiosCalls/photoWaitAxiosCalls";
+import { photoWaits } from "../../supabaseCalls/photoWaitSupabaseCalls";
+// import { photoWaits } from "../../axiosCalls/photoWaitAxiosCalls";
 import "./photoVetting.css"
 
 const PhotoVettingTable = React.memo(() => {
@@ -22,20 +23,20 @@ const PhotoVettingTable = React.memo(() => {
 
   }, []);
 
-  console.log("lalalalal", photoWait)
-
   let list;
   if (photoWait && photoWait.length > 0) {
     list = photoWait && photoWait.map((photo) => {
+
       return (
         <PhotoListItem
           key={photo.id}
           id={photo.id}
-          photoFile={photo.photofile}
+          photoFile={photo.photoFile}
           animal={photo.label}
-          date={photo.datetaken}
+          date={photo.dateTaken}
           lat={photo.latitude}
           lng={photo.longitude}
+          setPhotoWait={setPhotoWait}
         />
       );
     });

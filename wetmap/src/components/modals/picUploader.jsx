@@ -175,6 +175,7 @@ const PicUploader = React.memo((props) => {
         Latitude: "",
         Longitude: "",
       });
+      setPhotoFile('');
       closeup();
       return;
     }
