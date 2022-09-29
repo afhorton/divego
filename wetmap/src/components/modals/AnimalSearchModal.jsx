@@ -40,7 +40,6 @@ const handleChange = (e) => {
   }
  
   setList([...list, listAdd])
-  console.log("i am", list)
 }
 
 function manage(value){
@@ -49,7 +48,6 @@ function manage(value){
   
 }
 
-console.log("hmm", list)
   
   return (
     <Autocomplete

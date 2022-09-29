@@ -35,7 +35,7 @@ export default function AnimalSearcher() {
           setAnimalVal("All");
           setShowAnimalSearch(!setShowAnimalSearch);
         } else {
-          setAnimalVal(value.label);
+          setAnimalVal(value);
           setShowAnimalSearch(!setShowAnimalSearch);
         }
       }}
