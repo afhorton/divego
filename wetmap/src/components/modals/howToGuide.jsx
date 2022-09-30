@@ -102,8 +102,7 @@ const HowToGuide = (props) => {
           <p>
             Click this icon to toggle the add dive site window, 
             in this window you can upload a photo from your dive site and it will pull the GPS coordinates, 
-            all you need to do is add the site name, 
-            and if you dont have a photo please drop your lat and lng coordianted in fields.
+            all you need to do is add the site name.
           </p>
         </div>
       </div>

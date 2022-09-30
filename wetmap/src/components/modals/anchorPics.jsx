@@ -96,7 +96,7 @@ const AnchorPics = (props) => {
         return (
           <div key={pic.id} className="pictureBox">
             <h4 className="animalLabel">{pic.label}</h4>
-              <img src={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${pic.photoFile}`} className="picHolderX" style={{width: '100%'}}></img>
+              <img src={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${pic.photoFile}`} className="picHolderX" style={{width: '80%', marginLeft: '23%'}}></img>
           </div>
         );
       })} 

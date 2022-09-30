@@ -54,6 +54,7 @@ export const grabPhotoWaitById = async (id) => {
 };
 
 export const deletePhotoWait = async (id) => {
+
   const { data, error } = await supabase
     .from("photoWait")
     .delete()

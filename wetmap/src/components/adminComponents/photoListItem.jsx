@@ -65,7 +65,8 @@ const PhotoListItem = (props) => {
           month: monthID,
         });
 
-    photoById ? await insertphoto(photoById[0], monthID) && await deletePhotoWait(id) : [];
+    photoById ? await insertphoto(photoById[0], monthID) : [];
+    await deletePhotoWait(id)
     let photosToVett = await photoWaits();
     setPhotoWait(photosToVett);
   };

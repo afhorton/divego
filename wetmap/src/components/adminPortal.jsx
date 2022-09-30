@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
 import { Form } from "reactstrap";
 import TextField from "@mui/material/TextField";
-import { adminCheck } from "../axiosCalls/adminAxiosCalls";
+import { adminCheck } from "../supabaseCalls/adminSupabaseCalls";
+// import { adminCheck } from "../axiosCalls/adminAxiosCalls";
 import { useNavigate } from "react-router-dom";
 import { AdminContext } from "./contexts/adminContext";
 
