@@ -272,10 +272,14 @@ const MapPage = React.memo(() => {
             onClick={returnToPicModal}
             sx={{
               "&:hover": { backgroundColor: "lightblue" },
-              backgroundColor: "rgb(208, 231, 208)",
+              color: "#9B884E",
+              fontFamily: "Permanent Marker, cursive",
+              fontSize: '15px',
+              width: '10%',
+              height: "80%",
+              textAlign: "center",
+              backgroundColor: "#355D71",
               marginTop: "5px",
-              height: "40px",
-              width: "85px",
             }}
           >
             Set Pin

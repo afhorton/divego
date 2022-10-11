@@ -112,15 +112,15 @@ const SiteSubmitter = (props) => {
         <div className="uploadbox">
           <div
             onClick={handleClick}
-            style={{ display: "flex", flexDirection: "row", marginLeft: -8, cursor: "pointer", width: 170 }}
+            className="fileSelectDiv"
           >
             <div style={{ marginRight: 5, marginTop: -2 }}>
               <PhotoIcon
-                sx={{ color: "red", height: "28px", width: "28px", cursor: "pointer" }}
+                sx={{ color: "#9B884E", height: "28px", width: "28px", cursor: "pointer", marginTop: "2.5px", marginLeft: "3px" }}
               ></PhotoIcon>
             </div>
 
-            <Label style={{ fontFamily: "Permanent Marker", color: "maroon", cursor: "pointer" }}>
+            <Label style={{ fontFamily: "Permanent Marker", color: "#9B884E", cursor: "pointer", marginTop: "2px" }}>
               Choose a File
             </Label>
           </div>
@@ -149,7 +149,7 @@ const SiteSubmitter = (props) => {
               id="standard-basic"
               // label="Site Name"
               placeholder="Site Name"
-              variant="standard"
+              // variant="standard"
               type="text"
               name="Site"
               onChange={handleChange}
@@ -159,6 +159,9 @@ const SiteSubmitter = (props) => {
                   textAlign: "center",
                   fontFamily: "Indie Flower",
                   textOverflow: "ellipsis",
+                  backgroundColor: "#33586A",
+                  height: "5px",
+                  color: "#F0EEEB"
                 },
               }}
             />
@@ -175,7 +178,7 @@ const SiteSubmitter = (props) => {
               id="standard-basic"
               // label="Latitude"
               placeholder="Latitude"
-              variant="standard"
+              // variant="standard"
               type="decimal"
               name="Latitude"
               value={formVals.Latitude}
@@ -186,6 +189,9 @@ const SiteSubmitter = (props) => {
                   textAlign: "center",
                   fontFamily: "Indie Flower",
                   textOverflow: "ellipsis",
+                  backgroundColor: "#33586A",
+                  height: "5px",
+                  color: "#F0EEEB"
                 },
               }}
             />
@@ -198,7 +204,7 @@ const SiteSubmitter = (props) => {
               id="standard-basic"
               // label="Longitude"
               placeholder="Longitude"
-              variant="standard"
+              // variant="standard"
               type="decimal"
               name="Longitude"
               value={formVals.Longitude}
@@ -209,6 +215,9 @@ const SiteSubmitter = (props) => {
                   textAlign: "center",
                   fontFamily: "Indie Flower",
                   textOverflow: "ellipsis",
+                  backgroundColor: "#33586A",
+                  height: "5px",
+                  color: "#F0EEEB"
                 },
               }}
             />

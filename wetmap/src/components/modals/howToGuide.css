@@ -1,13 +1,16 @@
 
+
 .titleDiv{
-  margin-top: -15px;
+  margin-top: -50px;
   margin-left: 10px;
   font-family: 'Permanent Marker', cursive;
+  color: #F0EEEB;
 }
 
 .mainBlurbDiv{
   margin-left: 10px;
   font-family: 'Indie Flower';
+  color: #F0EEEB;
 }
 
 
@@ -23,12 +26,14 @@
   min-height: inherit;
   width: 5%;
   margin: auto;
+  color: #9B884E;
 }
 
 .rightE{
   min-height: 30px;
   width: 95%;
   margin: auto;
+  color: #F0EEEB;
 }
 
 
@@ -44,12 +49,14 @@
   min-height: inherit;
   width: 5%;
   margin: auto;
+  color: #9B884E;
 }
 
 .rightA{
   min-height: 30px;
   width: 95%;
   margin: auto;
+  color: #F0EEEB;
 }
 
 
@@ -65,12 +72,14 @@
   min-height: inherit;
   width: 5%;
   margin: auto;
+  color: #9B884E;
 }
 
 .rightD{
   min-height: 30px;
   width: 95%;
   margin: auto;
+  color: #F0EEEB;
 }
 
 
@@ -86,12 +95,14 @@
   min-height: inherit;
   width: 5%;
   margin: auto;
+  color: #9B884E;
 }
 
 .rightP{
   min-height: 30px;
   width: 95%;
   margin: auto;
+  color: #F0EEEB;
 }
 
 
@@ -108,10 +119,12 @@
   height: inherit;
   width: 5%;
   margin: auto;
+  color: #9B884E;
 }
 
 .rightDS{
   min-height: 30px;
   width: 95%;
   margin: auto;
+  color: #F0EEEB;
 }

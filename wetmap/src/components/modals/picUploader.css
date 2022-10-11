@@ -7,15 +7,21 @@
     margin-left: 20%;
     margin-top: 30px;
     font-family: 'Indie Flower';
+    border: none;
+    border-bottom: none;
+    border-color: transparent;
 }
 
 .inputboxType2{
     display: flex;
-    flex-direction: column;;
+    flex-direction: column;
     margin-left: 24%;
     margin-top: 15px;
     width: 100%; 
     font-family: 'Indie Flower';
+    border: none;
+    border-bottom: none;
+    border-color: transparent;
 }
 .autosuggestbox{
     display: flex;
@@ -23,10 +29,12 @@
     margin-left: 20%;
     margin-top: 30px;
     margin-bottom: -10px;
-    background-color: transparent;
     border: transparent;
     width: 167px;
-    border-bottom: 1px solid gray;    
+    border-bottom: 1px solid black;  
+    background-color: #33586A;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .autosuggestbox:hover{
@@ -100,6 +108,9 @@
     border-radius: 10px;
     width: 80%;
     margin-left: -15%;
+    border-color: transparent;
+    border: none;
+    border-bottom: none;
 }
 
 .selectbox{
@@ -111,17 +122,21 @@
 }
 .modalInputs2{
     margin-top: 10px;
-    border-radius: 10px;
+    border-radius: 15px;
     width: 80%;
     margin-left: -15%;
+    border-color: transparent;
+    border: none;
+    border-bottom: none;
 } 
 
 #modalButton {
-   background-color: rgb(208, 231, 208);
-   margin-left: 27%;
-   margin-top: 25px;
-   margin-bottom: 10px;
-   font-family: 'Permanent Marker', cursive;
+    width: 100%;
+    margin-top: 40px;
+    font-family: 'Permanent Marker', cursive;
+    color: #9B884E;
+    border-radius: 0;
+    border-top: 1px solid #F0EEEB;
 }
 
 .modalTitle2{
@@ -129,7 +144,8 @@
     margin-left: 15px;
     margin-top: -35px;
     font-family: 'Permanent Marker', cursive;
-    font-size: 22px;;
+    font-size: 22px;
+    color: #F0EEEB;
 }
 .form-label{
     width: 200px;
@@ -157,12 +173,23 @@
 }
 
 .Gbox {
-    margin-top: 25px;
-    margin-left: 10px;
+    position: absolute;
+    left: 235px;
+    bottom: 102px;
+    display: flex;
+    width: 50px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    background-color: #33586A;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.25);
 }
 
 #jumpButton {
-    margin-left: 50px;
+     margin-top: 10px;
+     margin-left: 3.5px;
 }
 
 .pickie {
@@ -170,7 +197,7 @@
     width: 100%;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 30px;
     border-radius: 15px;
 }
 
@@ -179,4 +206,19 @@
     width: 80%;
     height: 130px;
     border-radius: 15px;
+}
+
+.picSelectDiv {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    background-color: #33586A;
+    width: 175px;
+    height: 30px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 3px 3px rgba(0, 0, 0, 0.25);
+    margin-left: -15px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }

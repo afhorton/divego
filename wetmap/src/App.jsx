@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useLayoutEffect } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import MapPage from "./components/MapPage";
@@ -19,7 +19,7 @@ import { PictureContext } from "./components/contexts/pictureContext";
 import { GeoCoderContext } from "./components/contexts/geoCoderContext";
 import { AnimalRevealContext } from "./components/contexts/animalRevealContext";
 import { SelectedDiveSiteContext } from "./components/contexts/selectedDiveSiteContext";
-import { useEffect } from "react";
+
 
 //DiveLocker2016!
 
@@ -37,23 +37,23 @@ function App() {
   const [mapCoords, setMapCoords] = useState([49.316666, -123.066666]);
   const [dragPin, setDragPin] = useState({});
 
-  // useEffect(() => {
-  //   window.onload = function () {
-  //     if (navigator.geolocation) {
-  //       navigator.geolocation.getCurrentPosition(
-  //         function (position) {
-  //           setMapCoords([position.coords.latitude, position.coords.longitude]);
-  //           setJump(true);
-  //         },
-  //         function (error) {
-  //           console.log("location permissions denied", error.message);
-  //         }
-  //       );
-  //     } else {
-  //       console.log("unsupported");
-  //     }
-  //   };
-  // }, []);
+  useLayoutEffect(() => {
+    window.onload = function () {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          function (position) {
+            setMapCoords([position.coords.latitude, position.coords.longitude]);
+            setJump(true);
+          },
+          function (error) {
+            console.log("location permissions denied", error.message);
+          }
+        );
+      } else {
+        console.log("unsupported");
+      }
+    };
+  }, []);
 
   const [mapZoom, setMapZoom] = useState(10);
 

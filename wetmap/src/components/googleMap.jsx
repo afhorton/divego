@@ -11,8 +11,9 @@ import Collapse from "@mui/material/Collapse";
 import { diveSitesFake, heatVals } from "./data/testdata";
 import anchorIcon from "../images/anchor11.png";
 import anchorClust from "../images/anchor3.png";
+import Manta from "../images/Manta32.png"
 import whale from "../images/icons8-spouting-whale-36.png";
-import { useMemo, useState, useContext, useEffect } from "react";
+import { useMemo, useState, useContext, useEffect, useLayoutEffect } from "react";
 import PlacesAutoComplete from "./PlacesAutocomplete";
 import { CoordsContext } from "./contexts/mapCoordsContext";
 import { ZoomContext } from "./contexts/mapZoomContext";
@@ -104,7 +105,7 @@ function Map() {
     setHeatPts(formatHeatVals(filteredHeatPoints));
   };
 
-  useEffect(async () => {
+  useLayoutEffect( () => {
     setMapCoords([center.lat, center.lng]);
     setMapZoom(zoom);
     handleMapUpdates();
@@ -267,7 +268,7 @@ function Map() {
         <Marker
           position={dragPin}
           draggable={true}
-          icon={whale}
+          icon={Manta}
           onLoad={handlePinLoad}
           onDragEnd={handleDragEnd}
         ></Marker>

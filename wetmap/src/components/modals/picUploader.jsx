@@ -70,7 +70,7 @@ const PicUploader = React.memo((props) => {
     }
   }, []);
 
-  const handleChange = async(e) => {
+  const handleChange = async (e) => {
     if (e.target.name === "PicFile") {
       if (photoFile !== null) {
         removePhoto({ filePath: filePath1, fileName: photoFile });
@@ -88,11 +88,9 @@ const PicUploader = React.memo((props) => {
       const data = new FormData();
       data.append("image", fileName);
 
-     
-      const newFilePath = await uploadphoto(fileName, fileName.name)
-      setPhotoFile(newFilePath)
-     
-      
+      const newFilePath = await uploadphoto(fileName, fileName.name);
+      setPhotoFile(newFilePath);
+
       // fetch("http://localhost:5000/api/upload", {
       //   method: "POST",
       //   body: data,
@@ -175,7 +173,7 @@ const PicUploader = React.memo((props) => {
         Latitude: "",
         Longitude: "",
       });
-      setPhotoFile('');
+      setPhotoFile("");
       closeup();
       return;
     }
@@ -210,17 +208,29 @@ const PicUploader = React.memo((props) => {
         )}
 
         <div className="uploadbox2">
-          <div
-            onClick={handleClick}
-            style={{ display: "flex", flexDirection: "row", marginLeft: -12, cursor: "pointer", width: 170 }}
-          >
+          <div onClick={handleClick} className="picSelectDiv">
             <div style={{ marginRight: 5, marginTop: -2 }}>
               <PhotoIcon
-                sx={{ color: "red", height: "28px", width: "28px", cursor: "pointer" }}
+                sx={{
+                  color: "#9B884E",
+                  height: "28px",
+                  width: "28px",
+                  cursor: "pointer",
+                  marginLeft: "2px",
+                  marginTop: "2.5px",
+                }}
               ></PhotoIcon>
             </div>
 
-            <Label style={{ fontFamily: "Permanent Marker", color: "maroon", cursor: "pointer"}}>
+            <Label
+              style={{
+                fontFamily: "Permanent Marker",
+                color: "#9B884E",
+                cursor: "pointer",
+                marginLeft: "-6px",
+                marginTop: "2px",
+              }}
+            >
               Choose an Image
             </Label>
           </div>
@@ -272,12 +282,18 @@ const PicUploader = React.memo((props) => {
               value={pin.PicDate}
               onChange={handleChange}
               onClick={handleNoGPSClose}
-              sx={{ width: "167px" }}
+              sx={{ width: "167px"}}
               inputProps={{
                 style: {
                   textAlign: "center",
                   fontFamily: "Indie Flower",
                   textOverflow: "ellipsis",
+                  backgroundColor: "#33586A",
+                      height: "20px",
+                      color: "#F0EEEB",
+                      borderRadius: "5px",
+                      borderBottom: "none",
+                      borderColor: "transparent"
                 },
               }}
             />
@@ -308,6 +324,12 @@ const PicUploader = React.memo((props) => {
                       textAlign: "center",
                       fontFamily: "Indie Flower",
                       textOverflow: "ellipsis",
+                      backgroundColor: "#33586A",
+                      height: "20px",
+                      color: "#F0EEEB",
+                      borderRadius: "5px",
+                      borderBottom: "none",
+                      borderColor: "transparent"
                     },
                   }}
                 />
@@ -333,6 +355,12 @@ const PicUploader = React.memo((props) => {
                       textAlign: "center",
                       fontFamily: "Indie Flower",
                       textOverflow: "ellipsis",
+                      backgroundColor: "#33586A",
+                      height: "20px",
+                      color: "#F0EEEB",
+                      borderRadius: "5px",
+                      borderBottom: "none",
+                      borderColor: "transparent"
                     },
                   }}
                 />
@@ -345,12 +373,21 @@ const PicUploader = React.memo((props) => {
                 variant="text"
                 id="jumpButton"
                 onClick={handleNoGPSCloseOnMapChange}
-                style={{display: 'flex', flexDirection: "column"}}
+                style={{ display: "flex", flexDirection: "column" }}
               >
                 <PlaceIcon
-                  sx={{ color: "red", height: "40px", width: "40px" }}
+                  sx={{ color: "#9B884E", height: "30px", width: "30px" }}
                 ></PlaceIcon>
-                <p style={{fontFamily: "Shadows Into Light", color: "maroon", fontSize: 11, marginTop: -1}}>Drop Pin</p>
+                <p
+                  style={{
+                    fontFamily: "Shadows Into Light",
+                    color: "#9B884E",
+                    fontSize: 10,
+                    marginTop: -1,
+                  }}
+                >
+                  Drop Pin
+                </p>
               </Button>
             </FormGroup>
           </div>
