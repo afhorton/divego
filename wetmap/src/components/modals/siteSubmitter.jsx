@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Container, Form, FormGroup, Label, Input } from "reactstrap";
 import "./siteSubmitter.css";
 import exifr from "exifr";
-import TextField from "@mui/material/TextField";
+import InputBase from '@mui/material/InputBase';
 import Button from "@mui/material/Button";
 import PhotoIcon from "@mui/icons-material/Photo";
 import { exifGPSHelper } from "../../helpers/exifGPSHelpers";
@@ -145,7 +145,7 @@ const SiteSubmitter = (props) => {
 
         <div className="inputbox">
           <FormGroup>
-            <TextField
+            <InputBase
               id="standard-basic"
               // label="Site Name"
               placeholder="Site Name"
@@ -160,8 +160,10 @@ const SiteSubmitter = (props) => {
                   fontFamily: "Indie Flower",
                   textOverflow: "ellipsis",
                   backgroundColor: "#33586A",
-                  height: "5px",
-                  color: "#F0EEEB"
+                  height: "25px",
+                  color: "#F0EEEB",
+                  width: "170px",
+                  borderRadius: "5px"
                 },
               }}
             />
@@ -174,7 +176,7 @@ const SiteSubmitter = (props) => {
 
         <div className="inputbox">
           <FormGroup>
-            <TextField
+            <InputBase
               id="standard-basic"
               // label="Latitude"
               placeholder="Latitude"
@@ -190,8 +192,10 @@ const SiteSubmitter = (props) => {
                   fontFamily: "Indie Flower",
                   textOverflow: "ellipsis",
                   backgroundColor: "#33586A",
-                  height: "5px",
-                  color: "#F0EEEB"
+                  height: "25px",
+                  color: "#F0EEEB",
+                  width: "170px",
+                  borderRadius: "5px"
                 },
               }}
             />
@@ -200,7 +204,7 @@ const SiteSubmitter = (props) => {
 
         <div className="inputbox">
           <FormGroup>
-            <TextField
+            <InputBase
               id="standard-basic"
               // label="Longitude"
               placeholder="Longitude"
@@ -216,8 +220,10 @@ const SiteSubmitter = (props) => {
                   fontFamily: "Indie Flower",
                   textOverflow: "ellipsis",
                   backgroundColor: "#33586A",
-                  height: "5px",
-                  color: "#F0EEEB"
+                  height: "25px",
+                  color: "#F0EEEB",
+                  width: "170px",
+                  borderRadius: "5px"
                 },
               }}
             />

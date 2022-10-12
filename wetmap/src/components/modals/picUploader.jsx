@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Container, Form, FormGroup, Label, Input } from "reactstrap";
 import "./picUploader.css";
-import TextField from "@mui/material/TextField";
+import InputBase from '@mui/material/InputBase';
 import Button from "@mui/material/Button";
 import exifr from "exifr";
 import Autosuggest from "react-autosuggest";
@@ -272,7 +272,7 @@ const PicUploader = React.memo((props) => {
 
         <div className="inputboxType1">
           <FormGroup>
-            <TextField
+            <InputBase
               id="standard-basic"
               // label="Date Taken"
               placeholder="Date Taken"
@@ -282,18 +282,18 @@ const PicUploader = React.memo((props) => {
               value={pin.PicDate}
               onChange={handleChange}
               onClick={handleNoGPSClose}
-              sx={{ width: "167px"}}
+              sx={{ width: "167px", svg: {color: "#F0EEEB" }}}
               inputProps={{
                 style: {
                   textAlign: "center",
                   fontFamily: "Indie Flower",
                   textOverflow: "ellipsis",
                   backgroundColor: "#33586A",
-                      height: "20px",
-                      color: "#F0EEEB",
-                      borderRadius: "5px",
-                      borderBottom: "none",
-                      borderColor: "transparent"
+                  height: "20px",
+                  color: "#F0EEEB",
+                  borderRadius: "5px",
+                  borderBottom: "none",
+                  borderColor: "transparent",
                 },
               }}
             />
@@ -308,7 +308,7 @@ const PicUploader = React.memo((props) => {
           <div>
             <div className="inputboxType2">
               <FormGroup>
-                <TextField
+                <InputBase
                   id="standard-basic"
                   // label="Latitude"
                   placeholder="Latitude"
@@ -338,7 +338,7 @@ const PicUploader = React.memo((props) => {
 
             <div className="inputboxType2">
               <FormGroup>
-                <TextField
+                <InputBase
                   id="standard-basic"
                   // label="Longitude"
                   placeholder="Longitude"

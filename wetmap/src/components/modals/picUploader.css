@@ -31,15 +31,8 @@
     margin-bottom: -10px;
     border: transparent;
     width: 167px;
-    border-bottom: 1px solid black;  
     background-color: #33586A;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-}
-
-.autosuggestbox:hover{
-    border-width: medium;
-    border-bottom: solid black;
+    border-radius: 5px;   
 }
 
 #XButton{
@@ -222,3 +215,8 @@
     margin-top: 30px;
     margin-bottom: 30px;
 }
+
+::-webkit-calendar-picker-indicator {
+    filter: invert(100%) sepia(300%) saturate(1000%) hue-rotate(1000deg)
+      brightness(180%) contrast(60%);
+  }

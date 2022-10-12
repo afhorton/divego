@@ -2,23 +2,24 @@ import React from "react";
 import { getAnimalNamesThatFit } from "../supabaseCalls/photoSupabaseCalls";
 // import { getAnimalNamesThatFit } from "../axiosCalls/photoAxiosCalls";
 import { Input } from "reactstrap";
+import InputBase from "@mui/material/InputBase";
 import AutoSuggestListItem from "./AutoSuggestListItem";
 import "./autoSuggest.css";
 
 export default function AnimalAutoSuggest(props) {
   const { setPin, pin, setList, list } = props;
-  
+
   const handleChange = async (e) => {
     setPin({ ...pin, Animal: e.target.value });
 
     if (e.target.value.length > 0) {
       let fitleredListOfAnimals = await getAnimalNamesThatFit(e.target.value);
-      let animalArray = []
+      let animalArray = [];
       fitleredListOfAnimals.forEach((animal) => {
-        if (!animalArray.includes(animal.label)){
-          animalArray.push(animal.label)
+        if (!animalArray.includes(animal.label)) {
+          animalArray.push(animal.label);
         }
-        })
+      });
       setList(animalArray);
     } else {
       setList([]);
@@ -27,13 +28,19 @@ export default function AnimalAutoSuggest(props) {
 
   return (
     <div>
-      <Input
+      <InputBase
         className="suggestInput"
         placeholder="Animal"
         name="Animal"
         value={pin.Animal}
         onChange={handleChange}
-      ></Input>
+        sx={{
+          color: "#F0EEEB",
+          fontFamily: "Indie Flower",
+          fontSize: "large",
+          textAlign: "center"
+        }}
+      ></InputBase>
 
       <div style={{ height: "auto", zIndex: 10, position: "absolute" }}>
         {list.length > 0 &&

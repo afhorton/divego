@@ -17,11 +17,16 @@
 }
 .picScoll{
     max-height: 300px;
-    overflow-y: scroll;
+    overflow-y: hidden;
     width: 95%;
     margin-bottom: 30px;
     margin-right: 10px;
-    overflow-x: hidden;
+    overflow-x:hidden;
+}
+
+.picScoll:hover{
+    overflow-y: auto;
+    width: 99%;
 }
 
 .animalLabel{
