@@ -162,7 +162,7 @@ function Map() {
 
   const points = setupClusters(newSites);
 
-  const { clusters } = useSupercluster({
+  const { clusters, supercluster } = useSupercluster({
     points,
     bounds: boundaries,
     zoom: mapZoom,
@@ -240,6 +240,13 @@ function Map() {
                 position={{ lat: latitude, lng: longitude }}
                 title={pointCount.toString() + " sites"}
                 icon={anchorClust}
+                onClick={() => {
+                  const expansionZoom = Math.min(supercluster.getClusterExpansionZoom(cluster.id),14);
+                  mapRef.setZoom(expansionZoom)
+                  mapRef.panTo({lat: latitude, lng: longitude});
+                  setMapCoords([mapRef.getCenter().lat(), mapRef.getCenter().lng()]);
+                  handleMapUpdates()
+                }}
               >
                 <div
                   style={{
@@ -247,9 +254,11 @@ function Map() {
                     height: `${10 + (pointCount / points.length) * 30}px`,
                     backgroundColor: "lightblue",
                   }}
+                  
                 >
                   {pointCount}
                 </div>
+                
               </Marker>
             );
           }
