@@ -18,7 +18,7 @@
 .picScoll{
     max-height: 300px;
     overflow-y: hidden;
-    width: 95%;
+    width: 270px;
     margin-bottom: 30px;
     margin-right: 10px;
     overflow-x:hidden;
@@ -26,7 +26,7 @@
 
 .picScoll:hover{
     overflow-y: auto;
-    width: 99%;
+    width: 282px;
 }
 
 .animalLabel{
