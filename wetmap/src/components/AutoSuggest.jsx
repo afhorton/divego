@@ -39,7 +39,7 @@ export default function AnimalAutoSuggest(props) {
             fontFamily: "Indie Flower",
             textOverflow: "ellipsis",
             backgroundColor: "#33586A",
-            height: "20px",
+            height: "25px",
             color: "#F0EEEB",
             width: "auto",
             borderRadius: "5px"
