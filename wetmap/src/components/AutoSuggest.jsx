@@ -1,7 +1,6 @@
 import React from "react";
 import { getAnimalNamesThatFit } from "../supabaseCalls/photoSupabaseCalls";
 // import { getAnimalNamesThatFit } from "../axiosCalls/photoAxiosCalls";
-import { Input } from "reactstrap";
 import InputBase from "@mui/material/InputBase";
 import AutoSuggestListItem from "./AutoSuggestListItem";
 import "./autoSuggest.css";
@@ -34,12 +33,17 @@ export default function AnimalAutoSuggest(props) {
         name="Animal"
         value={pin.Animal}
         onChange={handleChange}
-        sx={{
-          color: "#F0EEEB",
-          fontFamily: "Indie Flower",
-          fontSize: "large",
-          textAlign: "center"
-        }}
+        inputProps={{
+          style: {
+            textAlign: "center",
+            fontFamily: "Indie Flower",
+            textOverflow: "ellipsis",
+            backgroundColor: "#33586A",
+            height: "20px",
+            color: "#F0EEEB",
+            width: "auto",
+            borderRadius: "5px"
+          }}}
       ></InputBase>
 
       <div style={{ height: "auto", zIndex: 10, position: "absolute" }}>

@@ -32,7 +32,10 @@
     border: transparent;
     width: 167px;
     background-color: #33586A;
-    border-radius: 5px;   
+    border-radius: 5px; 
+    height: 24px;
+    padding-bottom: 5px;
+    padding-top: 1px;  
 }
 
 #XButton{
