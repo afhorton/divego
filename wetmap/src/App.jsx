@@ -1,4 +1,4 @@
-import { useState, useEffect, useLayoutEffect } from "react";
+import { useState, useEffect, useLayoutEffect, useCallback } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import MapPage from "./components/MapPage";
@@ -20,10 +20,10 @@ import { GeoCoderContext } from "./components/contexts/geoCoderContext";
 import { AnimalRevealContext } from "./components/contexts/animalRevealContext";
 import { SelectedDiveSiteContext } from "./components/contexts/selectedDiveSiteContext";
 
-
 //DiveLocker2016!
 
 function App() {
+  const [appIsReady, setAppIsReady] = useState(false);
   const [masterSwitch, setMasterSwitch] = useState(true);
   const [adminStat, setAdminStat] = useState(false);
 
@@ -43,11 +43,12 @@ function App() {
         navigator.geolocation.getCurrentPosition(
           function (position) {
             setMapCoords([position.coords.latitude, position.coords.longitude]);
-            setJump(true);
+            setAppIsReady(true);
           },
           function (error) {
             console.log("location permissions denied", error.message);
-          }
+          },
+          { enableHighAccuracy: false, timeout: 5000, maximumAge: 0 }
         );
       } else {
         console.log("unsupported");
@@ -78,8 +79,18 @@ function App() {
 
   const [photoFile, setPhotoFile] = useState(null);
 
+  const onLayoutRootView = useCallback(async () => {
+    if (appIsReady) {
+      await SplashScreen.hideAsync();
+    }
+  }, [appIsReady]);
+
+  if (!appIsReady) {
+    return null;
+  }
+
   return (
-    <div className="App">
+    <div className="App" onLoad={onLayoutRootView}>
       <SelectedDiveSiteContext.Provider
         value={{ selectedDiveSite, setSelectedDiveSite }}
       >
