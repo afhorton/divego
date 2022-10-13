@@ -2,6 +2,7 @@ import { useState, useEffect, useLayoutEffect, useCallback } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import MapPage from "./components/MapPage";
+import LoadingScreen from "./LoadingScreen";
 import AdminPage from "./components/adminComponents/adminPage";
 import "./App.css";
 import { MasterContext } from "./components/contexts/masterContext";
@@ -81,12 +82,11 @@ function App() {
 
   const onLayoutRootView = useCallback(async () => {
     if (appIsReady) {
-      await SplashScreen.hideAsync();
     }
   }, [appIsReady]);
 
   if (!appIsReady) {
-    return null;
+    return (<LoadingScreen/>);
   }
 
   return (
