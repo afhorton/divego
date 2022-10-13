@@ -48,11 +48,13 @@ function App() {
           },
           function (error) {
             console.log("location permissions denied", error.message);
+            setAppIsReady(true)
           },
           { enableHighAccuracy: false, timeout: 5000, maximumAge: 0 }
         );
       } else {
         console.log("unsupported");
+        setAppIsReady(true)
       }
     };
   }, []);
