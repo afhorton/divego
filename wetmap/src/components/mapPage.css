@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Permanent+Marker&display=swap');
 
 .mappagemaster{
+   position: relative;
    width: 100vw;
-   height: 100vh;
+   height: 100%;
 }
 
 .AutoSug{
@@ -79,7 +80,8 @@
     width: 145px;
     z-index: 2;
     position: absolute;
-    bottom: 0vh;
+    /* margin-top: 100vh; */
+    bottom: 0;
    
     
 }
@@ -88,7 +90,7 @@
     height: auto;
     z-index: 2;
     position: absolute;
-    bottom: 0.1vh;
+    bottom: 0;
     background-color: white;
     opacity: 80%;
     border-radius: 5px;
