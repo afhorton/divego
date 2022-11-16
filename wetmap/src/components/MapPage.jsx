@@ -74,7 +74,7 @@ const MapPage = React.memo(() => {
   };
 
   return (
-    <div>
+    <div className="mappagemaster">
       {masterSwitch && (<div className="col2rowT">
         <div className="sliderDiv">
           <MonthSlider />
