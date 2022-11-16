@@ -5,6 +5,7 @@ import exifr from "exifr";
 import InputBase from '@mui/material/InputBase';
 import Button from "@mui/material/Button";
 import PhotoIcon from "@mui/icons-material/Photo";
+import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
 import { exifGPSHelper } from "../../helpers/exifGPSHelpers";
 import Collapse from "@mui/material/Collapse";
 import { insertDiveSiteWaits } from "../../supabaseCalls/diveSiteWaitSupabaseCalls";
@@ -66,6 +67,26 @@ const SiteSubmitter = (props) => {
           setShowNoGPS(true);
         }
       });
+    }
+  };
+
+  const handleDiveSiteGPS = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        function (position) {
+          setFormVals({
+            ...formVals,
+            Latitude: position.coords.latitude,
+            Longitude: position.coords.longitude,
+          });
+        },
+        function (error) {
+          console.log("location permissions denied", error.message);
+        },
+        { enableHighAccuracy: false, timeout: 5000, maximumAge: 0 }
+      );
+    } else {
+      console.log("unsupported");
     }
   };
 
@@ -229,6 +250,24 @@ const SiteSubmitter = (props) => {
             />
           </FormGroup>
         </div>
+
+        <FormGroup>
+        <div
+            onClick={handleDiveSiteGPS}
+            className="GPSbutton"
+          >
+            <div style={{ marginLeft: 3, marginRight: 2, marginTop: -2 }}>
+              <MapOutlinedIcon
+                sx={{ color: "#9B884E", height: "28px", width: "28px", cursor: "pointer", marginTop: "2.5px", marginLeft: "3px" }}
+              ></MapOutlinedIcon>
+            </div>
+
+            <Label style={{ fontFamily: "Caveat", color: "#9B884E", cursor: "pointer", marginTop: "5px" }}>
+            I'm At The Dive Site
+            </Label>
+          </div>
+
+        </FormGroup>
 
         <FormGroup>
           <Button variant="text" id="modalButton2" onClick={handleSubmit}>
