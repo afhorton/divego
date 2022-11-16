@@ -243,7 +243,7 @@ const MapPage = React.memo(() => {
      <div>
         <Home
           style={{
-            position: "absolute",
+            // position: "absolute",
             zIndex: "1",
             height: "100%",
           }}

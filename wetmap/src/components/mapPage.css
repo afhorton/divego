@@ -79,7 +79,7 @@
     width: 145px;
     z-index: 2;
     position: absolute;
-    bottom: 0px;
+    bottom: 0vh;
    
     
 }
@@ -88,7 +88,7 @@
     height: auto;
     z-index: 2;
     position: absolute;
-    bottom: 2px;
+    bottom: 0.1vh;
     background-color: white;
     opacity: 80%;
     border-radius: 5px;
