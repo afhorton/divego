@@ -80,10 +80,10 @@
 }
 
 .col2rowB{
-    height: 50px;
+    height: auto;
     z-index: 2;
     position: absolute;
-    bottom: -30px;
+    bottom: 2px;
     background-color: white;
     opacity: 80%;
     border-radius: 5px;
