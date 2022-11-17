@@ -35,7 +35,7 @@ const animalSearchZone = (
 );
 
 const adminPortalZone = (
-  <div style={{ marginLeft: "10px" }}>
+  <div style={{ marginLeft: "10px", marginBottom: "40px" }}>
     <AdminPortal></AdminPortal>
   </div>
 );

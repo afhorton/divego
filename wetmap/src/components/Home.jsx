@@ -1,17 +1,12 @@
 import React from "react";
+import "./logo.css";
+
 
 export default function Homeo(props) {
   const { setShowAdminPortal, showAdminPortal } = props;
 
   return (
-    <h2
-      style={{
-        fontFamily: "Caveat, cursive",
-        marginBottom: "0",
-        marginLeft: "0",
-        backgroundColor: "white",
-        borderRadius: "0px 10px 0px 0px",
-      }}
+    <h2 className="text"
       onDoubleClick={() => setShowAdminPortal(!showAdminPortal)}
     >
       DiveGo

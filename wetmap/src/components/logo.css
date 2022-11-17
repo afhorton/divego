@@ -1,0 +1,29 @@
+
+.text{
+        font-family: Caveat, cursive;
+        background-color: white;
+        border-radius: 0px 10px 0px 0px;
+        position: fixed;
+        bottom: 0;
+        padding-top: 5px;
+        margin-bottom: -5px;
+        width: 90px;
+        height: 40px;
+        text-align: center;
+}
+
+@media only screen and (max-width: 500px) {
+    .text{
+        font-family: Caveat, cursive;
+        background-color: white;
+        border-radius: 0px 10px 0px 0px;
+        position: fixed;
+        bottom: 0;
+        padding-top: 2px;
+        margin-bottom: 0px;
+        width: 60px;
+        height: 30px;
+        text-align: center;
+        font-size: 18px;
+}
+}
