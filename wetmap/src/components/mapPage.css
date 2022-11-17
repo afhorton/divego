@@ -130,6 +130,6 @@
         font-size: large;
         font-weight: bold;
         margin-left: clamp(10px, 22vw, 2000px);
-        width: 80vw;
+        width: 75vw;
     }
 }
