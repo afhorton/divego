@@ -3,7 +3,7 @@
         font-family: Caveat, cursive;
         background-color: white;
         border-radius: 0px 10px 0px 0px;
-        position: fixed;
+        position: absolute;
         bottom: 0;
         padding-top: 5px;
         margin-bottom: -5px;
@@ -17,7 +17,7 @@
         font-family: Caveat, cursive;
         background-color: white;
         border-radius: 0px 10px 0px 0px;
-        position: fixed;
+        position: absolute;
         bottom: 0;
         padding-top: 2px;
         margin-bottom: 0px;

@@ -294,7 +294,7 @@ const PicUploader = React.memo((props) => {
                   borderRadius: "5px",
                   borderBottom: "none",
                   borderColor: "transparent",
-                  textAlign: "center",
+                  alignItems: "center",
                   paddingRight: "3px"
                 },
               }}
