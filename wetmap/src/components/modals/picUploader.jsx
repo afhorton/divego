@@ -289,11 +289,12 @@ const PicUploader = React.memo((props) => {
                   fontFamily: "Indie Flower",
                   textOverflow: "ellipsis",
                   backgroundColor: "#33586A",
-                  height: "25px",
+                  height: "30px",
                   color: "#F0EEEB",
                   borderRadius: "5px",
                   borderBottom: "none",
                   borderColor: "transparent",
+                  textAlign: "center"
                 },
               }}
             />
