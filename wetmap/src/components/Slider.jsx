@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import { SliderContext } from "./contexts/sliderContext";
 import { useState } from "react";
+import "./slider.css";
 
 export default function MonthSlider() {
   const { sliderVal, setSliderVal } = useContext(SliderContext);
@@ -57,12 +58,12 @@ export default function MonthSlider() {
   return (
     <Box
       sx={{
-        width: "95%",
+        width: "50vw",
         mx: "auto",
       }}
     >
-      <div style={{ marginBottom: "-5px" }}>
-        <strong>{monthVal}</strong>
+      <div className="monthbox">
+        <strong className="monthvalue">{monthVal}</strong>
       </div>
       <Slider
         sx={{

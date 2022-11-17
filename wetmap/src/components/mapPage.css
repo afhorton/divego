@@ -22,6 +22,7 @@
 }
 
 .sliderDiv{
+    width: 55vw;
     background-color: white;
     opacity: 80%;
     border-radius: 10px;
@@ -99,4 +100,22 @@
     font-weight: bold;
     margin-left: clamp(10px, 35vw, 2000px);
     width: clamp(50px, 50vw, 300px);
+}
+
+
+@media only screen and (max-width: 500px) {
+
+    .sliderDiv{
+        display: flex;
+        width: 55vw;
+        height: 35px;
+        background-color: white;
+        opacity: 80%;
+        border-radius: 10px;
+        font-family: 'Permanent Marker', cursive;
+        font-size: large;
+        margin-top: -2px;
+    }
+
+
 }
