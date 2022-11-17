@@ -282,7 +282,7 @@ const PicUploader = React.memo((props) => {
               value={pin.PicDate}
               onChange={handleChange}
               onClick={handleNoGPSClose}
-              sx={{ width: "167px", backgroundColor: "#33586A", paddingRight: "3px", borderRadius: "5px"}}
+              sx={{ width: "167px", height: "35px", backgroundColor: "#33586A", paddingRight: "3px", borderRadius: "5px"}}
               inputProps={{
                 style: {
                   textAlign: "center",
