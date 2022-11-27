@@ -20,6 +20,8 @@ export default function SignInRoute() {
     password: "",
   });
 
+  const [loginFail, setLoginFail] = useState(null)
+
   const [formValidation, SetFormValidation] = useState({
     emailVal: false,
     passwordVal: false,
@@ -45,12 +47,16 @@ export default function SignInRoute() {
     });
 
     if (formVals.email === "" || formVals.password == "") {
+      setLoginFail("Please fill out both email and password")
       return;
     } else {
       let accessToken = await signInStandard(formVals);
       if (accessToken) {
         await localStorage.setItem("token", JSON.stringify(accessToken));
         setActiveSession(accessToken);
+      } else {
+        setLoginFail("The credentials you supplied are not valid")
+        return;
       }
       let checker = await sessionCheck();
       //  console.log("checkerbox", checker)
@@ -59,6 +65,7 @@ export default function SignInRoute() {
 
   const handleChange = (e) => {
     setFormVals({ ...formVals, [e.target.name]: e.target.value });
+    setLoginFail(null)
   }
 
   return (
@@ -74,6 +81,7 @@ export default function SignInRoute() {
               name="email"
               value={formVals.email}
               onChange={handleChange}
+              onFocus={() => setLoginFail(null)}
             />
      
      <Input
@@ -86,7 +94,9 @@ export default function SignInRoute() {
               name="password"
               value={formVals.password}
               onChange={handleChange}
+              onFocus={() => setLoginFail(null)}
             />
+            {loginFail && <Label className="erroMsg">{loginFail}</Label>}
           <div className="signButton" onClick={handleSignInSubmit}>
             Sign In
           </div>

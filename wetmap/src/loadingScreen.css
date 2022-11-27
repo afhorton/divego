@@ -8,19 +8,24 @@
   justify-content: center;
 }
 
+.containerMain{
+  align-items: center;
+  justify-content: center;
+}
+
 .logoDiv {
-  width: 200px;
-  height: 50px;
-  position: absolute;
-  bottom: 300px;
-  margin-left: 40px;
+  width: auto;
+  height: 150px;
   font-family: "Caveat", cursive;
   font-size: 50px;
   color: white;
+  text-align: center;
+  margin-left: -10px;
 }
 
 .mantaLogo {
-  width: 200px;
+  width: auto;
   height: 200px;
-  margin-bottom: 100px;
+  margin-bottom: 20px;
+  margin-top: 30%;
 }

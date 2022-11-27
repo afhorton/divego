@@ -41,3 +41,12 @@ background-color: #33586A;
   font-family: Permanent Marker;
   color: #9B884E;
 }
+
+.erroMsg{
+  margin: 5px;
+  padding: 7px;
+  color: pink;
+  font-family: Indie Flower;
+  border-radius: 10px;
+  border: 1px dashed darkblue;
+}

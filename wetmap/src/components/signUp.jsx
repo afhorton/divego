@@ -22,6 +22,8 @@ export default function SignUpRoute() {
     lastName: "",
   });
 
+  const [regFail, setRegFail] = useState(null)
+
   const [formValidation, SetFormValidation] = useState({
     emailVal: false,
     passwordVal: false,
@@ -66,12 +68,15 @@ export default function SignUpRoute() {
       formVals.firstName == "" ||
       formVals.lastName == ""
     ) {
+      setRegFail("Please fill out all fields")
       return;
     } else {
       let registrationToken = await register(formVals);
       if (registrationToken) {
         await localStorage.setItem("token", JSON.stringify(registrationToken));
         setActiveSession(registrationToken);
+      } else {
+        setRegFail("The credentials you supplied are not valid")
       }
       let checker = await sessionCheck();
       //  console.log("checkerbox", checker)
@@ -80,6 +85,7 @@ export default function SignUpRoute() {
 
   const handleChange = (e) => {
     setFormVals({ ...formVals, [e.target.name]: e.target.value });
+    setRegFail(null)
   }
   return (
     <div className="containerDiv">
@@ -94,6 +100,7 @@ export default function SignUpRoute() {
               name="email"
               value={formVals.email}
               onChange={handleChange}
+              onFocus={() => setRegFail(null)}
             />
      
             <Input
@@ -106,6 +113,7 @@ export default function SignUpRoute() {
               name="password"
               value={formVals.password}
               onChange={handleChange}
+              onFocus={() => setRegFail(null)}
             />
 
             <Input
@@ -118,6 +126,7 @@ export default function SignUpRoute() {
               name="firstName"
               value={formVals.firstName}
               onChange={handleChange}
+              onFocus={() => setRegFail(null)}
             />
 
             <Input
@@ -130,7 +139,9 @@ export default function SignUpRoute() {
               name="lastName"
               value={formVals.lastName}
               onChange={handleChange}
+              onFocus={() => setRegFail(null)}
             />
+            {regFail && <Label className="erroMsg">{regFail}</Label>}
           <div className="signButton" onClick={handleSignUpSubmit}>
             Sign Up
           </div>
