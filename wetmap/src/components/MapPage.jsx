@@ -25,7 +25,9 @@ import { PicModalContext } from "./contexts/picModalContext";
 import { GeoCoderContext } from "./contexts/geoCoderContext";
 import { AnimalRevealContext } from "./contexts/animalRevealContext";
 import { MasterContext } from "./contexts/masterContext";
-
+import { LightBoxContext } from "./contexts/lightBoxContext";
+import { SelectedPicContext } from "./contexts/selectPicContext";
+import Lightbox from "react-image-lightbox";
 import "./mapPage.css";
 
 const animalSearchZone = (
@@ -49,6 +51,8 @@ const MapPage = React.memo(() => {
   const { showAnimalSearch, setShowAnimalSearch } = useContext(
     AnimalRevealContext
   );
+  const { lightbox, setLightbox } = useContext(LightBoxContext);
+  const { selectedPic } = useContext(SelectedPicContext);
 
   const { picModal, setPicModal } = useContext(PicModalContext);
 
@@ -298,6 +302,13 @@ const MapPage = React.memo(() => {
       <FormGuideModal openup={guideModal} closeup={toggleGuideModal}>
         <HowToGuide closeup={toggleGuideModal} />
       </FormGuideModal>
+
+      {lightbox && (
+          <Lightbox
+            mainSrc={selectedPic}
+            onCloseRequest={() => setLightbox(false)}
+          />
+        )}
     </div>
   );
 });

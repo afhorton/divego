@@ -37,3 +37,12 @@
   height: 40px;
   border-radius: 5px;
 }
+
+.boxLight{
+  z-index: 9;
+  width: 1000px;
+  height: 700px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10%;
+}

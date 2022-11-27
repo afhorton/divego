@@ -4,6 +4,10 @@ import { useState, useContext, useEffect } from "react";
 import { siteGPSBoundaries } from "../../helpers/mapHelpers";
 import { getPhotosforAnchor } from "../../supabaseCalls/photoSupabaseCalls";
 // import { getPhotosforAnchor } from "../../axiosCalls/photoAxiosCalls";
+import "photoswipe/dist/photoswipe.css";
+
+import { Gallery, Item } from "react-photoswipe-gallery";
+
 import "./anchorPics.css";
 
 // let filePath = "/src/components/uploads/";
@@ -11,7 +15,6 @@ import "./anchorPics.css";
 const AnchorPics = (props) => {
   const { selectedDiveSite } = useContext(SelectedDiveSiteContext);
   const { sliderVal } = useContext(SliderContext);
-
   const [monthVal, setMonthVal] = useState("");
   const [anchorPics, setAnchorPics] = useState([]);
 
@@ -86,21 +89,46 @@ const AnchorPics = (props) => {
     filterAnchorPhotos();
   }, [selectedDiveSite]);
 
+  console.log("whwhw", selectedDiveSite)
   return (
     <div className="masterDiv">
       <h3 className="DiveSiteLabel">{selectedDiveSite.SiteName}</h3>
       <div className="monthlyLabel">{monthVal} Sightings</div>
 
       <div className="picScoll">
-      {anchorPics && anchorPics.map((pic) => {
-        return (
-          <div key={pic.id} className="pictureBox">
-            <h4 className="animalLabel">{pic.label}</h4>
-              <img src={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${pic.photoFile}`} className="picHolderX" style={{width: '85%', marginLeft: '23%'}}></img>
+        {anchorPics &&
+          anchorPics.map((pic) => {
+            return (
+              <div key={pic.id} className="pictureBox">
+                <h4 className="animalLabel">{pic.label}</h4>
+                <Gallery> 
+                  <div> 
+                  <Item
+                    original={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${pic.photoFile}`}
+                    thumbnail={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${pic.photoFile}`}
+                    width="992"
+                    height="558"
+                    style={{borderRadius: 10}}
+                  >
+                    {({ ref, open }) => (
+                      <img
+                        style={{ width: "192px", height: "108px", marginLeft: "23%", borderRadius: '10px' }}
+                        ref={ref}
+                        onClick={open}
+                        src={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${pic.photoFile}`}
+                      />
+                    )}
+                  </Item>
+                  </div>
+                </Gallery>
+              </div>
+            );
+          })}
+        {anchorPics.length === 0 && (
+          <div className="emptySite">
+            No Sightings At This Site Yet For This Time Of Year!
           </div>
-        );
-      })} 
-      {anchorPics.length === 0 && <div className="emptySite">No Sightings At This Site Yet For This Time Of Year!</div>}
+        )}
       </div>
     </div>
   );

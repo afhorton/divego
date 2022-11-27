@@ -4,9 +4,12 @@
 
 .DiveSiteLabel{
     font-family: 'Permanent Marker', cursive;
-    margin-top: -30px;
-    margin-left: 10px;
+    margin-top: -5px;
+    z-index: 6;
+    margin-left: 20px;
     color: #F0EEEB;
+    width: 100%;
+    height: 50px;
 }
 
 .monthlyLabel{
@@ -14,9 +17,10 @@
     font-size: larger;
     margin-left: 20px;
     color: #F0EEEB;
+    margin-top: -25px;
 }
 .picScoll{
-    max-height: 300px;
+    max-height: 310px;
     overflow-y: hidden;
     width: 270px;
     margin-bottom: 30px;
@@ -64,3 +68,4 @@
     width: 80%;
     color: #F0EEEB;
 }
+

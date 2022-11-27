@@ -26,6 +26,8 @@ import { PinContext } from "./contexts/pinContext";
 import { MasterContext } from "./contexts/masterContext";
 import { PinSpotContext } from "./contexts/pinSpotContext";
 import { SelectedDiveSiteContext } from "./contexts/selectedDiveSiteContext";
+import { LightBoxContext } from "./contexts/lightBoxContext";
+import { SelectedPicContext } from "./contexts/selectPicContext";
 import FormModal from "./modals/formModal";
 import AnchorPics from "./modals/anchorPics";
 import { newGPSBoundaries } from "../helpers/mapHelpers";
@@ -35,6 +37,7 @@ import { setupClusters } from "../helpers/clusterHelpers";
 import { diveSites } from "../supabaseCalls/diveSiteSupabaseCalls";
 // import { heatPoints } from "../axiosCalls/heatPointAxiosCalls";
 import { heatPoints } from "../supabaseCalls/heatPointSupabaseCalls";
+import Lightbox from "react-image-lightbox";
 
 const LIB = ["visualization", "places"];
 
@@ -61,7 +64,9 @@ function Map() {
   const { sliderVal } = useContext(SliderContext);
   const { showGeoCoder, setShowGeoCoder } = useContext(GeoCoderContext);
   const { selectedDiveSite, setSelectedDiveSite } = useContext(SelectedDiveSiteContext)
-  
+  const { lightbox, setLightbox } = useContext(LightBoxContext);
+  const { selectedPic } = useContext(SelectedPicContext);
+
   const [newSites, setnewSites] = useState([]);
   const [heatpts, setHeatPts] = useState(formatHeatVals([]));
   const [mapRef, setMapRef] = useState(null);
@@ -286,6 +291,16 @@ function Map() {
       <FormModal openup={siteModal} closeup={toggleSiteModal}>
         <AnchorPics closeup={toggleSiteModal} />
       </FormModal>
+{/* 
+      {lightbox && (
+        <div className="boxLight">
+          <Lightbox
+            mainSrc={selectedPic}
+            onCloseRequest={() => setLightbox(false)}
+          />
+          </div>
+        )} */}
+
     </GoogleMap>
   );
 }
