@@ -2,6 +2,7 @@ import { useState, useEffect, useLayoutEffect, useCallback } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import MapPage from "./components/MapPage";
+import AuthenticationPage from "./components/authenticationPage";
 import LoadingScreen from "./LoadingScreen";
 import AdminPage from "./components/adminComponents/adminPage";
 import "./App.css";
@@ -22,6 +23,8 @@ import { AnimalRevealContext } from "./components/contexts/animalRevealContext";
 import { SelectedDiveSiteContext } from "./components/contexts/selectedDiveSiteContext";
 import { SelectedPicContext } from "./components/contexts/selectPicContext";
 import { LightBoxContext } from "./components/contexts/lightBoxContext";
+import { SessionContext } from "./components/contexts/sessionContext";
+import { sessionCheck, userCheck, sessionRefresh } from "./supabaseCalls/authenticateSupabaseCalls";
 
 //DiveLocker2016!
 
@@ -29,6 +32,7 @@ function App() {
   const [appIsReady, setAppIsReady] = useState(false);
   const [masterSwitch, setMasterSwitch] = useState(true);
   const [adminStat, setAdminStat] = useState(false);
+  const [activeSession, setActiveSession] = useState(null);
 
   const d = new Date();
   const [sliderVal, setSliderVal] = useState(d.getMonth() + 1);
@@ -41,7 +45,24 @@ function App() {
   const [dragPin, setDragPin] = useState({});
 
   useLayoutEffect(() => {
-    window.onload = function () {
+    window.onload = async function () {
+
+      try {
+        const valuless = await localStorage.getItem('token')
+        const value = JSON.parse(valuless)
+        if (value !== null){
+          if(value.session.refresh_token){
+            let newSession = await sessionRefresh(value.session.refresh_token)
+            setActiveSession(newSession)
+          }
+        }
+        let sessionID = await sessionCheck()
+        // console.log("what are theses", sessionID)
+        await localStorage.removeItem('token')
+      } catch(error) {
+        console.log("no dice:", error)
+      };
+
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           function (position) {
@@ -140,11 +161,14 @@ function App() {
                                       <DiveSitesContext.Provider
                                         value={{ divesTog, setDivesTog }}
                                       >
+                                         <SessionContext.Provider
+                                value={{ activeSession, setActiveSession }}
+                                >
                                         <BrowserRouter>
                                           <Routes>
                                             <Route
                                               path="/"
-                                              element={<MapPage />}
+                                              element={activeSession ? <MapPage/> : <AuthenticationPage/>}
                                             />
                                             <Route
                                               path="/admin"
@@ -152,6 +176,8 @@ function App() {
                                             />
                                           </Routes>
                                         </BrowserRouter>
+
+                                        </SessionContext.Provider>
                                       </DiveSitesContext.Provider>
                                     </JumpContext.Provider>
                                   </PicModalContext.Provider>

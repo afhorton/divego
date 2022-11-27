@@ -1,0 +1,43 @@
+
+.containerDiv{
+height: 100%;
+background-color: #33586A;
+}
+
+.formstyle{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    background-color: #33586A;
+    margin-top: 20%;
+}
+
+
+.inpts {
+  text-align: center;
+  font-family: Indie Flower;
+  text-overflow: ellipsis;
+  background-color: #33586A;
+  height: 25px;
+  color: #F0EEEB;
+  width: 170px;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.signButton {
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  bottom: 2%;
+  margin-left: 70;
+  border-width: 0.3;
+  z-index: 2;
+  width: 85%;
+  border-top: 1px solid darkgray;
+  padding-top: 5px;
+  cursor: pointer;
+  font-family: Permanent Marker;
+  color: #9B884E;
+}
