@@ -76,6 +76,14 @@
     left: 10px;
 }
 
+.col1row8 {
+    width: 50px;
+    z-index: 2;
+    position: absolute;
+    top: 25px;
+    left: 10px;
+}
+
 
 .col1rowB{
     width: 145px;

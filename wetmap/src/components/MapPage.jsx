@@ -8,6 +8,7 @@ import AdminPortal from "./adminPortal";
 import PicUploader from "./modals/picUploader";
 import SiteSubmitter from "./modals/siteSubmitter";
 import HowToGuide from "./modals/howToGuide";
+import Settings from "./modals/setting";
 import AnimalSearcher from "./AnimalSearch";
 import { useState, useContext } from "react";
 import Button from "@mui/material/Button";
@@ -19,6 +20,7 @@ import AnchorIcon from "@mui/icons-material/Anchor";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
+import SettingsIcon from '@mui/icons-material/Settings';
 import { DiveSitesContext } from "./contexts/diveSitesContext";
 import { AnimalContext } from "./contexts/animalContext";
 import { PicModalContext } from "./contexts/picModalContext";
@@ -70,6 +72,12 @@ const MapPage = React.memo(() => {
 
   const toggleGuideModal = () => {
     setGuideModal(!guideModal);
+  };
+
+  const [gearModal, setGearModal] = useState(false);
+
+  const toggleGearModal = () => {
+    setGearModal(!gearModal);
   };
 
   const returnToPicModal = () => {
@@ -228,6 +236,27 @@ const MapPage = React.memo(() => {
         </ToggleButton>
       </div>)}
 
+      {masterSwitch && (<div className="col1row8">
+        <ToggleButton
+          sx={{
+            "&.Mui-selected": { backgroundColor: "pink" },
+            "&.Mui-selected:hover": { backgroundColor: "pink" },
+            "&:hover": { backgroundColor: "lightgrey" },
+            backgroundColor: "lightgrey",
+            height: "40px",
+            width: "40px",
+            border: "2px solid black",
+          }}
+          value="check"
+          selected={gearModal}
+          onChange={() => {
+            setGearModal(toggleGearModal);
+          }}
+        >
+          <SettingsIcon />
+        </ToggleButton>
+      </div>)}
+
       <div className="col1rowB">
         <Collapse
           in={showAdminPortal}
@@ -301,6 +330,11 @@ const MapPage = React.memo(() => {
 
       <FormGuideModal openup={guideModal} closeup={toggleGuideModal}>
         <HowToGuide closeup={toggleGuideModal} />
+      </FormGuideModal>
+
+
+      <FormGuideModal openup={gearModal} closeup={toggleGearModal}>
+        <Settings closeup={toggleGearModal} />
       </FormGuideModal>
 
       {lightbox && (

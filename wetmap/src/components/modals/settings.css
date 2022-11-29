@@ -1,0 +1,32 @@
+.masterDiv{
+  overflow-y: hidden;
+  overflow-x:hidden;
+  max-height: 80vh;
+  margin: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.titleDiv2{
+  font-family: 'Permanent Marker', cursive;
+  font-size: 20px;
+  margin-left: 30px;
+  margin-top: -3px;
+  color: #F0EEEB;
+}
+
+.Logoutbutton{
+  display: flex;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #33586A;
+  width: 160px;
+  height: 30px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.25);
+  margin-left: 25%;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
