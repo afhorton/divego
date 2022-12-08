@@ -55,4 +55,5 @@ Automated animal ID from photo machine learning
 !["Screenshot of Dive Site Form"](https://github.com/Freem11/divego/blob/master/wetmap/src/images/Screenshot%202022-12-08%20at%202.27.54%20PM.png)
 !["Screenshot of Photo Upload Form"](https://github.com/Freem11/divego/blob/master/wetmap/src/images/Screenshot%202022-12-08%20at%202.27.29%20PM.png)
 !["Screenshot of Pin Drop Screen"](https://github.com/Freem11/divego/blob/master/wetmap/src/images/Screenshot%202022-12-08%20at%202.26.54%20PM.png)
+!["Screenshot of Dive Site Gallery"](https://github.com/Freem11/divego/blob/master/wetmap/src/images/Screenshot%202022-12-08%20at%203.17.40%20PM.png)
 !["Screenshot of How To Guide"](https://github.com/Freem11/divego/blob/master/wetmap/src/images/Screenshot%202022-12-08%20at%202.28.35%20PM.png)
