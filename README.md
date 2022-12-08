@@ -38,7 +38,7 @@ Automated animal ID from photo machine learning
 
 
 # ScreenShots
-!["Screenshot of Map Screen"]()
+!["Screenshot of Map Screen"](https://github.com/Freem11/divego/blob/master/wetmap/src/images/Screenshot%202022-12-08%20at%202.24.11%20PM.png)
 !["Screenshot of Animal Select"]()
 !["Screenshot of Dive Site Form"]()
 !["Screenshot of Photo Upload Form"]()
