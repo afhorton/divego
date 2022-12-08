@@ -15,6 +15,8 @@ Password: divego
 
 Map Interface that Displays Anchor Icons to represent dive sites and heat map points to show location and number of sea creature sightings 
 
+Map will load to user's/device current location (once permission is granted) if not granted it will load to BC Canada as default
+
 Month slider at the top allows users to view diving season for a given sea creature over the mohts of the year 
 
 Icon Clustering to maintain map performance when large amount of data are on screen
