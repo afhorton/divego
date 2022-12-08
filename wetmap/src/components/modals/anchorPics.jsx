@@ -89,7 +89,6 @@ const AnchorPics = (props) => {
     filterAnchorPhotos();
   }, [selectedDiveSite]);
 
-  console.log("whwhw", selectedDiveSite)
   return (
     <div className="masterDiv">
       <h3 className="DiveSiteLabel">{selectedDiveSite.SiteName}</h3>

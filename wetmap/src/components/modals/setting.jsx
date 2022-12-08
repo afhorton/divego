@@ -15,7 +15,8 @@ const Settings = (props) => {
   }
 
   return (
-    <div className="masterDiv">
+    <Container fluid>
+    <Form>
       <div className="titleDiv2">
           <Label>
             <strong>Settings</strong>
@@ -31,7 +32,8 @@ const Settings = (props) => {
             </Label>
           </div>
 
-    </div>
+    </Form>
+    </Container>
   );
 };
 

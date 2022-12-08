@@ -57,7 +57,6 @@ function App() {
           }
         }
         let sessionID = await sessionCheck()
-        // console.log("what are theses", sessionID)
         await localStorage.removeItem('token')
       } catch(error) {
         console.log("no dice:", error)
@@ -99,6 +98,7 @@ function App() {
     PicDate: "",
     Latitude: "",
     Longitude: "",
+    UserId: ""
   });
 
   const [selectedDiveSite, setSelectedDiveSite] = useState({

@@ -14,7 +14,7 @@ import { supabase } from "../supabase";
     }
   
     if (data) {
-      console.log(data)
+      // console.log(data)
       return data.Key
     }
   };

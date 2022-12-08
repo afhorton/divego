@@ -333,9 +333,9 @@ const MapPage = React.memo(() => {
       </FormGuideModal>
 
 
-      <FormGuideModal openup={gearModal} closeup={toggleGearModal}>
+      <FormModal openup={gearModal} closeup={toggleGearModal}>
         <Settings closeup={toggleGearModal} />
-      </FormGuideModal>
+      </FormModal>
 
       {lightbox && (
           <Lightbox

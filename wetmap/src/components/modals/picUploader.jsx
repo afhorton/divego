@@ -23,6 +23,7 @@ import { removePhoto } from "../../supabaseCalls/uploadSupabaseCalls";
 // import { removePhoto } from "../../axiosCalls/uploadAxiosCalls";
 import { getAnimalNamesThatFit } from "../../axiosCalls/photoAxiosCalls";
 import AnimalSearchForModal from "./AnimalSearchModal";
+import { userCheck } from "../../supabaseCalls/authenticateSupabaseCalls";
 
 let filePath1 = "./wetmap/src/components/uploads/";
 let filePath = "/src/components/uploads/";
@@ -57,6 +58,9 @@ const PicUploader = React.memo((props) => {
     selectedFile: null,
   });
 
+  let UserId;
+
+
   useEffect(() => {
     if (pin.PicDate === "") {
       let Rnow = new Date();
@@ -68,6 +72,14 @@ const PicUploader = React.memo((props) => {
         PicDate: rightNow,
       });
     }
+
+    const getUser = async () => {
+      UserId = await userCheck();
+      setPin({ ...pin, UserID: UserId.id });
+    };
+  
+    getUser();
+
   }, []);
 
   const handleChange = async (e) => {

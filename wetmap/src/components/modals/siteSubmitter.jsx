@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container, Form, FormGroup, Label, Input } from "reactstrap";
 import "./siteSubmitter.css";
 import exifr from "exifr";
-import InputBase from '@mui/material/InputBase';
+import InputBase from "@mui/material/InputBase";
 import Button from "@mui/material/Button";
 import PhotoIcon from "@mui/icons-material/Photo";
-import MapOutlinedIcon from '@mui/icons-material/MapOutlined';
+import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import { exifGPSHelper } from "../../helpers/exifGPSHelpers";
 import Collapse from "@mui/material/Collapse";
 import { insertDiveSiteWaits } from "../../supabaseCalls/diveSiteWaitSupabaseCalls";
 // import { insertDiveSiteWaits } from "../../axiosCalls/diveSiteWaitAxiosCalls";
+import { userCheck } from "../../supabaseCalls/authenticateSupabaseCalls";
 
 const noGPSZone = (
   <div
@@ -36,7 +37,19 @@ const SiteSubmitter = (props) => {
     Site: "",
     Latitude: "",
     Longitude: "",
+    UserID: "",
   });
+
+  let UserId;
+
+  useEffect(() => {
+    const getUser = async () => {
+      UserId = await userCheck();
+      setFormVals({ ...formVals, UserID: UserId.id });
+    };
+  
+    getUser();
+  }, []);
 
   const [uploadedFile, setUploadedFile] = useState({
     selectedFile: null,
@@ -131,17 +144,28 @@ const SiteSubmitter = (props) => {
         </div>
 
         <div className="uploadbox">
-          <div
-            onClick={handleClick}
-            className="fileSelectDiv"
-          >
+          <div onClick={handleClick} className="fileSelectDiv">
             <div style={{ marginRight: 5, marginTop: -2 }}>
               <PhotoIcon
-                sx={{ color: "#9B884E", height: "28px", width: "28px", cursor: "pointer", marginTop: "2.5px", marginLeft: "3px" }}
+                sx={{
+                  color: "#9B884E",
+                  height: "28px",
+                  width: "28px",
+                  cursor: "pointer",
+                  marginTop: "2.5px",
+                  marginLeft: "3px",
+                }}
               ></PhotoIcon>
             </div>
 
-            <Label style={{ fontFamily: "Permanent Marker", color: "#9B884E", cursor: "pointer", marginTop: "2px" }}>
+            <Label
+              style={{
+                fontFamily: "Permanent Marker",
+                color: "#9B884E",
+                cursor: "pointer",
+                marginTop: "2px",
+              }}
+            >
               Choose a File
             </Label>
           </div>
@@ -184,7 +208,7 @@ const SiteSubmitter = (props) => {
                   height: "25px",
                   color: "#F0EEEB",
                   width: "170px",
-                  borderRadius: "5px"
+                  borderRadius: "5px",
                 },
               }}
             />
@@ -216,7 +240,7 @@ const SiteSubmitter = (props) => {
                   height: "25px",
                   color: "#F0EEEB",
                   width: "170px",
-                  borderRadius: "5px"
+                  borderRadius: "5px",
                 },
               }}
             />
@@ -244,7 +268,7 @@ const SiteSubmitter = (props) => {
                   height: "25px",
                   color: "#F0EEEB",
                   width: "170px",
-                  borderRadius: "5px"
+                  borderRadius: "5px",
                 },
               }}
             />
@@ -252,21 +276,31 @@ const SiteSubmitter = (props) => {
         </div>
 
         <FormGroup>
-        <div
-            onClick={handleDiveSiteGPS}
-            className="GPSbutton"
-          >
+          <div onClick={handleDiveSiteGPS} className="GPSbutton">
             <div style={{ marginLeft: 3, marginRight: 2, marginTop: -2 }}>
               <MapOutlinedIcon
-                sx={{ color: "#9B884E", height: "28px", width: "28px", cursor: "pointer", marginTop: "2.5px", marginLeft: "3px" }}
+                sx={{
+                  color: "#9B884E",
+                  height: "28px",
+                  width: "28px",
+                  cursor: "pointer",
+                  marginTop: "2.5px",
+                  marginLeft: "3px",
+                }}
               ></MapOutlinedIcon>
             </div>
 
-            <Label style={{ fontFamily: "Caveat", color: "#9B884E", cursor: "pointer", marginTop: "5px" }}>
-            I'm At The Dive Site
+            <Label
+              style={{
+                fontFamily: "Caveat",
+                color: "#9B884E",
+                cursor: "pointer",
+                marginTop: "5px",
+              }}
+            >
+              I'm At The Dive Site
             </Label>
           </div>
-
         </FormGroup>
 
         <FormGroup>
