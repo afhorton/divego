@@ -6,7 +6,9 @@ Built with the dream of making every dive hold the chance for an unforgettable e
 https://divego.netlify.app/
 
 Login instructions for guests:
+
 Email: divego2022@gmail.com
+
 Password: divego
 
 # Current Features:
