@@ -9,7 +9,7 @@ Login instructions for guests:
 Email: divego2022@gmail.com
 Password: divego
 
-Current Features:
+# Current Features:
 
 Map Interface that Displays Anchor Icons to represent dive sites and heat map points to show location and number of sea creature sightings 
 
@@ -31,14 +31,14 @@ Dive site animal photo gallery, animal sightings within a pre-determined GPS rad
 
 How to Guide, explains most features of the app for new users 
 
-Admin section for:
+# Admin section for:
 
 User dive site submission and user photo submission validation before committing data to the map for others to view 
 
 In Progress Features:
 Login/Logout/Register system with persistent login (user stays logged in even after closing browser, unless they deliberately log out)
 
-Planned Features:
+# Planned Features:
 
 Photo flagging feature for users to ID incorrect data or to make copy write claims on submitted photos
 Automated photo validation using machine learning 
