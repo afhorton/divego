@@ -1,6 +1,14 @@
 # DiveGo (Web Version) 
 Built with the dream of making every dive hold the chance for an unforgettable encounter with a sea creature 
 
+
+# Live at
+https://divego.netlify.app/
+
+Login instructions for guests:
+Email: divego2022@gmail.com
+Password: divego
+
 Current Features:
 
 Map Interface that Displays Anchor Icons to represent dive sites and heat map points to show location and number of sea creature sightings 
