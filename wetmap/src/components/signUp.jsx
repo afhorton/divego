@@ -76,7 +76,7 @@ export default function SignUpRoute() {
         await localStorage.setItem("token", JSON.stringify(registrationToken));
         setActiveSession(registrationToken);
       } else {
-        setRegFail("The credentials you supplied are not valid")
+        setRegFail(`A Verification Email has been Sent to ${formVals.email}`)
       }
       let checker = await sessionCheck();
       //  console.log("checkerbox", checker)

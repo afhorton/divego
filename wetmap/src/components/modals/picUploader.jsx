@@ -59,8 +59,7 @@ const PicUploader = React.memo((props) => {
   });
 
   let UserId;
-
-
+  
   useEffect(() => {
     if (pin.PicDate === "") {
       let Rnow = new Date();
