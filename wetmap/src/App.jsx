@@ -26,7 +26,7 @@ import { LightBoxContext } from "./components/contexts/lightBoxContext";
 import { SessionContext } from "./components/contexts/sessionContext";
 import { sessionCheck, userCheck, sessionRefresh } from "./supabaseCalls/authenticateSupabaseCalls";
 
-//DiveLocker2016!
+//DiveLocker
 
 function App() {
   const [appIsReady, setAppIsReady] = useState(false);
