@@ -36,12 +36,21 @@
 .animalLabel{
     width: 100%;
     font-family: 'Indie Flower';
-    text-align: center;
+    text-align: left;
     margin-bottom: 0;
-    margin-left: 30px;
+    margin-left: 10px;
     color: #F0EEEB;
 }
 
+.atag{
+    height: 0px;
+    margin-left: 0px;
+}
+.micro{
+    display: flex;
+    margin-left: 37px;
+    width: 100%;
+}
 .pictureBox{
     text-align: center; 
     padding-right: 50px; 
