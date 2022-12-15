@@ -236,7 +236,7 @@ const MapPage = React.memo(() => {
         </ToggleButton>
       </div>)}
 
-      {masterSwitch && (<div className="col1row8">
+      {/* {masterSwitch && (<div className="col1row8">
         <ToggleButton
           sx={{
             "&.Mui-selected": { backgroundColor: "pink" },
@@ -255,7 +255,7 @@ const MapPage = React.memo(() => {
         >
           <SettingsIcon />
         </ToggleButton>
-      </div>)}
+      </div>)} */}
 
       <div className="col1rowB">
         <Collapse

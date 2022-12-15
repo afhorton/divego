@@ -46,7 +46,7 @@ export default function AnimalAutoSuggest(props) {
           }}}
       ></InputBase>
 
-      <div style={{ height: "auto", zIndex: 10, position: "absolute" }}>
+      <div style={{ height: "auto", zIndex: 10, position: "absolute"}}>
         {list.length > 0 &&
           list.map((animal) => {
             return (
