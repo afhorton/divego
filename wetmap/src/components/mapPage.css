@@ -72,6 +72,16 @@
 	left: 10px;
 }
 
+.just-testing2 {
+    z-index: 2;
+    position: absolute;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	bottom: 40px;
+	right: 30px;
+}
+
 /*
 .col1row2 {
     z-index: 2;

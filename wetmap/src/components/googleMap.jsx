@@ -81,7 +81,7 @@ function Map() {
   };
 
   let center = useMemo(() => ({ lat: mapCoords[0], lng: mapCoords[1] }), []);
-  const zoom = useMemo(() => mapZoom, []);
+  let zoom = useMemo(() => mapZoom, []);
 
   let mapCenterTimoutHandler;
   let mapBoundariesTimoutHandler;
@@ -141,6 +141,12 @@ function Map() {
       handleMapUpdates();
     }
   };
+
+  useEffect(() => {
+    mapRef.setZoom(mapZoom)
+   handleMapZoomChange()
+  }, [mapZoom]);
+
 
   const handleBoundsChange = () => {
     if (mapRef) {

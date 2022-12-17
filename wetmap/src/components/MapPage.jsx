@@ -21,6 +21,8 @@ import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import SettingsIcon from '@mui/icons-material/Settings';
+import AddIcon from '@mui/icons-material/Add';
+import RemoveIcon from '@mui/icons-material/Remove';
 import { DiveSitesContext } from "./contexts/diveSitesContext";
 import { AnimalContext } from "./contexts/animalContext";
 import { PicModalContext } from "./contexts/picModalContext";
@@ -29,6 +31,7 @@ import { AnimalRevealContext } from "./contexts/animalRevealContext";
 import { MasterContext } from "./contexts/masterContext";
 import { LightBoxContext } from "./contexts/lightBoxContext";
 import { SelectedPicContext } from "./contexts/selectPicContext";
+import { ZoomContext } from "./contexts/mapZoomContext";
 import Lightbox from "react-image-lightbox";
 import "./mapPage.css";
 
@@ -55,7 +58,7 @@ const MapPage = React.memo(() => {
   );
   const { lightbox, setLightbox } = useContext(LightBoxContext);
   const { selectedPic } = useContext(SelectedPicContext);
-
+  const { mapZoom, setMapZoom } = useContext(ZoomContext);
   const { picModal, setPicModal } = useContext(PicModalContext);
 
   const togglePicModal = () => {
@@ -253,6 +256,38 @@ const MapPage = React.memo(() => {
           }}
         ></Home>
       </div>
+
+      <div className="just-testing2">
+      {masterSwitch && (<div
+        className="colXrow1"
+        style={{ display: "flex", flexDirection: "row" }}
+      >
+        <ToggleButton
+          sx={ toggleButtonStyle }
+          value="check"
+          onClick={() => {
+            setMapZoom(mapZoom + 1);
+          }}
+        >
+          <AddIcon />
+        </ToggleButton>
+      </div>)}
+
+      {masterSwitch && (<div
+        className="colXrow2"
+        style={{ display: "flex", flexDirection: "row" }}
+      >
+        <ToggleButton
+          sx={ toggleButtonStyle }
+          value="check"
+          onClick={() => {
+            setMapZoom(mapZoom - 1);
+          }}
+        >
+          <RemoveIcon />
+        </ToggleButton>
+        </div>)}
+        </div>
 
       {!masterSwitch && (<div
         style={{
