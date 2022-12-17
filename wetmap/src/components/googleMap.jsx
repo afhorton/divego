@@ -93,6 +93,7 @@ function Map() {
     minZoom: 4,
     mapTypeControl: false,
     fullscreenControl: false,
+	disableDefaultUI: true,
   }));
 
   const heatOpts = useMemo(() => ({
@@ -208,6 +209,7 @@ function Map() {
       onCenterChanged={handleMapCenterChange}
       onZoomChanged={handleMapZoomChange}
       onBoundsChanged={handleBoundsChange}
+	  disableDefaultUI={ true }
     >
       {masterSwitch && (
         <HeatmapLayer

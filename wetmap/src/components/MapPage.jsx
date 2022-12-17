@@ -85,30 +85,42 @@ const MapPage = React.memo(() => {
     setMasterSwitch(true);
   };
 
+  const toggleButtonStyle = {
+	"&.Mui-selected": { backgroundColor: "gold" },
+	"&.Mui-selected:hover": { backgroundColor: "gold" },
+	"&:hover": {
+		//color: "#333",
+		backgroundColor: "#3AAFB9"
+	},
+	backgroundColor: "#355d71",
+	height: "48px",
+	width:  "48px",
+	border: "1px solid black",
+	marginTop: "5px",
+	color: "white",
+	boxShadow: "-2px 4px 4px #00000064",
+	borderRadius: "100%"
+  }
+
   return (
     <div className="mappagemaster">
-      {masterSwitch && (<div className="col2rowT">
-        <div className="sliderDiv">
-          <MonthSlider />
-        </div>
-      </div>)}
+		{masterSwitch && (
+			<div className="col2rowT">
+				<div className="sliderDiv">
+					<MonthSlider />
+				</div>
 
-    
+				<div className="selectorDiv">Selected: {animalVal}</div>
+			</div>
+		)}
+
+    <div className="just-testing">
       {masterSwitch && (<div
         className="col1row2"
         style={{ display: "flex", flexDirection: "row" }}
       >
         <ToggleButton
-          sx={{
-            "&.Mui-selected": { backgroundColor: "gold" },
-            "&.Mui-selected:hover": { backgroundColor: "gold" },
-            "&:hover": { backgroundColor: "lightgrey" },
-            backgroundColor: "lightgrey",
-            height: "40px",
-            width: "40px",
-            border: "2px solid black",
-            marginTop: "5px",
-          }}
+          sx={ toggleButtonStyle }
           value="check"
           selected={showGeoCoder}
           onChange={() => {
@@ -124,16 +136,7 @@ const MapPage = React.memo(() => {
         style={{ display: "flex", flexDirection: "row" }}
       >
         <ToggleButton
-          sx={{
-            "&.Mui-selected": { backgroundColor: "lightseagreen" },
-            "&.Mui-selected:hover": { backgroundColor: "lightseagreen" },
-            "&:hover": { backgroundColor: "lightgrey" },
-            backgroundColor: "lightgrey",
-            height: "40px",
-            width: "40px",
-            border: "2px solid black",
-            marginTop: "4px",
-          }}
+          sx={ toggleButtonStyle }
           value="check"
           selected={showAnimalSearch}
           onChange={() => {
@@ -154,15 +157,7 @@ const MapPage = React.memo(() => {
       {masterSwitch && ( <div className="col1row4">
         {" "}
         <ToggleButton
-          sx={{
-            "&.Mui-selected": { backgroundColor: "palegreen" },
-            "&.Mui-selected:hover": { backgroundColor: "palegreen" },
-            "&:hover": { backgroundColor: "lightgrey" },
-            backgroundColor: "lightgrey",
-            height: "40px",
-            width: "40px",
-            border: "2px solid black",
-          }}
+          sx={ toggleButtonStyle }
           value="check"
           selected={divesTog}
           onChange={() => {
@@ -175,15 +170,7 @@ const MapPage = React.memo(() => {
 
       {masterSwitch && (<div className="col1row5">
         <ToggleButton
-          sx={{
-            "&.Mui-selected": { backgroundColor: "orange" },
-            "&.Mui-selected:hover": { backgroundColor: "orange" },
-            "&:hover": { backgroundColor: "lightgrey" },
-            backgroundColor: "lightgrey",
-            height: "40px",
-            width: "40px",
-            border: "2px solid black",
-          }}
+          sx={ toggleButtonStyle }
           value="check"
           selected={picModal}
           onChange={() => {
@@ -196,15 +183,7 @@ const MapPage = React.memo(() => {
 
       {masterSwitch && (<div className="col1row6">
         <ToggleButton
-          sx={{
-            "&.Mui-selected": { backgroundColor: "violet" },
-            "&.Mui-selected:hover": { backgroundColor: "violet" },
-            "&:hover": { backgroundColor: "lightgrey" },
-            backgroundColor: "lightgrey",
-            height: "40px",
-            width: "40px",
-            border: "2px solid black",
-          }}
+          sx={ toggleButtonStyle }
           value="check"
           selected={diveSiteModal}
           onChange={() => {
@@ -217,15 +196,7 @@ const MapPage = React.memo(() => {
 
       {masterSwitch && (<div className="col1row7">
         <ToggleButton
-          sx={{
-            "&.Mui-selected": { backgroundColor: "pink" },
-            "&.Mui-selected:hover": { backgroundColor: "pink" },
-            "&:hover": { backgroundColor: "lightgrey" },
-            backgroundColor: "lightgrey",
-            height: "40px",
-            width: "40px",
-            border: "2px solid black",
-          }}
+          sx={ toggleButtonStyle }
           value="check"
           selected={guideModal}
           onChange={() => {
@@ -235,7 +206,7 @@ const MapPage = React.memo(() => {
           <QuestionMarkIcon />
         </ToggleButton>
       </div>)}
-
+	  </div>
       {/* {masterSwitch && (<div className="col1row8">
         <ToggleButton
           sx={{
@@ -271,7 +242,7 @@ const MapPage = React.memo(() => {
         />
       </div>
 
-      {masterSwitch && (<div className="col2rowB">Selected: {animalVal}</div>)}
+      {/* masterSwitch && (<div className="col2rowB">Selected: {animalVal}</div>) */}
 
      <div>
         <Home

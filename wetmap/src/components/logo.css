@@ -1,7 +1,8 @@
 
 .text{
         font-family: Caveat, cursive;
-        background-color: white;
+        background-color: #355d71;
+		color: white;
         border-radius: 0px 10px 0px 0px;
         position: absolute;
         bottom: 0;
@@ -10,20 +11,15 @@
         width: 90px;
         height: 40px;
         text-align: center;
+		box-shadow: 2px -2px 4px #00000064;
 }
 
 @media only screen and (max-width: 500px) {
     .text{
-        font-family: Caveat, cursive;
-        background-color: white;
-        border-radius: 0px 10px 0px 0px;
-        position: absolute;
-        bottom: 0;
         padding-top: 2px;
         margin-bottom: 0px;
         width: 65px;
         height: 30px;
-        text-align: center;
         font-size: 18px;
 }
 }
