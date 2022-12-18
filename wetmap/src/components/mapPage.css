@@ -14,34 +14,87 @@
 }
 
 .col2rowT {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 55vw;
     position: absolute;
-    z-index: 2;
+    z-index: 4;
     top: 10px;
-    margin-left: clamp(10px, 25vw, 2000px);
-    width: clamp(50px, 50vw, 600px);
+    border-radius: 8px;
+	padding: 0.5rem 0.75rem;
+    left: 50%;
+	margin: 0 auto;
+    transform: translate(-50%, 0%);
+    opacity: 100%;
+	filter: drop-shadow( 4px 4px 4px #00000064 );
 }
 
-.sliderDiv{
-    width: 55vw;
-    background-color: white;
-    opacity: 80%;
-    border-radius: 10px;
+.col2rowT .sliderDiv {
+	opacity: 100%;
     font-family: 'Permanent Marker', cursive;
     font-size: large;
+    background-color: white;
+	border-radius: 20px;
+	padding: 0rem 1.75rem;
+	max-height: 64px;
+	
+	background-color: #355d71;
+	color: white;
 }
 
+.MuiSlider-root {
+	padding: 0 0 1.25rem !important;
+	max-width: 56vw !important;
+}
+
+.col2rowT .selectorDiv {
+	margin: -2px 0 0 0;
+    background-color: white;
+	width: fit-content;
+	width: 50%;
+	padding: 0.25rem 1.75rem;
+	border-radius: 0 0 16px 16px;
+	font-size: calc( 0.7rem + 0.5vw );
+	font-family: 'Caveat', cursive;
+
+	background-color: #355d71;
+	color: white;
+}
+
+.just-testing {
+    z-index: 2;
+    position: absolute;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	top: 80px;
+	left: 10px;
+}
+
+.just-testing2 {
+    z-index: 2;
+    position: absolute;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	bottom: 40px;
+	right: 30px;
+}
+
+/*
 .col1row2 {
     z-index: 2;
     position: absolute;
     top: 80px;
-    left: 15px;
+    left: 10px;
 }
 
 .col1row3 {
     z-index: 2;
     position: absolute;
     top: 140px;
-    left: 15px;
+    left: 10px;
 }
 
 .col1row4 {
@@ -75,7 +128,7 @@
     top: 383px;
     left: 10px;
 }
-
+*/
 .col1row8 {
     width: 50px;
     z-index: 2;
@@ -99,15 +152,16 @@
     height: auto;
     z-index: 2;
     position: absolute;
-    bottom: 0;
+    top: 76px;
     background-color: white;
-    opacity: 80%;
+    opacity: 100%;
     border-radius: 5px;
     font-family: 'Caveat', cursive;
     font-size: large;
     font-weight: bold;
     margin-left: clamp(10px, 35vw, 2000px);
-    width: clamp(50px, 50vw, 300px);
+    /* width: clamp(50px, 50vw, 300px); */
+	width: 55vw;
 }
 
 

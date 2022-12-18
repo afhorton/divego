@@ -81,7 +81,7 @@ function Map() {
   };
 
   let center = useMemo(() => ({ lat: mapCoords[0], lng: mapCoords[1] }), []);
-  const zoom = useMemo(() => mapZoom, []);
+  let zoom = useMemo(() => mapZoom, []);
 
   let mapCenterTimoutHandler;
   let mapBoundariesTimoutHandler;
@@ -93,6 +93,7 @@ function Map() {
     minZoom: 4,
     mapTypeControl: false,
     fullscreenControl: false,
+	disableDefaultUI: true,
   }));
 
   const heatOpts = useMemo(() => ({
@@ -140,6 +141,12 @@ function Map() {
       handleMapUpdates();
     }
   };
+
+  useEffect(() => {
+    mapRef.setZoom(mapZoom)
+   handleMapZoomChange()
+  }, [mapZoom]);
+
 
   const handleBoundsChange = () => {
     if (mapRef) {
@@ -208,6 +215,7 @@ function Map() {
       onCenterChanged={handleMapCenterChange}
       onZoomChanged={handleMapZoomChange}
       onBoundsChanged={handleBoundsChange}
+	  disableDefaultUI={ true }
     >
       {masterSwitch && (
         <HeatmapLayer

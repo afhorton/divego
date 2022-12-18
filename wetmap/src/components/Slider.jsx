@@ -67,7 +67,7 @@ export default function MonthSlider() {
       </div>
       <Slider
         sx={{
-          color: "black",
+          color: "white",
           marginBottom: "-5px",
         }}
         aria-label="Custom marks"
