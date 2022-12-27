@@ -50,6 +50,7 @@ const PlacesAutoComplete = ({ setSelected }) => {
         onChange={(e) => setValue(e.target.value)}
         disabled={!ready}
         placeholder="Go to..."
+        style={{marginTop: "15px", marginLeft: "2px"}}
       />
       <ComboboxPopover className="popover">
         <ComboboxList className="poplist">

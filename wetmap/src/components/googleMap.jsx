@@ -143,8 +143,10 @@ function Map() {
   };
 
   useEffect(() => {
+    if (mapRef) {
     mapRef.setZoom(mapZoom)
    handleMapZoomChange()
+    }
   }, [mapZoom]);
 
 

@@ -207,6 +207,7 @@
     width: 80%;
     height: 130px;
     border-radius: 15px;
+    object-fit: cover;
 }
 
 .picSelectDiv {

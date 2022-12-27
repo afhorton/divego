@@ -36,7 +36,7 @@ import Lightbox from "react-image-lightbox";
 import "./mapPage.css";
 
 const animalSearchZone = (
-  <div style={{ marginLeft: "10px" }}>
+  <div style={{ marginLeft: "10px", marginTop: "7px" }}>
     <AnimalSearcher></AnimalSearcher>
   </div>
 );
@@ -258,7 +258,7 @@ const MapPage = React.memo(() => {
       </div>
 
       <div className="just-testing2">
-      {masterSwitch && (<div
+      <div
         className="colXrow1"
         style={{ display: "flex", flexDirection: "row" }}
       >
@@ -271,9 +271,9 @@ const MapPage = React.memo(() => {
         >
           <AddIcon />
         </ToggleButton>
-      </div>)}
+      </div>
 
-      {masterSwitch && (<div
+      <div
         className="colXrow2"
         style={{ display: "flex", flexDirection: "row" }}
       >
@@ -286,7 +286,7 @@ const MapPage = React.memo(() => {
         >
           <RemoveIcon />
         </ToggleButton>
-        </div>)}
+        </div>
         </div>
 
       {!masterSwitch && (<div

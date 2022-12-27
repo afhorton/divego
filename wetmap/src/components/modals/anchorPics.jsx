@@ -123,6 +123,7 @@ const AnchorPics = (props) => {
                             height: "108px",
                             marginLeft: "23%",
                             borderRadius: "10px",
+                            objectFit: "cover"
                           }}
                           ref={ref}
                           onClick={open}
