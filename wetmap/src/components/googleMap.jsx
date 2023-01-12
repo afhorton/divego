@@ -12,7 +12,7 @@ import { diveSitesFake, heatVals } from "./data/testdata";
 import anchorIcon from "../images/anchor11.png";
 import anchorClust from "../images/anchor3.png";
 import Manta from "../images/Manta32.png";
-import whale from "../images/icons8-spouting-whale-36.png";
+import gold from "../images/icons8-anchor-24.png";
 import {
   useMemo,
   useState,
@@ -45,6 +45,7 @@ import { diveSites } from "../supabaseCalls/diveSiteSupabaseCalls";
 // import { heatPoints } from "../axiosCalls/heatPointAxiosCalls";
 import { heatPoints } from "../supabaseCalls/heatPointSupabaseCalls";
 import Lightbox from "react-image-lightbox";
+import zIndex from "@mui/material/styles/zIndex";
 
 const LIB = ["visualization", "places"];
 
@@ -187,13 +188,13 @@ function Map() {
       });
       setMapZoom(12);
     }
-    if (selectedDiveSite.Latitude !== ""){
+    if (selectedDiveSite.Latitude !== "") {
       setTempMarker({
         lat: selectedDiveSite.Latitude,
         lng: selectedDiveSite.Longitude,
       });
     }
-    
+
     setTimeout(() => {
       setTempMarker(false);
     }, 2000);
@@ -247,19 +248,6 @@ function Map() {
       onBoundsChanged={handleBoundsChange}
       disableDefaultUI={true}
     >
-      {masterSwitch && (
-        <HeatmapLayer
-          data={heatpts}
-          options={heatOpts}
-          opacity={1}
-          radius={9}
-        ></HeatmapLayer>
-      )}
-
-      {tempMarker && (
-        <Marker position={tempMarker} icon={Manta}></Marker>
-      )}
-
       {masterSwitch && (
         <Collapse
           in={showGeoCoder}
@@ -325,6 +313,17 @@ function Map() {
             ></Marker>
           );
         })}
+
+      {masterSwitch && (
+        <HeatmapLayer
+          data={heatpts}
+          options={heatOpts}
+          opacity={1}
+          radius={9}
+        ></HeatmapLayer>
+      )}
+
+      {tempMarker && <Marker position={tempMarker} icon={gold}></Marker>}
 
       {!masterSwitch && (
         <Marker

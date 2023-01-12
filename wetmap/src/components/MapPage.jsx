@@ -20,6 +20,7 @@ import AnchorIcon from "@mui/icons-material/Anchor";
 import PhotoCameraIcon from "@mui/icons-material/PhotoCamera";
 import AddLocationAltIcon from "@mui/icons-material/AddLocationAlt";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
+import TravelExploreIcon from '@mui/icons-material/TravelExplore';
 import SettingsIcon from '@mui/icons-material/Settings';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
@@ -146,7 +147,7 @@ const MapPage = React.memo(() => {
             setShowAnimalSearch(!showAnimalSearch);
           }}
         >
-          <SearchIcon />
+          <TravelExploreIcon />
         </ToggleButton>
         <Collapse
           in={showAnimalSearch}
