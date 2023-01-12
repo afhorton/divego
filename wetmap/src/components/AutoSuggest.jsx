@@ -2,7 +2,7 @@ import React from "react";
 import { getAnimalNamesThatFit } from "../supabaseCalls/photoSupabaseCalls";
 // import { getAnimalNamesThatFit } from "../axiosCalls/photoAxiosCalls";
 import InputBase from "@mui/material/InputBase";
-import AutoSuggestListItem from "./AutoSuggestListItem";
+import AutoSuggestListItem from "./AnimalSuggestListItem";
 import "./autoSuggest.css";
 
 export default function AnimalAutoSuggest(props) {

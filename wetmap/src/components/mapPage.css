@@ -6,6 +6,12 @@
    height: 100%;
 }
 
+.selectorDiv{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .AutoSug{
     position: absolute;
     z-index: 2;

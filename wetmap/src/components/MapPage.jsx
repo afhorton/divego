@@ -34,6 +34,7 @@ import { SelectedPicContext } from "./contexts/selectPicContext";
 import { ZoomContext } from "./contexts/mapZoomContext";
 import Lightbox from "react-image-lightbox";
 import "./mapPage.css";
+import AnimalTopAutoSuggest from "./TopAutoSuggest";
 
 const animalSearchZone = (
   <div style={{ marginLeft: "10px", marginTop: "7px" }}>
@@ -112,8 +113,7 @@ const MapPage = React.memo(() => {
 				<div className="sliderDiv">
 					<MonthSlider />
 				</div>
-
-				<div className="selectorDiv">Selected: {animalVal}</div>
+				<div className="selectorDiv">Selected: <AnimalTopAutoSuggest /></div>
 			</div>
 		)}
 

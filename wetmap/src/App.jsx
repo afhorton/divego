@@ -36,7 +36,7 @@ function App() {
 
   const d = new Date();
   const [sliderVal, setSliderVal] = useState(d.getMonth() + 1);
-  const [animalVal, setAnimalVal] = useState("All");
+  const [animalVal, setAnimalVal] = useState("");
 
   const [showGeoCoder, setShowGeoCoder] = useState(false);
   const [showAnimalSearch, setShowAnimalSearch] = useState(false);
