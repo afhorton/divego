@@ -11,9 +11,15 @@ import Collapse from "@mui/material/Collapse";
 import { diveSitesFake, heatVals } from "./data/testdata";
 import anchorIcon from "../images/anchor11.png";
 import anchorClust from "../images/anchor3.png";
-import Manta from "../images/Manta32.png"
+import Manta from "../images/Manta32.png";
 import whale from "../images/icons8-spouting-whale-36.png";
-import { useMemo, useState, useContext, useEffect, useLayoutEffect } from "react";
+import {
+  useMemo,
+  useState,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+} from "react";
 import PlacesAutoComplete from "./PlacesAutocomplete";
 import { CoordsContext } from "./contexts/mapCoordsContext";
 import { ZoomContext } from "./contexts/mapZoomContext";
@@ -60,11 +66,13 @@ function Map() {
   const { mapZoom, setMapZoom } = useContext(ZoomContext);
   const { jump, setJump } = useContext(JumpContext);
   const { divesTog } = useContext(DiveSitesContext);
-  const { boundaries, setBoundaries}  = useContext(MapBoundsContext);
+  const { boundaries, setBoundaries } = useContext(MapBoundsContext);
   const { animalVal } = useContext(AnimalContext);
   const { sliderVal } = useContext(SliderContext);
   const { showGeoCoder, setShowGeoCoder } = useContext(GeoCoderContext);
-  const { selectedDiveSite, setSelectedDiveSite } = useContext(SelectedDiveSiteContext)
+  const { selectedDiveSite, setSelectedDiveSite } = useContext(
+    SelectedDiveSiteContext
+  );
   const { lightbox, setLightbox } = useContext(LightBoxContext);
   const { selectedPic } = useContext(SelectedPicContext);
 
@@ -74,6 +82,7 @@ function Map() {
 
   const [selected, setSelected] = useState(null);
   const { dragPin, setDragPin } = useContext(PinSpotContext);
+  const [tempMarker, setTempMarker] = useState({lat: null, lng: null});
 
   const [siteModal, setSiteModal] = useState(false);
 
@@ -94,7 +103,7 @@ function Map() {
     minZoom: 4,
     mapTypeControl: false,
     fullscreenControl: false,
-	disableDefaultUI: true,
+    disableDefaultUI: true,
   }));
 
   const heatOpts = useMemo(() => ({
@@ -112,7 +121,7 @@ function Map() {
     setHeatPts(formatHeatVals(filteredHeatPoints));
   };
 
-  useLayoutEffect( () => {
+  useLayoutEffect(() => {
     setMapCoords([center.lat, center.lng]);
     setMapZoom(zoom);
     handleMapUpdates();
@@ -145,11 +154,10 @@ function Map() {
 
   useEffect(() => {
     if (mapRef) {
-    mapRef.setZoom(mapZoom)
-   handleMapZoomChange()
+      mapRef.setZoom(mapZoom);
+      handleMapZoomChange();
     }
   }, [mapZoom]);
-
 
   const handleBoundsChange = () => {
     if (mapRef) {
@@ -170,6 +178,22 @@ function Map() {
       setJump(!jump);
     }
   }, [jump]);
+
+  useEffect(() => {
+    if (mapRef) {
+      mapRef.panTo({
+        lat: selectedDiveSite.Latitude,
+        lng: selectedDiveSite.Longitude,
+      });
+      // zoom: 12,
+    }
+    setTempMarker({lat: selectedDiveSite.Latitude, lng: selectedDiveSite.Longitude});
+
+    setTimeout(() => {
+      setTempMarker(null);
+    }, 2000);
+
+  }, [selectedDiveSite]);
 
   useEffect(async () => {
     handleMapUpdates();
@@ -199,14 +223,13 @@ function Map() {
   };
 
   const setupAnchorModal = (diveSiteName, lat, lng) => {
-
     setSelectedDiveSite({
       SiteName: diveSiteName,
       Latitude: lat,
       Longitude: lng,
-    })
-    setSiteModal(!siteModal)
-  }
+    });
+    setSiteModal(!siteModal);
+  };
 
   return (
     <GoogleMap
@@ -218,7 +241,7 @@ function Map() {
       onCenterChanged={handleMapCenterChange}
       onZoomChanged={handleMapZoomChange}
       onBoundsChanged={handleBoundsChange}
-	  disableDefaultUI={ true }
+      disableDefaultUI={true}
     >
       {masterSwitch && (
         <HeatmapLayer
@@ -228,6 +251,11 @@ function Map() {
           radius={9}
         ></HeatmapLayer>
       )}
+
+        <Marker
+          position={tempMarker}
+          icon={Manta}
+        ></Marker>
 
       {masterSwitch && (
         <Collapse
@@ -257,11 +285,17 @@ function Map() {
                 title={pointCount.toString() + " sites"}
                 icon={anchorClust}
                 onClick={() => {
-                  const expansionZoom = Math.min(supercluster.getClusterExpansionZoom(cluster.id),14);
-                  mapRef.setZoom(expansionZoom)
-                  mapRef.panTo({lat: latitude, lng: longitude});
-                  setMapCoords([mapRef.getCenter().lat(), mapRef.getCenter().lng()]);
-                  handleMapUpdates()
+                  const expansionZoom = Math.min(
+                    supercluster.getClusterExpansionZoom(cluster.id),
+                    14
+                  );
+                  mapRef.setZoom(expansionZoom);
+                  mapRef.panTo({ lat: latitude, lng: longitude });
+                  setMapCoords([
+                    mapRef.getCenter().lat(),
+                    mapRef.getCenter().lng(),
+                  ]);
+                  handleMapUpdates();
                 }}
               >
                 <div
@@ -270,11 +304,9 @@ function Map() {
                     height: `${10 + (pointCount / points.length) * 30}px`,
                     backgroundColor: "lightblue",
                   }}
-                  
                 >
                   {pointCount}
                 </div>
-                
               </Marker>
             );
           }
@@ -284,7 +316,9 @@ function Map() {
               position={{ lat: latitude, lng: longitude }}
               icon={anchorIcon}
               title={cluster.properties.siteID}
-              onClick={() => setupAnchorModal(cluster.properties.siteID, latitude, longitude)}
+              onClick={() =>
+                setupAnchorModal(cluster.properties.siteID, latitude, longitude)
+              }
             ></Marker>
           );
         })}
@@ -302,7 +336,7 @@ function Map() {
       <FormModal openup={siteModal} closeup={toggleSiteModal}>
         <AnchorPics closeup={toggleSiteModal} />
       </FormModal>
-{/* 
+      {/* 
       {lightbox && (
         <div className="boxLight">
           <Lightbox
@@ -311,7 +345,6 @@ function Map() {
           />
           </div>
         )} */}
-
     </GoogleMap>
   );
 }
