@@ -25,16 +25,16 @@ export default function AnimalSearcher() {
   const handleDiveSiteList = async () => {
     let diveSiteArray = [];
 
-    let minLat = boundaries[1];
-    let maxLat = boundaries[3];
+    if (boundaries && boundaries.length > 0) {
+      let minLat = boundaries[1];
+      let maxLat = boundaries[3];
 
-    let minLng = boundaries[0];
-    let maxLng = boundaries[2];
+      let minLng = boundaries[0];
+      let maxLng = boundaries[2];
 
-    diveSiteNames = null;
-    diveSiteArray = [];
+      diveSiteNames = null;
+      diveSiteArray = [];
 
-    if (boundaries.length > 0) {
       diveSiteNames = await diveSites({ minLat, maxLat, minLng, maxLng });
     }
 

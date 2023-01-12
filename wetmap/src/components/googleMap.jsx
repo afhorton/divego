@@ -82,7 +82,7 @@ function Map() {
 
   const [selected, setSelected] = useState(null);
   const { dragPin, setDragPin } = useContext(PinSpotContext);
-  const [tempMarker, setTempMarker] = useState({lat: null, lng: null});
+  const [tempMarker, setTempMarker] = useState(false);
 
   const [siteModal, setSiteModal] = useState(false);
 
@@ -185,14 +185,18 @@ function Map() {
         lat: selectedDiveSite.Latitude,
         lng: selectedDiveSite.Longitude,
       });
-      // zoom: 12,
+      setMapZoom(12);
     }
-    setTempMarker({lat: selectedDiveSite.Latitude, lng: selectedDiveSite.Longitude});
-
+    if (selectedDiveSite.Latitude !== ""){
+      setTempMarker({
+        lat: selectedDiveSite.Latitude,
+        lng: selectedDiveSite.Longitude,
+      });
+    }
+    
     setTimeout(() => {
-      setTempMarker(null);
+      setTempMarker(false);
     }, 2000);
-
   }, [selectedDiveSite]);
 
   useEffect(async () => {
@@ -252,10 +256,9 @@ function Map() {
         ></HeatmapLayer>
       )}
 
-        <Marker
-          position={tempMarker}
-          icon={Manta}
-        ></Marker>
+      {tempMarker && (
+        <Marker position={tempMarker} icon={Manta}></Marker>
+      )}
 
       {masterSwitch && (
         <Collapse

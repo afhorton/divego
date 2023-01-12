@@ -52,20 +52,20 @@ function App() {
 
   useLayoutEffect(() => {
     window.onload = async function () {
-      try {
-        const valuless = await localStorage.getItem("token");
-        const value = JSON.parse(valuless);
-        if (value !== null) {
-          if (value.session.refresh_token) {
-            let newSession = await sessionRefresh(value.session.refresh_token);
-            setActiveSession(newSession);
-          }
-        }
-        let sessionID = await sessionCheck();
-        await localStorage.removeItem("token");
-      } catch (error) {
-        console.log("no dice:", error);
-      }
+      // try {
+      //   const valuless = await localStorage.getItem("token");
+      //   const value = JSON.parse(valuless);
+      //   if (value !== null) {
+      //     if (value.session.refresh_token) {
+      //       let newSession = await sessionRefresh(value.session.refresh_token);
+      //       setActiveSession(newSession);
+      //     }
+      //   }
+      //   let sessionID = await sessionCheck();
+      //   await localStorage.removeItem("token");
+      // } catch (error) {
+      //   console.log("no dice:", error);
+      // }
 
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
