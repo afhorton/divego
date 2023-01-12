@@ -28,6 +28,7 @@ import { PinSpotContext } from "./contexts/pinSpotContext";
 import { SelectedDiveSiteContext } from "./contexts/selectedDiveSiteContext";
 import { LightBoxContext } from "./contexts/lightBoxContext";
 import { SelectedPicContext } from "./contexts/selectPicContext";
+import { MapBoundsContext } from "./contexts/mapBoundariesContext";
 import FormModal from "./modals/formModal";
 import AnchorPics from "./modals/anchorPics";
 import { newGPSBoundaries } from "../helpers/mapHelpers";
@@ -59,7 +60,7 @@ function Map() {
   const { mapZoom, setMapZoom } = useContext(ZoomContext);
   const { jump, setJump } = useContext(JumpContext);
   const { divesTog } = useContext(DiveSitesContext);
-  const [boundaries, setBoundaries] = useState(null);
+  const { boundaries, setBoundaries}  = useContext(MapBoundsContext);
   const { animalVal } = useContext(AnimalContext);
   const { sliderVal } = useContext(SliderContext);
   const { showGeoCoder, setShowGeoCoder } = useContext(GeoCoderContext);
