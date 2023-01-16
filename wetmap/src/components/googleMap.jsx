@@ -186,7 +186,7 @@ function Map() {
         lat: selectedDiveSite.Latitude,
         lng: selectedDiveSite.Longitude,
       });
-      setMapZoom(12);
+      setMapZoom(14);
     }
     if (selectedDiveSite.Latitude !== "") {
       setTempMarker({
