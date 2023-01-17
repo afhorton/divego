@@ -1,5 +1,6 @@
 import { SelectedDiveSiteContext } from "../contexts/selectedDiveSiteContext";
 import { SliderContext } from "../contexts/sliderContext";
+import { AnimalContext } from "../contexts/animalContext";
 import { useState, useContext, useEffect } from "react";
 import { siteGPSBoundaries } from "../../helpers/mapHelpers";
 import { getPhotosforAnchor } from "../../supabaseCalls/photoSupabaseCalls";
@@ -16,6 +17,7 @@ import "./anchorPics.css";
 const AnchorPics = (props) => {
   const { selectedDiveSite } = useContext(SelectedDiveSiteContext);
   const { sliderVal } = useContext(SliderContext);
+  const { animalVal } = useContext(AnimalContext);
   const [monthVal, setMonthVal] = useState("");
   const [anchorPics, setAnchorPics] = useState([]);
 
@@ -28,6 +30,7 @@ const AnchorPics = (props) => {
 
     try {
       const photos = await getPhotosforAnchor({
+        animalVal,
         sliderVal,
         minLat,
         maxLat,
