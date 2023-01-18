@@ -140,10 +140,10 @@ function setupMapValues(zoomLevel, latitude, longitude, diveSites, heatValues, s
 
 function siteGPSBoundaries(Lat, Lng) {
 
-  let minLat = Lat - 0.005;
-  let maxLat = Lat + 0.005;
-  let minLng = Lng - 0.005;
-  let maxLng = Lng + 0.005;
+  let minLat = Lat - 0.0025;
+  let maxLat = Lat + 0.0025;
+  let minLng = Lng - 0.0025;
+  let maxLng = Lng + 0.0025;
 
 
 return { minLat, maxLat, minLng, maxLng };
