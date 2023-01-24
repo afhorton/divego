@@ -42,14 +42,14 @@ const SiteSubmitter = (props) => {
 
   let UserId;
 
-  useEffect(() => {
-    const getUser = async () => {
-      UserId = await userCheck();
-      setFormVals({ ...formVals, UserID: UserId.id });
-    };
+  // useEffect(() => {
+  //   const getUser = async () => {
+  //     UserId = await userCheck();
+  //     setFormVals({ ...formVals, UserID: UserId.id });
+  //   };
   
-    getUser();
-  }, []);
+  //   getUser();
+  // }, []);
 
   const [uploadedFile, setUploadedFile] = useState({
     selectedFile: null,
@@ -219,7 +219,7 @@ const SiteSubmitter = (props) => {
           {noGPSZone}
         </Collapse>
 
-        <div className="inputbox">
+        <div className="inputbox" >
           <FormGroup>
             <InputBase
               id="standard-basic"
@@ -241,7 +241,7 @@ const SiteSubmitter = (props) => {
                   color: "#F0EEEB",
                   width: "170px",
                   borderRadius: "5px",
-                },
+                }
               }}
             />
           </FormGroup>

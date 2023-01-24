@@ -7,7 +7,6 @@ import { getPhotosforAnchor } from "../../supabaseCalls/photoSupabaseCalls";
 // import { getPhotosforAnchor } from "../../axiosCalls/photoAxiosCalls";
 import "photoswipe/dist/photoswipe.css";
 import FlagIcon from '@mui/icons-material/Flag';
-
 import { Gallery, Item } from "react-photoswipe-gallery";
 
 import "./anchorPics.css";

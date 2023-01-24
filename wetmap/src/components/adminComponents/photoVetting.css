@@ -1,26 +1,32 @@
 
 #photoList {
     border: 1px solid gray;
-    width: 745px;
+    width: 80%;
+    min-width: 700px;
     border-radius: 10px;
     box-shadow: 3px 4px 5px 1px rgb(99, 99, 99);
+    margin: auto;
 }
 
 .listHeader {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     margin-bottom: -30px;
+    width: 96%;
+    min-width: 550px;
 }
 
 .photoLI {
     margin-bottom: 10px;
+    width: 100%;
 }
 
 #photoContainer {
     display: flex;
     flex-direction: row;
     height: 100px;
-    width: 680px;
+    width: 95%;
     border: 1px solid black;
     margin-left: 10px;
     border-radius: 10px;
@@ -29,7 +35,9 @@
 #photoValidator {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   height: 100px;
+  width: 100%;
 }
 
 .imageBox {

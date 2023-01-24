@@ -28,6 +28,8 @@ import Fab from "@mui/material/Fab";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import "./photoVetting.css";
+import FlagIcon from '@mui/icons-material/Flag';
+import { Gallery, Item } from "react-photoswipe-gallery";
 
 // let filePath = "/src/components/uploads/";
 
@@ -118,7 +120,32 @@ const PhotoListItem = (props) => {
       <div id="photoContainer">
         <Form id="photoValidator">
           <div className="imageBox">
-            <img src={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${formVals.photo}`} height="100px" className="Itag"></img>
+          <Gallery>
+                  <div>
+                    <Item
+                      original={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${formVals.photo}`}
+                      thumbnail={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${formVals.photo}`}
+                      width="992"
+                      height="558"
+                      style={{ borderRadius: "10px" }}
+                    >
+                      {({ ref, open }) => (
+                        <img
+                          style={{
+                            width: "175px",
+                            height: "100px",
+                            marginLeft: "0%",
+                            borderRadius: "10px 0px 0px 10px",
+                            objectFit: "cover"
+                          }}
+                          ref={ref}
+                          onClick={open}
+                          src={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${formVals.photo}`}
+                        />
+                      )}
+                    </Item>
+                  </div>
+                </Gallery>
           </div>
           <div className="infoBox">
             <div className="labelInputCombo">
