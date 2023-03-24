@@ -6,7 +6,7 @@ import { siteGPSBoundaries } from "../../helpers/mapHelpers";
 import { getPhotosforAnchor } from "../../supabaseCalls/photoSupabaseCalls";
 // import { getPhotosforAnchor } from "../../axiosCalls/photoAxiosCalls";
 import "photoswipe/dist/photoswipe.css";
-import FlagIcon from '@mui/icons-material/Flag';
+import FlagIcon from "@mui/icons-material/Flag";
 import { Gallery, Item } from "react-photoswipe-gallery";
 
 import "./anchorPics.css";
@@ -19,7 +19,6 @@ const AnchorPics = (props) => {
   const { animalVal } = useContext(AnimalContext);
   const [monthVal, setMonthVal] = useState("");
   const [anchorPics, setAnchorPics] = useState([]);
-
 
   const filterAnchorPhotos = async () => {
     let { minLat, maxLat, minLng, maxLng } = siteGPSBoundaries(
@@ -96,18 +95,28 @@ const AnchorPics = (props) => {
   return (
     <div className="masterDiv">
       <h3 className="DiveSiteLabel">{selectedDiveSite.SiteName}</h3>
+      <div className="flagContainer">
       <div className="monthlyLabel">{monthVal} Sightings</div>
-
+      <a
+        className="atagDS"
+        href={`mailto:DiveGo2022@gmail.com?subject=Reporting%20issue%20with%20Dive%20Site:%20"${selectedDiveSite.SiteName}"%20at%20Latitude:%20${selectedDiveSite.Latitude}%20Longitude:%20${selectedDiveSite.Longitude}&body=Type%20of%20issue:%0D%0A%0D%0A%0D%0A%0D%0A1)%20Dive%20site%20name%20not%20correct%0D%0A%0D%0A(Please%20provide%20correct%20dive%20site%20name%20and%20we%20will%20correct%20the%20record)%0D%0A%0D%0A%0D%0A%0D%0A2)%20Dive%20site%20GPS%20coordinates%20are%20not%20correct%0D%0A%0D%0A(Please%20provide%20a%20correct%20latitude%20and%20longitude%20and%20we%20will%20update%20the%20record)`}
+      >
+        <FlagIcon sx={{ color: "maroon" }} />
+      </a>
+      </div>
       <div className="picScoll">
         {anchorPics &&
           anchorPics.map((pic) => {
             return (
               <div key={pic.id} className="pictureBox">
-                <div className="micro"> 
-                <a className="atag" href={`mailto:DiveGo2022@gmail.com?subject=Reporting%20issue%20with%20picture:%20"${pic.label}"%20${pic.photoFile}&body=Type%20of%20issue:%0D%0A%0D%0A%0D%0A%0D%0A1)%20Animal%20name%20not%20correct%0D%0A%0D%0A(Please%20provide%20correct%20animal%20name%20and%20we%20will%20correct%20the%20record)%0D%0A%0D%0A%0D%0A%0D%0A2)%20Copy%20write%20image%20claim%0D%0A%0D%0A(Please%20provide%20proof%20that%20you%20own%20the%20submitted%20photo%20and%20we%20will%20remove%20it%20as%20you%20have%20requested)`}>
-                  <FlagIcon sx={{color: "maroon", marginBottom: "-28px"}}/>
-                </a>
-                <h4 className="animalLabel">{pic.label}</h4>
+                <div className="micro">
+                  <a
+                    className="atag"
+                    href={`mailto:DiveGo2022@gmail.com?subject=Reporting%20issue%20with%20picture:%20"${pic.label}"%20${pic.photoFile}&body=Type%20of%20issue:%0D%0A%0D%0A%0D%0A%0D%0A1)%20Animal%20name%20not%20correct%0D%0A%0D%0A(Please%20provide%20correct%20animal%20name%20and%20we%20will%20correct%20the%20record)%0D%0A%0D%0A%0D%0A%0D%0A2)%20Copy%20write%20image%20claim%0D%0A%0D%0A(Please%20provide%20proof%20that%20you%20own%20the%20submitted%20photo%20and%20we%20will%20remove%20it%20as%20you%20have%20requested)`}
+                  >
+                    <FlagIcon sx={{ color: "maroon", marginBottom: "-28px" }} />
+                  </a>
+                  <h4 className="animalLabel">{pic.label}</h4>
                 </div>
                 <Gallery>
                   <div>
@@ -125,7 +134,7 @@ const AnchorPics = (props) => {
                             height: "108px",
                             marginLeft: "23%",
                             borderRadius: "10px",
-                            objectFit: "cover"
+                            objectFit: "cover",
                           }}
                           ref={ref}
                           onClick={open}

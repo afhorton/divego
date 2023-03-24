@@ -17,8 +17,22 @@
     font-size: larger;
     margin-left: 20px;
     color: #F0EEEB;
-    margin-top: -25px;
 }
+
+.flagContainer{
+    margin-top: -30px;
+    width: 260px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    vertical-align: middle;
+}
+
+.atagDS{
+   margin-left: 70px;
+}
+
 .picScoll{
     max-height: 310px;
     overflow-y: hidden;

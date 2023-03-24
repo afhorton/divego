@@ -100,7 +100,7 @@ function Map() {
   const options = useMemo(() => ({
     mapTypeId: "satellite",
     clickableIcons: false,
-    maxZoom: 14,
+    maxZoom: 16,
     minZoom: 4,
     mapTypeControl: false,
     fullscreenControl: false,
@@ -109,7 +109,7 @@ function Map() {
 
   const heatOpts = useMemo(() => ({
     opacity: 1,
-    radius: 20,
+    radius: 16,
   }));
 
   const handleMapUpdates = async () => {
@@ -186,7 +186,7 @@ function Map() {
         lat: selectedDiveSite.Latitude,
         lng: selectedDiveSite.Longitude,
       });
-      setMapZoom(14);
+      setMapZoom(16);
     }
     if (selectedDiveSite.Latitude !== "") {
       setTempMarker({
@@ -210,7 +210,7 @@ function Map() {
     points,
     bounds: boundaries,
     zoom: mapZoom,
-    options: { radius: 75, maxZoom: 12 },
+    options: { radius: 75, maxZoom: 16 },
   });
 
   const handlePinLoad = (marker) => {

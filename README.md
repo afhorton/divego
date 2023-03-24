@@ -3,7 +3,7 @@ Built with the dream of making every dive hold the chance for an unforgettable e
 
 
 # Live at
-https://divego.netlify.app/
+https://divegoweb.netlify.app/
 
 Login instructions for guests:
 
