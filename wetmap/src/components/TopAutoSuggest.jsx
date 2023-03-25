@@ -6,6 +6,7 @@ import InputBase from "@mui/material/InputBase";
 import AutoTopSuggestListItem from "./TopSuggestListItem";
 import { AnimalMultiSelectContext } from "./contexts/animalMultiSelectContext";
 import { AnimalContext } from "../components/contexts/animalContext";
+import AnimalTag from "./AnimalTags";
 import "./topSuggest.css";
 
 export default function AnimalTopAutoSuggest(props) {
@@ -88,12 +89,17 @@ export default function AnimalTopAutoSuggest(props) {
 
       <div
         style={{
+          display: "flex",
+          flexDirection: "column",
           height: "auto",
           zIndex: 10,
           position: "absolute",
           marginTop: "15px",
-          marginLeft: "5%",
-          // backgroundColor: "pink"
+          marginLeft: "-8%",
+          // backgroundColor: "pink",
+          alignItems: "center",
+          justifyContent: "center",
+          alignContent: "center"
         }}
       >
         {list.length > 0 &&
@@ -108,9 +114,11 @@ export default function AnimalTopAutoSuggest(props) {
               />
             );
           })}
-            {animalVal.length > 0 && list.length === 0 && (
+        {animalVal.length > 0 && list.length === 0 && (
           <div className="noAnimals">
-            <p style={{fontSize: 15, fontWeight: "bolder"}}>No Sea Creatures Found</p>
+            <p style={{ fontSize: 15, fontWeight: "bolder" }}>
+              No Sea Creatures Found
+            </p>
           </div>
         )}
         {animalVal.length > 0 && (
@@ -118,7 +126,22 @@ export default function AnimalTopAutoSuggest(props) {
             <h4>Close</h4>
           </div>
         )}
-       
+
+      <div className="tagContainer">
+        {animalMultiSelection.length > 0 && (
+           animalMultiSelection.map((animal) => {
+                return (
+                  <AnimalTag
+                    key={animal}
+                    animalMultiSelection={animalMultiSelection}
+                    setAnimalMultiSelection={setAnimalMultiSelection}
+                    animalName={animal}
+                  />
+                );
+              })
+        )}
+       </div>
+
       </div>
     </div>
   );

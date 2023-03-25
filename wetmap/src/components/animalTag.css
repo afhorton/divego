@@ -1,0 +1,17 @@
+.tagBody{
+    display: flex;
+    flex-Direction: row;
+    border: 2px gold solid;
+    border-radius: 15px;
+    background-color: white;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 10px;
+    padding-left: 10px;
+    margin: 5px;
+    height: 25px;
+}
+
+.xButton{
+    margin-top: 2px;
+}

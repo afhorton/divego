@@ -17,6 +17,8 @@
     padding: 2px;
     padding-top: 3px;
     padding-bottom: 3px;
+    align-self: center;
+    justify-self: center;
 }
 
 .suggestItemMulti:hover{
@@ -28,6 +30,8 @@
     padding: 2px;
     padding-top: 3px;
     padding-bottom: 3px;
+    align-self: center;
+    justify-self: center;
 }
 
 .suggestItemMultiSelected{
@@ -39,10 +43,13 @@
     padding: 2px;
     padding-top: 3px;
     padding-bottom: 3px;
+    align-self: center;
+    justify-self: center;
 }
 
 .menuButton{
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     color: #9B884E;
@@ -55,6 +62,9 @@
     padding: 2px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    align-self: center;
+    justify-self: center;
+    margin-bottom: 2%;
 }
 
 .noAnimals{
@@ -69,4 +79,15 @@
     width: 170px;
     padding: 2px;
 
+}
+
+.tagContainer{
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    min-height: 50px;
+    max-width: 400px;
+    margin-top: 0%;
+    flex-wrap: wrap;
+    justify-content: center;
 }
