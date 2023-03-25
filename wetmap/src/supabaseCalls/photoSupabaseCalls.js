@@ -65,7 +65,7 @@ if (data) {
     .from("photos")
     .select()
     .ilike("label", "%" + value.animalVal + "%")
-    .eq("month", value.sliderVal)
+    // .eq("month", value.sliderVal)
     .gte("latitude", value.minLat)
     .gte("longitude", value.minLng)
     .lte("latitude", value.maxLat)
@@ -126,6 +126,28 @@ if (data) {
     .select()
     .filter('label', 'in', '(' + creatureListFinal + ')')
     .eq("month", value.sliderVal)
+    .gte("latitude", value.minLat)
+    .gte("longitude", value.minLng)
+    .lte("latitude", value.maxLat)
+    .lte("longitude", value.maxLng)
+
+  if (error) {
+    console.log("couldn't do it,", error);
+    return [];
+  }
+
+  if (data) {
+    return data;
+  }
+  }; 
+
+
+
+  export const getPhotosforMapArea = async (value) => {
+
+    const { data, error } = await supabase
+    .from("photos")
+    .select()
     .gte("latitude", value.minLat)
     .gte("longitude", value.minLng)
     .lte("latitude", value.maxLat)

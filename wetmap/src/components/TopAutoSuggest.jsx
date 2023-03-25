@@ -32,7 +32,7 @@ export default function AnimalTopAutoSuggest(props) {
   }, [animalMultiSelection]);
 
   const handleChange = async (e) => {
-    setAnimalVal(e.target.value);
+    // setAnimalVal(e.target.value);
 
     if (e.target.value.length > 0) {
       let fitleredListOfAnimals = await getAnimalMultiSelect(e.target.value);
@@ -57,7 +57,7 @@ export default function AnimalTopAutoSuggest(props) {
       setPlacehodler("Select Sea Creatures");
     }
     setList([]);
-    setAnimalVal("");
+    // setAnimalVal("");
   };
 
   return (
@@ -115,18 +115,18 @@ export default function AnimalTopAutoSuggest(props) {
               />
             );
           })}
-        {animalVal.length > 0 && list.length === 0 && (
+        {/* {animalVal.length > 0 && list.length === 0 && (
           <div className="noAnimals">
             <p style={{ fontSize: 15, fontWeight: "bolder" }}>
               No Sea Creatures Found
             </p>
           </div>
-        )}
-        {animalVal.length > 0 && (
+        )} */}
+        {/* {animalVal.length > 0 && (
           <div className="menuButton" onClick={handleClear}>
             <h4>Close</h4>
           </div>
-        )}
+        )} */}
 
       <div className="tagContainer">
         {animalMultiSelection.length > 0 && (

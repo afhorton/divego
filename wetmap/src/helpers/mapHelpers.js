@@ -1,4 +1,5 @@
 function newGPSBoundaries(Zoom, Lat, Lng) {
+
   let minLat;
   let maxLat;
 
@@ -6,6 +7,14 @@ function newGPSBoundaries(Zoom, Lat, Lng) {
   let maxLng;
 
   switch (Zoom) {
+
+    case 3:
+      minLat = Lat - 50;
+      maxLat = Lat + 50;
+      minLng = Lng - 80;
+      maxLng = Lng + 80;
+      break;
+
     case 4:
       minLat = Lat - 35;
       maxLat = Lat + 35;
@@ -81,6 +90,20 @@ function newGPSBoundaries(Zoom, Lat, Lng) {
       maxLat = Lat + 0.02;
       minLng = Lng - 0.06;
       maxLng = Lng + 0.06;
+      break;
+
+    case 15:
+      minLat = Lat - 0.01;
+      maxLat = Lat + 0.01;
+      minLng = Lng - 0.03;
+      maxLng = Lng + 0.03;
+      break;
+
+    case 16:
+      minLat = Lat - 0.005;
+      maxLat = Lat + 0.005;
+      minLng = Lng - 0.015;
+      maxLng = Lng + 0.015;
       break;
   }
 

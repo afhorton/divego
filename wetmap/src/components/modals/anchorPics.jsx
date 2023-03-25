@@ -1,11 +1,12 @@
 import { SelectedDiveSiteContext } from "../contexts/selectedDiveSiteContext";
 import { SliderContext } from "../contexts/sliderContext";
 import { AnimalContext } from "../contexts/animalContext";
+import { MapBoundsContext } from "../contexts/mapBoundariesContext";
 import { AnimalMultiSelectContext } from "../contexts/animalMultiSelectContext";
 import { useState, useContext, useEffect } from "react";
 import { siteGPSBoundaries } from "../../helpers/mapHelpers";
-import { getPhotosforAnchor, getPhotosforAnchorMulti } from "../../supabaseCalls/photoSupabaseCalls";
-// import { getPhotosforAnchor } from "../../axiosCalls/photoAxiosCalls";
+import { getPhotosforAnchor, getPhotosforAnchorMulti, getPhotosforMapArea } from "../../supabaseCalls/photoSupabaseCalls";
+import { picClickheatPoints } from "../../supabaseCalls/heatPointSupabaseCalls";
 import "photoswipe/dist/photoswipe.css";
 import FlagIcon from "@mui/icons-material/Flag";
 import { Gallery, Item } from "react-photoswipe-gallery";
@@ -18,24 +19,20 @@ const AnchorPics = (props) => {
   const { selectedDiveSite } = useContext(SelectedDiveSiteContext);
   const { sliderVal } = useContext(SliderContext);
   const { animalVal } = useContext(AnimalContext);
+  const { boundaries, setBoundaries } = useContext(MapBoundsContext);
   const { animalMultiSelection } = useContext(AnimalMultiSelectContext);
   const [monthVal, setMonthVal] = useState("");
   const [anchorPics, setAnchorPics] = useState([]);
 
   const filterAnchorPhotos = async () => {
-    let { minLat, maxLat, minLng, maxLng } = siteGPSBoundaries(
-      selectedDiveSite.Latitude,
-      selectedDiveSite.Longitude
-    );
-
+    
     try {
-      const photos = await getPhotosforAnchorMulti({
-        animalMultiSelection,
-        sliderVal,
-        minLat,
-        maxLat,
-        minLng,
-        maxLng,
+      const photos = await getPhotosforAnchor({
+        animalVal,
+        minLat: boundaries[1],
+        maxLat: boundaries[3],
+        minLng: boundaries[0],
+        maxLng: boundaries[2],
       });
       if (photos) {
         setAnchorPics(photos);

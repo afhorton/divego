@@ -144,3 +144,36 @@ export const multiHeatPoints = async (GPSBubble, slider, animalArray) => {
     return data;
   }
   }
+
+  export const picClickheatPoints = async (GPSBubble, animal) => {
+
+
+    // console.log("HIHIHIH", GPSBubble, animal)
+    let animalVal
+    if (animal === "All"){
+      animalVal = ""
+    } else {
+      animalVal = animal
+    }
+  
+    // console.log("gogogog", GPSBubble, animalVal)
+
+    const { data, error } = await supabase
+      .from("heatPoints")
+      .select()
+      .ilike("animal", "%" + animalVal + "%")
+      .gte("lat", GPSBubble.minLat)
+      .gte("lng", GPSBubble.minLng)
+      .lte("lat", GPSBubble.maxLat)
+      .lte("lng", GPSBubble.maxLng)
+  
+    if (error) {
+      console.log("couldn't do it,", error);
+      return [];
+    }
+  
+    if (data) {
+      return data;
+    }
+    }
+  
