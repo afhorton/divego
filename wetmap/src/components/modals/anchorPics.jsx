@@ -1,9 +1,10 @@
 import { SelectedDiveSiteContext } from "../contexts/selectedDiveSiteContext";
 import { SliderContext } from "../contexts/sliderContext";
 import { AnimalContext } from "../contexts/animalContext";
+import { AnimalMultiSelectContext } from "../contexts/animalMultiSelectContext";
 import { useState, useContext, useEffect } from "react";
 import { siteGPSBoundaries } from "../../helpers/mapHelpers";
-import { getPhotosforAnchor } from "../../supabaseCalls/photoSupabaseCalls";
+import { getPhotosforAnchor, getPhotosforAnchorMulti } from "../../supabaseCalls/photoSupabaseCalls";
 // import { getPhotosforAnchor } from "../../axiosCalls/photoAxiosCalls";
 import "photoswipe/dist/photoswipe.css";
 import FlagIcon from "@mui/icons-material/Flag";
@@ -17,6 +18,7 @@ const AnchorPics = (props) => {
   const { selectedDiveSite } = useContext(SelectedDiveSiteContext);
   const { sliderVal } = useContext(SliderContext);
   const { animalVal } = useContext(AnimalContext);
+  const { animalMultiSelection } = useContext(AnimalMultiSelectContext);
   const [monthVal, setMonthVal] = useState("");
   const [anchorPics, setAnchorPics] = useState([]);
 
@@ -27,8 +29,8 @@ const AnchorPics = (props) => {
     );
 
     try {
-      const photos = await getPhotosforAnchor({
-        animalVal,
+      const photos = await getPhotosforAnchorMulti({
+        animalMultiSelection,
         sliderVal,
         minLat,
         maxLat,

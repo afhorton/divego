@@ -27,6 +27,7 @@ import { JumpContext } from "./contexts/jumpContext";
 import { DiveSitesContext } from "./contexts/diveSitesContext";
 import { SliderContext } from "./contexts/sliderContext";
 import { AnimalContext } from "./contexts/animalContext";
+import { AnimalMultiSelectContext } from "./contexts/animalMultiSelectContext";
 import { GeoCoderContext } from "./contexts/geoCoderContext";
 import { PinContext } from "./contexts/pinContext";
 import { MasterContext } from "./contexts/masterContext";
@@ -43,7 +44,7 @@ import { setupClusters } from "../helpers/clusterHelpers";
 // import { diveSites } from "../axiosCalls/diveSiteAxiosCalls";
 import { diveSites } from "../supabaseCalls/diveSiteSupabaseCalls";
 // import { heatPoints } from "../axiosCalls/heatPointAxiosCalls";
-import { heatPoints } from "../supabaseCalls/heatPointSupabaseCalls";
+import { heatPoints, multiHeatPoints } from "../supabaseCalls/heatPointSupabaseCalls";
 import Lightbox from "react-image-lightbox";
 import zIndex from "@mui/material/styles/zIndex";
 
@@ -69,6 +70,7 @@ function Map() {
   const { divesTog } = useContext(DiveSitesContext);
   const { boundaries, setBoundaries } = useContext(MapBoundsContext);
   const { animalVal } = useContext(AnimalContext);
+  const { animalMultiSelection } = useContext(AnimalMultiSelectContext);
   const { sliderVal } = useContext(SliderContext);
   const { showGeoCoder, setShowGeoCoder } = useContext(GeoCoderContext);
   const { selectedDiveSite, setSelectedDiveSite } = useContext(
@@ -118,7 +120,13 @@ function Map() {
     let filteredDiveSites = await diveSites(GPSBubble);
     !divesTog ? setnewSites([]) : setnewSites(filteredDiveSites);
 
-    let filteredHeatPoints = await heatPoints(GPSBubble, sliderVal, animalVal);
+    // let filteredHeatPoints = await heatPoints(GPSBubble, sliderVal, animalVal);
+
+    let filteredHeatPoints = await multiHeatPoints(
+      GPSBubble,
+      sliderVal,
+      animalMultiSelection
+    );
     setHeatPts(formatHeatVals(filteredHeatPoints));
   };
 

@@ -5,12 +5,19 @@ const AutoTopSuggestListItem = (props) => {
   const { setList, setAnimalVal, animalVal, name } = props;
 
   const handleSelect = (name) => {
-    setAnimalVal(name)
-    setList([]);
+
+    if (animalVal.includes(name)){
+      setAnimalVal(animalVal.filter(item => item !== name));
+    } else {
+      setAnimalVal([...animalVal, name]);
+    }
   };
 
+  console.log("getting", animalVal)
+
+
   return (
-    <li id={name} className="suggestItem" onClick={() => handleSelect(name)}>
+    <li id={name} className={animalVal.includes(name) ? "suggestItemMultiSelected" :"suggestItemMulti"} onClick={() => handleSelect(name)}>
       <div id="SuggestionBox">
         <div id="listItems">
           <strong>{name}</strong>

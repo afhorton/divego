@@ -1,11 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { getAnimalNamesThatFit } from "../supabaseCalls/photoSupabaseCalls";
 // import { getAnimalNamesThatFit } from "../axiosCalls/photoAxiosCalls";
+import { getAnimalMultiSelect } from "../supabaseCalls/photoSupabaseCalls";
 import InputBase from "@mui/material/InputBase";
 import AutoTopSuggestListItem from "./TopSuggestListItem";
+import { AnimalMultiSelectContext } from "./contexts/animalMultiSelectContext";
 import { AnimalContext } from "../components/contexts/animalContext";
 import "./topSuggest.css";
-import { borderColor } from "@mui/system";
 
 export default function AnimalTopAutoSuggest(props) {
   // const { setPin, pin, setList, list } = props;
@@ -13,12 +14,27 @@ export default function AnimalTopAutoSuggest(props) {
   const { animalVal, setAnimalVal } = useContext(AnimalContext);
   const [list, setList] = useState([]);
 
+  const [placehodler, setPlacehodler] = useState("Select Sea Creatures");
+
+  const { animalMultiSelection, setAnimalMultiSelection } = useContext(
+    AnimalMultiSelectContext
+  );
+
+  useEffect(() => {
+    if (animalMultiSelection.length > 0) {
+      setPlacehodler(
+        "Selected (" + animalMultiSelection.length.toString() + ") Creatures"
+      );
+    } else {
+      setPlacehodler("Select Sea Creatures");
+    }
+  }, [animalMultiSelection]);
+
   const handleChange = async (e) => {
     setAnimalVal(e.target.value);
-    // setPin({ ...pin, Animal: e.target.value });
 
     if (e.target.value.length > 0) {
-      let fitleredListOfAnimals = await getAnimalNamesThatFit(e.target.value);
+      let fitleredListOfAnimals = await getAnimalMultiSelect(e.target.value);
       let animalArray = [];
       fitleredListOfAnimals.forEach((animal) => {
         if (!animalArray.includes(animal.label)) {
@@ -31,11 +47,23 @@ export default function AnimalTopAutoSuggest(props) {
     }
   };
 
+  const handleClear = () => {
+    if (animalMultiSelection.length > 0) {
+      setPlacehodler(
+        "Selected (" + animalMultiSelection.length.toString() + ") Creatures"
+      );
+    } else {
+      setPlacehodler("Select Sea Creatures");
+    }
+    setList([]);
+    setAnimalVal("");
+  };
+
   return (
     <div style={{ width: "100%", paddingRight: "2%" }}>
       <InputBase
         className="suggestInput"
-        placeholder="All the fish in the sea"
+        placeholder={placehodler}
         name="Animal"
         value={animalVal}
         onChange={handleChange}
@@ -64,7 +92,8 @@ export default function AnimalTopAutoSuggest(props) {
           zIndex: 10,
           position: "absolute",
           marginTop: "15px",
-          width: "100%",
+          marginLeft: "5%",
+          // backgroundColor: "pink"
         }}
       >
         {list.length > 0 &&
@@ -73,12 +102,23 @@ export default function AnimalTopAutoSuggest(props) {
               <AutoTopSuggestListItem
                 key={animal}
                 name={animal}
-                animalVal={animalVal}
-                setAnimalVal={setAnimalVal}
+                animalVal={animalMultiSelection}
+                setAnimalVal={setAnimalMultiSelection}
                 setList={setList}
               />
             );
           })}
+            {animalVal.length > 0 && list.length === 0 && (
+          <div className="noAnimals">
+            <p style={{fontSize: 15, fontWeight: "bolder"}}>No Sea Creatures Found</p>
+          </div>
+        )}
+        {animalVal.length > 0 && (
+          <div className="menuButton" onClick={handleClear}>
+            <h4>Close</h4>
+          </div>
+        )}
+       
       </div>
     </div>
   );

@@ -7,3 +7,66 @@
     width: 100%;
     margin-left: 5%;
 }
+
+.suggestItemMulti{
+    /* height: 30px; */
+    width: 170px;
+    list-style: none;
+    background-color: white;
+    color: black;
+    padding: 2px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.suggestItemMulti:hover{
+    /* height: 30px; */
+    width: 170px;
+    list-style: none;
+    background-color: white;
+    color: grey;
+    padding: 2px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.suggestItemMultiSelected{
+    /* height: 30px; */
+    width: 170px;
+    list-style: none;
+    background-color: lightgray;
+    color: grey;
+    padding: 2px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.menuButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #9B884E;
+    background-color: #33586A;
+    font-family: 'Permanent Marker', cursive;
+    font-Size: 12;
+    opacity: 1;
+    height: 35px;
+    width: 170px;
+    padding: 2px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.noAnimals{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: maroon;
+    background-color: white;
+    font-family: 'Indie Flower';
+    opacity: 1;
+    height: 35px;
+    width: 170px;
+    padding: 2px;
+
+}
