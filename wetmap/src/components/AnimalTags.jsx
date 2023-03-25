@@ -20,7 +20,9 @@ const AnimalTag = (props) => {
             fontFamily: "Permanent Marker",
             fontSize: 12,
             marginRight: 10,
-            marginLeft: 2
+            marginLeft: 2,
+            marginTop: 0,
+            marginBottom: 0,
           }}
         >
           {animalName}

@@ -95,11 +95,12 @@ export default function AnimalTopAutoSuggest(props) {
           zIndex: 10,
           position: "absolute",
           marginTop: "15px",
-          marginLeft: "-8%",
+          marginLeft: "-4vw",
           // backgroundColor: "pink",
           alignItems: "center",
           justifyContent: "center",
-          alignContent: "center"
+          alignContent: "center",
+          width: "30vw",
         }}
       >
         {list.length > 0 &&
