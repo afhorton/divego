@@ -2,27 +2,27 @@ import { supabase } from "../supabase";
 
 export const diveSites = async (GPSBubble) => {
 
-  let minLat, maxLat, minLng, maxLng;
+  let minLatx, maxLatx, minLngx, maxLngx;
 
-  if (GPSBubble.maxLat) {
-    minLat = GPSBubble.minLat;
-    maxLat = GPSBubble.maxLat;
-    minLng = GPSBubble.minLng;
-    maxLng = GPSBubble.maxLng;
+  if (GPSBubble.minLat) {
+    minLatx = GPSBubble.minLat;
+    maxLatx = GPSBubble.maxLat;
+    minLngx = GPSBubble.minLng;
+    maxLngx = GPSBubble.maxLng;
   } else {
-    minLat = GPSBubble.southWest.latitude;
-    maxLat = GPSBubble.northEast.latitude;
-    minLng = GPSBubble.southWest.longitude;
-    maxLng = GPSBubble.northEast.longitude;
+    minLatx = GPSBubble.southWest.latitude;
+    maxLatx = GPSBubble.northEast.latitude;
+    minLngx = GPSBubble.southWest.longitude;
+    maxLngx = GPSBubble.northEast.longitude;
   }
 
   const { data, error } = await supabase
   .from("diveSites")
   .select()
-  .gte('lat', minLat)
-  .gte('lng', minLng)
-  .lte('lat', maxLat)
-  .lte('lng', maxLng)
+  .gte('lat', minLatx)
+  .gte('lng', minLngx)
+  .lte('lat', maxLatx)
+  .lte('lng', maxLngx)
 
 if (error) {
   console.log("couldn't do it,", error)

@@ -138,11 +138,11 @@
 }
 */
 .col1row8 {
-    width: 50px;
+    width: auto;
     z-index: 2;
     position: absolute;
     top: 25px;
-    left: 10px;
+    right: 10px;
 }
 
 

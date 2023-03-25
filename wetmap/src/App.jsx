@@ -26,6 +26,7 @@ import { SelectedPicContext } from "./components/contexts/selectPicContext";
 import { LightBoxContext } from "./components/contexts/lightBoxContext";
 import { SessionContext } from "./components/contexts/sessionContext";
 import { MapBoundsContext } from "./components/contexts/mapBoundariesContext";
+import { HeatPointsContext } from "./components/contexts/heatPointsContext";
 import {
   sessionCheck,
   userCheck,
@@ -52,6 +53,8 @@ function App() {
   const [dragPin, setDragPin] = useState({});
 
   const [animalMultiSelection, setAnimalMultiSelection] = useState([]);
+
+  const [heatpts, setHeatPts] = useState([]);
 
   useLayoutEffect(() => {
     window.onload = async function () {
@@ -128,6 +131,7 @@ function App() {
 
   return (
     <div className="App" onLoad={onLayoutRootView}>
+      <HeatPointsContext.Provider value={{heatpts, setHeatPts}}>
       <AnimalMultiSelectContext.Provider
         value={{ animalMultiSelection, setAnimalMultiSelection }}
       >
@@ -218,6 +222,7 @@ function App() {
           </LightBoxContext.Provider>
         </MapBoundsContext.Provider>
       </AnimalMultiSelectContext.Provider>
+      </HeatPointsContext.Provider>
     </div>
   );
 }

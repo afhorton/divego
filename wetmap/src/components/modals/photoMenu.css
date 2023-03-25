@@ -1,0 +1,58 @@
+.masterDiv2{
+  width: auto;
+  height: 50%;
+}
+
+.picContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.areLabel{
+  color: white;
+  margin-left: -10px;
+  font-family: 'Indie Flower';
+  font-size: 29px;
+  margin-bottom: 5px;
+  font-weight: bolder;
+}
+
+.picScoll2{
+  overflow-y: hidden;
+  overflow-x: hidden;
+  max-height: 68vh;
+  padding-right: 20px
+  /* width: 270px; */
+}
+
+.picScoll2:hover{
+  overflow-y: auto;
+  /* width: 255px; */
+}
+
+.pictureBoxA{
+  /* display: flex; */
+  flex-direction: column;
+  width: auto;
+}
+
+
+.micros{
+  background-color: #355D71;
+  /* margin-left: 39px; */
+  color: white;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 30px;
+  width: 192px;
+}
+
+.animalLabelArea{
+  padding-top: 5px;
+  align-self: center;
+  justify-content: center;
+  font-family: 'Indie Flower';
+  
+}

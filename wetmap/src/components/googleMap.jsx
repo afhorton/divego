@@ -35,6 +35,7 @@ import { PinSpotContext } from "./contexts/pinSpotContext";
 import { SelectedDiveSiteContext } from "./contexts/selectedDiveSiteContext";
 import { LightBoxContext } from "./contexts/lightBoxContext";
 import { SelectedPicContext } from "./contexts/selectPicContext";
+import { HeatPointsContext } from "./contexts/heatPointsContext";
 import { MapBoundsContext } from "./contexts/mapBoundariesContext";
 import FormModal from "./modals/formModal";
 import AnchorPics from "./modals/anchorPics";
@@ -44,7 +45,7 @@ import { setupClusters } from "../helpers/clusterHelpers";
 // import { diveSites } from "../axiosCalls/diveSiteAxiosCalls";
 import { diveSites } from "../supabaseCalls/diveSiteSupabaseCalls";
 // import { heatPoints } from "../axiosCalls/heatPointAxiosCalls";
-import { heatPoints, multiHeatPoints } from "../supabaseCalls/heatPointSupabaseCalls";
+import { heatPoints, multiHeatPoints, picClickheatPoints } from "../supabaseCalls/heatPointSupabaseCalls";
 import Lightbox from "react-image-lightbox";
 import zIndex from "@mui/material/styles/zIndex";
 
@@ -76,11 +77,13 @@ function Map() {
   const { selectedDiveSite, setSelectedDiveSite } = useContext(
     SelectedDiveSiteContext
   );
+  const { heatpts, setHeatPts } = useContext(HeatPointsContext);
+
   const { lightbox, setLightbox } = useContext(LightBoxContext);
   const { selectedPic } = useContext(SelectedPicContext);
 
   const [newSites, setnewSites] = useState([]);
-  const [heatpts, setHeatPts] = useState(formatHeatVals([]));
+  // const [heatpts, setHeatPts] = useState(formatHeatVals([]));
   const [mapRef, setMapRef] = useState(null);
 
   const [selected, setSelected] = useState(null);
@@ -103,7 +106,7 @@ function Map() {
     mapTypeId: "satellite",
     clickableIcons: false,
     maxZoom: 16,
-    minZoom: 4,
+    minZoom: 3,
     mapTypeControl: false,
     fullscreenControl: false,
     disableDefaultUI: true,
@@ -115,18 +118,19 @@ function Map() {
   }));
 
   const handleMapUpdates = async () => {
+
     let GPSBubble = newGPSBoundaries(mapZoom, mapCoords[0], mapCoords[1]);
 
     let filteredDiveSites = await diveSites(GPSBubble);
     !divesTog ? setnewSites([]) : setnewSites(filteredDiveSites);
 
-    // let filteredHeatPoints = await heatPoints(GPSBubble, sliderVal, animalVal);
+    let filteredHeatPoints = await picClickheatPoints(GPSBubble, animalVal);
 
-    let filteredHeatPoints = await multiHeatPoints(
-      GPSBubble,
-      sliderVal,
-      animalMultiSelection
-    );
+    // let filteredHeatPoints = await multiHeatPoints(
+    //   GPSBubble,
+    //   sliderVal,
+    //   animalMultiSelection
+    // );
     setHeatPts(formatHeatVals(filteredHeatPoints));
   };
 

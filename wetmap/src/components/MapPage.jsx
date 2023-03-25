@@ -10,6 +10,7 @@ import SiteSubmitter from "./modals/siteSubmitter";
 import HowToGuide from "./modals/howToGuide";
 import Settings from "./modals/setting";
 import AnimalSearcher from "./AnimalSearch";
+import PhotoMenu from "./modals/photoMenu";
 import { useState, useContext } from "react";
 import Button from "@mui/material/Button";
 import ToggleButton from "@mui/material/ToggleButton";
@@ -211,26 +212,9 @@ const MapPage = React.memo(() => {
         </ToggleButton>
       </div>)}
 	  </div>
-      {/* {masterSwitch && (<div className="col1row8">
-        <ToggleButton
-          sx={{
-            "&.Mui-selected": { backgroundColor: "pink" },
-            "&.Mui-selected:hover": { backgroundColor: "pink" },
-            "&:hover": { backgroundColor: "lightgrey" },
-            backgroundColor: "lightgrey",
-            height: "40px",
-            width: "40px",
-            border: "2px solid black",
-          }}
-          value="check"
-          selected={gearModal}
-          onChange={() => {
-            setGearModal(toggleGearModal);
-          }}
-        >
-          <SettingsIcon />
-        </ToggleButton>
-      </div>)} */}
+      {masterSwitch && (<div className="col1row8">
+        <PhotoMenu/>
+      </div>)}
 
       <div className="col1rowB">
         <Collapse
