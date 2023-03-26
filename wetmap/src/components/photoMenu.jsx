@@ -130,6 +130,7 @@ const PhotoMenu = (props) => {
       </div> */}
       <div className="picScoll2">
       <AliceCarousel
+      controlsStrategy="alternate"
       responsive={{
           0: {items: 1},
           500: {items: 2},
@@ -142,7 +143,8 @@ const PhotoMenu = (props) => {
           1900: {items: 9},
           2100: {items: 10},
       }}
-        mouseTracking items={areaPics &&
+        mouseTracking 
+        items={areaPics &&
           areaPics.map((pic) => {
             return (
               <PhotoMenuListItem 
