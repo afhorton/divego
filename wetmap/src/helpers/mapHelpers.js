@@ -9,10 +9,10 @@ function newGPSBoundaries(Zoom, Lat, Lng) {
   switch (Zoom) {
 
     case 3:
-      minLat = Lat - 50;
-      maxLat = Lat + 50;
-      minLng = Lng - 80;
-      maxLng = Lng + 80;
+      minLat = Lat - 70;
+      maxLat = Lat + 70;
+      minLng = Lng - 112;
+      maxLng = Lng + 112;
       break;
 
     case 4:

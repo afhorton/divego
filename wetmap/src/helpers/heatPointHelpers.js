@@ -13,6 +13,7 @@ function formatHeatVals(heatValues) {
         };
         newArr.push(newpt);
       });
+
     return newArr;
   }
 

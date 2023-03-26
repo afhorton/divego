@@ -124,7 +124,7 @@ function Map() {
     let filteredDiveSites = await diveSites(GPSBubble);
     !divesTog ? setnewSites([]) : setnewSites(filteredDiveSites);
 
-    let filteredHeatPoints = await picClickheatPoints(GPSBubble, animalVal);
+    let filteredHeatPoints = await multiHeatPoints(GPSBubble, animalVal);
 
     // let filteredHeatPoints = await multiHeatPoints(
     //   GPSBubble,

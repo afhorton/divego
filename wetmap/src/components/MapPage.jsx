@@ -10,7 +10,7 @@ import SiteSubmitter from "./modals/siteSubmitter";
 import HowToGuide from "./modals/howToGuide";
 import Settings from "./modals/setting";
 import AnimalSearcher from "./AnimalSearch";
-import PhotoMenu from "./modals/photoMenu";
+import PhotoMenu from "./photoMenu";
 import { useState, useContext } from "react";
 import Button from "@mui/material/Button";
 import ToggleButton from "@mui/material/ToggleButton";

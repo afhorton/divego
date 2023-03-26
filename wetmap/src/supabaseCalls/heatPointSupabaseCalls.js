@@ -1,12 +1,11 @@
 import { supabase } from "../supabase";
 
 export const heatPoints = async (GPSBubble, slider, animal) => {
-
-  let animalVal
-  if (animal === "All"){
-    animalVal = ""
+  let animalVal;
+  if (animal === "All") {
+    animalVal = "";
   } else {
-    animalVal = animal
+    animalVal = animal;
   }
 
   const { data, error } = await supabase
@@ -17,7 +16,7 @@ export const heatPoints = async (GPSBubble, slider, animal) => {
     .gte("lat", GPSBubble.minLat)
     .gte("lng", GPSBubble.minLng)
     .lte("lat", GPSBubble.maxLat)
-    .lte("lng", GPSBubble.maxLng)
+    .lte("lng", GPSBubble.maxLng);
 
   if (error) {
     console.log("couldn't do it,", error);
@@ -27,7 +26,7 @@ export const heatPoints = async (GPSBubble, slider, animal) => {
   if (data) {
     return data;
   }
-  }
+};
 
 export const getLoneHeatPoint = async (values) => {
   const { data, error } = await supabase
@@ -39,7 +38,7 @@ export const getLoneHeatPoint = async (values) => {
     .gte("lng", values.minLng)
     .lte("lat", values.maxLat)
     .lte("lng", values.maxLng)
-    .limit(1)
+    .limit(1);
 
   if (error) {
     console.log("couldn't do it,", error);
@@ -72,8 +71,7 @@ export const insertHeatPoint = async (values) => {
 };
 
 export const updateHeatPoint = async (values) => {
-
-  let newWeight = values.weight + 1
+  let newWeight = values.weight + 1;
 
   const { data, error } = await supabase
     .from("heatPoints")
@@ -90,8 +88,7 @@ export const updateHeatPoint = async (values) => {
   }
 };
 
-export const multiHeatPoints = async (GPSBubble, slider, animalArray) => {
-
+export const multiHeatPoints = async (GPSBubble, animalArray) => {
   let minLat, maxLat, minLng, maxLng;
 
   if (GPSBubble.maxLat) {
@@ -106,34 +103,19 @@ export const multiHeatPoints = async (GPSBubble, slider, animalArray) => {
     maxLng = GPSBubble.northEast.longitude;
   }
 
-  let creatureList 
-  animalArray.forEach(creature => {
- 
-    if (creatureList === undefined){
-      creatureList =  creature + ","
-    } else{
-      creatureList = creatureList + creature + ","
+  let creatureList;
+  if (animalArray.length === 0) {
+    creatureList = "";
 
-  }
-    
-  });
-
-  let creatureListFinal
-
-  if(creatureList !== undefined){
-    creatureListFinal = creatureList.slice(0,-1)
- 
-  }
-  
-  const { data, error } = await supabase
+    const { data, error } = await supabase
     .from("heatPoints")
     .select()
-    .filter('animal', 'in', '(' + creatureListFinal + ')')
-    .eq("month", slider)
-    .gte("lat", minLat)
-    .gte("lng", minLng)
-    .lte("lat", maxLat)
-    .lte("lng", maxLng)
+    .ilike("animal", "%" + creatureList + "%")
+    // .eq("month", slider)
+    .gte("lat", GPSBubble.minLat)
+    .gte("lng", GPSBubble.minLng)
+    .lte("lat", GPSBubble.maxLat)
+    .lte("lng", GPSBubble.maxLng);
 
   if (error) {
     console.log("couldn't do it,", error);
@@ -143,37 +125,70 @@ export const multiHeatPoints = async (GPSBubble, slider, animalArray) => {
   if (data) {
     return data;
   }
+
+  } else {
+    animalArray.forEach((creature) => {
+      if (creatureList === undefined) {
+        creatureList = creature + ",";
+      } else {
+        creatureList = creatureList + creature + ",";
+      }
+    });
+  
+  let creatureListFinal;
+
+  if (creatureList !== undefined) {
+    creatureListFinal = creatureList.slice(0, -1);
   }
 
-  export const picClickheatPoints = async (GPSBubble, animal) => {
+  const { data, error } = await supabase
+    .from("heatPoints")
+    .select()
+    .filter('animal', 'in', '(' +  creatureListFinal + ')')
+    // .eq("month", slider)
+    .gte("lat", minLat)
+    .gte("lng", minLng)
+    .lte("lat", maxLat)
+    .lte("lng", maxLng);
 
+  if (error) {
+    console.log("couldn't do it,", error);
+    return [];
+  }
 
-    // console.log("HIHIHIH", GPSBubble, animal)
-    let animalVal
-    if (animal === "All"){
-      animalVal = ""
-    } else {
-      animalVal = animal
-    }
-  
-    // console.log("gogogog", GPSBubble, animalVal)
+  if (data) {
+    return data;
+  }
+}
+ 
+};
 
-    const { data, error } = await supabase
-      .from("heatPoints")
-      .select()
-      .ilike("animal", "%" + animalVal + "%")
-      .gte("lat", GPSBubble.minLat)
-      .gte("lng", GPSBubble.minLng)
-      .lte("lat", GPSBubble.maxLat)
-      .lte("lng", GPSBubble.maxLng)
-  
-    if (error) {
-      console.log("couldn't do it,", error);
-      return [];
-    }
-  
-    if (data) {
-      return data;
-    }
-    }
-  
+export const picClickheatPoints = async (GPSBubble, animal) => {
+  // console.log("HIHIHIH", GPSBubble, animal)
+  let animalVal;
+  if (animal === "All") {
+    animalVal = "";
+  } else {
+    animalVal = animal;
+  }
+
+  // console.log("gogogog", GPSBubble, animalVal)
+
+  const { data, error } = await supabase
+    .from("heatPoints")
+    .select()
+    .ilike("animal", "%" + animalVal + "%")
+    .gte("lat", GPSBubble.minLat)
+    .gte("lng", GPSBubble.minLng)
+    .lte("lat", GPSBubble.maxLat)
+    .lte("lng", GPSBubble.maxLng);
+
+  if (error) {
+    console.log("couldn't do it,", error);
+    return [];
+  }
+
+  if (data) {
+    return data;
+  }
+};
