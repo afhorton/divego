@@ -22,41 +22,48 @@ export default function Histogram() {
   }, [animalVal, boundaries]);
 
   const getHistogramData = async () => {
-    try {
-      const historgramData = await getHistoData({
-        animals: animalVal,
-        minLat: boundaries[1],
-        maxLat: boundaries[3],
-        minLng: boundaries[0],
-        maxLng: boundaries[2],
-      });
 
-      let i = 1;
-      let dataArray = [];
-      let maxVal;
-      let percentArr;
-
-      for (i = 1; i < 13; i++) {
-        historgramData.forEach((dataPoint) => {
-          if (dataPoint.month === i) {
-            dataArray.push(dataPoint.num);
-          }
+    if (boundaries){
+      try {
+        const historgramData = await getHistoData({
+          animals: animalVal,
+          minLat: boundaries[1],
+          maxLat: boundaries[3],
+          minLng: boundaries[0],
+          maxLng: boundaries[2],
         });
-        if (dataArray.length < i) {
-          dataArray.push(0);
+  
+        let i = 1;
+        let dataArray = [];
+        let maxVal;
+        let percentArr;
+  
+        if (historgramData){
+          for (i = 1; i < 13; i++) {
+            historgramData.forEach((dataPoint) => {
+              if (dataPoint.month === i) {
+                dataArray.push(dataPoint.num);
+              }
+            });
+            if (dataArray.length < i) {
+              dataArray.push(0);
+            }
+          }
+          maxVal = dataArray.reduce((a, b) => Math.max(a, b), -Infinity);
+          if (maxVal === 0) {
+            percentArr = dataArray;
+          } else {
+            percentArr = dataArray.map((val) => (val / maxVal) * 100);
+          }
+    
+          setHistoData(percentArr);
         }
+       
+      } catch (e) {
+        console.log({ title: "Error", message: e.message });
       }
-      maxVal = dataArray.reduce((a, b) => Math.max(a, b), -Infinity);
-      if (maxVal === 0) {
-        percentArr = dataArray;
-      } else {
-        percentArr = dataArray.map((val) => (val / maxVal) * 100);
-      }
-
-      setHistoData(percentArr);
-    } catch (e) {
-      console.log({ title: "Error", message: e.message });
     }
+    
   };
 
   return (

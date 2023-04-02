@@ -4,8 +4,7 @@ import "./picUploader.css";
 import InputBase from '@mui/material/InputBase';
 import Button from "@mui/material/Button";
 import exifr from "exifr";
-import Autosuggest from "react-autosuggest";
-import AnimalAutoSuggest from "../AutoSuggest";
+import AnimalAutoSuggest from "../autoSuggest/autoSuggest";
 import { useNavigate } from "react-router-dom";
 import { MasterContext } from "../contexts/masterContext";
 import { PinContext } from "../contexts/pinContext";
@@ -22,7 +21,6 @@ import { uploadphoto } from "../../supabaseCalls/uploadSupabaseCalls";
 import { removePhoto } from "../../supabaseCalls/uploadSupabaseCalls";
 // import { removePhoto } from "../../axiosCalls/uploadAxiosCalls";
 import { getAnimalNamesThatFit } from "../../axiosCalls/photoAxiosCalls";
-import AnimalSearchForModal from "./AnimalSearchModal";
 import { userCheck } from "../../supabaseCalls/authenticateSupabaseCalls";
 
 let filePath1 = "./wetmap/src/components/uploads/";

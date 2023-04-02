@@ -2,7 +2,7 @@ import React from "react";
 import "./logo.css";
 
 
-export default function Homeo(props) {
+export default function Logo(props) {
   const { setShowAdminPortal, showAdminPortal } = props;
 
   return (

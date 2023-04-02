@@ -11,9 +11,9 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
-import { JumpContext } from "./contexts/jumpContext";
-import { GeoCoderContext } from "./contexts/geoCoderContext";
-import { CoordsContext } from "./contexts/mapCoordsContext";
+import { JumpContext } from "../contexts/jumpContext";
+import { GeoCoderContext } from "../contexts/geoCoderContext";
+import { CoordsContext } from "../contexts/mapCoordsContext";
 
 const PlacesAutoComplete = ({ setSelected }) => {
   const { jump, setJump } = useContext(JumpContext);

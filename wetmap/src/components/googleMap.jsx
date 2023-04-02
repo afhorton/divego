@@ -20,7 +20,7 @@ import {
   useEffect,
   useLayoutEffect,
 } from "react";
-import PlacesAutoComplete from "./PlacesAutocomplete";
+import PlacesAutoComplete from "./locationSearch/placesAutocomplete";
 import { CoordsContext } from "./contexts/mapCoordsContext";
 import { ZoomContext } from "./contexts/mapZoomContext";
 import { JumpContext } from "./contexts/jumpContext";

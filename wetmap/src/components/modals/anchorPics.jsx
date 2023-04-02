@@ -2,25 +2,18 @@ import { SelectedDiveSiteContext } from "../contexts/selectedDiveSiteContext";
 import { SliderContext } from "../contexts/sliderContext";
 import { AnimalContext } from "../contexts/animalContext";
 import { MapBoundsContext } from "../contexts/mapBoundariesContext";
-import { AnimalMultiSelectContext } from "../contexts/animalMultiSelectContext";
 import { useState, useContext, useEffect } from "react";
-import { siteGPSBoundaries } from "../../helpers/mapHelpers";
-import { getPhotosforAnchor, getPhotosforAnchorMulti, getPhotosforMapArea } from "../../supabaseCalls/photoSupabaseCalls";
-import { picClickheatPoints } from "../../supabaseCalls/heatPointSupabaseCalls";
+import { getPhotosforAnchor } from "../../supabaseCalls/photoSupabaseCalls";
 import "photoswipe/dist/photoswipe.css";
 import FlagIcon from "@mui/icons-material/Flag";
 import { Gallery, Item } from "react-photoswipe-gallery";
-
 import "./anchorPics.css";
 
-// let filePath = "/src/components/uploads/";
-
-const AnchorPics = (props) => {
+const AnchorPics = () => {
   const { selectedDiveSite } = useContext(SelectedDiveSiteContext);
   const { sliderVal } = useContext(SliderContext);
   const { animalVal } = useContext(AnimalContext);
-  const { boundaries, setBoundaries } = useContext(MapBoundsContext);
-  const { animalMultiSelection } = useContext(AnimalMultiSelectContext);
+  const { boundaries } = useContext(MapBoundsContext);
   const [monthVal, setMonthVal] = useState("");
   const [anchorPics, setAnchorPics] = useState([]);
 

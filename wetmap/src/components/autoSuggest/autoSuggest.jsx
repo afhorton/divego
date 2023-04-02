@@ -1,11 +1,9 @@
 import React from "react";
-import { getAnimalNamesThatFit } from "../supabaseCalls/photoSupabaseCalls";
-// import { getAnimalNamesThatFit } from "../axiosCalls/photoAxiosCalls";
+import { getAnimalNamesThatFit } from "../../supabaseCalls/photoSupabaseCalls";
 import InputBase from "@mui/material/InputBase";
-import AutoSuggestListItem from "./AnimalSuggestListItem";
+import AutoSuggestListItem from "./animalSuggestListItem";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import "./autoSuggest.css";
-import { positions } from "@mui/system";
 
 export default function AnimalAutoSuggest(props) {
   const { setPin, pin, setList, list, clearAnimal } = props;
@@ -44,8 +42,6 @@ export default function AnimalAutoSuggest(props) {
             height: "10px",
             color: "#F0EEEB",
             width: "130px",
-            // borderRadius: "10px",
-            // boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)",
             marginLeft: "0px",
             paddingRight: "10px",
             paddingLeft: "0px",

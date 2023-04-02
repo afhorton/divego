@@ -1,5 +1,5 @@
-import { Container, Form, FormGroup, Label, Input } from "reactstrap";
-import { useState, useContext } from "react";
+import { Container, Form, Label } from "reactstrap";
+import { useContext } from "react";
 import { signOut } from "../../supabaseCalls/authenticateSupabaseCalls";
 import { SessionContext } from "..//contexts/sessionContext";
 import "./settings.css";

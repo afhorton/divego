@@ -36,27 +36,4 @@ const AnimalTag = (props) => {
   );
 };
 
-// const styles = StyleSheet.create({
-//   tagBody:{
-//     flexDirection: "row",
-//     borderWidth: 1,
-//     borderRadius: 10,
-//     borderColor: "gold",
-//     backgroundColor: "white",
-//     height: 25,
-//     marginRight: 5,
-//     marginBottom: 5,
-//   },
-//   animalTag:{
-//     flexDirection: "row",
-//     marginTop: 1,
-//     marginLeft: 3
-//   },
-//   xButton:{
-//     marginTop: 1,
-//     marginRight: 3,
-//     marginBottom: 4
-//   }
-// });
-
 export default AnimalTag;

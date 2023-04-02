@@ -1,5 +1,5 @@
 import React from "react";
-import Homeo from "./Home";
+import Logo from "./logo/logo";
 import Home from "./googleMap";
 import FormModal from "./modals/formModal";
 import FormGuideModal from "./modals/formGuideModal";
@@ -10,7 +10,7 @@ import SiteSubmitter from "./modals/siteSubmitter";
 import HowToGuide from "./modals/howToGuide";
 import Settings from "./modals/setting";
 import AnimalSearcher from "./AnimalSearch";
-import PhotoMenu from "./photoMenu";
+import PhotoMenu from "./photoMenu/photoMenu";
 import { useState, useContext } from "react";
 import Button from "@mui/material/Button";
 import ToggleButton from "@mui/material/ToggleButton";
@@ -36,7 +36,7 @@ import { SelectedPicContext } from "./contexts/selectPicContext";
 import { ZoomContext } from "./contexts/mapZoomContext";
 import Lightbox from "react-image-lightbox";
 import "./mapPage.css";
-import AnimalTopAutoSuggest from "./TopAutoSuggest";
+import AnimalTopAutoSuggest from "./animalTags/animalTagContainer";
 import Histogram from "./histogram/histogramBody";
 
 const animalSearchZone = (
@@ -222,7 +222,7 @@ const MapPage = React.memo(() => {
         >
           {adminPortalZone}
         </Collapse>
-        <Homeo
+        <Logo
           setShowAdminPortal={setShowAdminPortal}
           showAdminPortal={showAdminPortal}
         />

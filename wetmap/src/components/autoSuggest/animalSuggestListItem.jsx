@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./autoSuggest.css";
 
 const AutoSuggestListItem = (props) => {

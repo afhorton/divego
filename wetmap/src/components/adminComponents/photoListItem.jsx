@@ -2,36 +2,23 @@ import { useState, useEffect } from "react";
 import { Form, Input, Label } from "reactstrap";
 import { photoWaits } from "../../supabaseCalls/photoWaitSupabaseCalls";
 import { insertphoto } from "../../supabaseCalls/photoSupabaseCalls";
-// import { insertphoto } from "../../axiosCalls/photoAxiosCalls";
 import { removePhoto } from "../../supabaseCalls/uploadSupabaseCalls";
 import {
   grabPhotoWaitById,
   deletePhotoWait,
 } from "../../supabaseCalls/photoWaitSupabaseCalls";
-// import {
-//   grabPhotoWaitById,
-//   deletePhotoWait,
-// } from "../../axiosCalls/photoWaitAxiosCalls";
 import {
   getLoneHeatPoint,
   insertHeatPoint,
   updateHeatPoint,
 } from "../../supabaseCalls/heatPointSupabaseCalls";
-// import {
-//   getLoneHeatPoint,
-//   insertHeatPoint,
-//   updateHeatPoint,
-// } from "../../axiosCalls/heatPointAxiosCalls";
 import { siteGPSBoundaries } from "../../helpers/mapHelpers";
 import { scrapeMonthNumber } from "../../helpers/heatPointHelpers";
 import Fab from "@mui/material/Fab";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import "./photoVetting.css";
-import FlagIcon from '@mui/icons-material/Flag';
 import { Gallery, Item } from "react-photoswipe-gallery";
-
-// let filePath = "/src/components/uploads/";
 
 const PhotoListItem = (props) => {
   const { key, id, photoFile, animal, date, lat, lng, setPhotoWait } = props;

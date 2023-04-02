@@ -9,7 +9,6 @@ import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 import { exifGPSHelper } from "../../helpers/exifGPSHelpers";
 import Collapse from "@mui/material/Collapse";
 import { insertDiveSiteWaits } from "../../supabaseCalls/diveSiteWaitSupabaseCalls";
-// import { insertDiveSiteWaits } from "../../axiosCalls/diveSiteWaitAxiosCalls";
 import { userCheck } from "../../supabaseCalls/authenticateSupabaseCalls";
 
 const noGPSZone = (
@@ -194,9 +193,7 @@ const SiteSubmitter = (props) => {
           <FormGroup>
             <InputBase
               id="standard-basic"
-              // label="Site Name"
               placeholder="Site Name"
-              // variant="standard"
               type="text"
               name="Site"
               onChange={handleChange}
@@ -226,9 +223,7 @@ const SiteSubmitter = (props) => {
           <FormGroup>
             <InputBase
               id="standard-basic"
-              // label="Latitude"
               placeholder="Latitude"
-              // variant="standard"
               type="decimal"
               name="Latitude"
               value={formVals.Latitude}
@@ -255,9 +250,7 @@ const SiteSubmitter = (props) => {
           <FormGroup>
             <InputBase
               id="standard-basic"
-              // label="Longitude"
               placeholder="Longitude"
-              // variant="standard"
               type="decimal"
               name="Longitude"
               value={formVals.Longitude}

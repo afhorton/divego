@@ -1,8 +1,6 @@
-import { useState } from "react";
 import "./photoMenu.css";
 
 const handleDragStart = (e) => e.preventDefault();
-
 
 const PhotoMenuListItem = (props) => {
   const { id, setAnimalVal, animalVal, name, photoURL } = props;
