@@ -61,81 +61,14 @@ export default function AnimalTopAutoSuggest(props) {
   };
 
   return (
-    <div style={{ width: "100%", paddingRight: "2%" }}>
-      <InputBase
-        className="suggestInput"
-        placeholder={placehodler}
-        name="Animal"
-        value={animalVal}
-        onChange={handleChange}
-        inputProps={{
-          style: {
-            textAlign: "center",
-            fontFamily: "Indie Flower",
-            fontWeight: "bolder",
-            textOverflow: "ellipsis",
-            backgroundColor: "#33586A",
-            height: "15px",
-            paddingTop: "6px",
-            paddingBottom: "4px",
-            color: "#FFFFFF",
-            width: "100%",
-            borderRadius: "10px",
-            borderColor: "grey",
-            border: "0.5px solid grey",
-          },
-        }}
-      ></InputBase>
-
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          height: "auto",
-          zIndex: 10,
-          position: "absolute",
-          marginTop: "15px",
-          marginLeft: "-4vw",
-          // backgroundColor: "pink",
-          alignItems: "center",
-          justifyContent: "center",
-          alignContent: "center",
-          width: "30vw",
-        }}
-      >
-        {list.length > 0 &&
-          list.map((animal) => {
-            return (
-              <AutoTopSuggestListItem
-                key={animal}
-                name={animal}
-                animalVal={animalMultiSelection}
-                setAnimalVal={setAnimalMultiSelection}
-                setList={setList}
-              />
-            );
-          })}
-        {/* {animalVal.length > 0 && list.length === 0 && (
-          <div className="noAnimals">
-            <p style={{ fontSize: 15, fontWeight: "bolder" }}>
-              No Sea Creatures Found
-            </p>
-          </div>
-        )} */}
-        {/* {animalVal.length > 0 && (
-          <div className="menuButton" onClick={handleClear}>
-            <h4>Close</h4>
-          </div>
-        )} */}
-
       <div className="tagContainer">
-        {animalMultiSelection.length > 0 && (
-           animalMultiSelection.map((animal) => {
+        {animalVal.length > 0 && (
+           animalVal.map((animal) => {
                 return (
                   <AnimalTag
                     key={animal}
-                    animalMultiSelection={animalMultiSelection}
-                    setAnimalMultiSelection={setAnimalMultiSelection}
+                    animalMultiSelection={animalVal}
+                    setAnimalMultiSelection={setAnimalVal}
                     animalName={animal}
                   />
                 );
@@ -143,7 +76,5 @@ export default function AnimalTopAutoSuggest(props) {
         )}
        </div>
 
-      </div>
-    </div>
   );
 }

@@ -37,6 +37,7 @@ import { ZoomContext } from "./contexts/mapZoomContext";
 import Lightbox from "react-image-lightbox";
 import "./mapPage.css";
 import AnimalTopAutoSuggest from "./TopAutoSuggest";
+import Histogram from "./histogram/histogramBody";
 
 const animalSearchZone = (
   <div style={{ marginLeft: "10px", marginTop: "7px" }}>
@@ -112,10 +113,11 @@ const MapPage = React.memo(() => {
     <div className="mappagemaster">
 		{masterSwitch && (
 			<div className="col2rowT">
-				<div className="sliderDiv">
+				{/* <div className="sliderDiv">
 					<MonthSlider />
-				</div>
-				<div className="selectorDiv">Selected: <AnimalTopAutoSuggest /></div>
+				</div> */}
+        <AnimalTopAutoSuggest />
+				{/* <div className="selectorDiv">Selected: </div> */}
 			</div>
 		)}
 
@@ -230,7 +232,9 @@ const MapPage = React.memo(() => {
         />
       </div>
 
-      {/* masterSwitch && (<div className="col2rowB">Selected: {animalVal}</div>) */}
+      {masterSwitch && (<div className="col2rowB">
+        <Histogram/>
+        </div>)}
 
      <div>
         <Home

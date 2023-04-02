@@ -162,3 +162,17 @@ if (data) {
     return data;
   }
   }; 
+
+  export const getHistoData = async (values) => {
+
+    const { data, error } = await supabase.rpc("histogram3", {animals: values.animals, max_lat: values.maxLat, min_lat: values.minLat, max_lng: values.maxLng, min_lng: values.minLng})
+
+    if (error) {
+      console.log("couldn't do it,", error);
+      return [];
+    }
+  
+    if (data) {
+      return data;
+    }
+    }; 
