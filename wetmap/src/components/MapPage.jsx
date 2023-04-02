@@ -99,7 +99,7 @@ const MapPage = React.memo(() => {
 		//color: "#333",
 		backgroundColor: "#3AAFB9"
 	},
-	backgroundColor: "#355d71",
+	backgroundColor: "darkblue",
 	height: "48px",
 	width:  "48px",
 	border: "1px solid black",
