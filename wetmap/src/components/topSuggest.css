@@ -87,7 +87,7 @@
     align-self: center;
     width: 55vw;
     min-height: 50px;
-    margin-top: 7%;
+    /* margin-top: 7%; */
     flex-wrap: wrap;
     justify-content: center;
 }

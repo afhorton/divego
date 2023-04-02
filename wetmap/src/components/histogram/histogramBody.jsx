@@ -59,8 +59,6 @@ export default function Histogram() {
     }
   };
 
-
-  // console.log("hey histo", histoData);
   return (
     <div className="mainContainer" pointerEvents={'none'}>
       <div className="barBox" pointerEvents={'none'}>

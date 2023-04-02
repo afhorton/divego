@@ -12,8 +12,6 @@ const AnimalTag = (props) => {
     }
   };
 
-  console.log("getting", animalMultiSelection)
-
   return (
     <div className="tagBody" onClick={() => handleClearTag(animalName)}>
         <p

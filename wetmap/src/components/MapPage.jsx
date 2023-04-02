@@ -113,11 +113,7 @@ const MapPage = React.memo(() => {
     <div className="mappagemaster">
 		{masterSwitch && (
 			<div className="col2rowT">
-				{/* <div className="sliderDiv">
-					<MonthSlider />
-				</div> */}
         <AnimalTopAutoSuggest />
-				{/* <div className="selectorDiv">Selected: </div> */}
 			</div>
 		)}
 
@@ -300,14 +296,16 @@ const MapPage = React.memo(() => {
             onClick={returnToPicModal}
             sx={{
               "&:hover": { backgroundColor: "lightblue" },
-              color: "#9B884E",
+              color: "gold",
               fontFamily: "Permanent Marker, cursive",
               fontSize: '15px',
               width: '10%',
               height: "80%",
               textAlign: "center",
-              backgroundColor: "#355D71",
-              marginTop: "5px",
+              backgroundColor: "#538bdb",
+              marginTop: "15px",
+              borderRadius: "10px",
+              boxShadow: " 5px 5px 5px 5px rgba(0,0,0, 0.7)"
             }}
           >
             Set Pin

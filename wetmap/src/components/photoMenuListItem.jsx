@@ -42,6 +42,8 @@ const PhotoMenuListItem = (props) => {
           borderBottom: "1px grey solid",
           borderLeft: "1px grey solid",
           borderRight: "1px grey solid",
+          objectFit: "cover"
+
         }}
       />
     </div>

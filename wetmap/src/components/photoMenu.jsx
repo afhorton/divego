@@ -125,9 +125,6 @@ const PhotoMenu = (props) => {
   
   return (
     <div className="masterDiv2">
-      {/* <div className="picContainer">
-        <div className="areLabel">Sightings</div>
-      </div> */}
       <div className="picScoll2">
       <AliceCarousel
       controlsStrategy="alternate"
