@@ -1,17 +1,18 @@
 
 .suggestInput{
-  width: 150px;
+  width: 145px;
   height: 28px;
   background-color: transparent;
   border: none;
   text-align: center;
   font-family: 'Indie Flower', cursive;
-  font-size: medium;
+  font-size: small;
   text-overflow: ellipsis;
   color: #F0EEEB;
-  background-color: #33586A;
+  background-color: transparent;
   border-radius: 5px;
   font-size: large;
+  padding-left: 10px;
 }
 
 .suggestInput:focus{
@@ -20,13 +21,22 @@
 }
 
 .suggestItem{
-  width: 165px;
+  width: 180px;
   height: auto;
-  background-color: #33586A;
+  background-color: #538bdb;
   border: transparent;
   border-radius: 5px;
   list-style: none;
-  transform: translateX(18px);
-  box-shadow: 3px 3px rgba(0, 0, 0, 0.25);
+  transform: translateX(11px);
+  box-shadow: 3px 3px rgba(0, 0, 0, 0.5);
   color: #F0EEEB;
+  margin: 1px;
+}
+
+#XButton{
+  width: 10px;
+  margin: 0px;
+  padding: 0px;
+  margin-top: -18px;
+  margin-left: 145px;
 }

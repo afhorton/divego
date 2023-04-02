@@ -9,7 +9,9 @@
 .inputboxType1{
     display: flex;
     flex-direction: column;;
-    margin-left: 20%;
+    align-items: center;
+    justify-content: center;
+    margin-left: -89px;
     margin-top: 30px;
     font-family: 'Indie Flower';
     border: none;
@@ -20,7 +22,9 @@
 .inputboxType2{
     display: flex;
     flex-direction: column;
-    margin-left: 24%;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0px;
     margin-top: 15px;
     width: 100%; 
     font-family: 'Indie Flower';
@@ -31,24 +35,26 @@
 .autosuggestbox{
     display: flex;
     flex-direction: row;;
-    margin-left: 20%;
+    margin-left: 30px;
     margin-top: 30px;
     margin-bottom: -10px;
     border: transparent;
     width: 167px;
-    background-color: #33586A;
-    border-radius: 5px; 
+    background-color: transparent;
+    border-radius: 10px; 
     height: 27px;
     padding-bottom: 5px;
-    padding-top: 3px;  
+    padding-top: 3px; 
+    box-shadow: inset 0 0 15px rgba(0,0,0, 0.5); 
 }
 
 #XButton{
+    /* z-index: 10; */
     width: 10px;
     margin: 0px;
     padding: 0px;
-    margin-top: 3px;
-    margin-left: -1px;
+    margin-top: -5px;
+    margin-left: 10px;
 }
 
 #animal {
@@ -135,7 +141,7 @@
     width: 100%;
     margin-top: 40px;
     font-family: 'Permanent Marker', cursive;
-    color: #9B884E;
+    color: gold;
     border-radius: 0;
     border-top: 1px solid #F0EEEB;
 }
@@ -153,7 +159,7 @@
 }
 
 .uploadbox2{
-    margin-left: 23%;
+    margin-left: 80px;
     margin-top: 25px;
     width: 100%;
 }
@@ -175,17 +181,17 @@
 
 .Gbox {
     position: absolute;
-    left: 235px;
+    left: 230px;
     bottom: 107px;
     display: flex;
     width: 50px;
     height: 50px;
     align-items: center;
     justify-content: center;
-    background-color: #33586A;
+    background-color: #538bdb;
     text-align: center;
     border-radius: 5px;
-    box-shadow: 3px 3px rgba(0, 0, 0, 0.25);
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);
 }
 
 #jumpButton {
@@ -214,12 +220,12 @@
     display: flex;
     flex-direction: row;
     cursor: pointer;
-    background-color: #33586A;
+    background-color: #538bdb;
     width: 175px;
     height: 30px;
     text-align: center;
     border-radius: 5px;
-    box-shadow: 3px 3px rgba(0, 0, 0, 0.25);
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.3);
     margin-left: -15px;
     margin-top: 30px;
     margin-bottom: 30px;

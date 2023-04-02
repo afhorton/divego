@@ -38,7 +38,10 @@
 } */
 
 .pictureBoxA{
-  width: 190px;
+  width: 193px;
+  /* border: grey 1px solid;
+  height: 160px;
+  border-radius: 15px; */
   /* margin-bottom: -20px; */
 }
 
@@ -47,13 +50,14 @@
 }
 
 .micros{
-  background-color: #355D71;
-  /* margin-left: 39px; */
+  background-color: darkblue;
   color: white;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  /* border: grey 1px solid; */
   height: 30px;
   width: 192px;
+  text-align: center;
 }
 
 .microsSelected{
@@ -62,22 +66,29 @@
   color: white;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  /* border: grey 1px solid; */
   height: 30px;
   width: 192px;
 }
 
 .animalLabelArea{
   padding-top: 5px;
-  align-self: center;
-  justify-content: center;
+  /* align-self: center;
+  justify-content: center; */
+   border: grey 1px solid;
+   border-top-left-radius: 10px;
+   border-top-right-radius: 10px;
   font-family: 'Indie Flower'; 
 }
 
 .animalLabelAreaSelected{
   color: black;
   padding-top: 5px;
-  align-self: center;
-  justify-content: center;
+  /* align-self: center;
+  justify-content: center; */
+  border: grey 1px solid;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   font-family: 'Indie Flower'; 
 }
 

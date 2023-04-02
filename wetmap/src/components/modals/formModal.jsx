@@ -13,10 +13,10 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  bgcolor: "#355D71",
+  bgcolor: "#538bdb",
   boxShadow: 24,
   p: 1.5,
-  borderRadius: "25px",
+  borderRadius: "10px",
 };
 
 let filePath = "./wetmap/src/components/uploads/";

@@ -148,22 +148,24 @@ const SiteSubmitter = (props) => {
             <div style={{ marginRight: 5, marginTop: -2 }}>
               <PhotoIcon
                 sx={{
-                  color: "#9B884E",
+                  color: "gold",
                   height: "28px",
                   width: "28px",
                   cursor: "pointer",
-                  marginTop: "2.5px",
-                  marginLeft: "3px",
+                  marginTop: "5px",
+                  marginLeft: "10px",
                 }}
               ></PhotoIcon>
             </div>
 
             <Label
               style={{
-                fontFamily: "Permanent Marker",
-                color: "#9B884E",
+                fontFamily: "Bubblegum Sans, cursive",
+                color: "gold",
                 cursor: "pointer",
-                marginTop: "2px",
+                marginTop: "7px",
+                marginLeft:  "-5px",
+                fontSize: "18px"
               }}
             >
               Choose a File
@@ -204,11 +206,12 @@ const SiteSubmitter = (props) => {
                   textAlign: "center",
                   fontFamily: "Indie Flower",
                   textOverflow: "ellipsis",
-                  backgroundColor: "#33586A",
+                  backgroundColor: "#538bdb",
                   height: "25px",
                   color: "#F0EEEB",
                   width: "170px",
-                  borderRadius: "5px",
+                  borderRadius: "10px",
+                  boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)"
                 },
               }}
             />
@@ -236,11 +239,12 @@ const SiteSubmitter = (props) => {
                   textAlign: "center",
                   fontFamily: "Indie Flower",
                   textOverflow: "ellipsis",
-                  backgroundColor: "#33586A",
+                  backgroundColor: "#538BDB",
                   height: "25px",
                   color: "#F0EEEB",
                   width: "170px",
-                  borderRadius: "5px",
+                  borderRadius: "10px",
+                  boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)"
                 }
               }}
             />
@@ -264,11 +268,12 @@ const SiteSubmitter = (props) => {
                   textAlign: "center",
                   fontFamily: "Indie Flower",
                   textOverflow: "ellipsis",
-                  backgroundColor: "#33586A",
+                  backgroundColor: "#538bdb",
                   height: "25px",
                   color: "#F0EEEB",
                   width: "170px",
-                  borderRadius: "5px",
+                  borderRadius: "10px",
+                  boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)"
                 },
               }}
             />
@@ -280,22 +285,24 @@ const SiteSubmitter = (props) => {
             <div style={{ marginLeft: 3, marginRight: 2, marginTop: -2 }}>
               <MapOutlinedIcon
                 sx={{
-                  color: "#9B884E",
+                  color: "gold",
                   height: "28px",
                   width: "28px",
                   cursor: "pointer",
                   marginTop: "2.5px",
-                  marginLeft: "3px",
+                  marginLeft: "5px",
                 }}
               ></MapOutlinedIcon>
             </div>
 
             <Label
               style={{
-                fontFamily: "Caveat",
-                color: "#9B884E",
+                fontFamily: "Bubblegum Sans, cursive",
+                color: "gold",
                 cursor: "pointer",
-                marginTop: "5px",
+                marginTop: "7px",
+                marginRight: "5px",
+                fontSize: "15px"
               }}
             >
               I'm At The Dive Site

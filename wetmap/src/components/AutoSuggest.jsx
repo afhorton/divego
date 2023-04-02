@@ -3,10 +3,12 @@ import { getAnimalNamesThatFit } from "../supabaseCalls/photoSupabaseCalls";
 // import { getAnimalNamesThatFit } from "../axiosCalls/photoAxiosCalls";
 import InputBase from "@mui/material/InputBase";
 import AutoSuggestListItem from "./AnimalSuggestListItem";
+import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import "./autoSuggest.css";
+import { positions } from "@mui/system";
 
 export default function AnimalAutoSuggest(props) {
-  const { setPin, pin, setList, list } = props;
+  const { setPin, pin, setList, list, clearAnimal } = props;
 
   const handleChange = async (e) => {
     setPin({ ...pin, Animal: e.target.value });
@@ -38,15 +40,42 @@ export default function AnimalAutoSuggest(props) {
             textAlign: "center",
             fontFamily: "Indie Flower",
             textOverflow: "ellipsis",
-            backgroundColor: "#33586A",
-            height: "25px",
+            backgroundColor: "transparent",
+            height: "10px",
             color: "#F0EEEB",
-            width: "auto",
-            borderRadius: "5px"
-          }}}
+            width: "130px",
+            // borderRadius: "10px",
+            // boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)",
+            marginLeft: "0px",
+            paddingRight: "10px",
+            paddingLeft: "0px",
+            paddingTop: "7px",
+          },
+        }}
       ></InputBase>
 
-      <div style={{ height: "auto", zIndex: 10, position: "absolute"}}>
+      {pin.Animal.length > 1 && (
+        <div variant="text" id="XButton" onClick={clearAnimal}>
+          <HighlightOffIcon
+            sx={{
+              color: "white",
+              height: "10px",
+              width: "10px",
+              position: "absolute",
+            }}
+          ></HighlightOffIcon>
+        </div>
+      )}
+
+      <div
+        style={{
+          height: "auto",
+          zIndex: "100",
+          position: "absolute",
+          marginTop: "5px",
+          marginLeft: "-10px",
+        }}
+      >
         {list.length > 0 &&
           list.map((animal) => {
             return (
@@ -56,6 +85,7 @@ export default function AnimalAutoSuggest(props) {
                 pin={pin}
                 setPin={setPin}
                 setList={setList}
+                clearAnimal={clearAnimal}
               />
             );
           })}

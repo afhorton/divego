@@ -12,7 +12,7 @@ import { PinContext } from "../contexts/pinContext";
 import { PictureContext } from "../contexts/pictureContext";
 import PlaceIcon from "@mui/icons-material/Place";
 import PhotoIcon from "@mui/icons-material/Photo";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
+
 import { exifGPSHelper } from "../../helpers/exifGPSHelpers";
 import { getToday } from "../../helpers/picUploaderHelpers.js";
 import Collapse from "@mui/material/Collapse";
@@ -223,7 +223,7 @@ const PicUploader = React.memo((props) => {
             <div style={{ marginRight: 5, marginTop: -2 }}>
               <PhotoIcon
                 sx={{
-                  color: "#9B884E",
+                  color: "gold",
                   height: "28px",
                   width: "28px",
                   cursor: "pointer",
@@ -236,7 +236,7 @@ const PicUploader = React.memo((props) => {
             <Label
               style={{
                 fontFamily: "Permanent Marker",
-                color: "#9B884E",
+                color: "gold",
                 cursor: "pointer",
                 marginLeft: "-6px",
                 marginTop: "2px",
@@ -271,14 +271,8 @@ const PicUploader = React.memo((props) => {
             setList={setList}
             list={list}
             onClick={handleNoGPSClose}
+            clearAnimal={clearAnimal}
           />
-          {pin.Animal.length > 1 && (
-            <div variant="text" id="XButton" onClick={clearAnimal}>
-              <HighlightOffIcon
-                sx={{ color: "gray", height: "10px", width: "10px" }}
-              ></HighlightOffIcon>
-            </div>
-          )}
         </div>
 
         <div className="inputboxType1">
@@ -298,15 +292,17 @@ const PicUploader = React.memo((props) => {
                   textAlign: "center",
                   fontFamily: "Indie Flower",
                   textOverflow: "ellipsis",
-                  backgroundColor: "#33586A",
+                  backgroundColor: "#538bdb",
                   height: "28px",
                   width: "164px",
                   color: "#F0EEEB",
-                  borderRadius: "5px",
+                  // borderRadius: "5px",
                   borderBottom: "none",
                   borderColor: "transparent",
                   alignItems: "center",
-                  paddingRight: "3px"
+                  paddingRight: "3px",
+                  borderRadius: "10px",
+                  boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)"
                 },
               }}
             />
@@ -337,12 +333,14 @@ const PicUploader = React.memo((props) => {
                       textAlign: "center",
                       fontFamily: "Indie Flower",
                       textOverflow: "ellipsis",
-                      backgroundColor: "#33586A",
+                      backgroundColor: "#538bdb",
                       height: "25px",
                       color: "#F0EEEB",
-                      borderRadius: "5px",
+                      // borderRadius: "5px",
                       borderBottom: "none",
-                      borderColor: "transparent"
+                      borderColor: "transparent",
+                      borderRadius: "10px",
+                      boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)"
                     },
                   }}
                 />
@@ -368,12 +366,14 @@ const PicUploader = React.memo((props) => {
                       textAlign: "center",
                       fontFamily: "Indie Flower",
                       textOverflow: "ellipsis",
-                      backgroundColor: "#33586A",
+                      backgroundColor: "#538bdb",
                       height: "25px",
                       color: "#F0EEEB",
                       borderRadius: "5px",
                       borderBottom: "none",
-                      borderColor: "transparent"
+                      borderColor: "transparent",
+                      borderRadius: "10px",
+                      boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)"
                     },
                   }}
                 />
@@ -389,12 +389,12 @@ const PicUploader = React.memo((props) => {
                 style={{ display: "flex", flexDirection: "column" }}
               >
                 <PlaceIcon
-                  sx={{ color: "#9B884E", height: "30px", width: "30px" }}
+                  sx={{ color: "gold", height: "30px", width: "30px" }}
                 ></PlaceIcon>
                 <p
                   style={{
                     fontFamily: "Shadows Into Light",
-                    color: "#9B884E",
+                    color: "gold",
                     fontSize: 10,
                     marginTop: -1,
                   }}
