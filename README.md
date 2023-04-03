@@ -14,11 +14,7 @@ exifr
 # Live at
 https://divegoweb.netlify.app
 
-<!-- Login instructions for guests:
-
-Email: divego2022@gmail.com -->
-
-<!-- Password: divego -->
+!["Web Version QR"](https://github.com/Freem11/divego/blob/master/wetmap/src/images/WebVersion.png)
 
 # Current Features:
 
