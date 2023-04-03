@@ -19,26 +19,29 @@ const HowToGuide = (props) => {
         <div className="mainBlurbDiv">
           <p>
             Welcome to DiveGo, this app is designed for divers who love to
-            interact with animals<br></br>
-            <br></br>
-            The premise is simple, anchor icons show you the locations of dive
-            sites and heat map dots show you where and at what time of year an
-            animal has been spotted there in the past, with the dot intensity
-            increasing with the more sightings in that month at a given
-            location.<br></br>
-            <br></br>
-            Change the month by adjusting the month slider at the top of the
-            page.<br></br>
-            <br></br>
-            Click this Menu to change what sea creature you are looking for,
-            this list is made up of creatures that already exist in the system,
-            so add new ones with your own photos to expand the list!
-            <br></br>
-            <br></br>
-            Users submit photos of animals and dive sites they have seen/ been
-            to and the app will capture the date that the photo was created and
-            if the photo carries them, its GPS coordinates, if not an option is
-            available to drop a pin at the location the photo was taken.
+            interact with animals
+            <br></br><br></br>
+            The anchor icons show you the locations of dive
+            sites and heat map dots show you where an
+            animal has been spotted there in the past. Heat dot intensity
+            increasing with the more sightings in that location.
+            <br></br><br></br>
+            To see where specific creatures are pan the pictures carrousel at the top 
+            and click on whichever you like. (one or multiple are possible) Please note 
+            the photos do change based on where you have the map placed, and will update to 
+            show you creatures available in that area. 
+            <br></br><br></br>
+            Clicking on an Anchor Icon will do one of two things. For grey icons 
+            this represents a cluster of dive sites and will zoom in until the cluster will break apart.
+            For the blue icons this is a dive site, a menu will pop up and show you all photos taken of creatures 
+            at that site.
+            <br></br><br></br>
+            As you select sea creature the heatmap will update to show you roughly where the sea 
+            creatures have been spotted (around a dive site normally). Additionally, there is a chart 
+            at the bottom that appears and shows you in what month these sea creatues were spotted in 
+            these locations.
+            <br></br><br></br>
+            Add your own dive sites and sea creature sitghting photos to help improve the app!
           </p>
         </div>
       </div>
