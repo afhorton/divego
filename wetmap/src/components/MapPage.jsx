@@ -3,13 +3,12 @@ import Logo from "./logo/logo";
 import Home from "./googleMap";
 import FormModal from "./modals/formModal";
 import FormGuideModal from "./modals/formGuideModal";
-import MonthSlider from "./Slider";
 import AdminPortal from "./adminPortal";
 import PicUploader from "./modals/picUploader";
 import SiteSubmitter from "./modals/siteSubmitter";
 import HowToGuide from "./modals/howToGuide";
 import Settings from "./modals/setting";
-import AnimalSearcher from "./AnimalSearch";
+import DiveSiteAutoComplete from "./diveSiteSearch/diveSiteSearch";
 import PhotoMenu from "./photoMenu/photoMenu";
 import { useState, useContext } from "react";
 import Button from "@mui/material/Button";
@@ -41,7 +40,7 @@ import Histogram from "./histogram/histogramBody";
 
 const animalSearchZone = (
   <div style={{ marginLeft: "10px", marginTop: "7px" }}>
-    <AnimalSearcher></AnimalSearcher>
+    <DiveSiteAutoComplete></DiveSiteAutoComplete>
   </div>
 );
 

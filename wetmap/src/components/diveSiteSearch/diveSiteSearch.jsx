@@ -1,17 +1,17 @@
 import { useState, useContext } from "react";
-import { AnimalContext } from "./contexts/animalContext";
+import { AnimalContext } from "../contexts/animalContext";
 import { useEffect } from "react";
-import { photos } from "./data/testdata";
+import { photos } from "../data/testdata";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import { diveSites } from "../supabaseCalls/diveSiteSupabaseCalls";
+import { diveSites } from "../../supabaseCalls/diveSiteSupabaseCalls";
 // import { getAnimalNames } from "../supabaseCalls/photoSupabaseCalls";
 // import { getAnimalNames } from "../axiosCalls/photoAxiosCalls";
-import { AnimalRevealContext } from "./contexts/animalRevealContext";
-import { SelectedDiveSiteContext } from "./contexts/selectedDiveSiteContext";
-import { MapBoundsContext } from "./contexts/mapBoundariesContext";
+import { AnimalRevealContext } from "../contexts/animalRevealContext";
+import { SelectedDiveSiteContext } from "../contexts/selectedDiveSiteContext";
+import { MapBoundsContext } from "../contexts/mapBoundariesContext";
 
-export default function AnimalSearcher() {
+export default function DiveSiteAutoComplete() {
   const { selectedDiveSite, setSelectedDiveSite } = useContext(
     SelectedDiveSiteContext
   );
