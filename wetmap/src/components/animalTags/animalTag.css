@@ -1,6 +1,6 @@
 .tagBody{
     display: flex;
-    flex-Direction: row;
+    flex-direction: row;
     border: 2px gold solid;
     border-radius: 15px;
     background-color: white;
