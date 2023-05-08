@@ -7,9 +7,14 @@ export default defineConfig({
     proxy: {
       "/api": "http://localhost:5000/",
     },
+    https: {
+      key:"/Users/matthewfreeman/key.pem",
+      cert:"/Users/matthewfreeman/cert.pem"
+    }
   },
   build: {
     chunkSizeWarningLimit: 1500,
   },
   plugins: [react()]
 })
+

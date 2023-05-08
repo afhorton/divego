@@ -20,12 +20,12 @@
   font-family: 'Permanent Marker', cursive;
   font-size: 16px;
   cursor: pointer;
-  background-color: #33586A;
+  background-color: #538bdb;
   width: 160px;
   height: 30px;
   text-align: center;
   border-radius: 5px;
-  box-shadow: 3px 3px rgba(0, 0, 0, 0.25);
+  box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.25);
   margin-left: 22%;
   margin-top: 30px;
   margin-bottom: 20px;

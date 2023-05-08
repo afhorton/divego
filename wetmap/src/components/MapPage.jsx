@@ -208,6 +208,20 @@ const MapPage = React.memo(() => {
           <QuestionMarkIcon />
         </ToggleButton>
       </div>)}
+
+      {masterSwitch && ( <div className="col1row9">
+        <ToggleButton
+          sx={ toggleButtonStyle }
+          value="check"
+          selected={gearModal}
+          onChange={() => {
+            setGearModal(toggleGearModal);
+          }}
+        >
+          <SettingsIcon />
+        </ToggleButton>
+      </div>)}
+      
 	  </div>
       {masterSwitch && (<div className="col1row8">
         <PhotoMenu/>

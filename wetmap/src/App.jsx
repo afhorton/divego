@@ -32,7 +32,8 @@ import {
   userCheck,
   sessionRefresh,
 } from "./supabaseCalls/authenticateSupabaseCalls";
-
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import FacebookLogin from "react-facebook-login";
 //DiveLocker
 
 function App() {
@@ -58,20 +59,20 @@ function App() {
 
   useLayoutEffect(() => {
     window.onload = async function () {
-      // try {
-      //   const valuless = await localStorage.getItem("token");
-      //   const value = JSON.parse(valuless);
-      //   if (value !== null) {
-      //     if (value.session.refresh_token) {
-      //       let newSession = await sessionRefresh(value.session.refresh_token);
-      //       setActiveSession(newSession);
-      //     }
-      //   }
-      //   let sessionID = await sessionCheck();
-      //   await localStorage.removeItem("token");
-      // } catch (error) {
-      //   console.log("no dice:", error);
-      // }
+      try {
+        const valuless = await localStorage.getItem("token");
+        const value = JSON.parse(valuless);
+        if (value !== null) {
+          if (value.session.refresh_token) {
+            let newSession = await sessionRefresh(value.session.refresh_token);
+            setActiveSession(newSession);
+          }
+        }
+        let sessionID = await sessionCheck();
+        await localStorage.removeItem("token");
+      } catch (error) {
+        console.log("no dice:", error);
+      }
 
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -131,6 +132,8 @@ function App() {
 
   return (
     <div className="App" onLoad={onLayoutRootView}>
+       <GoogleOAuthProvider clientId="803518830612-ullrhq9lgcfe9ornlc5tffhtch7o5t07.apps.googleusercontent.com">
+         
       <HeatPointsContext.Provider value={{heatpts, setHeatPts}}>
       <AnimalMultiSelectContext.Provider
         value={{ animalMultiSelection, setAnimalMultiSelection }}
@@ -193,8 +196,8 @@ function App() {
                                                 <Routes>
                                                   <Route
                                                     path="/"
-                                                    // element={activeSession ? <MapPage/> : <AuthenticationPage/>}
-                                                    element={<MapPage />}
+                                                    element={activeSession ? <MapPage/> : <AuthenticationPage/>}
+                                                    // element={<MapPage />}
                                                   />
                                                   <Route
                                                     path="/admin"
@@ -223,6 +226,7 @@ function App() {
         </MapBoundsContext.Provider>
       </AnimalMultiSelectContext.Provider>
       </HeatPointsContext.Provider>
+      </GoogleOAuthProvider>;
     </div>
   );
 }

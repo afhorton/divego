@@ -7,6 +7,8 @@ import {
   sessionCheck,
 } from "../supabaseCalls/authenticateSupabaseCalls";
 import "./authenication.css";
+import InputBase from "@mui/material/InputBase";
+
 let emailVar = false;
 let passwordVar = false;
 let firstVar = false;
@@ -90,20 +92,33 @@ export default function SignUpRoute() {
   return (
     <div className="containerDiv">
       <Form onSubmit={handleSignUpSubmit} className="formstyle">
-            <Input
+            <InputBase
               // id="standard-basic"
               // label="Latitude"
               placeholder="Email"
-              // variant="standard"
+              variant="standard"
               className="inpts"
               type="text"
               name="email"
               value={formVals.email}
               onChange={handleChange}
               onFocus={() => setRegFail(null)}
+              inputProps={{
+                style: {
+                  textAlign: "center",
+                  fontFamily: "Indie Flower",
+                  textOverflow: "ellipsis",
+                  backgroundColor: "#538dbd",
+                  height: "25px",
+                  color: "#F0EEEB",
+                  width: "170px",
+                  borderRadius: "10px",
+                  boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)"
+                },
+              }}
             />
      
-            <Input
+            <InputBase
               // id="standard-basic"
               // label="Latitude"
               placeholder="Password"
@@ -114,9 +129,22 @@ export default function SignUpRoute() {
               value={formVals.password}
               onChange={handleChange}
               onFocus={() => setRegFail(null)}
+              inputProps={{
+                style: {
+                  textAlign: "center",
+                  fontFamily: "Indie Flower",
+                  textOverflow: "ellipsis",
+                  backgroundColor: "#538dbd",
+                  height: "25px",
+                  color: "#F0EEEB",
+                  width: "170px",
+                  borderRadius: "10px",
+                  boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)"
+                },
+              }}
             />
 
-            <Input
+            <InputBase
               // id="standard-basic"
               // label="Latitude"
               placeholder="First Name"
@@ -127,9 +155,22 @@ export default function SignUpRoute() {
               value={formVals.firstName}
               onChange={handleChange}
               onFocus={() => setRegFail(null)}
+              inputProps={{
+                style: {
+                  textAlign: "center",
+                  fontFamily: "Indie Flower",
+                  textOverflow: "ellipsis",
+                  backgroundColor: "#538dbd",
+                  height: "25px",
+                  color: "#F0EEEB",
+                  width: "170px",
+                  borderRadius: "10px",
+                  boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)"
+                },
+              }}
             />
 
-            <Input
+            <InputBase
               // id="standard-basic"
               // label="Latitude"
               placeholder="Last Name"
@@ -140,6 +181,19 @@ export default function SignUpRoute() {
               value={formVals.lastName}
               onChange={handleChange}
               onFocus={() => setRegFail(null)}
+              inputProps={{
+                style: {
+                  textAlign: "center",
+                  fontFamily: "Indie Flower",
+                  textOverflow: "ellipsis",
+                  backgroundColor: "#538dbd",
+                  height: "25px",
+                  color: "#F0EEEB",
+                  width: "170px",
+                  borderRadius: "10px",
+                  boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)"
+                },
+              }}
             />
             {regFail && <Label className="erroMsg">{regFail}</Label>}
           <div className="signButton" onClick={handleSignUpSubmit}>

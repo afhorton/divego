@@ -74,7 +74,7 @@ export const signInFaceBook = async () => {
   }
 
   if (user && session) {
-    // console.log(user, session);
+    console.log(user, session);
     return { user, session };
   }
 };

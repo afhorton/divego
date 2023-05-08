@@ -27,7 +27,7 @@ const Settings = (props) => {
             onClick={handleLogout}
             className="Logoutbutton"
           >
-            <Label style={{ fontFamily: "Caveat", color: "#9B884E", cursor: "pointer", marginTop: "5px" }}>
+            <Label style={{ fontFamily: "Caveat", color: "gold", cursor: "pointer", marginTop: "5px" }}>
             Sign Out
             </Label>
           </div>

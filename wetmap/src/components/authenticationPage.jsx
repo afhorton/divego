@@ -54,21 +54,21 @@ export default function AuthenticationPage() {
           value={value}
           onChange={handleChange}
           textColor="gray"
-          TabIndicatorProps={{sx:{backgroundColor: 'gray', height: 2}}}
+          TabIndicatorProps={{sx:{backgroundColor: 'lightgray', height: 2}}}
           sx={{
-            "& button.Mui-selected": { color: "darkgray" },
-            backgroundColor: "#33586A",
+            "& button.Mui-selected": { color: "lightgray" },
+            backgroundColor: "#538dbd",
             fontFamily: "Permanent Marker",
           }}
         >
-          <Tab label="Sign In" {...a11yProps(0)} sx={{fontFamily: "Permanent Marker", color: "gray", width: "30%"}}/>
-          <Tab label="Sign Up" {...a11yProps(1)} sx={{fontFamily: "Permanent Marker", color: "gray", width: "30%"}}/>
+          <Tab label="Sign In" {...a11yProps(0)} sx={{fontFamily: "Permanent Marker", color: "darkgray", width: "30%"}}/>
+          <Tab label="Sign Up" {...a11yProps(1)} sx={{fontFamily: "Permanent Marker", color: "darkgray", width: "30%"}}/>
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0} style={{backgroundColor: '#33586A', height: "100%"}}>
+      <TabPanel value={value} index={0} style={{backgroundColor: '#538dbd', height: "100%"}}>
        <SignInRoute/>
       </TabPanel>
-      <TabPanel value={value} index={1} style={{backgroundColor: '#33586A', height: "100%"}}>
+      <TabPanel value={value} index={1} style={{backgroundColor: '#538dbd', height: "100%"}}>
       <SignUpRoute/>
       </TabPanel>
     </Box>
