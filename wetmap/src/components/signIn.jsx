@@ -1,19 +1,18 @@
 // import AsyncStorage from "@react-native-async-storage/async-storage";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Container, Form, FormGroup, Label, Input, Button } from "reactstrap";
 import { SessionContext } from "./contexts/sessionContext";
 import {
   sessionCheck,
   signInStandard,
+  register,
   signInFaceBook,
   signInGoogle,
 } from "../supabaseCalls/authenticateSupabaseCalls";
+import { Auth } from "@supabase/auth-ui-react"
+import { supabase } from "../supabase";
 import "./authenication.css";
 import InputBase from "@mui/material/InputBase";
-import GoogleIcon from "../images/google.svg";
-import FacebookIcon from "../images/facebook.svg";
-import { GoogleLogin, useGoogleLogin } from "@react-oauth/google";
-import FacebookLogin from "react-facebook-login";
 import {
   LoginSocialGoogle,
   LoginSocialFacebook,
@@ -21,13 +20,12 @@ import {
 import {
   FacebookLoginButton,
   GoogleLoginButton,
-  createButton,
-  createSvgIcon
 } from 'react-social-login-buttons'
-import { diveSites } from "../supabaseCalls/diveSiteSupabaseCalls";
 
 let emailVar = false;
 let passwordVar = false;
+const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
+const facebookAppId = import.meta.env.VITE_FACEBOOK_APP_ID
 
 export default function SignInRoute() {
   const { activeSession, setActiveSession } = useContext(SessionContext);
@@ -44,38 +42,27 @@ export default function SignInRoute() {
     passwordVal: false,
   });
 
-  const configFB = {
-    text: "Log in with Facebook",
-    icon: createSvgIcon(FacebookIcon),
-    iconFormat: name => `fa fa-${name}`,
-    style: { background: "#538dbd", width: "235px"},
-    activeStyle: { background: "#293e69" }
-  };
-
-  const configGG = {
-    text: "Log in with Google",
-    icon: createSvgIcon(GoogleIcon),
-    iconFormat: name => `fa fa-${name}`,
-    style: { background: "#538dbd", width: "235px" },
-    activeStyle: { background: "#293e69" }
-  };
-
-  const MyFacebookLoginButton = createButton(configFB);
-  const MyGoogleLoginButton = createButton(configGG);
-
+  useEffect(() =>{
+    async function getUserData() {
+      await supabase.auth.getSession().then((value) => {
+          localStorage.setItem("token", JSON.stringify(value.data.session));
+          setActiveSession(value.data.session)
+      })
+    }
+    getUserData()
+  },[])
 
 
   async function getGoogleUserData(token) {
     if (!token) return;
-    console.log("google token is", token)
+
     try {
       const res = await fetch(`https://www.googleapis.com/userinfo/v2/me/`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const user = await res.json();
-      console.log("google user is", user)
       handleOAuthSubmit(user)
-      
+      console.log("helloG?", user)
     } catch (err) {
       console.log("error", err);
     }
@@ -83,13 +70,12 @@ export default function SignInRoute() {
 
   async function getFacebookUserData(token2) {
     if (!token2) return;
-    console.log("facebook token is", token2)
+
     try {
       const res2 = await fetch(`https://graph.facebook.com/me?access_token=${token2}&fields=id,name,email`);
       const user2 = await res2.json();
-      console.log("facebook user is", user2)
       handleOAuthSubmit(user2)
-
+      console.log("helloF?", user2)
     } catch (err) {
       console.log("error", err);
     }
@@ -100,10 +86,7 @@ export default function SignInRoute() {
     let Fname;
     let LName;
 
-    if(user.name){
-      Fname = user.name.split(" ").slice(0, 1);
-      LName = user.name.split(" ").slice(-1);
-    } else {
+    if(user.given_name){
       if (user.family_name) {
         Fname = user.given_name;
         LName = user.family_name;
@@ -111,6 +94,9 @@ export default function SignInRoute() {
         Fname = user.given_name.split(" ").slice(0, -1).join(" ");
         LName = user.given_name.split(" ").slice(-1)[0];
       }
+    } else {
+      Fname = user.name.split(" ").slice(0, 1);
+      LName = user.name.split(" ").slice(-1);
     }
 
     let Pword = user.id;
@@ -124,7 +110,7 @@ export default function SignInRoute() {
     });
 
     if (accessToken) {
-      await AsyncStorage.setItem("token", JSON.stringify(accessToken));
+      await localStorage.setItem("token", JSON.stringify(accessToken));
       setActiveSession(accessToken);
     } else {
       setLoginFail("The credentials you supplied are not valid");
@@ -133,10 +119,13 @@ export default function SignInRoute() {
   };
 
   async function OAuthSignIn(formVals) {
+    console.log("who?", formVals)
     let accessToken = await signInStandard(formVals);
+    console.log("what?", accessToken)
     if (accessToken) {
       await localStorage.setItem("token", JSON.stringify(accessToken));
       setActiveSession(accessToken);
+      return;
     } else {
       let registrationToken = await register(formVals);
       await localStorage.setItem("token", JSON.stringify(registrationToken));
@@ -185,8 +174,30 @@ export default function SignInRoute() {
     setLoginFail(null);
   };
 
+  // const divegoTheme = {
+  //   default: {
+  //     colors: {
+  //       brand: "#538bdb",
+  //       brandAccent: "#538dbd",
+  //       brandButtonText: "white",
+  //     }
+  //   },
+  //   dark: {
+  //     colors: {
+  //       brand: "#538dbd",
+  //       brandAccent: "#538dbd",
+  //       brandButtonText: "pink"
+  //     }
+  //   }
+  // }
+
   return (
     <div className="containerDiv">
+      {/* <Auth 
+      supabaseClient={supabase}
+      appearance={{ theme: divegoTheme}}
+      providers={['google','facebook']}
+      /> */}
       <Form onSubmit={handleSignInSubmit} className="formstyle">
         <InputBase
           // id="standard-basic"
@@ -245,7 +256,7 @@ export default function SignInRoute() {
         <div className="OAuthButton">
         <LoginSocialGoogle
             isOnlyGetToken
-            client_id={'803518830612-ullrhq9lgcfe9ornlc5tffhtch7o5t07.apps.googleusercontent.com' || ''}
+            client_id={ googleClientId || ''}
             onResolve={({ provider, data }) => {
               setProfile(data)
               getGoogleUserData(data.access_token)
@@ -262,7 +273,7 @@ export default function SignInRoute() {
         <div className="OAuthButton">
         <LoginSocialFacebook
             isOnlyGetToken
-            appId={692861552452156 || ''}
+            appId={ facebookAppId || ''}
             state={false}
             onResolve={({ provider, data }) => {
               setProfile(data)

@@ -61,13 +61,17 @@ function App() {
     window.onload = async function () {
       try {
         const valuless = await localStorage.getItem("token");
+        if(valuless){
         const value = JSON.parse(valuless);
         if (value !== null) {
           if (value.session.refresh_token) {
+            console.log("token?", value.session.refresh_token)
             let newSession = await sessionRefresh(value.session.refresh_token);
+            console.log("new session", newSession)
             setActiveSession(newSession);
           }
         }
+      }
         let sessionID = await sessionCheck();
         await localStorage.removeItem("token");
       } catch (error) {

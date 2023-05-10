@@ -4,6 +4,7 @@ import { signOut } from "../../supabaseCalls/authenticateSupabaseCalls";
 import { SessionContext } from "..//contexts/sessionContext";
 import "./settings.css";
 
+
 const Settings = (props) => {
 
   const { activeSession, setActiveSession } = useContext(SessionContext);
@@ -12,6 +13,7 @@ const Settings = (props) => {
     await localStorage.removeItem("token");
     await signOut()
     setActiveSession(null)
+    
   }
 
   return (

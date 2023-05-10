@@ -2,12 +2,12 @@ import { supabase } from "../supabase";
 
 
 export const sessionCheck = async() => {
-  const session = await supabase.auth.session();
+  const session = await supabase.auth.getSession();
   return session
 };
 
 export const sessionRefresh = async(refresh_token) => {
-  const { data, error } = await supabase.auth.refreshSession({refresh_token})
+  const { data, error } = await supabase.auth.getSession({refresh_token})
 
   if (error) {
     console.log("couldn't refresh session,", error);
@@ -49,7 +49,8 @@ export const register = async (registerDetails) => {
 };
 
 export const signInStandard = async (loginDetails) => {
-  const { user, session, error } = await supabase.auth.signIn({
+  console.log("supa?", loginDetails)
+  const { data, error } = await supabase.auth.signInWithPassword({
     email: loginDetails.email,
     password: loginDetails.password,
   });
@@ -58,9 +59,9 @@ export const signInStandard = async (loginDetails) => {
     console.log("couldn't login,", error);
   }
 
-  if (user && session) {
-    // console.log(user, session);
-    return { user, session };
+  if (data) {
+    console.log(data);
+    return { data };
   }
 };
 
