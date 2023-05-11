@@ -74,11 +74,11 @@ export default function SignUpRoute() {
       return;
     } else {
       let registrationToken = await register(formVals);
-      if (registrationToken) {
-        await localStorage.setItem("token", JSON.stringify(registrationToken));
-        setActiveSession(registrationToken);
+      if (registrationToken.data.session !== null) {
+        await localStorage.setItem("token", JSON.stringify(registrationToken.data.session.refresh_token));
+        setActiveSession(registrationToken.data.user);
       } else {
-        setRegFail(`A Verification Email has been Sent to ${formVals.email}`)
+        setRegFail(`You have already registered this account, please sign in`)
       }
       let checker = await sessionCheck();
       //  console.log("checkerbox", checker)

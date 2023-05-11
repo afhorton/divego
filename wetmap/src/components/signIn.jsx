@@ -9,27 +9,25 @@ import {
   signInFaceBook,
   signInGoogle,
 } from "../supabaseCalls/authenticateSupabaseCalls";
-import { Auth } from "@supabase/auth-ui-react"
+import { Auth } from "@supabase/auth-ui-react";
 import { supabase } from "../supabase";
 import "./authenication.css";
 import InputBase from "@mui/material/InputBase";
-import {
-  LoginSocialGoogle,
-  LoginSocialFacebook,
-} from 'reactjs-social-login'
+import { LoginSocialGoogle, LoginSocialFacebook } from "reactjs-social-login";
 import {
   FacebookLoginButton,
   GoogleLoginButton,
-} from 'react-social-login-buttons'
+} from "react-social-login-buttons";
+import headliner from "../images/headliner.png";
 
 let emailVar = false;
 let passwordVar = false;
-const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID
-const facebookAppId = import.meta.env.VITE_FACEBOOK_APP_ID
+const googleClientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+const facebookAppId = import.meta.env.VITE_FACEBOOK_APP_ID;
 
 export default function SignInRoute() {
   const { activeSession, setActiveSession } = useContext(SessionContext);
-  const [profile, setProfile] = useState(null)
+  const [profile, setProfile] = useState(null);
   const [formVals, setFormVals] = useState({
     email: "",
     password: "",
@@ -42,16 +40,15 @@ export default function SignInRoute() {
     passwordVal: false,
   });
 
-  useEffect(() =>{
+  useEffect(() => {
     async function getUserData() {
       await supabase.auth.getSession().then((value) => {
-          localStorage.setItem("token", JSON.stringify(value.data.session));
-          setActiveSession(value.data.session)
-      })
+        localStorage.setItem("token", JSON.stringify(value.data.session));
+        setActiveSession(value.data.session);
+      });
     }
-    getUserData()
-  },[])
-
+    getUserData();
+  }, []);
 
   async function getGoogleUserData(token) {
     if (!token) return;
@@ -61,8 +58,8 @@ export default function SignInRoute() {
         headers: { Authorization: `Bearer ${token}` },
       });
       const user = await res.json();
-      handleOAuthSubmit(user)
-      console.log("helloG?", user)
+      handleOAuthSubmit(user);
+      console.log("helloG?", user);
     } catch (err) {
       console.log("error", err);
     }
@@ -72,21 +69,22 @@ export default function SignInRoute() {
     if (!token2) return;
 
     try {
-      const res2 = await fetch(`https://graph.facebook.com/me?access_token=${token2}&fields=id,name,email`);
+      const res2 = await fetch(
+        `https://graph.facebook.com/me?access_token=${token2}&fields=id,name,email`
+      );
       const user2 = await res2.json();
-      handleOAuthSubmit(user2)
-      console.log("helloF?", user2)
+      handleOAuthSubmit(user2);
+      console.log("helloF?", user2);
     } catch (err) {
       console.log("error", err);
     }
   }
 
   const handleOAuthSubmit = async (user) => {
-
     let Fname;
     let LName;
 
-    if(user.given_name){
+    if (user.given_name) {
       if (user.family_name) {
         Fname = user.given_name;
         LName = user.family_name;
@@ -108,28 +106,22 @@ export default function SignInRoute() {
       firstName: Fname,
       lastName: LName,
     });
-
-    if (accessToken) {
-      await localStorage.setItem("token", JSON.stringify(accessToken));
-      setActiveSession(accessToken);
-    } else {
-      setLoginFail("The credentials you supplied are not valid");
-      return;
-    }
   };
 
   async function OAuthSignIn(formVals) {
-    console.log("who?", formVals)
     let accessToken = await signInStandard(formVals);
-    console.log("what?", accessToken)
-    if (accessToken) {
-      await localStorage.setItem("token", JSON.stringify(accessToken));
-      setActiveSession(accessToken);
+    if (accessToken.data.session !== null) {
+      await localStorage.setItem("token", JSON.stringify(accessToken.data.session.refresh_token));
+      setActiveSession(accessToken.data.user);
       return;
     } else {
       let registrationToken = await register(formVals);
-      await localStorage.setItem("token", JSON.stringify(registrationToken));
-      setActiveSession(registrationToken);
+      if (registrationToken.data.session !== null) {
+      await localStorage.setItem("token", JSON.stringify(registrationToken.data.session.refresh_token));
+      setActiveSession(registrationToken.data.user);
+      } else {
+      setLoginFail("You already have an account with this email"); 
+      }
     }
   }
 
@@ -157,9 +149,9 @@ export default function SignInRoute() {
       return;
     } else {
       let accessToken = await signInStandard(formVals);
-      if (accessToken) {
-        await localStorage.setItem("token", JSON.stringify(accessToken));
-        setActiveSession(accessToken);
+      if (accessToken.data.session !== null) {
+        await localStorage.setItem("token", JSON.stringify(accessToken.data.session.refresh_token));
+        setActiveSession(accessToken.data.user);
       } else {
         setLoginFail("The credentials you supplied are not valid");
         return;
@@ -199,94 +191,109 @@ export default function SignInRoute() {
       providers={['google','facebook']}
       /> */}
       <Form onSubmit={handleSignInSubmit} className="formstyle">
-        <InputBase
-          // id="standard-basic"
-          // label="Latitude"
-          placeholder="Email"
-          // variant="standard"
-          className="inpts"
-          type="text"
-          name="email"
-          value={formVals.email}
-          onChange={handleChange}
-          onFocus={() => setLoginFail(null)}
-          inputProps={{
-            style: {
-              textAlign: "center",
-              fontFamily: "Indie Flower",
-              textOverflow: "ellipsis",
+        <div className="headlinerdiv">
+          <img
+            style={{
+              minWidth: "450px",
+              width: "80%",
+              height: "0%",
+              marginTop: "0%",
+              marginBottom: "0%",
               backgroundColor: "#538dbd",
-              height: "25px",
-              color: "#F0EEEB",
-              width: "170px",
-              borderRadius: "10px",
-              boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)",
-            },
-          }}
-        />
-
-        <InputBase
-          // id="standard-basic"
-          // label="Latitude"
-          placeholder="Password"
-          // variant="standard"
-          className="inpts"
-          type="password"
-          name="password"
-          value={formVals.password}
-          onChange={handleChange}
-          onFocus={() => setLoginFail(null)}
-          inputProps={{
-            style: {
-              textAlign: "center",
-              fontFamily: "Indie Flower",
-              textOverflow: "ellipsis",
-              backgroundColor: "#538dbd",
-              height: "25px",
-              color: "#F0EEEB",
-              width: "170px",
-              borderRadius: "10px",
-              boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)",
-            },
-          }}
-        />
+            }}
+            src={headliner}
+          />
+        </div>
 
         <div className="Oaths">
+          <div className="OAuthButton">
+            <LoginSocialGoogle
+              isOnlyGetToken
+              client_id={googleClientId || ""}
+              onResolve={({ provider, data }) => {
+                setProfile(data);
+                getGoogleUserData(data.access_token);
+                console.log("google", data);
+              }}
+              onReject={(err) => {
+                console.log(err);
+              }}
+            >
+              <GoogleLoginButton style={{ width: "235px", height: "40px" }} />
+            </LoginSocialGoogle>
+          </div>
 
-        <div className="OAuthButton">
-        <LoginSocialGoogle
-            isOnlyGetToken
-            client_id={ googleClientId || ''}
-            onResolve={({ provider, data }) => {
-              setProfile(data)
-              getGoogleUserData(data.access_token)
-              console.log("google",data)
-            }}
-            onReject={(err) => {
-              console.log(err)
-            }}
-          >
-            <GoogleLoginButton style={{width: "235px", height: "40px"}}/>
-          </LoginSocialGoogle >
-          </div> 
+          <div className="OAuthButton">
+            <LoginSocialFacebook
+              isOnlyGetToken
+              appId={facebookAppId || ""}
+              state={false}
+              onResolve={({ provider, data }) => {
+                setProfile(data);
+                getFacebookUserData(data.accessToken);
+                console.log("facebook", data);
+              }}
+              onReject={(err) => {
+                console.log(err);
+              }}
+            >
+              <FacebookLoginButton style={{ width: "235px", height: "40px" }} />
+            </LoginSocialFacebook>
+          </div>
+        </div>
 
-        <div className="OAuthButton">
-        <LoginSocialFacebook
-            isOnlyGetToken
-            appId={ facebookAppId || ''}
-            state={false}
-            onResolve={({ provider, data }) => {
-              setProfile(data)
-              getFacebookUserData(data.accessToken)
-              console.log("facebook",data)
+        <div className="inptBx">
+          <InputBase
+            // id="standard-basic"
+            // label="Latitude"
+            placeholder="Email"
+            // variant="standard"
+            className="inpts"
+            type="text"
+            name="email"
+            value={formVals.email}
+            onChange={handleChange}
+            onFocus={() => setLoginFail(null)}
+            inputProps={{
+              style: {
+                textAlign: "center",
+                fontFamily: "Indie Flower",
+                textOverflow: "ellipsis",
+                backgroundColor: "#538dbd",
+                height: "25px",
+                color: "#F0EEEB",
+                width: "170px",
+                borderRadius: "10px",
+                boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)",
+              },
             }}
-            onReject={(err) => {
-              console.log(err)
+          />
+
+          <InputBase
+            // id="standard-basic"
+            // label="Latitude"
+            placeholder="Password"
+            // variant="standard"
+            className="inpts"
+            type="password"
+            name="password"
+            value={formVals.password}
+            onChange={handleChange}
+            onFocus={() => setLoginFail(null)}
+            inputProps={{
+              style: {
+                textAlign: "center",
+                fontFamily: "Indie Flower",
+                textOverflow: "ellipsis",
+                backgroundColor: "#538dbd",
+                height: "25px",
+                color: "#F0EEEB",
+                width: "170px",
+                borderRadius: "10px",
+                boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)",
+              },
             }}
-          >
-            <FacebookLoginButton style={{width: "235px", height: "40px"}}/>
-          </LoginSocialFacebook>
-          </div> 
+          />
         </div>
 
         {loginFail && <Label className="erroMsg">{loginFail}</Label>}
