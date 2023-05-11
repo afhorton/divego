@@ -13,6 +13,7 @@ let emailVar = false;
 let passwordVar = false;
 let firstVar = false;
 let lastVar = false;
+import headliner from "../images/headliner.png";
 
 export default function SignUpRoute() {
   const { activeSession, setActiveSession } = useContext(SessionContext);
@@ -92,6 +93,20 @@ export default function SignUpRoute() {
   return (
     <div className="containerDiv">
       <Form onSubmit={handleSignUpSubmit} className="formstyle">
+      <div className="headlinerdiv">
+          <img
+            style={{
+              minWidth: "450px",
+              width: "80%",
+              height: "0%",
+              marginTop: "0%",
+              marginBottom: "0%",
+              backgroundColor: "#538dbd",
+            }}
+            src={headliner}
+          />
+        </div>
+        <div className="inptBx">
             <InputBase
               // id="standard-basic"
               // label="Latitude"
@@ -196,9 +211,11 @@ export default function SignUpRoute() {
               }}
             />
             {regFail && <Label className="erroMsg">{regFail}</Label>}
+            </div>
           <div className="signButton" onClick={handleSignUpSubmit}>
             Sign Up
           </div>
+         
       </Form>
     </div>
     
