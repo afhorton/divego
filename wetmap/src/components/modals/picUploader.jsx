@@ -25,6 +25,7 @@ import { userCheck } from "../../supabaseCalls/authenticateSupabaseCalls";
 
 let filePath1 = "./wetmap/src/components/uploads/";
 let filePath = "/src/components/uploads/";
+let UserId = "";
 
 const noGPSZone = (
   <div
@@ -56,7 +57,7 @@ const PicUploader = React.memo((props) => {
     selectedFile: null,
   });
 
-  let UserId;
+  
   
   useEffect(() => {
     if (pin.PicDate === "") {
@@ -71,8 +72,8 @@ const PicUploader = React.memo((props) => {
     }
 
     const getUser = async () => {
-      UserId = await userCheck();
-      setPin({ ...pin, UserID: UserId.id });
+      let userId = await userCheck();
+      setPin({ ...pin, UserID: userId.data.user.id });
     };
   
     getUser();
@@ -86,6 +87,7 @@ const PicUploader = React.memo((props) => {
       }
 
       let fileName = e.target.files[0];
+      console.log("yo", fileName)
       let baseDate = e.target.files[0].lastModified;
 
       setUploadedFile({ ...uploadedFile, selectedFile: e.target.files[0] });
@@ -98,7 +100,9 @@ const PicUploader = React.memo((props) => {
       data.append("image", fileName);
 
       const newFilePath = await uploadphoto(fileName, fileName.name);
-      setPhotoFile(newFilePath);
+      //needs to be "animalphotos/public/file.jpg"
+      console.log("nfp" ,newFilePath)
+      setPhotoFile("animalphotos/" + newFilePath);
 
       // fetch("http://localhost:5000/api/upload", {
       //   method: "POST",
@@ -172,6 +176,7 @@ const PicUploader = React.memo((props) => {
       let Rnow = new Date();
 
       let rightNow = getToday(Rnow);
+      console.log("youa", pin)
 
       insertPhotoWaits({ ...pin, PicFile: photoFile });
 
@@ -207,7 +212,9 @@ const PicUploader = React.memo((props) => {
         </div>
 
         {photoFile && (
+  
           <div className="pickie">
+            {/* <div>{photoFile}</div> */}
             <img
               src={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${photoFile}`}
               height="100px"

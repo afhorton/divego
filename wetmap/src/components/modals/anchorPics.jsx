@@ -84,6 +84,7 @@ const AnchorPics = () => {
     filterAnchorPhotos();
   }, [selectedDiveSite]);
 
+  
   return (
     <div className="masterDiv">
       <h3 className="DiveSiteLabel">{selectedDiveSite.SiteName}</h3>

@@ -20,7 +20,7 @@ export const sessionRefresh = async(refresh_token) => {
 };
 
 export const userCheck = async() => {
-  const user = await supabase.auth.user();
+  const user = await supabase.auth.getUser();
   return user
 };
 
@@ -44,13 +44,11 @@ export const register = async (registerDetails) => {
   }
 
   if (data) {
-    console.log(data);
     return { data };
   }
 };
 
 export const signInStandard = async (loginDetails) => {
-  console.log("supa?", loginDetails)
   const { data, error } = await supabase.auth.signInWithPassword({
     email: loginDetails.email,
     password: loginDetails.password,
@@ -61,7 +59,6 @@ export const signInStandard = async (loginDetails) => {
   }
 
   if (data) {
-    console.log(data);
     return { data };
   }
 };

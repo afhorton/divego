@@ -41,14 +41,14 @@ const SiteSubmitter = (props) => {
 
   let UserId;
 
-  // useEffect(() => {
-  //   const getUser = async () => {
-  //     UserId = await userCheck();
-  //     setFormVals({ ...formVals, UserID: UserId.id });
-  //   };
+  useEffect(() => {
+    const getUser = async () => {
+      UserId = await userCheck();
+      setFormVals({ ...formVals, UserID: UserId.id });
+    };
   
-  //   getUser();
-  // }, []);
+    getUser();
+  }, []);
 
   const [uploadedFile, setUploadedFile] = useState({
     selectedFile: null,

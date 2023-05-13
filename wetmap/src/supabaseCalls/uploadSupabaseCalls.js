@@ -14,11 +14,11 @@ import { supabase } from "../supabase";
     }
   
     if (data) {
-      // console.log(data)
-      return data.Key
+      console.log("photos?",data)
+      return data.path
     }
   };
-
+  
   export const removePhoto = async (values) => {
 
     let shortPath =  values.fileName.split('/').pop();
