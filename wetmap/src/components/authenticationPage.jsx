@@ -49,20 +49,20 @@ export default function AuthenticationPage() {
 
   return (
     <Box sx={{ width: "100vw", height: "100vh"}}>
-      <Box sx={{ borderBottom: 1, borderColor: "lightgrey", width: "100%"}}>
+      <Box sx={{ borderBottom: 1, borderColor: "lightgrey", width: "100vw"}}>
         <Tabs
           value={value}
           onChange={handleChange}
           textColor="gray"
           TabIndicatorProps={{sx:{backgroundColor: 'lightgray', height: 2}}}
           sx={{
-            "& button.Mui-selected": { color: "lightgray" },
+            "& button.Mui-selected": { color: "lightgray", width: "1000px"},
             backgroundColor: "#538dbd",
             fontFamily: "Permanent Marker",
           }}
         >
-          <Tab label="Sign In" {...a11yProps(0)} sx={{fontFamily: "Permanent Marker", color: "darkgray", width: "30%"}}/>
-          <Tab label="Sign Up" {...a11yProps(1)} sx={{fontFamily: "Permanent Marker", color: "darkgray", width: "30%"}}/>
+          <Tab label="Sign In" {...a11yProps(0)} sx={{fontFamily: "Permanent Marker", color: "darkgray", width: "100%"}}/>
+          <Tab label="Sign Up" {...a11yProps(1)} sx={{fontFamily: "Permanent Marker", color: "darkgray", width: "100%"}}/>
         </Tabs>
       </Box>
       <TabPanel value={value} index={0} style={{backgroundColor: '#538dbd', height: "100%"}}>

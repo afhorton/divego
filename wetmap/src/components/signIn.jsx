@@ -18,7 +18,7 @@ import {
   FacebookLoginButton,
   GoogleLoginButton,
 } from "react-social-login-buttons";
-import headliner from "../images/headliner.png";
+import headliner from "../images/Headliner.png";
 
 let emailVar = false;
 let passwordVar = false;
@@ -111,16 +111,22 @@ export default function SignInRoute() {
   async function OAuthSignIn(formVals) {
     let accessToken = await signInStandard(formVals);
     if (accessToken.data.session !== null) {
-      await localStorage.setItem("token", JSON.stringify(accessToken.data.session.refresh_token));
+      await localStorage.setItem(
+        "token",
+        JSON.stringify(accessToken.data.session.refresh_token)
+      );
       setActiveSession(accessToken.data.user);
       return;
     } else {
       let registrationToken = await register(formVals);
       if (registrationToken.data.session !== null) {
-      await localStorage.setItem("token", JSON.stringify(registrationToken.data.session.refresh_token));
-      setActiveSession(registrationToken.data.user);
+        await localStorage.setItem(
+          "token",
+          JSON.stringify(registrationToken.data.session.refresh_token)
+        );
+        setActiveSession(registrationToken.data.user);
       } else {
-      setLoginFail("You already have an account with this email"); 
+        setLoginFail("You already have an account with this email");
       }
     }
   }
@@ -150,7 +156,10 @@ export default function SignInRoute() {
     } else {
       let accessToken = await signInStandard(formVals);
       if (accessToken.data.session !== null) {
-        await localStorage.setItem("token", JSON.stringify(accessToken.data.session.refresh_token));
+        await localStorage.setItem(
+          "token",
+          JSON.stringify(accessToken.data.session.refresh_token)
+        );
         setActiveSession(accessToken.data.user);
       } else {
         setLoginFail("The credentials you supplied are not valid");
@@ -194,9 +203,9 @@ export default function SignInRoute() {
         <div className="headlinerdiv">
           <img
             style={{
-              minWidth: "450px",
-              width: "80%",
-              height: "0%",
+              maxHeight: "45vh",
+              maxWidth: "80%",
+              // height: "0%",
               marginTop: "0%",
               marginBottom: "0%",
               backgroundColor: "#538dbd",
@@ -237,7 +246,9 @@ export default function SignInRoute() {
                 console.log(err);
               }}
             >
-              <FacebookLoginButton style={{ width: "235px", height: "40px" }} />
+              <FacebookLoginButton
+                style={{ width: "235px", height: "40px" }}
+              />
             </LoginSocialFacebook>
           </div>
         </div>
