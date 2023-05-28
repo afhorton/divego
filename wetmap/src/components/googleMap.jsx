@@ -37,7 +37,7 @@ import { LightBoxContext } from "./contexts/lightBoxContext";
 import { SelectedPicContext } from "./contexts/selectPicContext";
 import { HeatPointsContext } from "./contexts/heatPointsContext";
 import { MapBoundsContext } from "./contexts/mapBoundariesContext";
-import FormModal from "./modals/formModal";
+import FormAnchorModal from "./modals/formAnchorModal";
 import AnchorPics from "./modals/anchorPics";
 import { newGPSBoundaries } from "../helpers/mapHelpers";
 import { formatHeatVals } from "../helpers/heatPointHelpers";
@@ -347,9 +347,9 @@ function Map() {
         ></Marker>
       )}
 
-      <FormModal openup={siteModal} closeup={toggleSiteModal}>
+      <FormAnchorModal openup={siteModal} closeup={toggleSiteModal}>
         <AnchorPics closeup={toggleSiteModal} />
-      </FormModal>
+      </FormAnchorModal>
       {/* 
       {lightbox && (
         <div className="boxLight">

@@ -13,7 +13,7 @@ let emailVar = false;
 let passwordVar = false;
 let firstVar = false;
 let lastVar = false;
-import headliner from "../images/headliner.png";
+import headliner from "../images/Headliner.png";
 
 export default function SignUpRoute() {
   const { activeSession, setActiveSession } = useContext(SessionContext);
@@ -96,9 +96,9 @@ export default function SignUpRoute() {
       <div className="headlinerdiv">
           <img
             style={{
-              minWidth: "450px",
-              width: "80%",
-              height: "0%",
+              maxHeight: "45vh",
+              maxWidth: "80%",
+              // height: "0%",
               marginTop: "0%",
               marginBottom: "0%",
               backgroundColor: "#538dbd",

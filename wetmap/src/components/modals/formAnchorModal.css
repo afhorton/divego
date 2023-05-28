@@ -8,10 +8,11 @@
    
 }
 
-.modalBox {
+.modalBoxAnchor {
     color: #BD9F9F;
     font-size: 30px;
     position: absolute;
-    right: 20px;
+    top: 5px;
+    right: 25px;
     z-index: 10;
 }
