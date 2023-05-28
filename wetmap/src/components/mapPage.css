@@ -29,6 +29,7 @@
     transform: translate(-50%, 0%);
     opacity: 100%;
 	filter: drop-shadow( 4px 4px 4px #00000064 );
+    pointer-events: none;
 }
 
 .col2rowT .sliderDiv {
