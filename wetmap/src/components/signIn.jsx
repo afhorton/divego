@@ -228,7 +228,7 @@ export default function SignInRoute() {
                 console.log(err);
               }}
             >
-              <GoogleLoginButton style={{ width: "235px", height: "40px" }} />
+              <GoogleLoginButton style={{ width: "245px", height: "40px" }} />
             </LoginSocialGoogle>
           </div>
 
@@ -247,7 +247,7 @@ export default function SignInRoute() {
               }}
             >
               <FacebookLoginButton
-                style={{ width: "235px", height: "40px" }}
+                style={{ width: "245px", height: "40px" }}
               />
             </LoginSocialFacebook>
           </div>
