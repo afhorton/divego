@@ -161,7 +161,7 @@
 
 .uploadbox2{
     margin-left: 80px;
-    margin-top: 25px;
+    margin-top: 55px;
     width: 100%;
 }
 
@@ -195,6 +195,10 @@
     box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);
 }
 
+.uploadbox5{
+    margin-top: 20px;
+}
+
 #jumpButton {
      margin-top: 10px;
      margin-left: 3.5px;
@@ -206,6 +210,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 60px;
+    margin-bottom: -30px;
     border-radius: 15px;
 }
 
@@ -228,7 +233,6 @@
     border-radius: 5px;
     box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.3);
     margin-left: -15px;
-    margin-top: 30px;
     margin-bottom: 30px;
 }
 

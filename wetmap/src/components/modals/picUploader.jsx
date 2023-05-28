@@ -244,7 +244,7 @@ const PicUploader = React.memo((props) => {
                 color: "gold",
                 cursor: "pointer",
                 marginLeft: "-6px",
-                marginTop: "2px",
+                marginTop: "3px",
               }}
             >
               Choose an Image
