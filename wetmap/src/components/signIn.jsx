@@ -246,9 +246,7 @@ export default function SignInRoute() {
                 console.log(err);
               }}
             >
-              <FacebookLoginButton
-                style={{ width: "245px", height: "40px" }}
-              />
+              <FacebookLoginButton style={{ width: "245px", height: "40px" }} />
             </LoginSocialFacebook>
           </div>
         </div>
@@ -308,10 +306,12 @@ export default function SignInRoute() {
         </div>
 
         {loginFail && <Label className="erroMsg">{loginFail}</Label>}
+      </Form>
+      <div className="wrapper">
         <div className="signButton" onClick={handleSignInSubmit}>
           Sign In
         </div>
-      </Form>
+      </div>
     </div>
   );
 }

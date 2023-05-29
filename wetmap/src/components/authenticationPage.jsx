@@ -19,7 +19,7 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box sx={{ p: 3 }}>
+        <Box sx={{ p: 0 }}>
           <Typography>{children}</Typography>
         </Box>
       )}
@@ -56,13 +56,13 @@ export default function AuthenticationPage() {
           textColor="gray"
           TabIndicatorProps={{sx:{backgroundColor: 'lightgray', height: 2}}}
           sx={{
-            "& button.Mui-selected": { color: "lightgray", width: "1000px"},
+            "& button.Mui-selected": { color: "lightgray", width: "50%"},
             backgroundColor: "#538dbd",
             fontFamily: "Permanent Marker",
           }}
         >
-          <Tab label="Sign In" {...a11yProps(0)} sx={{fontFamily: "Permanent Marker", color: "darkgray", width: "100%"}}/>
-          <Tab label="Sign Up" {...a11yProps(1)} sx={{fontFamily: "Permanent Marker", color: "darkgray", width: "100%"}}/>
+          <Tab label="Sign In" {...a11yProps(0)} sx={{fontFamily: "Permanent Marker", color: "darkgray", width: "50%"}}/>
+          <Tab label="Sign Up" {...a11yProps(1)} sx={{fontFamily: "Permanent Marker", color: "darkgray", width: "50%"}}/>
         </Tabs>
       </Box>
       <TabPanel value={value} index={0} style={{backgroundColor: '#538dbd', height: "100%"}}>

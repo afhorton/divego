@@ -25,7 +25,7 @@ export default function SignUpRoute() {
     lastName: "",
   });
 
-  const [regFail, setRegFail] = useState(null)
+  const [regFail, setRegFail] = useState(null);
 
   const [formValidation, SetFormValidation] = useState({
     emailVal: false,
@@ -71,15 +71,18 @@ export default function SignUpRoute() {
       formVals.firstName == "" ||
       formVals.lastName == ""
     ) {
-      setRegFail("Please fill out all fields")
+      setRegFail("Please fill out all fields");
       return;
     } else {
       let registrationToken = await register(formVals);
       if (registrationToken.data.session !== null) {
-        await localStorage.setItem("token", JSON.stringify(registrationToken.data.session.refresh_token));
+        await localStorage.setItem(
+          "token",
+          JSON.stringify(registrationToken.data.session.refresh_token)
+        );
         setActiveSession(registrationToken.data.user);
       } else {
-        setRegFail(`You have already registered this account, please sign in`)
+        setRegFail(`You have already registered this account, please sign in`);
       }
       let checker = await sessionCheck();
       //  console.log("checkerbox", checker)
@@ -88,12 +91,12 @@ export default function SignUpRoute() {
 
   const handleChange = (e) => {
     setFormVals({ ...formVals, [e.target.name]: e.target.value });
-    setRegFail(null)
-  }
+    setRegFail(null);
+  };
   return (
     <div className="containerDiv">
       <Form onSubmit={handleSignUpSubmit} className="formstyle">
-      <div className="headlinerdiv">
+        <div className="headlinerdiv">
           <img
             style={{
               maxHeight: "45vh",
@@ -107,117 +110,117 @@ export default function SignUpRoute() {
           />
         </div>
         <div className="inptBx">
-            <InputBase
-              // id="standard-basic"
-              // label="Latitude"
-              placeholder="Email"
-              variant="standard"
-              className="inpts"
-              type="text"
-              name="email"
-              value={formVals.email}
-              onChange={handleChange}
-              onFocus={() => setRegFail(null)}
-              inputProps={{
-                style: {
-                  textAlign: "center",
-                  fontFamily: "Indie Flower",
-                  textOverflow: "ellipsis",
-                  backgroundColor: "#538dbd",
-                  height: "25px",
-                  color: "#F0EEEB",
-                  width: "170px",
-                  borderRadius: "10px",
-                  boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)"
-                },
-              }}
-            />
-     
-            <InputBase
-              // id="standard-basic"
-              // label="Latitude"
-              placeholder="Password"
-              // variant="standard"
-              className="inpts"
-              type="password"
-              name="password"
-              value={formVals.password}
-              onChange={handleChange}
-              onFocus={() => setRegFail(null)}
-              inputProps={{
-                style: {
-                  textAlign: "center",
-                  fontFamily: "Indie Flower",
-                  textOverflow: "ellipsis",
-                  backgroundColor: "#538dbd",
-                  height: "25px",
-                  color: "#F0EEEB",
-                  width: "170px",
-                  borderRadius: "10px",
-                  boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)"
-                },
-              }}
-            />
+          <InputBase
+            // id="standard-basic"
+            // label="Latitude"
+            placeholder="Email"
+            variant="standard"
+            className="inpts"
+            type="text"
+            name="email"
+            value={formVals.email}
+            onChange={handleChange}
+            onFocus={() => setRegFail(null)}
+            inputProps={{
+              style: {
+                textAlign: "center",
+                fontFamily: "Indie Flower",
+                textOverflow: "ellipsis",
+                backgroundColor: "#538dbd",
+                height: "25px",
+                color: "#F0EEEB",
+                width: "170px",
+                borderRadius: "10px",
+                boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)",
+              },
+            }}
+          />
 
-            <InputBase
-              // id="standard-basic"
-              // label="Latitude"
-              placeholder="First Name"
-              // variant="standard"
-              className="inpts"
-              type="text"
-              name="firstName"
-              value={formVals.firstName}
-              onChange={handleChange}
-              onFocus={() => setRegFail(null)}
-              inputProps={{
-                style: {
-                  textAlign: "center",
-                  fontFamily: "Indie Flower",
-                  textOverflow: "ellipsis",
-                  backgroundColor: "#538dbd",
-                  height: "25px",
-                  color: "#F0EEEB",
-                  width: "170px",
-                  borderRadius: "10px",
-                  boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)"
-                },
-              }}
-            />
+          <InputBase
+            // id="standard-basic"
+            // label="Latitude"
+            placeholder="Password"
+            // variant="standard"
+            className="inpts"
+            type="password"
+            name="password"
+            value={formVals.password}
+            onChange={handleChange}
+            onFocus={() => setRegFail(null)}
+            inputProps={{
+              style: {
+                textAlign: "center",
+                fontFamily: "Indie Flower",
+                textOverflow: "ellipsis",
+                backgroundColor: "#538dbd",
+                height: "25px",
+                color: "#F0EEEB",
+                width: "170px",
+                borderRadius: "10px",
+                boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)",
+              },
+            }}
+          />
 
-            <InputBase
-              // id="standard-basic"
-              // label="Latitude"
-              placeholder="Last Name"
-              // variant="standard"
-              className="inpts"
-              type="text"
-              name="lastName"
-              value={formVals.lastName}
-              onChange={handleChange}
-              onFocus={() => setRegFail(null)}
-              inputProps={{
-                style: {
-                  textAlign: "center",
-                  fontFamily: "Indie Flower",
-                  textOverflow: "ellipsis",
-                  backgroundColor: "#538dbd",
-                  height: "25px",
-                  color: "#F0EEEB",
-                  width: "170px",
-                  borderRadius: "10px",
-                  boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)"
-                },
-              }}
-            />
-            {regFail && <Label className="erroMsg">{regFail}</Label>}
-            </div>
-          <div className="signButton" onClick={handleSignUpSubmit}>
-            Sign Up
-          </div>
-         
+          <InputBase
+            // id="standard-basic"
+            // label="Latitude"
+            placeholder="First Name"
+            // variant="standard"
+            className="inpts"
+            type="text"
+            name="firstName"
+            value={formVals.firstName}
+            onChange={handleChange}
+            onFocus={() => setRegFail(null)}
+            inputProps={{
+              style: {
+                textAlign: "center",
+                fontFamily: "Indie Flower",
+                textOverflow: "ellipsis",
+                backgroundColor: "#538dbd",
+                height: "25px",
+                color: "#F0EEEB",
+                width: "170px",
+                borderRadius: "10px",
+                boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)",
+              },
+            }}
+          />
+
+          <InputBase
+            // id="standard-basic"
+            // label="Latitude"
+            placeholder="Last Name"
+            // variant="standard"
+            className="inpts"
+            type="text"
+            name="lastName"
+            value={formVals.lastName}
+            onChange={handleChange}
+            onFocus={() => setRegFail(null)}
+            inputProps={{
+              style: {
+                textAlign: "center",
+                fontFamily: "Indie Flower",
+                textOverflow: "ellipsis",
+                backgroundColor: "#538dbd",
+                height: "25px",
+                color: "#F0EEEB",
+                width: "170px",
+                borderRadius: "10px",
+                boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)",
+              },
+            }}
+          />
+          {regFail && <Label className="erroMsg">{regFail}</Label>}
+        </div>
       </Form>
+      <div className="wrapper">
+        <div className="signButton" onClick={handleSignUpSubmit}>
+          Sign Up
+        </div>
+      </div>
     </div>
-    
   );
 }
