@@ -87,6 +87,7 @@ const AnchorPics = () => {
   
   return (
     <div className="masterDivA">
+      <div className="topDiv">
       <h3 className="DiveSiteLabel">{selectedDiveSite.SiteName}</h3>
       <div className="flagContainer">
       <a
@@ -96,7 +97,8 @@ const AnchorPics = () => {
         <FlagIcon sx={{ color: "red" }} />
       </a>
       </div>
-      <div className="picScoll">
+      </div>
+      <div className="picScollA">
         {anchorPics &&
           anchorPics.map((pic) => {
             return (
@@ -115,18 +117,18 @@ const AnchorPics = () => {
                     <Item
                       original={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${pic.photoFile}`}
                       thumbnail={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${pic.photoFile}`}
-                      width="960"
-                      height="540"
-                      style={{ borderRadius: 10 }}
+                      width= "700"
+                      height= "550"
+                      style={{ borderRadius: 10}}
                     >
                       {({ ref, open }) => (
                         <img
                           style={{
                             width: "384px",
                             height: "216px",
-                            // marginLeft: "23%",
-                            // borderRadius: "10px",
-                            objectFit: "cover",
+                            margin: "3px",
+                            borderRadius: "10px",
+                            objectFit: "cover"
                           }}
                           ref={ref}
                           onClick={open}
@@ -141,7 +143,7 @@ const AnchorPics = () => {
           })}
         {anchorPics.length === 0 && (
           <div className="emptySite">
-            No Sightings At This Site Yet For This Time Of Year!
+            No Sightings At This Site Yet!
           </div>
         )}
       </div>
