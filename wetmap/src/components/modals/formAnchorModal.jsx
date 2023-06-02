@@ -7,11 +7,11 @@ import { PictureContext } from "../contexts/pictureContext";
 import { removePhoto } from "../../supabaseCalls/uploadSupabaseCalls";
 const style = {
   position: "absolute",
-  width: "380px",
+  width: "780px",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  bgcolor: "#538bdb",
+  bgcolor: "darkblue",
   boxShadow: 24,
   // p: 1.5,
   borderRadius: "10px",

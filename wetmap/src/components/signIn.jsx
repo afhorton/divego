@@ -203,7 +203,7 @@ export default function SignInRoute() {
         <div className="headlinerdiv">
           <img
             style={{
-              maxHeight: "45vh",
+              maxHeight: "35vh",
               maxWidth: "80%",
               // height: "0%",
               marginTop: "0%",

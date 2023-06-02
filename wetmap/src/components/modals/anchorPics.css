@@ -2,6 +2,7 @@
     overflow-y: hidden;
     overflow-x:hidden;
     max-height: 80vh;
+    /* margin-top: 45px; */
   }
   
   .masterDivA:hover{
@@ -44,20 +45,26 @@
     z-index: 14;
 }
 
-.picScoll{
-    /* max-height: 510px; */
+.picScollA{
+    margin-top: 45px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     overflow-y: hidden;
     overflow: hidden;
-    /* width: 100%; */
-    margin-top: 45px;
-    /* z-index: 2; */
-    /* margin-bottom: 30px; */
-    /* margin-left: -20px; */
+    width: 780px;
+    margin: 0px;
+    z-index: -10;
 }
 
-.picScoll:hover{
+.picScollA:hover{
+    margin-top: 45px;
     overflow-y: auto;
-    width: 100%;
+    /* width: 100%; */
+}
+
+.topDiv{
+    margin-bottom: 45px;
 }
 
 .animalLabel{
@@ -72,7 +79,7 @@
     padding-left: 10px;
     color: #F0EEEB;
     z-index: 8;  
-    width: 100%;
+    /* width: 100%; */
 }
 
 .atag{
@@ -97,7 +104,7 @@
      /* margin-left: 0;
     margin-bottom: 0; */
     position: relative;
-    width: 100%;
+    /* width: 100%; */
 
 }
  
