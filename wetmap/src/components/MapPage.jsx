@@ -9,7 +9,7 @@ import SiteSubmitter from "./modals/siteSubmitter";
 import HowToGuide from "./modals/howToGuide";
 import Settings from "./modals/setting";
 import DiveSiteAutoComplete from "./diveSiteSearch/diveSiteSearch";
-import PhotoMenu from "./photoMenu/photoMenu";
+import PhotoMenu from "./photoMenu/photoMenu2";
 import { useState, useContext } from "react";
 import Button from "@mui/material/Button";
 import ToggleButton from "@mui/material/ToggleButton";
