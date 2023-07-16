@@ -29,6 +29,7 @@
 .pictureBoxA {
   width: 193px;
   margin-top: -20px;
+  z-index: 0;
 }
 
 .alice-carousel__dots {
@@ -98,12 +99,27 @@
 }
 
 .picScollX {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  flex-direction: row;
+  height: 160px;
+  /* overflow: hidden; */
+  /* background-color: greenyellow; */
+  opacity: 1;
+  /* transition: translatex(-193px) 1s ease-out; */
+}
+
+.picScollY {
+  /* position: absolute; */
   display: flex;
   align-items: center;
   justify-items: center;
   flex-direction: row;
   height: 160px;
   overflow: hidden;
-  /* background-color: greenyellow; */
+  /* background-color: purple; */
   opacity: 1;
+  z-index: 2;
 }
