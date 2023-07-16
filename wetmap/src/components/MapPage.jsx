@@ -241,8 +241,8 @@ const MapPage = React.memo(() => {
         />
       </div>
 
-      {masterSwitch && (<div className="col2rowB">
-        <Histogram/>
+      {masterSwitch && (<div className="col2rowB" style={{pointerEvents: "none"}}>
+        <Histogram pointerEvents={'none'}/>
         </div>)}
 
      <div>

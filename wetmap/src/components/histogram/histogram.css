@@ -6,6 +6,7 @@
     height: 180px;
     border-radius: 10px;
     width: 100%;
+    pointer-events: none;
   }
 
   .barBox {
@@ -16,6 +17,7 @@
     vertical-align: "bottom";
     height: 60%;
     width: 90%;
+    pointer-events: none;
     margin-left: 5%;
   }
 
@@ -71,4 +73,5 @@
     margin-left: 1px;
     margin-right: 1px;
     width: 50px;
+    background-color: red;
   }

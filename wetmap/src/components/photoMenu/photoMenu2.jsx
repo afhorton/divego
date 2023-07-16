@@ -224,14 +224,13 @@ const PhotoMenu = () => {
                 />
               );
             })}
-
-          {areaPics.length === 0 && (
+        </animated.div>
+      </div>
+      {areaPics.length === 0 && (
             <div className="emptyPhotos">
               No Sea Creatures have been added for this area yet.
             </div>
           )}
-        </animated.div>
-      </div>
       <ToggleButton
         className="backTog"
         sx={toggleButtonStyle}
