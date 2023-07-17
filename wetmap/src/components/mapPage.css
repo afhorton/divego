@@ -11,6 +11,7 @@
     z-index: 2;
     top: 400px;
     left: 400px;
+    background-color: lightpink;
 }
 
 .col2rowT {
@@ -30,6 +31,7 @@
     opacity: 100%;
 	filter: drop-shadow( 4px 4px 4px #00000064 );
     pointer-events: none;
+    /* background-color: lightgrey; */
 }
 
 .col2rowT .sliderDiv {
@@ -64,14 +66,15 @@
 	color: white; */
 }
 
-.just-testing {
+.fabButtons {
     z-index: 5;
     position:absolute;
 	display: flex;
-	flex-direction: column;
+    flex-direction: column;
+    height: 419px;
 	gap: 0.5rem;
-	top: 252px;
-    left: 10px;
+	bottom: 200px;
+    right: 67px;
     width: 10px;
 }
 
@@ -154,7 +157,6 @@
     position: absolute;
     /* margin-top: 100vh; */
     bottom: 0;
-   
     
 }
 
@@ -163,7 +165,7 @@
     z-index: 2;
     position: absolute;
     bottom: 0px;
-    left: -15%;
+    left: -10%;
     /* background-color: white; */
     opacity: 100%;
     border-radius: 5px;

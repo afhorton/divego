@@ -9,6 +9,7 @@ import SiteSubmitter from "./modals/siteSubmitter";
 import HowToGuide from "./modals/howToGuide";
 import Settings from "./modals/setting";
 import DiveSiteAutoComplete from "./diveSiteSearch/diveSiteSearch";
+import PlacesAutoComplete from "./locationSearch/placesAutocomplete";
 import PhotoMenu from "./photoMenu/photoMenu2";
 import { useState, useContext } from "react";
 import Button from "@mui/material/Button";
@@ -38,9 +39,15 @@ import "./mapPage.css";
 import AnimalTopAutoSuggest from "./animalTags/animalTagContainer";
 import Histogram from "./histogram/histogramBody";
 
-const animalSearchZone = (
-  <div style={{ marginLeft: "10px", marginTop: "7px" }}>
+const diveSiteSearchZone = (
+  <div style={{ marginLeft: "-300px", marginTop: "7px" }}>
     <DiveSiteAutoComplete></DiveSiteAutoComplete>
+  </div>
+);
+
+const locationSearchZone = (
+  <div style={{ marginLeft: "-305px", marginTop: "0px", width: "220px" }}>
+    <PlacesAutoComplete></PlacesAutoComplete>
   </div>
 );
 
@@ -92,18 +99,18 @@ const MapPage = React.memo(() => {
   };
 
   const toggleButtonStyle = {
-	"&.Mui-selected": { backgroundColor: "gold" },
-	"&.Mui-selected:hover": { backgroundColor: "gold" },
+	"&.Mui-selected": { backgroundColor: "aquamarine" },
+	"&.Mui-selected:hover": { backgroundColor: "gold", color: "black" },
 	"&:hover": {
-		//color: "#333",
-		backgroundColor: "#3AAFB9"
+		color: "black",
+		backgroundColor: "gold"
 	},
-	backgroundColor: "darkblue",
+	backgroundColor: "black",
 	height: "48px",
 	width:  "48px",
 	border: "1px solid black",
 	marginTop: "5px",
-	color: "white",
+	color: "aquamarine",
 	boxShadow: "-2px 4px 4px #00000064",
 	borderRadius: "100%"
   }
@@ -116,9 +123,36 @@ const MapPage = React.memo(() => {
 			</div>
 		)}
 
-    <div className="just-testing">
+    <div className="fabButtons">
+
+    {masterSwitch && ( <div className="gearBox">
+        <ToggleButton
+          sx={ toggleButtonStyle }
+          value="check"
+          selected={gearModal}
+          onChange={() => {
+            setGearModal(toggleGearModal);
+          }}
+        >
+          <SettingsIcon sx={{height: "39px", width: "39px"}}/>
+        </ToggleButton>
+      </div>)}
+
+      {masterSwitch && (<div className="howToBox">
+        <ToggleButton
+          sx={ toggleButtonStyle }
+          value="check"
+          selected={guideModal}
+          onChange={() => {
+            setGuideModal(toggleGuideModal);
+          }}
+        >
+          <QuestionMarkIcon sx={{height: "40px", width: "40px"}}/>
+        </ToggleButton>
+      </div>)}
+
       {masterSwitch && (<div
-        className="col1row2"
+        className="NavBox"
         style={{ display: "flex", flexDirection: "row" }}
       >
         <ToggleButton
@@ -129,12 +163,19 @@ const MapPage = React.memo(() => {
             setShowGeoCoder(!showGeoCoder);
           }}
         >
-          <ExploreIcon />
+          <ExploreIcon sx={{height: "37px", width: "37px"}}/>
         </ToggleButton>
+        {/* <Collapse
+          in={showGeoCoder}
+          orientation="horizontal"
+          collapsedSize="0px"
+        >
+          {locationSearchZone}
+        </Collapse> */}
       </div>)}
 
       {masterSwitch && (<div
-        className="col1row3"
+        className="diveSiteBox"
         style={{ display: "flex", flexDirection: "row" }}
       >
         <ToggleButton
@@ -145,18 +186,44 @@ const MapPage = React.memo(() => {
             setShowAnimalSearch(!showAnimalSearch);
           }}
         >
-          <TravelExploreIcon />
+          <TravelExploreIcon sx={{height: "36px", width: "36px"}}/>
         </ToggleButton>
         <Collapse
           in={showAnimalSearch}
           orientation="horizontal"
           collapsedSize="0px"
         >
-          {animalSearchZone}
+          {diveSiteSearchZone}
         </Collapse>
       </div>)}
 
-      {masterSwitch && ( <div className="col1row4">
+      {masterSwitch && (<div className="PhotoBox">
+        <ToggleButton
+          sx={ toggleButtonStyle }
+          value="check"
+          selected={picModal}
+          onChange={() => {
+            setPicModal(togglePicModal);
+          }}
+        >
+          <PhotoCameraIcon sx={{height: "36px", width: "36px"}}/>
+        </ToggleButton>
+      </div>)}
+
+      {masterSwitch && (<div className="diveAddBox">
+        <ToggleButton
+          sx={ toggleButtonStyle }
+          value="check"
+          selected={diveSiteModal}
+          onChange={() => {
+            setDiveSiteModal(toggleDiveSiteModal);
+          }}
+        >
+          <AddLocationAltIcon sx={{height: "38px", width: "38px"}}/>
+        </ToggleButton>
+      </div>)}
+
+      {masterSwitch && ( <div className="AnchorBox">
         {" "}
         <ToggleButton
           sx={ toggleButtonStyle }
@@ -166,61 +233,17 @@ const MapPage = React.memo(() => {
             setDivesTog(!divesTog);
           }}
         >
-          <AnchorIcon />
+          <AnchorIcon sx={{height: "37px", width: "37px"}}/>
         </ToggleButton>
       </div>)}
 
-      {masterSwitch && (<div className="col1row5">
-        <ToggleButton
-          sx={ toggleButtonStyle }
-          value="check"
-          selected={picModal}
-          onChange={() => {
-            setPicModal(togglePicModal);
-          }}
-        >
-          <PhotoCameraIcon />
-        </ToggleButton>
-      </div>)}
+    
 
-      {masterSwitch && (<div className="col1row6">
-        <ToggleButton
-          sx={ toggleButtonStyle }
-          value="check"
-          selected={diveSiteModal}
-          onChange={() => {
-            setDiveSiteModal(toggleDiveSiteModal);
-          }}
-        >
-          <AddLocationAltIcon />
-        </ToggleButton>
-      </div>)}
+      
 
-      {masterSwitch && (<div className="col1row7">
-        <ToggleButton
-          sx={ toggleButtonStyle }
-          value="check"
-          selected={guideModal}
-          onChange={() => {
-            setGuideModal(toggleGuideModal);
-          }}
-        >
-          <QuestionMarkIcon />
-        </ToggleButton>
-      </div>)}
+     
 
-      {masterSwitch && ( <div className="col1row9">
-        <ToggleButton
-          sx={ toggleButtonStyle }
-          value="check"
-          selected={gearModal}
-          onChange={() => {
-            setGearModal(toggleGearModal);
-          }}
-        >
-          <SettingsIcon />
-        </ToggleButton>
-      </div>)}
+      
       
 	  </div>
       {masterSwitch && (<div className="col1row8">
@@ -267,7 +290,7 @@ const MapPage = React.memo(() => {
             setMapZoom(mapZoom + 1);
           }}
         >
-          <AddIcon />
+          <AddIcon sx={{height: "40px", width: "40px"}}/>
         </ToggleButton>
       </div>
 
@@ -282,7 +305,7 @@ const MapPage = React.memo(() => {
             setMapZoom(mapZoom - 1);
           }}
         >
-          <RemoveIcon />
+          <RemoveIcon sx={{height: "40px", width: "40px"}}/>
         </ToggleButton>
         </div>
         </div>

@@ -12,6 +12,23 @@
     color: #BD9F9F;
     font-size: 30px;
     position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     right: 20px;
     z-index: 10;
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+    /* background-color: lightgreen; */
+}
+
+.modalBox:hover {
+    background-color: darkgrey;
+    color: lightgrey;
+}
+
+.modalBox:active {
+    background-color: lightgray;
+    color: #BD9F9F;
 }

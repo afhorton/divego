@@ -30,3 +30,10 @@
   margin-top: 30px;
   margin-bottom: 20px;
 }
+
+.Logoutbutton:hover {
+  background-color: #3e7dd7;
+}
+.Logoutbutton:active {
+  background-color: #538dbd;
+}

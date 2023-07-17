@@ -86,6 +86,7 @@ export default function DiveSiteAutoComplete() {
                     Latitude: site.lat,
                     Longitude: site.lng,
                   });
+                  setShowAnimalSearch(!setShowAnimalSearch)
                 }
               });
             })

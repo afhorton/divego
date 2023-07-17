@@ -260,7 +260,7 @@ function Map() {
       onBoundsChanged={handleBoundsChange}
       disableDefaultUI={true}
     >
-      {masterSwitch && (
+      {masterSwitch && (<div className="aligner">
         <Collapse
           in={showGeoCoder}
           orientation="horizontal"
@@ -270,6 +270,7 @@ function Map() {
             <PlacesAutoComplete setSelected={setSelected} />
           </div>
         </Collapse>
+        </div>
       )}
 
       {clusters &&

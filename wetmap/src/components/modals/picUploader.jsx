@@ -269,16 +269,7 @@ const PicUploader = React.memo((props) => {
           </FormGroup>
         </div>
 
-        <div className="autosuggestbox" onClick={handleNoGPSClose}>
-          <AnimalAutoSuggest
-            setPin={setPin}
-            pin={pin}
-            setList={setList}
-            list={list}
-            onClick={handleNoGPSClose}
-            clearAnimal={clearAnimal}
-          />
-        </div>
+      
 
         <div className="inputboxType1">
           <FormGroup>
@@ -312,6 +303,17 @@ const PicUploader = React.memo((props) => {
               }}
             />
           </FormGroup>
+        </div>
+
+        <div className="autosuggestbox" onClick={handleNoGPSClose}>
+          <AnimalAutoSuggest
+            setPin={setPin}
+            pin={pin}
+            setList={setList}
+            list={list}
+            onClick={handleNoGPSClose}
+            clearAnimal={clearAnimal}
+          />
         </div>
 
         <Collapse in={showNoGPS} orientation="vertical" collapsedSize="0px">

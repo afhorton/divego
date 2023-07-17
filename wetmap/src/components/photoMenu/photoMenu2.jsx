@@ -134,9 +134,6 @@ const PhotoMenu = () => {
   const onClicko = (direction) => {
     let maxLength = areaPics.length * 193;
 
-    console.log("currentX", xCoord);
-    console.log("maxlength", maxLength - caddyWidth);
-    console.log("caddy", caddyWidth);
     if (direction === "shiftLeft") {
       if (xCoord >= 0) {
         setXCoord(0);

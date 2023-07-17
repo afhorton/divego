@@ -4,14 +4,25 @@
   z-index: 1;
 }
 
-.places-container {
-  z-index: 4;
+.aligner {
   position: absolute;
-  top: 241px;
-  left: 65px;
-  width: 222px;
+  pointer-events: none;
+  bottom: 200px;
+  right: 67px;
+  height: 419px;
+  pointer-events: none;
+  width: 266px;
+  /* background-color: lightpink; */
+  z-index: 1;
 }
-.combobox-input{
+
+.places-container {
+  pointer-events: all;
+  margin-top: 125px;
+  width: 222px;
+  z-index: 5;
+}
+.combobox-input {
   width: 100.5%;
   padding: 0.5rem;
   height: 25px;
@@ -19,26 +30,26 @@
   opacity: 0.7;
 }
 
-.popover{
+.popover {
   width: auto;
   height: auto;
   z-index: 10;
   border-radius: 10px;
 }
 
-.poplist{
+.poplist {
   width: auto;
   height: auto;
   border-radius: 10px;
 }
 
-.popopt{
+.popopt {
   width: auto;
   height: 40px;
   border-radius: 5px;
 }
 
-.boxLight{
+.boxLight {
   z-index: 9;
   width: 1000px;
   height: 700px;
