@@ -115,7 +115,7 @@ export default function SignInRoute() {
         "token",
         JSON.stringify(accessToken.data.session.refresh_token)
       );
-      setActiveSession(accessToken.data.user);
+      setActiveSession(accessToken);
       return;
     } else {
       let registrationToken = await register(formVals);
@@ -124,7 +124,7 @@ export default function SignInRoute() {
           "token",
           JSON.stringify(registrationToken.data.session.refresh_token)
         );
-        setActiveSession(registrationToken.data.user);
+        setActiveSession(registrationToken);
       } else {
         setLoginFail("You already have an account with this email");
       }
@@ -160,7 +160,7 @@ export default function SignInRoute() {
           "token",
           JSON.stringify(accessToken.data.session.refresh_token)
         );
-        setActiveSession(accessToken.data.user);
+        setActiveSession(accessToken);
       } else {
         setLoginFail("The credentials you supplied are not valid");
         return;

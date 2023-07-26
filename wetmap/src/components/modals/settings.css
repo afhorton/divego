@@ -37,3 +37,57 @@
 .Logoutbutton:active {
   background-color: #538dbd;
 }
+
+.AccountDeleteButton{
+  display: flex;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 16px;
+  cursor: pointer;
+  color: maroon;
+  background-color: pink;
+  width: 160px;
+  height: 30px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px 3px rgba(0, 0, 0, 0.25);
+  margin-left: 26%;
+  margin-top: 30px;
+  /* margin-bottom: 20px; */
+}
+
+.AccountDeleteButton:hover {
+  background-color: white;
+}
+.AccountDeleteButton:active {
+  background-color: gold;
+}
+
+.dangerZonebar{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
+  align-content: center;
+  align-self: center;
+  align-items: center;
+  width: 80%;
+  height: 25px;
+  background-color: pink;
+  opacity: 0.65;
+  border-radius: 10px;
+  margin-top: 85%;
+  padding-left: 5px;
+  padding-right: 5px;
+  cursor: pointer;
+  margin-left: 8%;
+}
+
+.dangerText{
+  color: maroon;
+  height: 25px;
+  width: 150px;
+  margin-top: 3px;
+}
+
+
