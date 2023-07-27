@@ -59,7 +59,7 @@ export default function SignInRoute() {
       });
       const user = await res.json();
       handleOAuthSubmit(user);
-      console.log("helloG?", user);
+      // console.log("helloG?", user);
     } catch (err) {
       console.log("error", err);
     }
@@ -74,7 +74,7 @@ export default function SignInRoute() {
       );
       const user2 = await res2.json();
       handleOAuthSubmit(user2);
-      console.log("helloF?", user2);
+      // console.log("helloF?", user2);
     } catch (err) {
       console.log("error", err);
     }
@@ -115,7 +115,7 @@ export default function SignInRoute() {
         "token",
         JSON.stringify(accessToken.data.session.refresh_token)
       );
-      setActiveSession(accessToken);
+      setActiveSession(accessToken.data.session);
       return;
     } else {
       let registrationToken = await register(formVals);
@@ -124,7 +124,7 @@ export default function SignInRoute() {
           "token",
           JSON.stringify(registrationToken.data.session.refresh_token)
         );
-        setActiveSession(registrationToken);
+        setActiveSession(registrationToken.data.session);
       } else {
         setLoginFail("You already have an account with this email");
       }
@@ -160,7 +160,7 @@ export default function SignInRoute() {
           "token",
           JSON.stringify(accessToken.data.session.refresh_token)
         );
-        setActiveSession(accessToken);
+        setActiveSession(accessToken.data.session);
       } else {
         setLoginFail("The credentials you supplied are not valid");
         return;

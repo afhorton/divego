@@ -65,9 +65,9 @@ function App() {
         const value = JSON.parse(valuless);
         if (value !== null) {
           if (value.session.refresh_token) {
-            console.log("token?", value.session.refresh_token)
+            // console.log("token?", value.session.refresh_token)
             let newSession = await sessionRefresh(value.session.refresh_token);
-            console.log("new session", newSession)
+            // console.log("new session", newSession)
             setActiveSession(newSession);
           }
         }
