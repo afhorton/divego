@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import Collapse from "@mui/material/Collapse";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import { signOut } from "../../supabaseCalls/authenticateSupabaseCalls";
-import { SessionContext } from "..//contexts/sessionContext";
+import { SessionContext } from "../contexts/sessionContext";
 import "./settings.css";
 import ActDelDialog from "./dialog";
 
@@ -76,7 +76,7 @@ const Settings = (props) => {
               marginRight: "10%",
             }}
           ></ErrorOutlineIcon>
-          <text className="dangerText">Danger Zone</text>
+          <strong className="dangerText">Danger Zone</strong>
           <ErrorOutlineIcon
             sx={{
               color: "maroon",

@@ -9,6 +9,7 @@ import {
   signInFaceBook,
   signInGoogle,
 } from "../supabaseCalls/authenticateSupabaseCalls";
+import { createProfile } from "../supabaseCalls/accountSupabaseCalls";
 import { Auth } from "@supabase/auth-ui-react";
 import { supabase } from "../supabase";
 import "./authenication.css";
@@ -119,6 +120,9 @@ export default function SignInRoute() {
       return;
     } else {
       let registrationToken = await register(formVals);
+      //test me
+      await createProfile({id: registrationToken.data.session.user.id , email: formVals.email})
+      ////
       if (registrationToken.data.session !== null) {
         await localStorage.setItem(
           "token",

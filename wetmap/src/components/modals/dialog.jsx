@@ -7,9 +7,9 @@ import {
   DialogContentText,
   DialogActions,
 } from "@mui/material";
-import { SessionContext } from "..//contexts/sessionContext";
-import { addDeletedAccountInfo } from "../../supabaseCalls/accountSupabaseCalls";
-import { userDelete } from "../../supabaseCalls/authenticateSupabaseCalls";
+import { SessionContext } from "../contexts/sessionContext";
+import { addDeletedAccountInfo, deleteProfile } from "../../supabaseCalls/accountSupabaseCalls";
+import { userDelete, signOut } from "../../supabaseCalls/authenticateSupabaseCalls";
 import "./dialog.css";
 
 const ActDelDialog = (props) => {
@@ -35,6 +35,11 @@ const ActDelDialog = (props) => {
       email: activeSession.user.email,
       UserID: activeSession.user.id,
     });
+
+     //test me
+     await deleteProfile(activeSession.user.id)
+     /////
+
     await userDelete(activeSession.user.id);
     await setActiveSession(null);
     await localStorage.removeItem("token");
