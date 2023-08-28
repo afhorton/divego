@@ -11,7 +11,8 @@ import Settings from "./modals/setting";
 import DiveSiteAutoComplete from "./diveSiteSearch/diveSiteSearch";
 import PlacesAutoComplete from "./locationSearch/placesAutocomplete";
 import PhotoMenu from "./photoMenu/photoMenu2";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
+import { grabProfileById } from "./../supabaseCalls/accountSupabaseCalls";
 import Button from "@mui/material/Button";
 import ToggleButton from "@mui/material/ToggleButton";
 import Collapse from "@mui/material/Collapse";
@@ -34,6 +35,11 @@ import { MasterContext } from "./contexts/masterContext";
 import { LightBoxContext } from "./contexts/lightBoxContext";
 import { SelectedPicContext } from "./contexts/selectPicContext";
 import { ZoomContext } from "./contexts/mapZoomContext";
+import { UserProfileContext } from "./contexts/userProfileContext";
+import { SessionContext } from "./contexts/sessionContext";
+import { PinContext } from "./contexts/staticPinContext";
+import { DiveSpotContext } from "./contexts/diveSpotContext";
+
 import Lightbox from "react-image-lightbox";
 import "./mapPage.css";
 import AnimalTopAutoSuggest from "./animalTags/animalTagContainer";
@@ -58,6 +64,8 @@ const adminPortalZone = (
 );
 
 const MapPage = React.memo(() => {
+  const { activeSession, setActiveSession } = useContext(SessionContext);
+  const { profile, setProfile } = useContext(UserProfileContext);
   const { masterSwitch, setMasterSwitch } = useContext(MasterContext);
   const { divesTog, setDivesTog } = useContext(DiveSitesContext);
   const [showAdminPortal, setShowAdminPortal] = useState(false);
@@ -66,6 +74,9 @@ const MapPage = React.memo(() => {
   const { showAnimalSearch, setShowAnimalSearch } = useContext(
     AnimalRevealContext
   );
+  const { pin, setPin } = useContext(PinContext);
+  const { addSiteVals, setAddSiteVals } = useContext(DiveSpotContext);
+
   const { lightbox, setLightbox } = useContext(LightBoxContext);
   const { selectedPic } = useContext(SelectedPicContext);
   const { mapZoom, setMapZoom } = useContext(ZoomContext);
@@ -97,6 +108,29 @@ const MapPage = React.memo(() => {
     setPicModal(true);
     setMasterSwitch(true);
   };
+
+
+  useEffect(() => {
+    const getProfile = async () => {
+      let sessionUserId = activeSession.user.id;
+      try {
+        const success = await grabProfileById(sessionUserId);
+        if (success) {
+          // let bully = success[0].UserName;
+          setProfile(success)
+          setPin({ ...pin, UserID: success[0].UserID, UserName: success[0].UserName });
+          setAddSiteVals({ ...addSiteVals, UserID: success[0].UserID, UserName: success[0].UserName });
+          // if (bully == null) {
+          //   setGuideModal(!guideModal);
+          // }
+        }
+      } catch (e) {
+        console.log({ title: "Error", message: e.message });
+      }
+    };
+
+    getProfile();
+  }, []);
 
   const toggleButtonStyle = {
 	"&.Mui-selected": { backgroundColor: "aquamarine" },

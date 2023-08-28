@@ -29,7 +29,7 @@ import { SliderContext } from "./contexts/sliderContext";
 import { AnimalContext } from "./contexts/animalContext";
 import { AnimalMultiSelectContext } from "./contexts/animalMultiSelectContext";
 import { GeoCoderContext } from "./contexts/geoCoderContext";
-import { PinContext } from "./contexts/pinContext";
+import { PinContext } from "./contexts/staticPinContext";
 import { MasterContext } from "./contexts/masterContext";
 import { PinSpotContext } from "./contexts/pinSpotContext";
 import { SelectedDiveSiteContext } from "./contexts/selectedDiveSiteContext";

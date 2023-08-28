@@ -1,14 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Container, Form, FormGroup, Label, Input } from "reactstrap";
 import "./picUploader.css";
-import InputBase from '@mui/material/InputBase';
+import InputBase from "@mui/material/InputBase";
 import Button from "@mui/material/Button";
 import exifr from "exifr";
 import AnimalAutoSuggest from "../autoSuggest/autoSuggest";
 import { useNavigate } from "react-router-dom";
 import { MasterContext } from "../contexts/masterContext";
-import { PinContext } from "../contexts/pinContext";
+import { PinContext } from "../contexts/staticPinContext";
 import { PictureContext } from "../contexts/pictureContext";
+import { SessionContext } from "../contexts/sessionContext";
+import { UserProfileContext } from "../contexts/userProfileContext";
 import PlaceIcon from "@mui/icons-material/Place";
 import PhotoIcon from "@mui/icons-material/Photo";
 
@@ -52,13 +54,13 @@ const PicUploader = React.memo((props) => {
   const [showNoGPS, setShowNoGPS] = useState(false);
   const [list, setList] = useState([]);
   const { photoFile, setPhotoFile } = useContext(PictureContext);
+  const { activeSession, setActiveSession } = useContext(SessionContext);
+  const { profile, setProfile } = useContext(UserProfileContext);
 
   const [uploadedFile, setUploadedFile] = useState({
     selectedFile: null,
   });
 
-  
-  
   useEffect(() => {
     if (pin.PicDate === "") {
       let Rnow = new Date();
@@ -71,13 +73,12 @@ const PicUploader = React.memo((props) => {
       });
     }
 
-    const getUser = async () => {
-      let userId = await userCheck();
-      setPin({ ...pin, UserID: userId.data.user.id });
-    };
-  
-    getUser();
+    // const getUser = async () => {
+    //   let userId = await userCheck();
+    //   setPin({ ...pin, UserID: userId.data.user.id });
+    // };
 
+    // getUser();
   }, []);
 
   const handleChange = async (e) => {
@@ -87,7 +88,7 @@ const PicUploader = React.memo((props) => {
       }
 
       let fileName = e.target.files[0];
-      console.log("yo", fileName)
+      console.log("yo", fileName);
       let baseDate = e.target.files[0].lastModified;
 
       setUploadedFile({ ...uploadedFile, selectedFile: e.target.files[0] });
@@ -101,7 +102,7 @@ const PicUploader = React.memo((props) => {
 
       const newFilePath = await uploadphoto(fileName, fileName.name);
       //needs to be "animalphotos/public/file.jpg"
-      console.log("nfp" ,newFilePath)
+      console.log("nfp", newFilePath);
       setPhotoFile("animalphotos/" + newFilePath);
 
       // fetch("http://localhost:5000/api/upload", {
@@ -176,11 +177,11 @@ const PicUploader = React.memo((props) => {
       let Rnow = new Date();
 
       let rightNow = getToday(Rnow);
-      console.log("youa", pin)
 
       insertPhotoWaits({ ...pin, PicFile: photoFile });
 
       setPin({
+        ...pin,
         PicFile: "",
         PicDate: rightNow,
         Animal: "",
@@ -212,7 +213,6 @@ const PicUploader = React.memo((props) => {
         </div>
 
         {photoFile && (
-  
           <div className="pickie">
             {/* <div>{photoFile}</div> */}
             <img
@@ -269,8 +269,6 @@ const PicUploader = React.memo((props) => {
           </FormGroup>
         </div>
 
-      
-
         <div className="inputboxType1">
           <FormGroup>
             <InputBase
@@ -298,7 +296,7 @@ const PicUploader = React.memo((props) => {
                   alignItems: "center",
                   paddingRight: "8px",
                   borderRadius: "10px",
-                  boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)"
+                  boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)",
                 },
               }}
             />
@@ -347,7 +345,7 @@ const PicUploader = React.memo((props) => {
                       borderBottom: "none",
                       borderColor: "transparent",
                       borderRadius: "10px",
-                      boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)"
+                      boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)",
                     },
                   }}
                 />
@@ -380,7 +378,7 @@ const PicUploader = React.memo((props) => {
                       borderBottom: "none",
                       borderColor: "transparent",
                       borderRadius: "10px",
-                      boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)"
+                      boxShadow: "inset 0 0 15px rgba(0,0,0, 0.5)",
                     },
                   }}
                 />
