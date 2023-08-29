@@ -73,12 +73,6 @@ const PicUploader = React.memo((props) => {
       });
     }
 
-    // const getUser = async () => {
-    //   let userId = await userCheck();
-    //   setPin({ ...pin, UserID: userId.data.user.id });
-    // };
-
-    // getUser();
   }, []);
 
   const handleChange = async (e) => {

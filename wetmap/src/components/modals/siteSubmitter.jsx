@@ -34,24 +34,6 @@ const SiteSubmitter = (props) => {
   const [showNoGPS, setShowNoGPS] = useState(false);
   const { addSiteVals, setAddSiteVals } = useContext(DiveSpotContext);
 
-  // const [formVals, setFormVals] = useState({
-  //   Site: "",
-  //   Latitude: "",
-  //   Longitude: "",
-  //   UserID: "",
-  // });
-
-  // let UserId;
-
-  // useEffect(() => {
-  //   const getUser = async () => {
-  //     UserId = await userCheck();
-  //     setAddSiteVals({ ...addSiteVals, UserID: UserId.id });
-  //   };
-  
-  //   getUser();
-  // }, []);
-
   const [uploadedFile, setUploadedFile] = useState({
     selectedFile: null,
   });
