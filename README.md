@@ -14,7 +14,7 @@ exifr
 # Live at
 https://divegoweb.netlify.app
 
-!["Web Version QR"](https://github.com/Freem11/divego/blob/master/wetmap/src/images/WebVersion.png)
+!["Web Version QR"](https://github.com/Freem11/divego/blob/master/wetmap/src/images/Home.png)
 
 # Current Features:
 
@@ -46,6 +46,8 @@ Dive Site flagging feature allowing users to report incorrect dive site names or
 
 How to Guide, explains most features of the app for new users. 
 
+Login/Logout/Register system with persistent login (user stays logged in even after closing browser, unless they deliberately log out) with OAuth integrations for Google and Facebook.
+
 Backend integration with Supabase 
 
 # Admin section for:
@@ -54,7 +56,10 @@ User dive site submission and user photo submission validation before committing
 
 # In Progress Features:
 
-Login/Logout/Register system with persistent login (user stays logged in even after closing browser, unless they deliberately log out)
+Three Interactive User guides designed to get users acclimated to how to use the app fast:
+Intro Guide - map navigation and how to find active areas, also completes user profile.
+Dive Sites - how to use the search tool to check if a site is in the app and add a new site if not.
+Sighting Submissions - how to add a sea creature sighting, inclduing how to make use of all submission features.
 
 # Planned Features:
 
@@ -63,10 +68,11 @@ Automated animal ID from photo machine learning
 
 
 # ScreenShots
+!["Screenshot of Sign In Screen"](https://github.com/Freem11/divego/blob/master/wetmap/src/images/SignIn.png)
 !["Screenshot of Map Screen"](https://github.com/Freem11/divego/blob/master/wetmap/src/images/Overview.png)
 !["Screenshot of Dive Site Gallery"](https://github.com/Freem11/divego/blob/master/wetmap/src/images/DiveSitePhotos.png)
 !["Screenshot of Dive Site Form"](https://github.com/Freem11/divego/blob/master/wetmap/src/images/DiveSiteNew.png)
 !["Screenshot of Photo Upload Form"](https://github.com/Freem11/divego/blob/master/wetmap/src/images/PhotoSubmit.png)
-!["Screenshot of Pin Drop Screen"](https://github.com/Freem11/divego/blob/master/wetmap/src/images/PinDrop.png)
 !["Screenshot of Dive Site Search Tool"](https://github.com/Freem11/divego/blob/master/wetmap/src/images/DiveSiteSearch.png)
-!["Screenshot of How To Guide"](https://github.com/Freem11/divego/blob/master/wetmap/src/images/HowToGuide.png)
+!["Screenshot of Pin Dropper"](https://github.com/Freem11/divego/blob/master/wetmap/src/images/PinDrop.png)
+
