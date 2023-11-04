@@ -17,6 +17,7 @@ export const diveSiteWaits = async () => {
 };
 
 export const insertDiveSiteWaits = async (values) => {
+  console.log("Supa got", values)
   const { data, error } = await supabase
   .from("diveSiteWait")
   .insert([
@@ -24,7 +25,8 @@ export const insertDiveSiteWaits = async (values) => {
       name: values.Site,
       lat: values.Latitude,
       lng: values.Longitude,
-      UserID: values.UserID
+      UserID: values.UserID,
+      userName: values.UserName
     },
   ]);
 

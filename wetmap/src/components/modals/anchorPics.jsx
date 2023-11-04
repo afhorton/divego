@@ -3,6 +3,7 @@ import { SliderContext } from "../contexts/sliderContext";
 import { AnimalContext } from "../contexts/animalContext";
 import { MapBoundsContext } from "../contexts/mapBoundariesContext";
 import { useState, useContext, useEffect } from "react";
+import { siteGPSBoundaries } from "../../helpers/mapHelpers";
 import { getPhotosforAnchor } from "../../supabaseCalls/photoSupabaseCalls";
 import "photoswipe/dist/photoswipe.css";
 import FlagIcon from "@mui/icons-material/Flag";
@@ -19,13 +20,18 @@ const AnchorPics = () => {
 
   const filterAnchorPhotos = async () => {
     
+      let { minLat, maxLat, minLng, maxLng } = siteGPSBoundaries(
+        selectedDiveSite.Latitude,
+        selectedDiveSite.Longitude
+      );
+
     try {
       const photos = await getPhotosforAnchor({
         animalVal,
-        minLat: boundaries[1],
-        maxLat: boundaries[3],
-        minLng: boundaries[0],
-        maxLng: boundaries[2],
+        minLat: minLat,
+        maxLat: maxLat,
+        minLng: minLng,
+        maxLng: maxLng,
       });
       if (photos) {
         setAnchorPics(photos);

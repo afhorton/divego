@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import "./formModal.css";
-import { PinContext } from "../contexts/pinContext";
+import { PinContext } from "../contexts/staticPinContext";
+import { DiveSpotContext } from "../contexts/diveSpotContext";
 import { PictureContext } from "../contexts/pictureContext";
 import { removePhoto } from "../../supabaseCalls/uploadSupabaseCalls";
 const style = {
@@ -21,16 +22,22 @@ let filePath = "./wetmap/src/components/uploads/";
 
 const FormModal = React.memo((props) => {
   const { openup, closeup, children } = props;
-  const { setPin } = useContext(PinContext);
+  const { pin, setPin } = useContext(PinContext);
+  const { addSiteVals, setAddSiteVals } = useContext(DiveSpotContext);
 
   const { photoFile, setPhotoFile } = useContext(PictureContext);
   
 
   const handleClose = () => {
-    setPin({
+    setPin({...pin,
       PicFile: "",
       Animal: "",
       PicDate: "",
+      Latitude: "",
+      Longitude: "",
+    });
+    setAddSiteVals({...addSiteVals,
+      Site: "",
       Latitude: "",
       Longitude: "",
     });

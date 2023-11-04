@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { Container, Form, FormGroup, Label, Input } from "reactstrap";
 import "./siteSubmitter.css";
 import exifr from "exifr";
@@ -10,6 +10,7 @@ import { exifGPSHelper } from "../../helpers/exifGPSHelpers";
 import Collapse from "@mui/material/Collapse";
 import { insertDiveSiteWaits } from "../../supabaseCalls/diveSiteWaitSupabaseCalls";
 import { userCheck } from "../../supabaseCalls/authenticateSupabaseCalls";
+import { DiveSpotContext } from "../contexts/diveSpotContext";
 
 const noGPSZone = (
   <div
@@ -31,31 +32,14 @@ const noGPSZone = (
 const SiteSubmitter = (props) => {
   const { closeup } = props;
   const [showNoGPS, setShowNoGPS] = useState(false);
-
-  const [formVals, setFormVals] = useState({
-    Site: "",
-    Latitude: "",
-    Longitude: "",
-    UserID: "",
-  });
-
-  let UserId;
-
-  useEffect(() => {
-    const getUser = async () => {
-      UserId = await userCheck();
-      setFormVals({ ...formVals, UserID: UserId.id });
-    };
-  
-    getUser();
-  }, []);
+  const { addSiteVals, setAddSiteVals } = useContext(DiveSpotContext);
 
   const [uploadedFile, setUploadedFile] = useState({
     selectedFile: null,
   });
 
   const handleChange = (e) => {
-    setFormVals({ ...formVals, [e.target.name]: e.target.value });
+    setAddSiteVals({ ...addSiteVals, [e.target.name]: e.target.value });
 
     if (e.target.name === "PicFile") {
       setUploadedFile({ ...uploadedFile, selectedFile: e.target.files[0] });
@@ -69,13 +53,13 @@ const SiteSubmitter = (props) => {
         );
 
         if (EXIFData) {
-          setFormVals({
-            ...formVals,
+          setAddSiteVals({
+            ...addSiteVals,
             Latitude: EXIFData[0],
             Longitude: EXIFData[1],
           });
         } else {
-          setFormVals({ ...formVals });
+          setAddSiteVals({ ...addSiteVals });
           setShowNoGPS(true);
         }
       });
@@ -86,8 +70,8 @@ const SiteSubmitter = (props) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         function (position) {
-          setFormVals({
-            ...formVals,
+          setAddSiteVals({
+            ...addSiteVals,
             Latitude: position.coords.latitude,
             Longitude: position.coords.longitude,
           });
@@ -110,9 +94,9 @@ const SiteSubmitter = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    let SiteV = formVals.Site.toString();
-    let LatV = parseFloat(formVals.Latitude);
-    let LngV = parseFloat(formVals.Longitude);
+    let SiteV = addSiteVals.Site.toString();
+    let LatV = parseFloat(addSiteVals.Latitude);
+    let LngV = parseFloat(addSiteVals.Longitude);
 
     if (
       SiteV &&
@@ -122,8 +106,12 @@ const SiteSubmitter = (props) => {
       LngV &&
       typeof LngV === "number"
     ) {
-      insertDiveSiteWaits(formVals);
-      setFormVals({});
+      insertDiveSiteWaits(addSiteVals);
+      setAddSiteVals({...addSiteVals,
+        Site: "",
+        Latitude: "",
+        Longitude: "",
+      })
       closeup();
       return;
     }
@@ -226,7 +214,7 @@ const SiteSubmitter = (props) => {
               placeholder="Latitude"
               type="decimal"
               name="Latitude"
-              value={formVals.Latitude}
+              value={addSiteVals.Latitude}
               onChange={handleChange}
               onClick={handleNoGPSClose}
               inputProps={{
@@ -253,7 +241,7 @@ const SiteSubmitter = (props) => {
               placeholder="Longitude"
               type="decimal"
               name="Longitude"
-              value={formVals.Longitude}
+              value={addSiteVals.Longitude}
               onChange={handleChange}
               onClick={handleNoGPSClose}
               inputProps={{

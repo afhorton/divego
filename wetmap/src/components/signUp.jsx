@@ -8,6 +8,7 @@ import {
 } from "../supabaseCalls/authenticateSupabaseCalls";
 import "./authenication.css";
 import InputBase from "@mui/material/InputBase";
+import { createProfile } from "../supabaseCalls/accountSupabaseCalls";
 
 let emailVar = false;
 let passwordVar = false;
@@ -76,6 +77,7 @@ export default function SignUpRoute() {
     } else {
       let registrationToken = await register(formVals);
       if (registrationToken.data.session !== null) {
+        await createProfile({id: registrationToken.data.session.user.id , email: formVals.email})
         await localStorage.setItem(
           "token",
           JSON.stringify(registrationToken.data.session.refresh_token)
