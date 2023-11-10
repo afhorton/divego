@@ -6,6 +6,8 @@
     border-radius: 10px;
     box-shadow: 3px 4px 5px 1px rgb(99, 99, 99);
     margin: auto;
+    height: 800px;
+    overflow: scroll;
 }
 
 .listHeader {
