@@ -9,7 +9,7 @@ export default function Logo(props) {
     <h2 className="text"
       onDoubleClick={() => setShowAdminPortal(!showAdminPortal)}
     >
-      DiveGo
+      Scuba SEAsons
     </h2>
   );
 }

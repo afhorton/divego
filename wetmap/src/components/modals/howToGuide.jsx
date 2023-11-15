@@ -13,12 +13,12 @@ const HowToGuide = (props) => {
     <div className="masterDiv">
       <div className="topRead">
         <div className="titleDiv">
-          <h3>How to use DiveGo</h3>
+          <h3>How to use Scuba SEAsons</h3>
         </div>
 
         <div className="mainBlurbDiv">
           <p>
-            Welcome to DiveGo, this app is designed for divers who love to
+            Welcome to Scuba SEAsons, this app is designed for divers who love to
             interact with animals
             <br></br><br></br>
             The anchor icons show you the locations of dive

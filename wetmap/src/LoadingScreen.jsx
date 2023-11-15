@@ -8,7 +8,7 @@ export default function LoadingScreen() {
       <div className="containerMain">
       <img src={MantaRay} className="mantaLogo"></img>
 
-      <div className="logoDiv">DiveGo</div>
+      <div className="logoDiv">Scuba SEAsons</div>
       </div>
     </div>
   );

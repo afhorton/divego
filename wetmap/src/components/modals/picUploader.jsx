@@ -82,7 +82,6 @@ const PicUploader = React.memo((props) => {
       }
 
       let fileName = e.target.files[0];
-      console.log("yo", fileName);
       let baseDate = e.target.files[0].lastModified;
 
       setUploadedFile({ ...uploadedFile, selectedFile: e.target.files[0] });
