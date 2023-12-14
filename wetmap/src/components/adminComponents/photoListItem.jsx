@@ -31,36 +31,48 @@ const PhotoListItem = (props) => {
 
     let monthID = scrapeMonthNumber(photoById[0].dateTaken);
 
-    let boundaries = siteGPSBoundaries(photoById[0].latitude, photoById[0].longitude)
+    // let boundaries = siteGPSBoundaries(
+    //   photoById[0].latitude,
+    //   photoById[0].longitude
+    // );
 
-    heatPointExists = await getLoneHeatPoint({
-      minLat: boundaries.minLat,
-      maxLat: boundaries.maxLat,
-      minLng: boundaries.minLng,
-      maxLng: boundaries.maxLng,
+    insertHeatPoint({
+      lat: photoById[0].latitude,
+      lng: photoById[0].longitude,
       animal: photoById[0].label,
       month: monthID,
+      UserID: photoById.UserID,
+      userName: photoById.userName,
     });
 
-    heatPointExists.length > 0
-      ? updateHeatPoint({
-          id: heatPointExists[0].id,
-          weight: heatPointExists[0].weight,
-        })
-      : insertHeatPoint({
-          lat: photoById[0].latitude,
-          lng: photoById[0].longitude,
-          animal: photoById[0].label,
-          month: monthID,
-        });
+    // heatPointExists = await getLoneHeatPoint({
+    //   minLat: boundaries.minLat,
+    //   maxLat: boundaries.maxLat,
+    //   minLng: boundaries.minLng,
+    //   maxLng: boundaries.maxLng,
+    //   animal: photoById[0].label,
+    //   month: monthID,
+    // });
+
+    // heatPointExists.length > 0
+    //   ? updateHeatPoint({
+    //       id: heatPointExists[0].id,
+    //       weight: heatPointExists[0].weight,
+    //     })
+    //   : insertHeatPoint({
+    //       lat: photoById[0].latitude,
+    //       lng: photoById[0].longitude,
+    //       animal: photoById[0].label,
+    //       month: monthID,
+    //     });
 
     photoById ? await insertphoto(photoById[0], monthID) : [];
-    await deletePhotoWait(id)
+    await deletePhotoWait(id);
     let photosToVett = await photoWaits();
     setPhotoWait(photosToVett);
   };
 
-  const RejectPhoto = async(id) => {
+  const RejectPhoto = async (id) => {
     await removePhoto({ filePath: animal, fileName: photoFile });
     await deletePhotoWait(id);
     let photosToVett = await photoWaits();
@@ -107,32 +119,32 @@ const PhotoListItem = (props) => {
       <div id="photoContainer">
         <Form id="photoValidator">
           <div className="imageBox">
-          <Gallery>
-                  <div>
-                    <Item
-                      original={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${formVals.photo}`}
-                      thumbnail={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${formVals.photo}`}
-                      width="992"
-                      height="558"
-                      style={{ borderRadius: "10px" }}
-                    >
-                      {({ ref, open }) => (
-                        <img
-                          style={{
-                            width: "175px",
-                            height: "100px",
-                            marginLeft: "0%",
-                            borderRadius: "10px 0px 0px 10px",
-                            objectFit: "cover"
-                          }}
-                          ref={ref}
-                          onClick={open}
-                          src={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${formVals.photo}`}
-                        />
-                      )}
-                    </Item>
-                  </div>
-                </Gallery>
+            <Gallery>
+              <div>
+                <Item
+                  original={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${formVals.photo}`}
+                  thumbnail={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${formVals.photo}`}
+                  width="992"
+                  height="558"
+                  style={{ borderRadius: "10px" }}
+                >
+                  {({ ref, open }) => (
+                    <img
+                      style={{
+                        width: "175px",
+                        height: "100px",
+                        marginLeft: "0%",
+                        borderRadius: "10px 0px 0px 10px",
+                        objectFit: "cover",
+                      }}
+                      ref={ref}
+                      onClick={open}
+                      src={`https://lsakqvscxozherlpunqx.supabase.co/storage/v1/object/public/${formVals.photo}`}
+                    />
+                  )}
+                </Item>
+              </div>
+            </Gallery>
           </div>
           <div className="infoBox">
             <div className="labelInputCombo">

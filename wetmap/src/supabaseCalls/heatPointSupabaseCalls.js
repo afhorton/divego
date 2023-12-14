@@ -58,6 +58,8 @@ export const insertHeatPoint = async (values) => {
       lat: values.lat,
       lng: values.lng,
       weight: 1,
+      UserID: values.UserID,
+      userName: values.userName,
     },
   ]);
 
