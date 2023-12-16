@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+require("dotenv"). config({path:`./.env.local`});
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -8,8 +9,8 @@ export default defineConfig({
       "/api": "http://localhost:5000/",
     },
     https: {
-      key:"/Users/matthewfreeman/key.pem",
-      cert:"/Users/matthewfreeman/cert.pem"
+      key: process.env.VITE_SSL_KEY_FILE,
+      cert: process.env.VITE_SSL_CRT_FILE
     }
   },
   build: {
